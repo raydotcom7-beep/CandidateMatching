@@ -1,0 +1,2355 @@
+<!DOCTYPE html>
+<html lang="hi-IN" data-theme="light">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="theme-color" content="#0A1628" />
+
+  <link rel="icon" type="image/png" href="../../assets/images/logos/KaushalSetuLogo.png" />
+  <title>डैशबोर्ड — Kaushal Setu</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+Devanagari:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet" />
+
+  <!-- Design System -->
+  <link rel="stylesheet" href="../../assets/css/common/design-tokens.css" />
+  <link rel="stylesheet" href="../../assets/css/common/reset.css" />
+  <link rel="stylesheet" href="../../assets/css/common/typography.css" />
+  <link rel="stylesheet" href="../../assets/css/common/utilities.css" />
+  <link rel="stylesheet" href="../../components/alerts/alerts.css" />
+
+  <!-- Layout & Components -->
+  <link rel="stylesheet" href="../../layouts/dashboard-layout/dashboard-layout.css" />
+  <link rel="stylesheet" href="../../components/cards/cards.css" />
+  <style>
+    /* Premium Form Card (Variant 2B) for the main container */
+    .card {
+      background: #ffffff !important;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03) !important;
+      border: 1px solid var(--border-light, #e2e8f0) !important;
+      border-left: 5px solid var(--color-accent-500, #10b981) !important;
+      /* Green accent */
+      border-radius: var(--radius-xl) !important;
+      padding: var(--space-6) !important;
+    }
+
+    /* Header cleanup */
+    .card__header {
+      text-align: left !important;
+      padding-bottom: 20px !important;
+      border-bottom: 1px solid #f1f5f9 !important;
+      margin-bottom: 24px !important;
+    }
+
+    .card__title {
+      font-size: 24px !important;
+      color: var(--color-primary-900, #0a1628) !important;
+      font-weight: 800 !important;
+      background: none !important;
+      -webkit-text-fill-color: initial !important;
+      margin-bottom: 4px !important;
+    }
+
+    .card__desc {
+      font-size: 14px !important;
+      color: var(--text-secondary) !important;
+    }
+
+    /* Job List */
+    .job-list {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-4);
+    }
+
+    /* Premium Horizontal Application Card */
+    .job-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: var(--space-5);
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: var(--radius-lg);
+      border-left: 4px solid #10b981;
+      /* Green border for applications */
+      transition: all var(--duration-fast) ease;
+    }
+
+    .job-item:hover {
+      background: #ffffff;
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.025);
+      transform: translateY(-2px);
+      border-color: #cbd5e1;
+    }
+
+    .job-info {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .job-title {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--color-primary-900, #0f172a);
+      letter-spacing: -0.3px;
+    }
+
+    .job-subtitle {
+      font-size: 14px;
+      font-weight: 600;
+      color: #3b82f6;
+      margin-bottom: 4px;
+    }
+
+    .job-meta {
+      display: flex;
+      gap: var(--space-3);
+      font-size: 13px;
+      flex-wrap: wrap;
+    }
+
+    .job-meta span {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #ffffff;
+      padding: 4px 10px;
+      border-radius: var(--radius-full);
+      border: 1px solid #e2e8f0;
+      color: var(--text-secondary);
+      font-weight: 600;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
+    }
+
+    /* Modern Action Buttons */
+    .action-group {
+      display: flex;
+      gap: var(--space-3);
+    }
+
+    .btn-action {
+      background: #ffffff;
+      padding: 8px 14px;
+      border-radius: var(--radius-full);
+      font-weight: 700;
+      font-size: 13px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.03);
+    }
+
+    .btn-view {
+      color: #3b82f6;
+      border: 1px solid #93c5fd;
+    }
+
+    .btn-view:hover {
+      background: #3b82f6;
+      color: #ffffff;
+      border-color: #3b82f6;
+      box-shadow: 0 4px 12px rgba(59, 130, 246, 0.25);
+      transform: translateY(-1px);
+    }
+
+    .btn-accept {
+      color: #10b981;
+      border: 1px solid #6ee7b7;
+    }
+
+    .btn-accept:hover {
+      background: #10b981;
+      color: #ffffff;
+      border-color: #10b981;
+      box-shadow: 0 4px 12px rgba(16, 185, 129, 0.25);
+      transform: translateY(-1px);
+    }
+
+    .btn-reject {
+      color: #ef4444;
+      border: 1px solid #fca5a5;
+    }
+
+    .btn-reject:hover {
+      background: #ef4444;
+      color: #ffffff;
+      border-color: #ef4444;
+      box-shadow: 0 4px 12px rgba(239, 68, 68, 0.25);
+      transform: translateY(-1px);
+    }
+
+    @media (max-width: 768px) {
+      .job-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--space-5);
+      }
+
+      .action-group {
+        width: 100%;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+      }
+    }
+
+    /* Modal Styling */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(15, 23, 42, 0.7);
+      backdrop-filter: blur(6px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .modal-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .modal-content {
+      background: #ffffff;
+      border-radius: var(--radius-xl);
+      width: 95%;
+      max-width: 700px;
+      max-height: 90vh;
+      overflow-y: auto;
+      transform: translateY(30px) scale(0.95);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    }
+
+    .modal-overlay.active .modal-content {
+      transform: translateY(0) scale(1);
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 24px;
+      border-bottom: 1px solid #f1f5f9;
+      background: #f8fafc;
+      border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+    }
+
+    .modal-title {
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--color-primary-900, #0f172a);
+    }
+
+    .btn-close-modal {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      color: var(--text-secondary);
+      cursor: pointer;
+      padding: 6px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    }
+
+    .btn-close-modal:hover {
+      background: #fee2e2;
+      color: #ef4444;
+      border-color: #fca5a5;
+    }
+
+    .modal-body {
+      padding: 24px;
+    }
+
+    .profile-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+    }
+
+    .profile-field {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      background: #f8fafc;
+      padding: 12px 16px;
+      border-radius: var(--radius-md);
+      border: 1px solid #f1f5f9;
+    }
+
+    .profile-label {
+      font-size: 12px;
+      color: var(--text-secondary);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .profile-value {
+      font-size: 15px;
+      color: var(--color-primary-900, #0f172a);
+      font-weight: 700;
+    }
+
+    /* ─── AI Recommended Candidates Page Upgrades ─── */
+    .ai-header-container {
+      margin-bottom: 24px;
+    }
+
+    .ai-header-title {
+      font-size: 28px !important;
+      font-weight: 800 !important;
+      color: var(--color-primary-900, #0a1628);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .ai-header-title .spark-icon {
+      color: #3b82f6;
+      font-size: 24px;
+      animation: pulse-spark 2s infinite ease-in-out;
+    }
+
+    .ai-header-subtitle {
+      font-size: 14px;
+      color: var(--text-secondary, #64748b);
+      margin-top: 4px;
+      font-weight: 500;
+    }
+
+    /* AI Match Hero Banner */
+    .ai-hero-banner {
+      background: linear-gradient(135deg, #0f1e36 0%, #1e293b 100%);
+      border-radius: 16px;
+      padding: 24px 32px;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+      box-shadow: 0 10px 25px rgba(15, 30, 54, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .ai-hero-banner::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.08) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .ai-hero-left {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      z-index: 2;
+    }
+
+    .ai-hero-badge {
+      width: 72px;
+      height: 72px;
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      border-radius: 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+      backdrop-filter: blur(4px);
+      flex-shrink: 0;
+    }
+
+    .ai-hero-badge::after {
+      content: '';
+      position: absolute;
+      top: -4px;
+      left: -4px;
+      right: -4px;
+      bottom: -4px;
+      border: 2px solid rgba(255, 255, 255, 0.15);
+      border-radius: 20px;
+      animation: pulse-ring 2.5s infinite linear;
+    }
+
+    .ai-badge-chip-icon {
+      font-size: 24px;
+      line-height: 1;
+      margin-bottom: 2px;
+    }
+
+    .ai-badge-text {
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      color: #ffffff;
+    }
+
+    .ai-hero-text-block {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .ai-hero-main-title {
+      font-size: 24px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      line-height: 1.2;
+      color: #ffffff !important;
+    }
+
+    .ai-hero-subtitle {
+      font-size: 15px;
+      font-weight: 500;
+      opacity: 0.95;
+      color: #ffffff !important;
+    }
+
+    .ai-job-dropdown-container {
+      margin-top: 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .ai-job-label {
+      font-size: 13px;
+      font-weight: 700;
+      opacity: 0.95;
+    }
+
+    .ai-job-selector {
+      background: rgba(10, 22, 40, 0.5);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 8px;
+      color: white;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      outline: none;
+      cursor: pointer;
+      backdrop-filter: blur(4px);
+      transition: all 0.2s ease;
+    }
+
+    .ai-job-selector:focus {
+      border-color: white;
+      box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.25);
+    }
+
+    .ai-hero-right {
+      z-index: 2;
+      position: relative;
+    }
+
+    .ai-waving-robot {
+      height: 110px;
+      width: auto;
+      object-fit: contain;
+      filter: drop-shadow(0 8px 20px rgba(0, 0, 0, 0.25));
+      animation: float-robot 4s ease-in-out infinite;
+    }
+
+    /* Metrics Grid */
+    .ai-metrics-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .ai-metric-card {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 16px;
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.03), 0 2px 4px -1px rgba(0, 0, 0, 0.02);
+    }
+
+    .ai-metric-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 20px -5px rgba(0, 0, 0, 0.08);
+      border-color: #cbd5e1;
+    }
+
+    .ai-metric-icon-box {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+
+    .ai-metric-icon-box.purple {
+      background: #f3e8ff;
+      color: #a855f7;
+    }
+
+    .ai-metric-icon-box.green {
+      background: #dcfce7;
+      color: #22c55e;
+    }
+
+    .ai-metric-icon-box.red {
+      background: #fee2e2;
+      color: #ef4444;
+    }
+
+    .ai-metric-icon-box.teal {
+      background: #ccfbf1;
+      color: #0d9488;
+    }
+
+    .ai-metric-info {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .ai-metric-label {
+      font-size: 12px;
+      color: #64748b;
+      font-weight: 600;
+      line-height: 1.3;
+    }
+
+    .ai-metric-value {
+      font-size: 24px;
+      font-weight: 800;
+      color: #0f172a;
+      line-height: 1.2;
+      margin-top: 2px;
+    }
+
+    /* Main Grid Split */
+    .ai-split-layout {
+      display: grid;
+      grid-template-columns: 1.95fr 1fr;
+      gap: 24px;
+      align-items: start;
+    }
+
+    /* Left Column - Candidate Table Style Card */
+    .ai-candidates-panel {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.03);
+    }
+
+    .ai-panel-title-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .ai-panel-title {
+      font-size: 18px;
+      font-weight: 800;
+      color: #0f172a;
+    }
+
+    /* Candidate List Header styling */
+    .candidate-header-row {
+      display: grid;
+      grid-template-columns: 2.1fr 1fr 1fr 1.8fr 1.5fr;
+      padding: 10px 16px;
+      font-size: 11px;
+      font-weight: 700;
+      color: #64748b;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      border-bottom: 2px solid #f1f5f9;
+      margin-bottom: 12px;
+    }
+
+    /* Candidate Row Card */
+    .candidate-row-card {
+      display: grid;
+      grid-template-columns: 2.1fr 1fr 1fr 1.8fr 1.5fr;
+      align-items: center;
+      padding: 16px;
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      margin-bottom: 12px;
+      transition: all 0.25s ease;
+    }
+
+    .candidate-row-card:hover {
+      box-shadow: 0 8px 16px -4px rgba(0, 0, 0, 0.06);
+      border-color: #cbd5e1;
+      transform: translateY(-2px);
+    }
+
+    /* Candidate profile element */
+    .candidate-profile-cell {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+    }
+
+    .candidate-avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: 2px solid #e2e8f0;
+      object-fit: cover;
+      background: #f1f5f9;
+    }
+
+    .candidate-profile-text {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      min-width: 0;
+    }
+
+    .candidate-name-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .candidate-name-text {
+      font-size: 15px;
+      font-weight: 800;
+      color: #0f172a;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .verified-blue-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 14px;
+      height: 14px;
+      background: #3b82f6;
+      color: white;
+      border-radius: 50%;
+      font-size: 8px;
+      font-weight: 900;
+      flex-shrink: 0;
+    }
+
+    .candidate-desc-role {
+      font-size: 12px;
+      color: #64748b;
+      font-weight: 500;
+    }
+
+    .candidate-desc-location {
+      font-size: 11px;
+      color: #94a3b8;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .candidate-location-icon {
+      font-size: 12px;
+    }
+
+    /* Match Score dial */
+    .match-score-cell {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .score-dial-container {
+      position: relative;
+      width: 60px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .score-dial-svg {
+      transform: rotate(-90deg);
+      width: 60px;
+      height: 60px;
+    }
+
+    .score-dial-bg {
+      fill: none;
+      stroke: #f1f5f9;
+      stroke-width: 5;
+    }
+
+    .score-dial-fill {
+      fill: none;
+      stroke: #10b981;
+      stroke-width: 5;
+      stroke-linecap: round;
+      stroke-dasharray: 172.7;
+      transition: stroke-dashoffset 0.5s ease-out;
+    }
+
+    .score-dial-text-block {
+      position: absolute;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .score-dial-number {
+      font-size: 12px;
+      font-weight: 800;
+      color: #0f172a;
+      line-height: 1;
+    }
+
+    .score-dial-label {
+      font-size: 8px;
+      font-weight: 700;
+      color: #64748b;
+      text-transform: uppercase;
+      margin-top: 1px;
+    }
+
+    /* Experience and Badge */
+    .experience-cell {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 4px;
+    }
+
+    .experience-value {
+      font-size: 13px;
+      font-weight: 700;
+      color: #0f172a;
+    }
+
+    .qualification-pill {
+      background: #eff6ff;
+      color: #1d4ed8;
+      border: 1px solid #bfdbfe;
+      font-size: 10px;
+      font-weight: 800;
+      padding: 2px 8px;
+      border-radius: 6px;
+      width: fit-content;
+      text-transform: uppercase;
+    }
+
+    /* Skills Checks */
+    .skills-cell {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 4px;
+    }
+
+    .skill-check-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      color: #334155;
+      font-weight: 600;
+    }
+
+    .skill-check-icon {
+      color: #22c55e;
+      font-size: 11px;
+      font-weight: bold;
+    }
+
+    .skills-more-count {
+      font-size: 11px;
+      color: #94a3b8;
+      font-weight: 600;
+      margin-left: 18px;
+    }
+
+    /* Actions panel in row */
+    .actions-cell {
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 8px;
+      width: 100%;
+    }
+
+    .btn-row-action {
+      background: #2563eb;
+      color: white;
+      border: none;
+      padding: 8px 12px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+      box-shadow: 0 2px 4px rgba(37, 99, 235, 0.15);
+    }
+
+    .btn-row-action:hover {
+      background: #1d4ed8;
+      box-shadow: 0 4px 10px rgba(37, 99, 235, 0.25);
+      transform: translateY(-1px);
+    }
+
+    .row-action-subrow {
+      display: flex;
+      gap: 8px;
+      justify-content: center;
+    }
+
+    .btn-subaction {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      color: #475569;
+      font-size: 14px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease;
+      flex-shrink: 0;
+    }
+
+    .btn-subaction:hover {
+      background: #f8fafc;
+      border-color: #cbd5e1;
+      color: #0f172a;
+    }
+
+    .btn-subaction.shortlisted-active {
+      background: #dcfce7;
+      border-color: #86efac;
+      color: #15803d;
+    }
+
+    /* Right Column - Premium Widgets Stack */
+    .ai-widgets-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .ai-widget-card {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 16px;
+      padding: 20px;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.03);
+    }
+
+    .ai-widget-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .ai-widget-header-icon {
+      color: #8b5cf6;
+      font-size: 18px;
+    }
+
+    .ai-widget-title {
+      font-size: 15px;
+      font-weight: 800;
+      color: #0f172a;
+    }
+
+    /* Widget 1: Insights list */
+    .insights-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .insight-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #f8fafc;
+      border: 1px solid #f1f5f9;
+      border-radius: 10px;
+      padding: 10px 14px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .insight-item:hover {
+      background: #ffffff;
+      border-color: #e2e8f0;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.04);
+      transform: translateX(2px);
+    }
+
+    .insight-left-block {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+    }
+
+    .insight-bullet-box {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      flex-shrink: 0;
+    }
+
+    .insight-bullet-box.blue {
+      background: #eff6ff;
+      color: #3b82f6;
+    }
+
+    .insight-bullet-box.green {
+      background: #f0fdf4;
+      color: #22c55e;
+    }
+
+    .insight-bullet-box.orange {
+      background: #fff7ed;
+      color: #f97316;
+    }
+
+    .insight-bullet-box.purple {
+      background: #faf5ff;
+      color: #a855f7;
+    }
+
+    .insight-text {
+      font-size: 12px;
+      color: #334155;
+      font-weight: 600;
+      line-height: 1.4;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .insight-chevron {
+      color: #94a3b8;
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    /* Widget 2: Doughnut Breakdown */
+    .breakdown-body {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .breakdown-chart-wrapper {
+      position: relative;
+      width: 100px;
+      height: 100px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .breakdown-chart-svg {
+      width: 100px;
+      height: 100px;
+      transform: rotate(-90deg);
+    }
+
+    .breakdown-chart-bg {
+      fill: none;
+      stroke: #f1f5f9;
+      stroke-width: 8;
+    }
+
+    .breakdown-chart-fill {
+      fill: none;
+      stroke: #3b82f6;
+      stroke-width: 8;
+      stroke-linecap: round;
+      stroke-dasharray: 282.7;
+      stroke-dashoffset: 45.2;
+      /* 84% score offset */
+    }
+
+    .breakdown-inner-text {
+      position: absolute;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .breakdown-avg-score {
+      font-size: 18px;
+      font-weight: 800;
+      color: #0f172a;
+      line-height: 1;
+    }
+
+    .breakdown-avg-label {
+      font-size: 7px;
+      font-weight: 700;
+      color: #64748b;
+      text-transform: uppercase;
+      text-align: center;
+      line-height: 1.2;
+      margin-top: 2px;
+    }
+
+    .breakdown-legend-list {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      flex: 1;
+    }
+
+    .breakdown-legend-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .legend-label-block {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #475569;
+    }
+
+    .legend-bullet-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .legend-bullet-dot.green {
+      background: #22c55e;
+    }
+
+    .legend-bullet-dot.blue {
+      background: #3b82f6;
+    }
+
+    .legend-bullet-dot.orange {
+      background: #f97316;
+    }
+
+    .legend-bullet-dot.purple {
+      background: #a855f7;
+    }
+
+    .legend-score-value {
+      font-weight: 700;
+      color: #0f172a;
+    }
+
+    /* Widget 3: Chat Assistant */
+    .ai-assistant-widget {
+      background: linear-gradient(135deg, #f5f3ff 0%, #ede9fe 100%);
+      border: 1px solid #ddd6fe;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .ai-assistant-desc {
+      font-size: 12px;
+      color: #4c1d95;
+      font-weight: 600;
+      line-height: 1.4;
+      margin-bottom: 16px;
+      max-width: 75%;
+    }
+
+    .btn-assistant-chat {
+      background: #ffffff;
+      color: #6d28d9;
+      border: 1px solid #c084fc;
+      padding: 10px 18px;
+      border-radius: 12px;
+      font-size: 12px;
+      font-weight: 800;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 4px 6px rgba(109, 40, 217, 0.08);
+      transition: all 0.25s ease;
+    }
+
+    .btn-assistant-chat:hover {
+      background: #6d28d9;
+      color: #ffffff;
+      border-color: #6d28d9;
+      box-shadow: 0 8px 16px rgba(109, 40, 217, 0.2);
+      transform: translateY(-1px);
+    }
+
+    .assistant-peeking-robot {
+      position: absolute;
+      bottom: -15px;
+      right: -10px;
+      height: 72px;
+      width: auto;
+      object-fit: contain;
+      filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.1));
+      transform: rotate(-10deg);
+    }
+
+    /* Keyframes Animations */
+    @keyframes pulse-spark {
+
+      0%,
+      100% {
+        transform: scale(1);
+        opacity: 1;
+        filter: drop-shadow(0 0 2px rgba(59, 130, 246, 0.4));
+      }
+
+      50% {
+        transform: scale(1.15);
+        opacity: 0.8;
+        filter: drop-shadow(0 0 8px rgba(59, 130, 246, 0.8));
+      }
+    }
+
+    @keyframes float-robot {
+
+      0%,
+      100% {
+        transform: translateY(0) rotate(0deg);
+      }
+
+      50% {
+        transform: translateY(-8px) rotate(2deg);
+      }
+    }
+
+    @keyframes pulse-ring {
+      0% {
+        transform: scale(0.95);
+        opacity: 0.5;
+      }
+
+      50% {
+        transform: scale(1.03);
+        opacity: 1;
+      }
+
+      100% {
+        transform: scale(0.95);
+        opacity: 0.5;
+      }
+    }
+
+    /* Responsive scaling for search bar & layouts */
+    @media (max-width: 1200px) {
+      .ai-metric-card {
+        padding: 14px 16px;
+      }
+
+      .ai-metric-value {
+        font-size: 20px;
+      }
+    }
+
+    @media (max-width: 1024px) {
+      .ai-split-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .ai-metrics-row {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .ai-hero-banner {
+        flex-direction: column;
+        text-align: center;
+        gap: 20px;
+        padding: 24px;
+      }
+
+      .ai-hero-left {
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      .ai-job-dropdown-container {
+        justify-content: center;
+      }
+
+      .candidate-header-row {
+        display: none;
+      }
+
+      .candidate-row-card {
+        grid-template-columns: 1fr;
+        gap: 16px;
+        text-align: center;
+        padding: 20px;
+      }
+
+      .candidate-profile-cell {
+        flex-direction: column;
+      }
+
+      .candidate-name-wrapper {
+        justify-content: center;
+      }
+
+      .match-score-cell,
+      .experience-cell,
+      .skills-cell,
+      .actions-cell {
+        align-items: center;
+        justify-content: center;
+      }
+
+      .actions-cell {
+        max-width: 260px;
+        margin: 0 auto;
+      }
+
+      .ai-metrics-row {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body class="layout-dashboard">
+
+  <!-- Sidebar Overlay -->
+  <div class="sidebar-overlay" id="sidebar-overlay" aria-hidden="true"></div>
+
+  <!-- Sidebar -->
+  <nav id="dashboard-sidebar" class="dashboard-sidebar" aria-label="मुख्य नेविगेशन">
+    <div class="sidebar-header">
+      <a href="IndustryServiceHome.html" class="sidebar-brand">
+        <img src="../../assets/images/logos/KaushalSetuLogo.png" alt="Kaushal Setu" width="170" height="170" />
+      </a>
+    </div>
+    <div class="sidebar-nav">
+
+      <!-- Group 1 -->
+      <div class="sidebar-group">
+        <div class="sidebar-group-title" data-i18n="dashboard.menu.profile_identity">प्रोफाइल एवं पहचान प्रबंधन</div>
+        <ul class="sidebar-menu">
+          <li><a href="profile.html" class="sidebar-link" data-i18n="dashboard.menu.personal_profile">प्रोफाइल
+              प्रबंधन</a></li>
+        </ul>
+      </div>
+
+      <!-- Group 2 -->
+      <div class="sidebar-group">
+        <div class="sidebar-group-title" data-i18n="dashboard.menu.employment_career">रोजगार एवं कैरियर सेवाएँ</div>
+        <ul class="sidebar-menu">
+          <li><a href="industrydashboard.html" class="sidebar-link" data-i18n="dashboard.menu.dashboard">डैशबोर्ड</a>
+          </li>
+          <li><a href="PostJob.html" class="sidebar-link" data-i18n="dashboard.menu.post_jobs">नौकरियां पोस्ट करें</a>
+          </li>
+          <li><a href="ActiveJobPostings.html" class="sidebar-link" data-i18n="dashboard.menu.active_jobs">सक्रिय
+              नौकरियां</a></li>
+          <li><a href="ReceivedJobApplications.html" class="sidebar-link"
+              data-i18n="dashboard.menu.received_apps">प्राप्त आवेदन</a></li>
+          <li><a href="shortlistedcandidate.html" class="sidebar-link"
+              data-i18n="dashboard.menu.shortlisted">शॉर्टलिस्टेड उम्मीदवार</a></li>
+          <li><a href="AIshortlistedcandidate.html" class="sidebar-link active"
+              data-i18n="dashboard.menu.ai_recommended_candidates">Recommended Candidates</a></li>
+          <li><a href="searchcandidate.html" class="sidebar-link" data-i18n="dashboard.menu.search_candidate">उम्मीदवार
+              खोजें</a></li>
+        </ul>
+      </div>
+
+    </div>
+  </nav>
+
+  <!-- Main Area -->
+  <main class="dashboard-main">
+
+    <!-- Header -->
+    <header class="dashboard-header">
+      <div class="header-left">
+        <button id="sidebar-toggle" class="sidebar-toggle-btn" aria-label="मेनू टॉगल करें">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+            stroke-linecap="round">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+
+      <div class="header-right">
+
+        <!-- User Profile -->
+        <div class="user-profile">
+          <div class="user-info">
+            <span class="user-name"
+              style="max-width: 200px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"
+              title="National Textile Corporation Limited (NTC)">National Textile Corporation Limited (NTC)</span>
+            <span class="user-meta"><span id="last-login-time">Last login: </span></span>
+          </div>
+          <div class="user-avatar" aria-hidden="true" style="font-size: 14px;">NTC</div>
+        </div>
+
+        <div class="header-actions">
+          <button id="lang-toggle" class="btn btn--ghost btn--sm" data-lang-toggle
+            aria-label="Switch to English">English</button>
+          <a href="../home/index.html" class="btn btn--secondary btn--sm" data-i18n="dashboard.signout">लॉग आउट</a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Content -->
+    <div class="dashboard-content" id="dashboard-content1">
+
+      <!-- AI Recommended Header (Wired for bilingual titles) -->
+      <div class="ai-header-container">
+        <h1 class="ai-header-title">
+          <span data-i18n="ai_recommended_candidates.title">Recommended Candidates</span>
+          <span class="spark-icon">✨</span>
+        </h1>
+        <p class="ai-header-subtitle" data-i18n="ai_recommended_candidates.desc_alt">AI recommends the best matching
+          candidates for your active jobs.</p>
+      </div>
+
+      <!-- AI Match Hero Banner -->
+      <div class="ai-hero-banner">
+        <div class="ai-hero-left">
+          <!-- glowing futuristic chip badge -->
+          <div class="ai-hero-badge">
+            <span class="ai-badge-chip-icon">🤖</span>
+            <span class="ai-badge-text">BEST MATCH</span>
+          </div>
+          <div class="ai-hero-text-block">
+            <h2 class="ai-hero-main-title" data-i18n="ai_match.banner_title">Found 48 highly matched candidates
+            </h2>
+            <p class="ai-hero-subtitle" data-i18n="ai_match.banner_subtitle">for your active jobs. 🚀</p>
+
+            <!-- translucent job selector dropdown matching the image -->
+            <div class="ai-job-dropdown-container">
+              <span class="ai-job-label" data-i18n="ai_match.job_label">Active Job:</span>
+              <select class="ai-job-selector" id="job-filter-select">
+                <option value="Electrician" selected data-i18n="job.electrician">Senior Electrician</option>
+                <option value="Plumber" data-i18n="job.plumber">Master Plumber</option>
+                <option value="Mason" data-i18n="job.mason">Construction Mason</option>
+                <option value="Carpenter" data-i18n="job.carpenter">Wood Carpenter</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="ai-hero-right">
+          <!-- waving 3D robot waving avatar -->
+          <img src="../../assets/images/logos/ai_robot_avatar.png" alt="Robot" class="ai-waving-robot" />
+        </div>
+      </div>
+
+      <!-- Metrics / KPI row (4 columns) -->
+      <div class="ai-metrics-row">
+        <!-- Metric 1: High Match -->
+        <div class="ai-metric-card">
+          <div class="ai-metric-icon-box purple">👥</div>
+          <div class="ai-metric-info">
+            <span class="ai-metric-label" data-i18n="ai_metric.high_match">High Match Candidates</span>
+            <span class="ai-metric-value">48</span>
+          </div>
+        </div>
+        <!-- Metric 2: Certified -->
+        <div class="ai-metric-card">
+          <div class="ai-metric-icon-box green">🛡️</div>
+          <div class="ai-metric-info">
+            <span class="ai-metric-label" data-i18n="ai_metric.certified">Certified Candidates</span>
+            <span class="ai-metric-value">32</span>
+          </div>
+        </div>
+        <!-- Metric 3: Fresher -->
+        <div class="ai-metric-card">
+          <div class="ai-metric-icon-box red">🎓</div>
+          <div class="ai-metric-info">
+            <span class="ai-metric-label" data-i18n="ai_metric.fresher">Fresher Available</span>
+            <span class="ai-metric-value">15</span>
+          </div>
+        </div>
+        <!-- Metric 4: Avg Score -->
+        <div class="ai-metric-card">
+          <div class="ai-metric-icon-box teal">📈</div>
+          <div class="ai-metric-info">
+            <span class="ai-metric-label" data-i18n="ai_metric.avg_score">Average Match Score</span>
+            <span class="ai-metric-value">84%</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Main Columns Split -->
+      <div class="ai-split-layout">
+
+        <!-- Left Side: Table List Card -->
+        <div class="ai-candidates-panel">
+          <div class="ai-panel-title-bar">
+            <h3 class="ai-panel-title" data-i18n="ai_panel.list_title">Candidate Recommendations</h3>
+            <span class="status-badge status-badge--success" style="font-weight:700;"
+              data-i18n="ai_panel.status">Matches Refreshed</span>
+          </div>
+
+          <!-- Table Header -->
+          <div class="candidate-header-row">
+            <span data-i18n="ai_table.candidate">Candidate</span>
+            <span style="text-align:center;" data-i18n="ai_table.match_score">Match Score</span>
+            <span data-i18n="ai_table.experience">Experience</span>
+            <span data-i18n="ai_table.skills">Skills & Qualification</span>
+            <span style="text-align:center;" data-i18n="ai_table.action">Action</span>
+          </div>
+
+          <!-- Candidate List Wrapper -->
+          <div class="job-list" id="application-list-container">
+
+            <!-- Row 1: Rahul Verma -->
+            <div class="candidate-row-card" data-job="Electrician">
+              <!-- Profile cell -->
+              <div class="candidate-profile-cell">
+                <!-- Inline premium styled avatar -->
+                <div
+                  style="width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #3b82f6, #6366f1); color: white; font-weight: 800; font-size: 16px; border: 2px solid #e2e8f0; flex-shrink: 0;"
+                  aria-hidden="true">RV</div>
+                <div class="candidate-profile-text">
+                  <div class="candidate-name-wrapper">
+                    <span class="candidate-name-text">Rahul Verma</span>
+                    <span class="verified-blue-badge" title="Aadhaar Verified">✔</span>
+                  </div>
+                  <span class="candidate-desc-role" data-i18n="candidate.role_electrician">Electrician</span>
+                  <span class="candidate-desc-location">
+                    <span class="candidate-location-icon">📍</span>Bhopal, MP
+                  </span>
+                </div>
+              </div>
+
+              <!-- Match score dial -->
+              <div class="match-score-cell">
+                <div class="score-dial-container">
+                  <svg class="score-dial-svg">
+                    <circle class="score-dial-bg" cx="30" cy="30" r="25" />
+                    <!-- stroke-dashoffset: 172.7 * (1 - 0.92) = 13.8 -->
+                    <circle class="score-dial-fill" cx="30" cy="30" r="25"
+                      style="stroke: #10b981; stroke-dashoffset: 13.8;" />
+                  </svg>
+                  <div class="score-dial-text-block">
+                    <span class="score-dial-number">92%</span>
+                    <span class="score-dial-label" data-i18n="score.match">Match</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Experience stack -->
+              <div class="experience-cell">
+                <span class="experience-value" data-i18n="candidate.exp_1">3 Years Exp.</span>
+                <span class="qualification-pill" data-i18n="qualification.iti">ITI</span>
+              </div>
+
+              <!-- Skills stack -->
+              <div class="skills-cell">
+                <div class="skill-check-item">
+                  <span class="skill-check-icon">✔</span>
+                  <span data-i18n="skills.electrical_wiring">Electrical Wiring</span>
+                </div>
+                <div class="skill-check-item">
+                  <span class="skill-check-icon">✔</span>
+                  <span data-i18n="skills.maintenance">Maintenance</span>
+                </div>
+                <div class="skill-check-item">
+                  <span class="skill-check-icon">✔</span>
+                  <span data-i18n="skills.safety_standards">Safety Standards</span>
+                </div>
+              </div>
+
+              <!-- Action column -->
+              <div class="actions-cell">
+                <!-- Wire to click event to open Modal dynamically -->
+                <button class="btn-row-action btn-view" data-name="Rahul Verma" data-fname="Suresh Verma"
+                  data-dob="12-Oct-1998" data-gender="Male" data-mobile="+91-9876543210"
+                  data-email="rahul.verma@example.com" data-address="Flat 204, Block-C, Sagar Estates, Ayodhya Bypass"
+                  data-district="Bhopal" data-pincode="462041" data-exp="3 Years" data-role="Senior Electrician"
+                  data-skills="Electrical Wiring, Maintenance, Safety Standards, Panel Troubleshooting, Wire Jointing"
+                  data-i18n="receivedapps.view">
+                  👁️ View Profile
+                </button>
+                <div class="row-action-subrow">
+                  <button class="btn-subaction btn-accept" aria-label="Shortlist" title="Shortlist">👤</button>
+                  <button class="btn-subaction btn-call" data-mobile="+91-9876543210" data-name="Rahul Verma"
+                    aria-label="Call" title="Call">📞</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Row 2: Vikas Sharma -->
+            <div class="candidate-row-card" data-job="Electrician">
+              <div class="candidate-profile-cell">
+                <div
+                  style="width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #10b981, #059669); color: white; font-weight: 800; font-size: 16px; border: 2px solid #e2e8f0; flex-shrink: 0;"
+                  aria-hidden="true">VS</div>
+                <div class="candidate-profile-text">
+                  <div class="candidate-name-wrapper">
+                    <span class="candidate-name-text">Vikas Sharma</span>
+                    <span class="verified-blue-badge" title="Aadhaar Verified">✔</span>
+                  </div>
+                  <span class="candidate-desc-role" data-i18n="candidate.role_electrician">Electrician</span>
+                  <span class="candidate-desc-location">
+                    <span class="candidate-location-icon">📍</span>Indore, MP
+                  </span>
+                </div>
+              </div>
+
+              <div class="match-score-cell">
+                <div class="score-dial-container">
+                  <svg class="score-dial-svg">
+                    <circle class="score-dial-bg" cx="30" cy="30" r="25" />
+                    <!-- stroke-dashoffset: 172.7 * (1 - 0.88) = 20.7 -->
+                    <circle class="score-dial-fill" cx="30" cy="30" r="25"
+                      style="stroke: #10b981; stroke-dashoffset: 20.7;" />
+                  </svg>
+                  <div class="score-dial-text-block">
+                    <span class="score-dial-number">88%</span>
+                    <span class="score-dial-label" data-i18n="score.match">Match</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="experience-cell">
+                <span class="experience-value" data-i18n="candidate.exp_2">4 Years Exp.</span>
+                <span class="qualification-pill" data-i18n="qualification.diploma">Diploma</span>
+              </div>
+
+              <div class="skills-cell">
+                <div class="skill-check-item">
+                  <span class="skill-check-icon">✔</span>
+                  <span data-i18n="skills.industrial_wiring">Industrial Wiring</span>
+                </div>
+                <div class="skill-check-item">
+                  <span class="skill-check-icon">✔</span>
+                  <span data-i18n="skills.troubleshooting">Troubleshooting</span>
+                </div>
+                <div class="skill-check-item">
+                  <span class="skill-check-icon">✔</span>
+                  <span data-i18n="skills.panel_maintenance">Panel Maintenance</span>
+                </div>
+              </div>
+
+              <div class="actions-cell">
+                <button class="btn-row-action btn-view" data-name="Vikas Sharma" data-fname="Ramashankar Sharma"
+                  data-dob="05-Apr-1996" data-gender="Male" data-mobile="+91-9865432109"
+                  data-email="vikas.sharma@example.com" data-address="House No. 42, Gali 2, Vijay Nagar"
+                  data-district="Indore" data-pincode="452010" data-exp="4 Years" data-role="Senior Electrician"
+                  data-skills="Industrial Wiring, Troubleshooting, Panel Maintenance, Three-Phase Circuits"
+                  data-i18n="receivedapps.view">
+                  👁️ View Profile
+                </button>
+                <div class="row-action-subrow">
+                  <button class="btn-subaction btn-accept" aria-label="Shortlist" title="Shortlist">👤</button>
+                  <button class="btn-subaction btn-call" data-mobile="+91-9865432109" data-name="Vikas Sharma"
+                    aria-label="Call" title="Call">📞</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Row 3: Aman Singh -->
+            <div class="candidate-row-card" data-job="Electrician">
+              <div class="candidate-profile-cell">
+                <div
+                  style="width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #f59e0b, #d97706); color: white; font-weight: 800; font-size: 16px; border: 2px solid #e2e8f0; flex-shrink: 0;"
+                  aria-hidden="true">AS</div>
+                <div class="candidate-profile-text">
+                  <div class="candidate-name-wrapper">
+                    <span class="candidate-name-text">Aman Singh</span>
+                    <span class="verified-blue-badge" title="Aadhaar Verified">✔</span>
+                  </div>
+                  <span class="candidate-desc-role" data-i18n="candidate.role_electrician">Electrician</span>
+                  <span class="candidate-desc-location">
+                    <span class="candidate-location-icon">📍</span>Gwalior, MP
+                  </span>
+                </div>
+              </div>
+
+              <div class="match-score-cell">
+                <div class="score-dial-container">
+                  <svg class="score-dial-svg">
+                    <circle class="score-dial-bg" cx="30" cy="30" r="25" />
+                    <!-- stroke-dashoffset: 172.7 * (1 - 0.85) = 25.9 -->
+                    <circle class="score-dial-fill" cx="30" cy="30" r="25"
+                      style="stroke: #10b981; stroke-dashoffset: 25.9;" />
+                  </svg>
+                  <div class="score-dial-text-block">
+                    <span class="score-dial-number">85%</span>
+                    <span class="score-dial-label" data-i18n="score.match">Match</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="experience-cell">
+                <span class="experience-value" data-i18n="candidate.exp_3">2 Years Exp.</span>
+                <span class="qualification-pill" data-i18n="qualification.iti">ITI</span>
+              </div>
+
+              <div class="skills-cell">
+                <div class="skill-check-item">
+                  <span class="skill-check-icon">✔</span>
+                  <span data-i18n="skills.house_wiring">House Wiring</span>
+                </div>
+                <div class="skill-check-item">
+                  <span class="skill-check-icon">✔</span>
+                  <span data-i18n="skills.electrical_safety">Electrical Safety</span>
+                </div>
+                <div class="skill-check-item">
+                  <span class="skill-check-icon">✔</span>
+                  <span data-i18n="skills.tools_handling">Tools Handling</span>
+                </div>
+              </div>
+
+              <!-- Action column -->
+              <div class="actions-cell">
+                <button class="btn-row-action btn-view" data-name="Aman Singh" data-fname="Karan Singh"
+                  data-dob="18-Aug-2000" data-gender="Male" data-mobile="+91-9854321098"
+                  data-email="aman.singh@example.com" data-address="Plot No. 112, Deen Dayal Nagar"
+                  data-district="Gwalior" data-pincode="474020" data-exp="2 Years" data-role="Senior Electrician"
+                  data-skills="House Wiring, Electrical Safety, Tools Handling, Grid Fault Repairing"
+                  data-i18n="receivedapps.view">
+                  👁️ View Profile
+                </button>
+                <div class="row-action-subrow">
+                  <button class="btn-subaction btn-accept" aria-label="Shortlist" title="Shortlist">👤</button>
+                  <button class="btn-subaction btn-call" data-mobile="+91-9854321098" data-name="Aman Singh"
+                    aria-label="Call" title="Call">📞</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Row 4: Sandeep Patel -->
+            <div class="candidate-row-card" data-job="Electrician">
+              <div class="candidate-profile-cell">
+                <div
+                  style="width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #a855f7, #7c3aed); color: white; font-weight: 800; font-size: 16px; border: 2px solid #e2e8f0; flex-shrink: 0;"
+                  aria-hidden="true">SP</div>
+                <div class="candidate-profile-text">
+                  <div class="candidate-name-wrapper">
+                    <span class="candidate-name-text">Sandeep Patel</span>
+                    <span class="verified-blue-badge" title="Aadhaar Verified">✔</span>
+                  </div>
+                  <span class="candidate-desc-role" data-i18n="candidate.role_electrician">Electrician</span>
+                  <span class="candidate-desc-location">
+                    <span class="candidate-location-icon">📍</span>Jabalpur, MP
+                  </span>
+                </div>
+              </div>
+
+              <div class="match-score-cell">
+                <div class="score-dial-container">
+                  <svg class="score-dial-svg">
+                    <circle class="score-dial-bg" cx="30" cy="30" r="25" />
+                    <!-- stroke-dashoffset: 172.7 * (1 - 0.82) = 31.1 -->
+                    <circle class="score-dial-fill" cx="30" cy="30" r="25"
+                      style="stroke: #10b981; stroke-dashoffset: 31.1;" />
+                  </svg>
+                  <div class="score-dial-text-block">
+                    <span class="score-dial-number">82%</span>
+                    <span class="score-dial-label" data-i18n="score.match">Match</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="experience-cell">
+                <span class="experience-value" data-i18n="candidate.exp_4">5 Years Exp.</span>
+                <span class="qualification-pill" data-i18n="qualification.diploma">Diploma</span>
+              </div>
+
+              <div class="skills-cell">
+                <div class="skill-check-item">
+                  <span class="skill-check-icon">✔</span>
+                  <span data-i18n="skills.maintenance">Maintenance</span>
+                </div>
+                <div class="skill-check-item">
+                  <span class="skill-check-icon">✔</span>
+                  <span data-i18n="skills.panel_wiring">Panel Wiring</span>
+                </div>
+                <div class="skill-check-item">
+                  <span class="skill-check-icon">✔</span>
+                  <span data-i18n="skills.fault_finding">Fault Finding</span>
+                </div>
+              </div>
+
+              <div class="actions-cell">
+                <button class="btn-row-action btn-view" data-name="Sandeep Patel" data-fname="Harish Patel"
+                  data-dob="25-Dec-1994" data-gender="Male" data-mobile="+91-9843210987"
+                  data-email="sandeep.patel@example.com" data-address="Sector-4, Wright Town" data-district="Jabalpur"
+                  data-pincode="482002" data-exp="5 Years" data-role="Senior Electrician"
+                  data-skills="Maintenance, Panel Wiring, Fault Finding, Industrial Plant Electrics"
+                  data-i18n="receivedapps.view">
+                  👁️ View Profile
+                </button>
+                <div class="row-action-subrow">
+                  <button class="btn-subaction btn-accept" aria-label="Shortlist" title="Shortlist">👤</button>
+                  <button class="btn-subaction btn-call" data-mobile="+91-9843210987" data-name="Sandeep Patel"
+                    aria-label="Call" title="Call">📞</button>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Right Side: AI Widgets stack -->
+        <div class="ai-widgets-stack">
+
+          <!-- Widget 1: AI Hiring Insights -->
+          <div class="ai-widget-card">
+            <div class="ai-widget-header">
+              <span class="ai-widget-header-icon">✨</span>
+              <h3 class="ai-widget-title" data-i18n="insights.title">AI Hiring Insights</h3>
+            </div>
+
+            <div class="insights-list">
+              <!-- item 1 -->
+              <div class="insight-item" onclick="alert('Filtering by 80%+ match electrician candidates!');">
+                <div class="insight-left-block">
+                  <div class="insight-bullet-box blue">👥</div>
+                  <span class="insight-text" data-i18n="insights.item_1">48 candidates have 80%+ match.</span>
+                </div>
+                <span class="insight-chevron">›</span>
+              </div>
+              <!-- item 2 -->
+              <div class="insight-item" onclick="alert('Filtering by certified candidates!');">
+                <div class="insight-left-block">
+                  <div class="insight-bullet-box green">🛡️</div>
+                  <span class="insight-text" data-i18n="insights.item_2">32 certified candidates available.</span>
+                </div>
+                <span class="insight-chevron">›</span>
+              </div>
+              <!-- item 3 -->
+              <div class="insight-item" onclick="alert('Filtering by immediate joiners!');">
+                <div class="insight-left-block">
+                  <div class="insight-bullet-box orange">⚡</div>
+                  <span class="insight-text" data-i18n="insights.item_3">18 candidates are immediate joiners.</span>
+                </div>
+                <span class="insight-chevron">›</span>
+              </div>
+              <!-- item 4 -->
+              <div class="insight-item" onclick="alert('Filtering by nearby candidates (within 25 KM)!');">
+                <div class="insight-left-block">
+                  <div class="insight-bullet-box purple">📍</div>
+                  <span class="insight-text" data-i18n="insights.item_4">26 candidates are within 25 KM.</span>
+                </div>
+                <span class="insight-chevron">›</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Widget 2: Match Score Breakdown -->
+          <div class="ai-widget-card">
+            <div class="ai-widget-header">
+              <span class="ai-widget-header-icon">📊</span>
+              <h3 class="ai-widget-title" data-i18n="breakdown.title">Match Score Breakdown</h3>
+            </div>
+
+            <div class="breakdown-body">
+              <div class="breakdown-chart-wrapper">
+                <svg class="breakdown-chart-svg">
+                  <circle class="breakdown-chart-bg" cx="50" cy="50" r="45" />
+                  <circle class="breakdown-chart-fill" cx="50" cy="50" r="45" />
+                </svg>
+                <div class="breakdown-inner-text">
+                  <span class="breakdown-avg-score">84%</span>
+                  <span class="breakdown-avg-label" data-i18n="breakdown.avg_score">Average Score</span>
+                </div>
+              </div>
+
+              <div class="breakdown-legend-list">
+                <!-- Skills Match -->
+                <div class="breakdown-legend-item">
+                  <div class="legend-label-block">
+                    <span class="legend-bullet-dot green"></span>
+                    <span data-i18n="breakdown.skills_match">Skills Match</span>
+                  </div>
+                  <span class="legend-score-value">85%</span>
+                </div>
+                <!-- Experience Match -->
+                <div class="breakdown-legend-item">
+                  <div class="legend-label-block">
+                    <span class="legend-bullet-dot blue"></span>
+                    <span data-i18n="breakdown.exp_match">Experience Match</span>
+                  </div>
+                  <span class="legend-score-value">80%</span>
+                </div>
+                <!-- Qualification Match -->
+                <div class="breakdown-legend-item">
+                  <div class="legend-label-block">
+                    <span class="legend-bullet-dot orange"></span>
+                    <span data-i18n="breakdown.qual_match">Qualification Match</span>
+                  </div>
+                  <span class="legend-score-value">82%</span>
+                </div>
+                <!-- Location Match -->
+                <div class="breakdown-legend-item">
+                  <div class="legend-label-block">
+                    <span class="legend-bullet-dot purple"></span>
+                    <span data-i18n="breakdown.loc_match">Location Match</span>
+                  </div>
+                  <span class="legend-score-value">90%</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Widget 3: Assistant (purple gradient) -->
+          <div class="ai-widget-card ai-assistant-widget">
+            <div class="ai-widget-header">
+              <span class="ai-widget-header-icon" style="color: #6d28d9;">🤖</span>
+              <h3 class="ai-widget-title" style="color: #4c1d95;" data-i18n="assistant.title">Assistant</h3>
+            </div>
+            <p class="ai-assistant-desc" data-i18n="assistant.desc">Ask Assistant to find more matching candidates or refine
+              your search.</p>
+
+            <button class="btn-assistant-chat"
+              onclick="alert('Chat interface is currently loading... Ask Assistant to refine matching skills!');">
+              <span class="spark-icon">✨</span>
+              <span data-i18n="assistant.chat_btn">Chat with Assistant</span>
+            </button>
+            <img src="../../assets/images/ui-elements/ai-robot.png" alt="Mini Robot" class="assistant-peeking-robot" />
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- Profile Modal -->
+    <div class="modal-overlay" id="profile-modal" aria-hidden="true">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 class="modal-title" data-i18n="receivedapps.profile_title">Candidate Profile</h3>
+          <button class="btn-close-modal" id="btn-close-modal" aria-label="Close">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="profile-grid">
+            <div class="profile-field">
+              <span class="profile-label" data-i18n="profile.name">Name of Candidate</span>
+              <span class="profile-value" id="modal-name">Ramesh Kumar</span>
+            </div>
+            <div class="profile-field">
+              <span class="profile-label" data-i18n="profile.fname">Father's Name</span>
+              <span class="profile-value" id="modal-fname">Suresh Kumar</span>
+            </div>
+            <div class="profile-field">
+              <span class="profile-label" data-i18n="profile.dob">Date of Birth</span>
+              <span class="profile-value" id="modal-dob">15-Aug-1990</span>
+            </div>
+            <div class="profile-field">
+              <span class="profile-label" data-i18n="profile.gender">Gender</span>
+              <span class="profile-value" id="modal-gender">Male</span>
+            </div>
+            <div class="profile-field">
+              <span class="profile-label" data-i18n="profile.mobile">Mobile Number</span>
+              <span class="profile-value" id="modal-mobile">+91-9876543210</span>
+            </div>
+            <div class="profile-field">
+              <span class="profile-label" data-i18n="profile.email">Email ID</span>
+              <span class="profile-value" id="modal-email">ramesh@example.com</span>
+            </div>
+            <div class="profile-field" style="grid-column: 1 / -1;">
+              <span class="profile-label" data-i18n="profile.address">Address</span>
+              <span class="profile-value" id="modal-address">123, Main Street, Shivaji Nagar</span>
+            </div>
+            <div class="profile-field">
+              <span class="profile-label" data-i18n="profile.district">District</span>
+              <span class="profile-value" id="modal-district">Bhopal</span>
+            </div>
+            <div class="profile-field">
+              <span class="profile-label" data-i18n="profile.pincode">Pincode</span>
+              <span class="profile-value" id="modal-pincode">462001</span>
+            </div>
+            <div class="profile-field">
+              <span class="profile-label" data-i18n="profile.exp">Experience</span>
+              <span class="profile-value" id="modal-exp">5 Years</span>
+            </div>
+            <div class="profile-field">
+              <span class="profile-label" data-i18n="profile.role">Applied Role</span>
+              <span class="profile-value" id="modal-role">Senior Electrician</span>
+            </div>
+            <div class="profile-field" style="grid-column: 1 / -1;">
+              <span class="profile-label" data-i18n="profile.skills">Skills</span>
+              <span class="profile-value" id="modal-skills">Wiring, Maintenance</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    </div>
+
+  </main>
+
+  <script src="../../assets/js/common/safe-storage.js"></script>
+  <script src="../../assets/js/common/app.js"></script>
+  <script src="../../assets/js/common/i18n.js"></script>
+  <script src="../../components/alerts/alerts.js"></script>
+  <script src="../../layouts/dashboard-layout/dashboard-layout.js"></script>
+  <script>
+    // Initialize Dashboard logic
+    const savedLang = (window._ckStorage || localStorage).getItem('ck-ui-lang') || 'hi';
+    I18n.init(savedLang, {
+      hi: {
+        'dashboard.menu.profile_identity': 'प्रोफाइल एवं पहचान प्रबंधन',
+        'dashboard.menu.dashboard': 'डैशबोर्ड',
+        'dashboard.menu.personal_profile': 'प्रोफाइल प्रबंधन',
+        'dashboard.menu.change_password': 'पासवर्ड बदलें',
+        'dashboard.menu.employment_career': 'रोजगार एवं कैरियर सेवाएँ',
+        'dashboard.menu.post_jobs': 'नौकरियां पोस्ट करें',
+        'dashboard.menu.active_jobs': 'सक्रिय नौकरियां',
+        'dashboard.menu.received_apps': 'प्राप्त आवेदन',
+        'dashboard.menu.search_candidate': 'उम्मीदवार खोजें',
+        'dashboard.signout': 'लॉग आउट',
+        'dashboard.menu.ai_recommended_candidates': 'अनुशंसित उम्मीदवार',
+
+        'ai_recommended_candidates.title': 'अनुशंसित उम्मीदवार',
+        'ai_recommended_candidates.desc_alt': 'आपकी सक्रिय नौकरियों के लिए सबसे उपयुक्त उम्मीदवारों की सिफारिश करता है।',
+        'shortlisted.title': 'शॉर्टलिस्टेड उम्मीदवार',
+        'shortlisted.desc': 'शॉर्टलिस्ट किए गए उम्मीदवारों की समीक्षा करें और नियुक्त करें।',
+        'shortlisted.hire': 'नियुक्त करें (Hire)',
+        'shortlisted.success_hire': 'उम्मीदवार को सफलतापूर्वक नियुक्त कर लिया गया है।',
+        'receivedapps.title': 'प्राप्त नौकरी आवेदन',
+        'receivedapps.desc': 'उम्मीदवारों के आवेदनों की समीक्षा और प्रबंधन करें।',
+        'receivedapps.view': 'प्रोफाइल देखें',
+        'receivedapps.shortlist': 'शॉर्टलिस्ट करें',
+        'receivedapps.reject': 'अस्वीकार करें',
+        'receivedapps.success_shortlist': 'उम्मीदवार को सफलतापूर्वक शॉर्टलिस्ट किया गया।',
+        'receivedapps.success_removed': 'उम्मीदवार को शॉर्टलिस्ट से हटा दिया गया।',
+        'receivedapps.success_reject': 'आवेदन अस्वीकार कर दिया गया।',
+        'receivedapps.profile_title': 'उम्मीदवार प्रोफाइल',
+        'profile.name': 'उम्मीदवार का नाम',
+        'profile.fname': 'पिता का नाम',
+        'profile.dob': 'जन्म तिथि',
+        'profile.gender': 'लिंग',
+        'profile.mobile': 'मोबाइल नंबर',
+        'profile.email': 'ईमेल आईडी',
+        'profile.address': 'पता',
+        'profile.district': 'ज़िला',
+        'profile.pincode': 'पिनकोड',
+        'profile.exp': 'अनुभव',
+        'profile.role': 'आवेदित पद',
+        'profile.skills': 'कौशल',
+
+        'candidate.role_electrician': 'इलेक्ट्रीशियन',
+        'qualification.iti': 'आई.टी.आई (ITI)',
+        'qualification.diploma': 'डिप्लोमा (Diploma)',
+        'skills.more_1': '+1 अधिक',
+        'skills.more_2': '+2 अधिक',
+        'job.electrician': 'सीनियर इलेक्ट्रीशियन',
+        'job.plumber': 'मास्टर प्लंबर',
+        'job.mason': 'कंस्ट्रक्शन मेसन',
+        'job.carpenter': 'वुड कारपेंटर',
+
+        'ai_match.banner_title': 'अत्यधिक योग्य 48 उम्मीदवारों को ढूंढा है',
+        'ai_match.banner_subtitle': 'आपकी सक्रिय नौकरियों के लिए। 🚀',
+        'ai_match.job_label': 'सक्रिय नौकरी:',
+        'ai_metric.high_match': 'उच्च मिलान उम्मीदवार',
+        'ai_metric.certified': 'प्रमाणित उम्मीदवार',
+        'ai_metric.fresher': 'फ्रेशर उपलब्ध',
+        'ai_metric.avg_score': 'औसत मिलान स्कोर',
+        'ai_panel.list_title': 'उम्मीदवार सिफारिशें',
+        'ai_panel.status': 'मैच अपडेट किए गए',
+        'ai_table.candidate': 'उम्मीदवार',
+        'ai_table.match_score': 'मैच स्कोर',
+        'ai_table.experience': 'अनुभव',
+        'ai_table.skills': 'कौशल और योग्यता',
+        'ai_table.action': 'कार्रवाई',
+        'score.match': 'मैच',
+
+        'candidate.exp_1': '3 वर्ष का अनुभव',
+        'candidate.exp_2': '4 वर्ष का अनुभव',
+        'candidate.exp_3': '2 वर्ष का अनुभव',
+        'candidate.exp_4': '5 वर्ष का अनुभव',
+
+        'skills.electrical_wiring': 'इलेक्ट्रिकल वायरिंग',
+        'skills.maintenance': 'रखरखाव (Maintenance)',
+        'skills.safety_standards': 'सुरक्षा मानक',
+        'skills.industrial_wiring': 'औद्योगिक वायरिंग',
+        'skills.troubleshooting': 'दोष निवारण (Trouble-shoot)',
+        'skills.panel_maintenance': 'पैनल रखरखाव',
+        'skills.house_wiring': 'हाउस वायरिंग',
+        'skills.electrical_safety': 'विद्युत सुरक्षा',
+        'skills.tools_handling': 'उपकरण हैंडलिंग',
+        'skills.panel_wiring': 'पैनल वायरिंग',
+        'skills.fault_finding': 'दोष खोजना (Fault Finding)',
+
+        'insights.title': 'भर्ती अंतर्दृष्टि',
+        'insights.item_1': '48 उम्मीदवारों का 80%+ मैच है।',
+        'insights.item_2': '32 प्रमाणित उम्मीदवार उपलब्ध हैं।',
+        'insights.item_3': '18 उम्मीदवार तुरंत शामिल हो सकते हैं।',
+        'insights.item_4': '26 उम्मीदवार 25 किलोमीटर के दायरे में हैं।',
+
+        'breakdown.title': 'मैच स्कोर विश्लेषण',
+        'breakdown.avg_score': 'औसत स्कोर',
+        'breakdown.skills_match': 'कौशल मिलान',
+        'breakdown.exp_match': 'अनुभव मिलान',
+        'breakdown.qual_match': 'योग्यता मिलान',
+        'breakdown.loc_match': 'स्थान मिलान',
+
+        'assistant.title': 'सहायक (Assistant)',
+        'assistant.desc': 'अधिक मिलान वाले उम्मीदवारों को खोजने या अपनी खोज को बेहतर बनाने के लिए सहायक से पूछें।',
+        'assistant.chat_btn': 'सहायक के साथ चैट करें'
+      },
+      en: {
+        'dashboard.menu.profile_identity': 'Profile & Identity Management',
+        'dashboard.menu.dashboard': 'Dashboard',
+        'dashboard.menu.personal_profile': 'Profile Management',
+        'dashboard.menu.change_password': 'Change Password',
+        'dashboard.menu.employment_career': 'Employment & Career Services',
+        'dashboard.menu.post_jobs': 'Post Jobs',
+        'dashboard.menu.active_jobs': 'Active Job Postings',
+        'dashboard.menu.received_apps': 'Received Applications',
+        'dashboard.menu.shortlisted': 'Shortlisted Candidates',
+        'dashboard.menu.search_candidate': 'Search Candidate',
+        'dashboard.signout': 'Sign Out',
+        'dashboard.menu.ai_recommended_candidates': 'Recommended Candidates',
+
+        'ai_recommended_candidates.title': 'Recommended Candidates',
+        'ai_recommended_candidates.desc_alt': 'Recommends the best matching candidates for your active jobs.',
+        'shortlisted.title': 'Shortlisted Candidates',
+        'shortlisted.desc': 'Review and hire shortlisted candidates.',
+        'shortlisted.hire': 'Hire',
+        'shortlisted.success_hire': 'Candidate hired successfully.',
+        'receivedapps.title': 'Received Job Applications',
+        'receivedapps.desc': 'Review and manage applications from candidates.',
+        'receivedapps.view': 'View Profile',
+        'receivedapps.shortlist': 'Shortlist',
+        'receivedapps.reject': 'Reject',
+        'receivedapps.success_shortlist': 'Candidate successfully shortlisted.',
+        'receivedapps.success_removed': 'Candidate removed from shortlist.',
+        'receivedapps.success_reject': 'Application rejected.',
+        'receivedapps.profile_title': 'Candidate Profile',
+        'profile.name': 'Name of Candidate',
+        'profile.fname': 'Father\'s Name',
+        'profile.dob': 'Date of Birth',
+        'profile.gender': 'Gender',
+        'profile.mobile': 'Mobile Number',
+        'profile.email': 'Email ID',
+        'profile.address': 'Address',
+        'profile.district': 'District',
+        'profile.pincode': 'Pincode',
+        'profile.exp': 'Experience',
+        'profile.role': 'Applied Role',
+        'profile.skills': 'Skills',
+
+        'candidate.role_electrician': 'Electrician',
+        'qualification.iti': 'ITI',
+        'qualification.diploma': 'Diploma',
+        'skills.more_1': '+1 more',
+        'skills.more_2': '+2 more',
+        'job.electrician': 'Senior Electrician',
+        'job.plumber': 'Master Plumber',
+        'job.mason': 'Construction Mason',
+        'job.carpenter': 'Wood Carpenter',
+
+        'ai_match.banner_title': 'Found 48 highly matched candidates',
+        'ai_match.banner_subtitle': 'for your active jobs. 🚀',
+        'ai_match.job_label': 'Active Job:',
+        'ai_metric.high_match': 'High Match Candidates',
+        'ai_metric.certified': 'Certified Candidates',
+        'ai_metric.fresher': 'Fresher Available',
+        'ai_metric.avg_score': 'Average Match Score',
+        'ai_panel.list_title': 'Candidate Recommendations',
+        'ai_panel.status': 'Matches Refreshed',
+        'ai_table.candidate': 'Candidate',
+        'ai_table.match_score': 'Match Score',
+        'ai_table.experience': 'Experience',
+        'ai_table.skills': 'Skills & Qualification',
+        'ai_table.action': 'Action',
+        'score.match': 'Match',
+
+        'candidate.exp_1': '3 Years Exp.',
+        'candidate.exp_2': '4 Years Exp.',
+        'candidate.exp_3': '2 Years Exp.',
+        'candidate.exp_4': '5 Years Exp.',
+
+        'skills.electrical_wiring': 'Electrical Wiring',
+        'skills.maintenance': 'Maintenance',
+        'skills.safety_standards': 'Safety Standards',
+        'skills.industrial_wiring': 'Industrial Wiring',
+        'skills.troubleshooting': 'Troubleshooting',
+        'skills.panel_maintenance': 'Panel Maintenance',
+        'skills.house_wiring': 'House Wiring',
+        'skills.electrical_safety': 'Electrical Safety',
+        'skills.tools_handling': 'Tools Handling',
+        'skills.panel_wiring': 'Panel Wiring',
+        'skills.fault_finding': 'Fault Finding',
+
+        'insights.title': 'Hiring Insights',
+        'insights.item_1': '48 candidates have 80%+ match.',
+        'insights.item_2': '32 certified candidates are available.',
+        'insights.item_3': '18 candidates are immediate joiners.',
+        'insights.item_4': '26 candidates are within 25 KM.',
+
+        'breakdown.title': 'Match Score Breakdown',
+        'breakdown.avg_score': 'Average Score',
+        'breakdown.skills_match': 'Skills Match',
+        'breakdown.exp_match': 'Experience Match',
+        'breakdown.qual_match': 'Qualification Match',
+        'breakdown.loc_match': 'Location Match',
+
+        'assistant.title': 'Assistant',
+        'assistant.desc': 'Ask Assistant to find more matching candidates or refine your search.',
+        'assistant.chat_btn': 'Chat with Assistant'
+      }
+    });
+    I18n.setupToggleButton();
+    document.addEventListener('i18n:languageChanged', () => I18n.translateDOM());
+
+    function updateLastLogin() {
+      const now = new Date();
+      const datePart = now.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
+      let timePart = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true });
+      const lastLoginEl = document.getElementById('last-login-time');
+      if (lastLoginEl) lastLoginEl.textContent = 'Last login: ' + datePart + ', ' + timePart;
+    }
+    updateLastLogin();
+
+    // Modal Logic
+    const profileModal = document.getElementById('profile-modal');
+    const btnCloseModal = document.getElementById('btn-close-modal');
+
+    function closeModal() {
+      profileModal.classList.remove('active');
+      profileModal.setAttribute('aria-hidden', 'true');
+    }
+
+    btnCloseModal.addEventListener('click', closeModal);
+    profileModal.addEventListener('click', (e) => {
+      if (e.target === profileModal) closeModal();
+    });
+
+    // Action buttons click delegation
+    document.getElementById('application-list-container')?.addEventListener('click', (e) => {
+      const viewBtn = e.target.closest('.btn-view');
+      const acceptBtn = e.target.closest('.btn-accept');
+      const callBtn = e.target.closest('.btn-call');
+
+      if (viewBtn) {
+        const ds = viewBtn.dataset;
+        document.getElementById('modal-name').textContent = ds.name || '';
+        document.getElementById('modal-fname').textContent = ds.fname || '';
+        document.getElementById('modal-dob').textContent = ds.dob || '';
+        document.getElementById('modal-gender').textContent = ds.gender || '';
+        document.getElementById('modal-mobile').textContent = ds.mobile || '';
+        document.getElementById('modal-email').textContent = ds.email || '';
+        document.getElementById('modal-address').textContent = ds.address || '';
+        document.getElementById('modal-district').textContent = ds.district || '';
+        document.getElementById('modal-pincode').textContent = ds.pincode || '';
+        document.getElementById('modal-exp').textContent = ds.exp || '';
+        document.getElementById('modal-role').textContent = ds.role || '';
+        document.getElementById('modal-skills').textContent = ds.skills || '';
+
+        profileModal.classList.add('active');
+        profileModal.setAttribute('aria-hidden', 'false');
+        return;
+      }
+
+      if (acceptBtn) {
+        if (acceptBtn.classList.contains('shortlisted-active')) {
+          acceptBtn.classList.remove('shortlisted-active');
+          acceptBtn.innerHTML = '👤';
+          Toast.warning(I18n.t('receivedapps.success_removed') || 'Candidate removed from shortlist.');
+        } else {
+          acceptBtn.classList.add('shortlisted-active');
+          acceptBtn.innerHTML = '✔';
+          Toast.success(I18n.t('receivedapps.success_shortlist') || 'Candidate successfully shortlisted.');
+        }
+        return;
+      }
+
+      if (callBtn) {
+        const name = callBtn.dataset.name || 'Candidate';
+        const mobile = callBtn.dataset.mobile || '';
+        alert(`Calling ${name} at ${mobile}...`);
+      }
+    });
+
+    // Job Filter Select Selector - Hook to API
+    const jobFilterSelect = document.getElementById('job-filter-select');
+    const appContainer = document.getElementById('application-list-container');
+
+    // Reload page on language change
+    document.addEventListener('i18n:languageChanged', () => {
+      window.location.reload();
+    });
+
+    async function loadCandidatesForJob(jobId) {
+      if (appContainer) appContainer.innerHTML = `<div style="text-align:center; padding: 2rem; color: var(--text-secondary); grid-column: span 5;">Calculating AI Shortlist...</div>`;
+      try {
+        const response = await fetch(`http://localhost:5000/api/company/recommended-candidates?job_id=${jobId}&lang=${savedLang}`);
+        if (response.ok) {
+          const candidates = await response.json();
+          renderCandidateRows(candidates);
+        } else {
+          appContainer.innerHTML = `<div style="text-align:center; padding: 2rem; color: var(--text-secondary); grid-column: span 5;">No matching candidates found.</div>`;
+        }
+      } catch (err) {
+        console.warn("API server not responding.", err);
+        appContainer.innerHTML = `<div style="text-align:center; padding: 2rem; color: var(--text-secondary); grid-column: span 5;">Failed to load recommendations.</div>`;
+      }
+    }
+
+    function renderCandidateRows(candidates) {
+      if (!appContainer) return;
+
+      // Update Hero Metrics row
+      document.querySelector('.ai-metrics-row .ai-metric-card:nth-child(1) .ai-metric-value').textContent = candidates.length;
+      document.querySelector('.ai-metrics-row .ai-metric-card:nth-child(4) .ai-metric-value').textContent = candidates.length > 0 ? Math.round(parseFloat(candidates[0].score) * 100) + '%' : '0%';
+
+      appContainer.innerHTML = candidates.map(cand => {
+        const initials = cand.name ? cand.name.split(' ').map(x => x[0]).join('').substring(0, 2).toUpperCase() : 'C';
+        const scoreNum = Math.round(parseFloat(cand.score) * 100);
+        const offset = Math.round(172.7 * (1 - (scoreNum / 100)));
+        const avatarBg = 'linear-gradient(135deg, #3b82f6, #6366f1)';
+
+        return `
+          <div class="candidate-row-card" style="grid-template-columns: 2.1fr 1fr 4.3fr; align-items: center; padding: 16px; margin-bottom: 12px; height: auto;">
+            <div class="candidate-profile-cell">
+              <div style="width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: ${avatarBg}; color: white; font-weight: 800; font-size: 16px; border: 2px solid #e2e8f0; flex-shrink: 0;">${initials}</div>
+              <div class="candidate-profile-text">
+                <div class="candidate-name-wrapper">
+                  <span class="candidate-name-text" style="font-weight: 700;">${cand.name || 'Candidate'}</span>
+                  <span class="verified-blue-badge" title="Aadhaar Verified">✔</span>
+                </div>
+                <span class="candidate-desc-role" style="font-size: 12px; color: var(--text-secondary);">Rojgar ID: ${cand.candidate_id}</span>
+              </div>
+            </div>
+
+            <div class="match-score-cell">
+              <div class="score-dial-container" style="display: flex; align-items: center; gap: 8px;">
+                <svg class="score-dial-svg" style="width: 60px; height: 60px;">
+                  <circle class="score-dial-bg" cx="30" cy="30" r="25" style="fill: none; stroke: #e2e8f0; stroke-width: 4;" />
+                  <circle class="score-dial-fill" cx="30" cy="30" r="25" style="fill: none; stroke: #10b981; stroke-width: 4; stroke-dasharray: 157; stroke-dashoffset: ${offset}; transition: stroke-dashoffset 0.5s;" />
+                </svg>
+                <div class="score-dial-text-block" style="display: flex; flex-direction: column;">
+                  <span class="score-dial-number" style="font-size: 14px; font-weight: 800; color: #10b981;">${scoreNum}%</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="reasoning-cell" style="font-size: 13px; color: var(--text-secondary); line-height: 1.5; padding: 0 16px;">
+              <strong style="color: #4f46e5;">${savedLang === 'hi' ? 'विश्लेषण:' : 'Analysis:'}</strong> ${cand.reasoning}
+            </div>
+          </div>
+        `;
+      }).join('');
+      if (window.I18n) window.I18n.translateDOM(appContainer);
+    }
+
+    async function loadActiveJobsDropdown() {
+      const selectElement = document.getElementById('job-filter-select');
+      if (!selectElement) return;
+
+      let compId = localStorage.getItem('logged_in_company_id');
+      if (!compId) {
+        compId = "comp_1";
+        localStorage.setItem('logged_in_company_id', "comp_1");
+      }
+
+      try {
+        const response = await fetch(`http://localhost:5000/api/company/profile?id=${compId}&lang=${savedLang}`);
+        if (response.ok) {
+          const profile = await response.json();
+
+          // Update header name and logo
+          const headerNameEl = document.getElementById('header-user-name') || document.querySelector('.user-name');
+          if (headerNameEl) headerNameEl.textContent = profile.name;
+          const avatarEl = document.querySelector('.user-avatar');
+          if (avatarEl) {
+            avatarEl.textContent = profile.name.split(' ').map(n => n[0]).join('').toUpperCase().slice(0, 2);
+          }
+
+          if (profile.jobs && profile.jobs.length > 0) {
+            selectElement.innerHTML = profile.jobs.map((job, idx) =>
+              `<option value="${job.id}" ${idx === 0 ? 'selected' : ''}>${job.title}</option>`
+            ).join('');
+
+            loadCandidatesForJob(selectElement.value);
+          }
+        }
+      } catch (err) {
+        console.warn("Could not load jobs from backend.", err);
+      }
+    }
+
+    if (jobFilterSelect) {
+      loadActiveJobsDropdown();
+      jobFilterSelect.addEventListener('change', (e) => {
+        loadCandidatesForJob(e.target.value);
+      });
+    }
+  </script>
+</body>
+
+</html>

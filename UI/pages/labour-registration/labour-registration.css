@@ -1,0 +1,37 @@
+/* ============================================================
+   LABOUR REGISTRATION CSS — pages/labour-registration/
+   ============================================================ */
+
+/* Doc upload list */
+.doc-upload-list { display: flex; flex-direction: column; gap: var(--space-5); }
+.doc-upload-item {
+  padding: var(--space-4); background: var(--bg-surface);
+  border: 1px solid var(--border-default); border-radius: var(--radius-xl);
+}
+.doc-upload-item__info { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: var(--space-3); flex-wrap: wrap; gap: var(--space-1); }
+.doc-upload-item__name { font-size: var(--text-sm); font-weight: var(--weight-semibold); color: var(--text-primary); }
+.doc-upload-item__hint { font-size: var(--text-xs); color: var(--text-tertiary); }
+
+/* Compact upload zone */
+.upload-zone--compact {
+  padding: var(--space-4); flex-direction: row; gap: var(--space-3);
+  justify-content: flex-start; cursor: pointer;
+}
+.upload-zone--compact .upload-zone__icon { font-size: var(--text-xl); }
+.upload-zone--compact .upload-zone__sub  { font-size: var(--text-sm); color: var(--text-secondary); }
+
+/* Review summary */
+.review-section { margin-bottom: var(--space-6); }
+.review-section__title {
+  font-size: var(--text-sm); font-weight: var(--weight-semibold);
+  text-transform: uppercase; letter-spacing: var(--tracking-wider);
+  color: var(--text-tertiary); margin-bottom: var(--space-3);
+  padding-bottom: var(--space-2); border-bottom: 1px solid var(--border-default);
+}
+.review-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-3); }
+@media (max-width: 479px) { .review-grid { grid-template-columns: 1fr; } }
+.review-item__key   { font-size: var(--text-xs); color: var(--text-tertiary); margin-bottom: 2px; }
+.review-item__value { font-size: var(--text-sm); font-weight: var(--weight-medium); color: var(--text-primary); }
+
+/* Btn-text helper */
+.btn-text { background: none; border: none; color: var(--color-accent); font-size: var(--text-sm); cursor: pointer; font-weight: var(--weight-medium); padding: 0; text-decoration: underline; }

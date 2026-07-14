@@ -1,0 +1,345 @@
+﻿<!DOCTYPE html>
+<html lang="hi-IN" data-theme="light">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="theme-color" content="#0A1628" />
+
+  <link rel="icon" type="image/png" href="../../assets/images/logos/KaushalSetuLogo.png" />
+  <title>Search Job — Kaushal Setu</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+Devanagari:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet" />
+
+  <!-- Design System -->
+  <link rel="stylesheet" href="../../assets/css/common/design-tokens.css" />
+  <link rel="stylesheet" href="../../assets/css/common/reset.css" />
+  <link rel="stylesheet" href="../../assets/css/common/typography.css" />
+  <link rel="stylesheet" href="../../assets/css/common/utilities.css" />
+
+  <!-- Layout & Components -->
+  <link rel="stylesheet" href="../../layouts/dashboard-layout/dashboard-layout.css" />
+  <link rel="stylesheet" href="../../components/cards/cards.css" />
+  <link rel="stylesheet" href="../../components/widgets/widgets.css" />
+  <link rel="stylesheet" href="../../components/jobs/jobs.css" />
+</head>
+
+<body class="layout-dashboard" data-page="search">
+
+  <!-- Sidebar Overlay -->
+  <div class="sidebar-overlay" id="sidebar-overlay" aria-hidden="true"></div>
+
+  <!-- Sidebar -->
+  <nav id="dashboard-sidebar" class="dashboard-sidebar" aria-label="मुख्य नेविगेशन">
+    <div class="sidebar-header">
+      <a href="servicehome.html" class="sidebar-brand">
+        <img src="../../assets/images/logos/KaushalSetuLogo.png" alt="Kaushal Setu" width="170" height="170" />
+      </a>
+    </div>
+    <div class="sidebar-nav">
+
+      <!-- Group 1 -->
+      <div class="sidebar-group">
+        <div class="sidebar-group-title" data-i18n="dashboard.menu.profile_identity">प्रोफाइल एवं पहचान प्रबंधन</div>
+        <ul class="sidebar-menu">
+          <li><a href="profile.html" class="sidebar-link" data-i18n="dashboard.menu.personal_profile">व्यक्तिगत प्रोफाइल
+              प्रबंधन</a></li>
+        </ul>
+      </div>
+
+      <!-- Group 2 -->
+      <div class="sidebar-group">
+        <div class="sidebar-group-title" data-i18n="dashboard.menu.employment_career">रोजगार एवं कैरियर सेवाएँ</div>
+        <ul class="sidebar-menu">
+          <li><a href="candidatedashboard.html" class="sidebar-link" data-i18n="dashboard.menu.dashboard">डैशबोर्ड</a>
+          </li>
+          <li><a href="recommendedjob.html" class="sidebar-link" data-i18n="dashboard.menu.recommended_jobs">एआई
+              अनुशंसित नौकरियां</a></li>
+          <li><a href="Appliedjobs.html" class="sidebar-link" data-i18n="dashboard.menu.applied_jobs">आवेदन की गई
+              नौकरियां</a></li>
+          <li><a href="Courses.html" class="sidebar-link" data-i18n="dashboard.menu.recommended_courses">अनुशंसित
+              पाठ्यक्रम</a></li>
+          <li><a href="coursescompleted.html" class="sidebar-link" data-i18n="dashboard.menu.completed_courses">पूरे किए
+              गए पाठ्यक्रम</a></li>
+          <li><a href="search.html" class="sidebar-link active" data-i18n="dashboard.menu.search">नौकरी खोजें</a></li>
+        </ul>
+      </div>
+
+    </div>
+  </nav>
+
+  <!-- Main Area -->
+  <main class="dashboard-main">
+
+    <!-- Header -->
+    <header class="dashboard-header">
+      <div class="header-left">
+        <button id="sidebar-toggle" class="sidebar-toggle-btn" aria-label="मेनू टॉगल करें">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+            stroke-linecap="round">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+
+      <div class="header-right">
+        <!-- User Profile -->
+        <div class="user-profile">
+          <div class="user-info">
+            <span class="user-name">Ramesh Kumar</span>
+            <span class="user-meta"><span data-i18n="dashboard.header.last_login">अंतिम लॉगिन:</span> <span
+                id="last-login-date">14 May 2026</span></span>
+          </div>
+          <div class="user-avatar" aria-hidden="true">RK</div>
+        </div>
+
+        <div class="header-actions">
+          <!-- Lang Toggle -->
+          <button id="lang-toggle" class="btn btn--ghost btn--sm" data-lang-toggle
+            aria-label="Switch to English">English</button>
+
+          <!-- Theme Toggle -->
+          <button id="theme-toggle" class="btn btn--ghost btn--sm" aria-label="Switch Theme">
+            <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+              fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"
+              style="display:none">
+              <circle cx="12" cy="12" r="5" />
+              <line x1="12" y1="1" x2="12" y2="3" />
+              <line x1="12" y1="21" x2="12" y2="23" />
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+              <line x1="1" y1="12" x2="3" y2="12" />
+              <line x1="21" y1="12" x2="23" y2="12" />
+            </svg>
+            <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+              fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+            </svg>
+          </button>
+
+          <!-- Sign Out -->
+          <a href="../home/index.html" class="btn btn--secondary btn--sm" data-i18n="dashboard.signout">लॉग आउट</a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Content -->
+    <div class="dashboard-content">
+      <h1 class="dashboard-page-title" data-i18n="search.title">Search Job</h1>
+
+      <!-- Top Search Section -->
+      <div class="search-bar">
+        <h2 class="search-bar__title" data-i18n="search.subtitle">Find the Right Opportunity</h2>
+        <div class="search-bar__grid">
+          <div class="form-group">
+            <label class="form-label" for="search-title" data-i18n="search.job_title">Job Title</label>
+            <input type="text" id="search-title" class="form-control" placeholder="e.g. Mason, Electrician"
+              data-i18n="placeholder:search.placeholder.job_title" data-search>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="search-skill" data-i18n="search.skill">Skill</label>
+            <select id="search-skill" class="form-control" data-search>
+              <option value="" data-i18n="search.any_skill">Any Skill</option>
+              <option value="masonry" data-i18n="skill.masonry">Masonry</option>
+              <option value="electrical" data-i18n="skill.electrical">Electrical</option>
+              <option value="plumbing" data-i18n="skill.plumbing">Plumbing</option>
+              <option value="carpentry" data-i18n="skill.carpentry">Carpentry</option>
+              <option value="welding" data-i18n="skill.welding">Welding</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="search-location" data-i18n="filter.location">Location</label>
+            <select id="search-location" class="form-control" data-search>
+              <option value="" data-i18n="filter.all_districts">Any Location</option>
+              <option value="bhopal" data-i18n="district.bhopal">Bhopal</option>
+              <option value="indore" data-i18n="district.indore">Indore</option>
+              <option value="jabalpur" data-i18n="district.jabalpur">Jabalpur</option>
+              <option value="gwalior" data-i18n="district.gwalior">Gwalior</option>
+              <option value="rewa" data-i18n="district.rewa">Rewa</option>
+              <option value="ujjain" data-i18n="district.ujjain">Ujjain</option>
+            </select>
+          </div>
+          <button id="search-btn" class="btn btn--primary" style="height: 44px;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <span data-i18n="search.button">Search</span>
+          </button>
+        </div>
+      </div>
+
+      <button id="filter-toggle-btn" class="filter-toggle-btn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon>
+        </svg>
+        <span class="toggle-label" data-i18n="filter.show">Show Filters</span>
+      </button>
+
+      <div class="jobs-layout">
+        <!-- Filter Panel -->
+        <aside class="filter-panel" id="filter-panel">
+          <div class="filter-panel__header">
+            <h2 class="filter-panel__title">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon>
+              </svg>
+              <span data-i18n="filter.title">Filters</span>
+            </h2>
+            <button id="filter-reset-btn" class="filter-reset-btn" data-i18n="filter.clear_all">Clear All</button>
+          </div>
+
+          <!-- Location -->
+          <div class="filter-group">
+            <div class="filter-group__label">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                <circle cx="12" cy="10" r="3"></circle>
+              </svg>
+              <span data-i18n="filter.location">Location</span>
+            </div>
+            <select id="filter-district" class="filter-select" data-filter="district">
+              <option value="" data-i18n="filter.all_districts">All Districts</option>
+              <option value="bhopal" data-i18n="district.bhopal">Bhopal</option>
+              <option value="indore" data-i18n="district.indore">Indore</option>
+              <option value="jabalpur" data-i18n="district.jabalpur">Jabalpur</option>
+              <option value="gwalior" data-i18n="district.gwalior">Gwalior</option>
+              <option value="rewa" data-i18n="district.rewa">Rewa</option>
+              <option value="ujjain" data-i18n="district.ujjain">Ujjain</option>
+            </select>
+            <select id="filter-city" class="filter-select" data-filter="city">
+              <option value="" data-i18n="filter.all_cities">All Cities</option>
+              <option value="bhopal_city" data-i18n="city.bhopal">Bhopal City</option>
+              <option value="indore_city" data-i18n="city.indore">Indore City</option>
+            </select>
+          </div>
+
+          <!-- Experience -->
+          <div class="filter-group">
+            <div class="filter-group__label">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 6 12 12 16 14"></polyline>
+              </svg>
+              <span data-i18n="filter.experience">Experience</span>
+            </div>
+            <label class="filter-checkbox mb-2">
+              <input type="checkbox" id="filter-fresher" data-filter="fresher"> <span
+                data-i18n="filter.fresher">Fresher</span>
+            </label>
+            <select id="filter-exp-range" class="filter-select" data-filter="exp-range">
+              <option value="" data-i18n="filter.any_experience">Any Experience Range</option>
+              <option value="0-1" data-i18n="exp.0_1">0–1 Year</option>
+              <option value="1-3" data-i18n="exp.1_3">1–3 Years</option>
+              <option value="3-5" data-i18n="exp.3_5">3–5 Years</option>
+              <option value="5+" data-i18n="exp.5_plus">5+ Years</option>
+            </select>
+          </div>
+
+          <!-- Qualification -->
+          <div class="filter-group">
+            <div class="filter-group__label">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
+                <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
+              </svg>
+              <span data-i18n="filter.qualification">Qualification</span>
+            </div>
+            <div class="filter-checkbox-list">
+              <label class="filter-checkbox"><input type="checkbox" data-filter="qual" value="10th"> <span
+                  data-i18n="qual.10th">10th</span></label>
+              <label class="filter-checkbox"><input type="checkbox" data-filter="qual" value="12th"> <span
+                  data-i18n="qual.12th">12th</span></label>
+              <label class="filter-checkbox"><input type="checkbox" data-filter="qual" value="iti"> <span
+                  data-i18n="qual.iti">ITI</span></label>
+              <label class="filter-checkbox"><input type="checkbox" data-filter="qual" value="diploma"> <span
+                  data-i18n="qual.diploma">Diploma</span></label>
+              <label class="filter-checkbox"><input type="checkbox" data-filter="qual" value="graduate"> <span
+                  data-i18n="qual.graduate">Graduate</span></label>
+            </div>
+          </div>
+
+          <!-- Job Type -->
+          <div class="filter-group">
+            <div class="filter-group__label">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+                <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+              </svg>
+              <span data-i18n="filter.job_type">Job Type</span>
+            </div>
+            <div class="filter-checkbox-list">
+              <label class="filter-checkbox"><input type="checkbox" data-filter="type" value="fulltime"> <span
+                  data-i18n="job_type.fulltime">Full Time</span></label>
+              <label class="filter-checkbox"><input type="checkbox" data-filter="type" value="parttime"> <span
+                  data-i18n="job_type.parttime">Part Time</span></label>
+              <label class="filter-checkbox"><input type="checkbox" data-filter="type" value="contractual"> <span
+                  data-i18n="job_type.contractual">Contractual</span></label>
+            </div>
+          </div>
+
+        </aside>
+
+        <!-- Results Area -->
+        <div class="jobs-main-area">
+          <div class="results-bar">
+            <div class="results-count">Showing <strong id="result-count">0</strong> jobs</div>
+            <div class="results-sort">
+              <span data-i18n="jobs.sort_by">Sort by:</span>
+              <select id="sort-select">
+                <option value="recent" data-i18n="sort.recent">Most Recent</option>
+                <option value="salary" data-i18n="sort.salary">Salary (High to Low)</option>
+              </select>
+            </div>
+          </div>
+
+          <div id="job-list" class="job-list">
+            <!-- Jobs injected via JS -->
+          </div>
+
+          <div id="empty-state" class="empty-state">
+            <div class="empty-state__icon">🔍</div>
+            <h3 class="empty-state__title" data-i18n="empty.title">No Jobs Found</h3>
+            <p class="empty-state__desc" data-i18n="empty.desc.search">We couldn't find any jobs matching your search
+              criteria. Try adjusting your filters or search terms.</p>
+            <button class="btn btn--secondary" onclick="document.getElementById('filter-reset-btn').click()"
+              data-i18n="filter.clear_filters">Clear Filters</button>
+          </div>
+
+          <button id="load-more-btn" class="load-more-btn" style="display: none;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+            <span class="load-more-label" data-i18n="pagination.load_more">Load More</span>
+          </button>
+        </div>
+
+      </div>
+
+    </div>
+
+  </main>
+
+  <script src="../../assets/js/common/safe-storage.js"></script>
+  <script src="../../assets/js/common/app.js"></script>
+  <script src="../../assets/js/common/i18n.js"></script>
+  <script src="../../layouts/dashboard-layout/dashboard-layout.js"></script>
+  <script src="../../components/jobs/jobs.js"></script>
+  <script>
+    // Initialize Dashboard logic
+    const savedLang = (window._ckStorage || localStorage).getItem('ck-ui-lang') || 'hi';
+    I18n.init(savedLang);
+    I18n.setupToggleButton();
+    document.addEventListener('i18n:languageChanged', () => I18n.translateDOM());
+  </script>
+</body>
+
+</html>

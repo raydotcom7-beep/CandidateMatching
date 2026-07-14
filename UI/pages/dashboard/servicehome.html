@@ -1,0 +1,182 @@
+﻿<!DOCTYPE html>
+<html lang="hi-IN" data-theme="light">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="theme-color" content="#0A1628" />
+
+  <link rel="icon" type="image/png" href="../../assets/images/logos/KaushalSetuLogo.png" />
+  <title>डैशबोर्ड — Kaushal Setu</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+Devanagari:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet" />
+
+  <!-- Design System -->
+  <link rel="stylesheet" href="../../assets/css/common/design-tokens.css" />
+  <link rel="stylesheet" href="../../assets/css/common/reset.css" />
+  <link rel="stylesheet" href="../../assets/css/common/typography.css" />
+  <link rel="stylesheet" href="../../assets/css/common/utilities.css" />
+
+  <!-- Layout & Components -->
+  <link rel="stylesheet" href="../../layouts/dashboard-layout/dashboard-layout.css" />
+  <link rel="stylesheet" href="../../components/cards/cards.css" />
+  <link rel="stylesheet" href="../../components/widgets/widgets.css" />
+</head>
+
+<body class="layout-dashboard">
+
+  <!-- Sidebar Overlay -->
+  <div class="sidebar-overlay" id="sidebar-overlay" aria-hidden="true"></div>
+
+  <!-- Sidebar -->
+  <nav id="dashboard-sidebar" class="dashboard-sidebar" aria-label="मुख्य नेविगेशन">
+    <div class="sidebar-header">
+      <a href="servicehome.html" class="sidebar-brand">
+        <img src="../../assets/images/logos/KaushalSetuLogo.png" alt="Kaushal Setu" width="170" height="170" />
+        <!-- <span class="sidebar-brand-name">Kaushal Setu</span> -->
+      </a>
+    </div>
+    <div class="sidebar-nav">
+
+      <!-- Group 1 -->
+      <div class="sidebar-group">
+        <div class="sidebar-group-title" data-i18n="dashboard.menu.profile_identity">प्रोफाइल एवं पहचान प्रबंधन</div>
+        <ul class="sidebar-menu">
+          <li><a href="profile.html" class="sidebar-link" data-i18n="dashboard.menu.personal_profile">व्यक्तिगत प्रोफाइल प्रबंधन</a></li>
+        </ul>
+      </div>
+
+      <!-- Group 2 -->
+      <div class="sidebar-group">
+        <div class="sidebar-group-title" data-i18n="dashboard.menu.employment_career">रोजगार एवं कैरियर सेवाएँ</div>
+        <ul class="sidebar-menu">
+          <li><a href="recommendedjob.html" class="sidebar-link" data-i18n="dashboard.menu.recommended_jobs">एआई अनुशंसित नौकरियां</a></li>
+          <li><a href="Appliedjobs.html" class="sidebar-link" data-i18n="dashboard.menu.applied_jobs">आवेदन की गई नौकरियां</a></li>
+          <li><a href="Courses.html" class="sidebar-link" data-i18n="dashboard.menu.recommended_courses">अनुशंसित पाठ्यक्रम</a></li>
+          <li><a href="coursescompleted.html" class="sidebar-link" data-i18n="dashboard.menu.completed_courses">पूरे किए गए पाठ्यक्रम</a></li>
+        </ul>
+      </div>
+
+    </div>
+  </nav>
+
+  <!-- Main Area -->
+  <main class="dashboard-main">
+
+    <!-- Header -->
+    <header class="dashboard-header">
+      <div class="header-left">
+        <button id="sidebar-toggle" class="sidebar-toggle-btn" aria-label="मेनू टॉगल करें">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+            stroke-linecap="round">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+
+      <div class="header-right">
+
+        <!-- User Profile -->
+        <div class="user-profile">
+          <div class="user-info">
+            <span class="user-name">Ramesh Kumar</span>
+            <span class="user-meta"><span data-i18n="dashboard.header.last_login">अंतिम लॉगिन:</span> <span
+                id="last-login-date">14 May 2026</span></span>
+          </div>
+          <div class="user-avatar" aria-hidden="true">RK</div>
+        </div>
+
+        <div class="header-actions">
+          <!-- Lang Toggle -->
+          <button id="lang-toggle" class="btn btn--ghost btn--sm" data-lang-toggle
+            aria-label="Switch to English">English</button>
+
+          <!-- Theme Toggle -->
+          <button id="theme-toggle" class="btn btn--ghost btn--sm" aria-label="Switch Theme">
+            <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+              fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"
+              style="display:none">
+              <circle cx="12" cy="12" r="5" />
+              <line x1="12" y1="1" x2="12" y2="3" />
+              <line x1="12" y1="21" x2="12" y2="23" />
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+              <line x1="1" y1="12" x2="3" y2="12" />
+              <line x1="21" y1="12" x2="23" y2="12" />
+            </svg>
+            <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+              fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+            </svg>
+          </button>
+
+          <!-- Sign Out -->
+          <a href="../home/index.html" class="btn btn--secondary btn--sm" data-i18n="dashboard.signout">लॉग आउट</a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Content -->
+    <div class="dashboard-content">
+
+      <!-- Guidelines Box (100%) -->
+      <div class="widget surface--elevated" style="margin-bottom: var(--space-6);">
+        <div class="widget__header">
+          <h2 class="widget__title" data-i18n="dashboard.guidelines.title">दिशानिर्देश</h2>
+        </div>
+        <div class="widget__body">
+          <p class="text-body" data-i18n="dashboard.guidelines.desc">
+            लेबर डैशबोर्ड में आपका स्वागत है। बेहतर नौकरी के सुझाव पाने के लिए अपनी प्रोफ़ाइल को अपडेट रखें।
+          </p>
+        </div>
+      </div>
+
+      <!-- Stats Grid (2 columns, 50% each) -->
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--space-6);">
+
+        <!-- Recommended Jobs Count -->
+        <a href="recommendedjob.html" style="text-decoration: none; display: block;">
+          <div class="card card--stat card--stat-primary" style="transition: transform 0.2s ease, box-shadow 0.2s ease; cursor: pointer;" onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='var(--shadow-md)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='var(--shadow-sm)';">
+            <div class="stat__icon">💼</div>
+            <div class="stat__value">12</div>
+            <div class="stat__label" data-i18n="dashboard.menu.recommended_jobs">एआई अनुशंसित नौकरियां</div>
+          </div>
+        </a>
+
+        <!-- Applied Jobs Count -->
+        <a href="Appliedjobs.html" style="text-decoration: none; display: block;">
+          <div class="card card--stat card--stat-accent" style="transition: transform 0.2s ease, box-shadow 0.2s ease; cursor: pointer;" onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='var(--shadow-md)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='var(--shadow-sm)';">
+            <div class="stat__icon">📄</div>
+            <div class="stat__value">7</div>
+            <div class="stat__label" data-i18n="dashboard.menu.applied_jobs">आवेदन की गई नौकरियां</div>
+          </div>
+        </a>
+
+      </div>
+
+    </div>
+
+  </main>
+
+  <script src="../../assets/js/common/safe-storage.js"></script>
+  <script src="../../assets/js/common/app.js"></script>
+  <script src="../../assets/js/common/i18n.js"></script>
+  <script src="../../layouts/dashboard-layout/dashboard-layout.js"></script>
+  <script>
+    // Initialize Dashboard logic
+    const savedLang = (window._ckStorage || localStorage).getItem('ck-ui-lang') || 'hi';
+    I18n.init(savedLang);
+    I18n.setupToggleButton();
+    document.addEventListener('i18n:languageChanged', () => I18n.translateDOM());
+  </script>
+</body>
+
+</html>

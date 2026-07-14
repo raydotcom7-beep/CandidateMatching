@@ -1,0 +1,1510 @@
+<!DOCTYPE html>
+<html lang="hi-IN" data-theme="light">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="theme-color" content="#0A1628" />
+
+  <link rel="icon" type="image/png" href="../../assets/images/logos/KaushalSetuLogo.png" />
+  <title>डैशबोर्ड — Kaushal Setu</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+Devanagari:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet" />
+
+  <!-- Design System -->
+  <link rel="stylesheet" href="../../assets/css/common/design-tokens.css" />
+  <link rel="stylesheet" href="../../assets/css/common/reset.css" />
+  <link rel="stylesheet" href="../../assets/css/common/typography.css" />
+  <link rel="stylesheet" href="../../assets/css/common/utilities.css" />
+  <link rel="stylesheet" href="../../components/alerts/alerts.css" />
+
+  <!-- Layout & Components -->
+  <link rel="stylesheet" href="../../layouts/dashboard-layout/dashboard-layout.css" />
+  <link rel="stylesheet" href="../../components/cards/cards.css" />
+
+  <style>
+    /* SaaS Dashboard Custom CSS */
+    :root {
+      --saas-bg: #f8fafc;
+      --saas-card-bg: #ffffff;
+      --saas-border: #e2e8f0;
+      --saas-text-primary: #0f172a;
+      --saas-text-secondary: #64748b;
+      --saas-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    body.layout-dashboard {
+      background-color: var(--saas-bg);
+    }
+
+    .dashboard-content {
+      padding-top: 0;
+    }
+
+    /* Grid Layouts */
+    .saas-grid-kpi {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    @media (max-width: 1024px) {
+      .saas-grid-kpi {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .saas-grid-kpi {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 480px) {
+      .saas-grid-kpi {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .saas-grid-main {
+      display: grid;
+      grid-template-columns: 1fr 1.3fr;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
+    @media (max-width: 1024px) {
+      .saas-grid-main {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* SaaS Cards */
+    .saas-card {
+      background: var(--saas-card-bg);
+      border-radius: 12px;
+      border: 1px solid var(--saas-border);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+      padding: 14px;
+      transition: var(--saas-transition);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .saas-card:hover {
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.04);
+      transform: translateY(-1px);
+    }
+
+    .saas-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+
+    .saas-card-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--saas-text-primary);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* KPI specifics */
+    .kpi-card {
+      border-radius: 14px !important;
+      padding: 12px 10px !important;
+      transition: var(--saas-transition);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 120px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.01) !important;
+    }
+
+    .kpi-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.03) !important;
+    }
+
+    .kpi-top {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 6px;
+    }
+
+    .kpi-icon-container {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .kpi-icon-container svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    .kpi-title {
+      font-size: 11px;
+      font-weight: 700;
+      color: #475569;
+      line-height: 1.2;
+      text-align: left;
+    }
+
+    .kpi-value {
+      font-size: 28px;
+      font-weight: 800;
+      color: #0f172a;
+      text-align: center;
+      margin: 6px 0 4px 0;
+      line-height: 1;
+      letter-spacing: -0.5px;
+    }
+
+    .kpi-trend {
+      font-size: 10.5px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 2px;
+    }
+
+    .trend-up {
+      color: #16a34a !important;
+    }
+
+    .trend-down {
+      color: #ef4444 !important;
+    }
+
+    /* 6 KPI Pastel Themes based on the attached image */
+    .kpi-theme-1 {
+      background-color: #FCFAF6 !important;
+      border: 1px solid #F4EFE6 !important;
+    }
+
+    .kpi-theme-1 .kpi-icon-container {
+      background-color: #E2E4FC !important;
+      color: #4F46E5 !important;
+    }
+
+    .kpi-theme-2 {
+      background-color: #F7FAF2 !important;
+      border: 1px solid #EDF4E3 !important;
+    }
+
+    .kpi-theme-2 .kpi-icon-container {
+      background-color: #E2F2E4 !important;
+      color: #16A34A !important;
+    }
+
+    .kpi-theme-3 {
+      background-color: #FDF8ED !important;
+      border: 1px solid #F7EDD5 !important;
+    }
+
+    .kpi-theme-3 .kpi-icon-container {
+      background-color: #FCEBD4 !important;
+      color: #EA580C !important;
+    }
+
+    .kpi-theme-4 {
+      background-color: #F2FAF4 !important;
+      border: 1px solid #E3F4E8 !important;
+    }
+
+    .kpi-theme-4 .kpi-icon-container {
+      background-color: #D5EED9 !important;
+      color: #16A34A !important;
+    }
+
+    .kpi-theme-5 {
+      background-color: #FFF5F5 !important;
+      border: 1px solid #FFE3E3 !important;
+    }
+
+    .kpi-theme-5 .kpi-icon-container {
+      background-color: #FCE3E3 !important;
+      color: #EF4444 !important;
+    }
+
+    .kpi-theme-6 {
+      background-color: #FCF5FC !important;
+      border: 1px solid #F7E3F7 !important;
+    }
+
+    .kpi-theme-6 .kpi-icon-container {
+      background-color: #EFEBFC !important;
+      color: #A855F7 !important;
+    }
+
+
+
+    /* Map Widget */
+    #map-container {
+      width: 100%;
+      border-radius: 10px;
+      overflow: hidden;
+      background: transparent;
+      margin-bottom: 12px;
+    }
+
+    #map-container img {
+      width: 100%;
+      max-height: 200px;
+      display: block;
+      object-fit: contain;
+      border-radius: 10px;
+    }
+
+    .map-stat-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin-top: 4px;
+    }
+
+    .map-stat-box {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 10px;
+      border-radius: 10px;
+    }
+
+    .map-stat-box-icon {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .map-stat-box-icon svg {
+      width: 15px;
+      height: 15px;
+    }
+
+    .map-stat-box-content {
+      display: flex;
+      flex-direction: column;
+      gap: 0px;
+    }
+
+    .map-stat-box-lbl {
+      font-size: 9px;
+      font-weight: 600;
+      color: #64748b;
+    }
+
+    .map-stat-box-val {
+      font-size: 13px;
+      font-weight: 800;
+      color: #0f172a;
+      line-height: 1.2;
+    }
+
+    /* Stat box color themes */
+    .msb-blue {
+      background: #EEF2FF;
+      border: 1px solid #C7D2FE;
+    }
+
+    .msb-blue .map-stat-box-icon {
+      background: #E0E7FF;
+      color: #4F46E5;
+    }
+
+    .msb-red {
+      background: #FFF1F2;
+      border: 1px solid #FECDD3;
+    }
+
+    .msb-red .map-stat-box-icon {
+      background: #FFE4E6;
+      color: #EF4444;
+    }
+
+    .msb-green {
+      background: #F0FDF4;
+      border: 1px solid #BBF7D0;
+    }
+
+    .msb-green .map-stat-box-icon {
+      background: #DCFCE7;
+      color: #16A34A;
+    }
+
+    /* Data Table */
+    .saas-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .saas-table th {
+      text-align: left;
+      padding: 6px 10px;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--saas-text-secondary);
+      border-bottom: 1px solid var(--saas-border);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .saas-table td {
+      padding: 6px 10px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--saas-text-primary);
+      border-bottom: 1px solid #f1f5f9;
+    }
+
+    .saas-table tbody tr:last-child td {
+      border-bottom: none;
+    }
+
+    .saas-table tbody tr:hover {
+      background: #f8fafc;
+    }
+
+    .badge {
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 700;
+      display: inline-flex;
+    }
+
+    .badge-active {
+      background: #dcfce7;
+      color: #16a34a;
+    }
+
+    .badge-warning {
+      background: #ffedd5;
+      color: #ea580c;
+    }
+
+
+    .notif-bell-icon {
+      background-color: #E2E4FC;
+      color: #1e1b4b;
+      width: 30px;
+      height: 30px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .notif-bell-icon svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    .notif-grid-new {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 10px;
+    }
+
+    @media (max-width: 1024px) {
+      .notif-grid-new {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .notif-grid-new {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 480px) {
+      .notif-grid-new {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .notif-pill-card {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 12px;
+      border-radius: 12px;
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      transition: var(--saas-transition);
+    }
+
+    .notif-pill-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+    }
+
+    .notif-icon-circle {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .notif-icon-circle svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    .notif-pill-content {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .notif-pill-msg {
+      font-size: 11.5px;
+      font-weight: 700;
+      color: #1e293b;
+      line-height: 1.3;
+    }
+
+
+    /* Applications Overview Layout Styles */
+    .app-overview-icon {
+      background-color: #E2E4FC;
+      color: #4f46e5;
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 8px;
+    }
+
+    .app-overview-body {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      padding: 12px 0;
+      width: 100%;
+    }
+
+    @media (max-width: 600px) {
+      .app-overview-body {
+        flex-direction: column;
+      }
+    }
+
+    .chart-container-wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex: 1;
+    }
+
+    .app-overview-legend {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      flex-grow: 1;
+      max-width: 300px;
+      width: 100%;
+    }
+
+    .legend-card {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 6px 12px;
+      background: #f8fafc;
+      border-radius: 10px;
+      border: 1px solid #f1f5f9;
+      transition: var(--saas-transition);
+    }
+
+    .legend-left {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .legend-icon-container {
+      width: 30px;
+      height: 30px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .legend-icon-container svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    .legend-label-name {
+      font-size: 11.5px;
+      font-weight: 700;
+      color: #475569;
+    }
+
+    .legend-right-val {
+      font-size: 11.5px;
+      color: #0f172a;
+    }
+
+    .legend-right-val strong {
+      font-weight: 800;
+    }
+
+    .legend-percent {
+      color: #64748b;
+      font-weight: 600;
+      font-size: 11px;
+      margin-left: 2px;
+    }
+
+    .bg-blue-light-lg {
+      background: #E2E4FC !important;
+      color: #4F46E5 !important;
+    }
+
+    .bg-green-light-lg {
+      background: #E2F2E4 !important;
+      color: #16A34A !important;
+    }
+
+    .bg-orange-light-lg {
+      background: #FCEBD4 !important;
+      color: #EA580C !important;
+    }
+
+    .bg-red-light-lg {
+      background: #FCE3E3 !important;
+      color: #EF4444 !important;
+    }
+
+    .active-legend-card {
+      border: 1px solid #c7d2fe !important;
+      background-color: #ffffff !important;
+      box-shadow: 0 4px 6px -1px rgba(79, 70, 229, 0.05) !important;
+      position: relative;
+    }
+
+    .active-legend-card::before {
+      content: '';
+      position: absolute;
+      left: -4px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background-color: #4F46E5;
+      box-shadow: 0 0 0 2px #ffffff;
+    }
+
+    /* Notification Card Themes */
+    .notif-theme-blue  { background-color: #FAF8FF !important; border: 1px solid #EAE6FB !important; }
+    .notif-theme-blue  .notif-icon-circle { background-color: #E6E8FC !important; color: #4F46E5 !important; }
+    .notif-theme-green { background-color: #F7FAF2 !important; border: 1px solid #EDF4E3 !important; }
+    .notif-theme-green .notif-icon-circle { background-color: #E2F2E4 !important; color: #16A34A !important; }
+    .notif-theme-orange{ background-color: #FDF7EC !important; border: 1px solid #F7EDD5 !important; }
+    .notif-theme-orange .notif-icon-circle{ background-color: #FCEBD4 !important; color: #EA580C !important; }
+    .notif-theme-purple{ background-color: #FCF5FC !important; border: 1px solid #F7E3F7 !important; }
+    .notif-theme-purple .notif-icon-circle{ background-color: #EFEBFC !important; color: #A855F7 !important; }
+    .notif-theme-pink  { background-color: #FFF5F5 !important; border: 1px solid #FFE3E3 !important; }
+    .notif-theme-pink  .notif-icon-circle { background-color: #FCE3E3 !important; color: #EF4444 !important; }
+
+    /* Premium Standout Interactions */
+    .kpi-theme-1:hover {
+      border-color: #4F46E5 !important;
+      box-shadow: 0 8px 16px rgba(79, 70, 229, 0.04) !important;
+    }
+
+    .kpi-theme-2:hover {
+      border-color: #16A34A !important;
+      box-shadow: 0 8px 16px rgba(22, 163, 74, 0.04) !important;
+    }
+
+    .kpi-theme-3:hover {
+      border-color: #EA580C !important;
+      box-shadow: 0 8px 16px rgba(234, 88, 12, 0.04) !important;
+    }
+
+    .kpi-theme-4:hover {
+      border-color: #16A34A !important;
+      box-shadow: 0 8px 16px rgba(22, 163, 74, 0.04) !important;
+    }
+
+    .kpi-theme-5:hover {
+      border-color: #EF4444 !important;
+      box-shadow: 0 8px 16px rgba(239, 68, 68, 0.04) !important;
+    }
+
+    .kpi-theme-6:hover {
+      border-color: #A855F7 !important;
+      box-shadow: 0 8px 16px rgba(168, 85, 247, 0.04) !important;
+    }
+
+    .legend-card:hover {
+      border-color: #4F46E5 !important;
+      background-color: #ffffff !important;
+      transform: translateX(4px);
+      cursor: pointer;
+    }
+
+    @keyframes pulse {
+      0% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(22, 163, 74, 0.7);
+      }
+
+      70% {
+        transform: scale(1);
+        box-shadow: 0 0 0 4px rgba(22, 163, 74, 0);
+      }
+
+      100% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(22, 163, 74, 0);
+      }
+    }
+  </style>
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body class="layout-dashboard">
+
+  <!-- Sidebar Overlay -->
+  <div class="sidebar-overlay" id="sidebar-overlay" aria-hidden="true"></div>
+
+  <!-- Sidebar -->
+  <nav id="dashboard-sidebar" class="dashboard-sidebar" aria-label="मुख्य नेविगेशन">
+    <div class="sidebar-header">
+      <a href="IndustryServiceHome.html" class="sidebar-brand">
+        <img src="../../assets/images/logos/KaushalSetuLogo.png" alt="Kaushal Setu" width="170" height="170" />
+      </a>
+    </div>
+    <div class="sidebar-nav">
+
+      <!-- Group 1 -->
+      <div class="sidebar-group">
+        <div class="sidebar-group-title" data-i18n="dashboard.menu.profile_identity">प्रोफाइल एवं पहचान प्रबंधन</div>
+        <ul class="sidebar-menu">
+          <li><a href="profile.html" class="sidebar-link" data-i18n="dashboard.menu.personal_profile">प्रोफाइल
+              प्रबंधन</a></li>
+        </ul>
+      </div>
+
+      <!-- Group 2 -->
+      <div class="sidebar-group">
+        <div class="sidebar-group-title" data-i18n="dashboard.menu.employment_career">रोजगार एवं कैरियर सेवाएँ</div>
+        <ul class="sidebar-menu">
+          <li><a href="industrydashboard.html" class="sidebar-link active"
+              data-i18n="dashboard.menu.dashboard">डैशबोर्ड</a></li>
+          <li><a href="PostJob.html" class="sidebar-link" data-i18n="dashboard.menu.post_jobs">नौकरियां पोस्ट करें</a>
+          </li>
+          <li><a href="ActiveJobPostings.html" class="sidebar-link" data-i18n="dashboard.menu.active_jobs">सक्रिय
+              नौकरियां</a></li>
+          <li><a href="ReceivedJobApplications.html" class="sidebar-link"
+              data-i18n="dashboard.menu.received_apps">प्राप्त आवेदन</a></li>
+          <li><a href="shortlistedcandidate.html" class="sidebar-link"
+              data-i18n="dashboard.menu.shortlisted">शॉर्टलिस्टेड उम्मीदवार</a></li>
+          <li><a href="AIshortlistedcandidate.html" class="sidebar-link"
+              data-i18n="dashboard.menu.ai_recommended_candidates">AI Recommended Candidates</a></li>
+          <li><a href="searchcandidate.html" class="sidebar-link" data-i18n="dashboard.menu.search_candidate">उम्मीदवार
+              खोजें</a></li>
+        </ul>
+      </div>
+
+    </div>
+  </nav>
+
+  <!-- Main Area -->
+  <main class="dashboard-main">
+
+    <!-- Header -->
+    <header class="dashboard-header">
+      <div class="header-left">
+        <button id="sidebar-toggle" class="sidebar-toggle-btn" aria-label="मेनू टॉगल करें">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+            stroke-linecap="round">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+
+      <div class="header-right">
+
+        <!-- User Profile -->
+        <div class="user-profile">
+          <div class="user-info">
+            <span class="user-name"
+              style="max-width: 200px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"
+              title="National Textile Corporation Limited (NTC)">National Textile Corporation Limited (NTC)</span>
+            <span class="user-meta"><span id="last-login-time">Last login: </span></span>
+          </div>
+          <div class="user-avatar" aria-hidden="true" style="font-size: 14px;">NTC</div>
+        </div>
+
+        <div class="header-actions">
+          <button id="lang-toggle" class="btn btn--ghost btn--sm" data-lang-toggle
+            aria-label="Switch to English">English</button>
+          <a href="../home/index.html" class="btn btn--secondary btn--sm" data-i18n="dashboard.signout">लॉग आउट</a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Content -->
+    <div class="dashboard-content">
+
+      <!-- Welcome Header -->
+      <div
+        style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 12px; flex-wrap: wrap; gap: 8px;">
+        <div>
+          <h1 style="font-size: 20px; font-weight: 800; color: var(--saas-text-primary); margin-bottom: 2px;"
+            data-i18n="dash.welcome">Welcome back, Recruiter 👋</h1>
+          <p style="font-size: 12px; color: var(--saas-text-secondary); font-weight: 500;" data-i18n="dash.subtitle">
+            Here's what's happening with your job postings today.</p>
+        </div>
+        <div id="live-date-badge"
+          style="background: #ffffff; border: 1px solid var(--saas-border); padding: 5px 10px; border-radius: 20px; font-size: 10.5px; font-weight: 700; color: var(--saas-text-secondary); display: flex; align-items: center; gap: 6px; box-shadow: 0 1px 3px rgba(0,0,0,0.02);">
+          <span
+            style="display:inline-block; width: 6px; height: 6px; border-radius: 50%; background: #16a34a; animation: pulse 2s infinite;"></span>
+          <span id="live-date-text"></span>
+        </div>
+      </div>
+
+      <!-- KPI Grid -->
+      <div class="saas-grid-kpi">
+        <!-- Card 1: Active Job Openings -->
+        <div class="kpi-card kpi-theme-1">
+          <div class="kpi-top">
+            <div class="kpi-icon-container">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M20 6h-4V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2zM10 4h4v2h-4V4zm10 16H4V8h16v12z" />
+              </svg>
+            </div>
+            <div class="kpi-title" data-i18n="kpi.active_jobs">Active Job Openings</div>
+          </div>
+          <div class="kpi-value">125</div>
+          <div class="kpi-trend trend-up">
+            <span>↑</span> <span data-i18n="kpi.trend.active">12 from last week</span>
+          </div>
+        </div>
+
+        <!-- Card 2: Total Applications -->
+        <div class="kpi-card kpi-theme-2">
+          <div class="kpi-top">
+            <div class="kpi-icon-container">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z" />
+              </svg>
+            </div>
+            <div class="kpi-title" data-i18n="kpi.total_apps">Total Applications</div>
+          </div>
+          <div class="kpi-value">2,540</div>
+          <div class="kpi-trend trend-up">
+            <span>↑</span> <span data-i18n="kpi.trend.total_apps">18% from last week</span>
+          </div>
+        </div>
+
+        <!-- Card 3: Shortlisted Candidates -->
+        <div class="kpi-card kpi-theme-3">
+          <div class="kpi-top">
+            <div class="kpi-icon-container">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm-4 2c-2.67 0-8 1.34-8 4v2h10.5a5.46 5.46 0 0 1-.5-2c0-1.78.85-3.37 2.18-4.4C10.59 14.23 9.17 14 8 14z" />
+                <path
+                  d="M17.5 11l1.15 2.33 2.57.37-1.86 1.81.44 2.56L17.5 16.86l-2.3 1.21.44-2.56-1.86-1.81 2.57-.37z" />
+              </svg>
+            </div>
+            <div class="kpi-title" data-i18n="kpi.shortlisted">Shortlisted Candidates</div>
+          </div>
+          <div class="kpi-value">320</div>
+          <div class="kpi-trend trend-up">
+            <span>↑</span> <span data-i18n="kpi.trend.shortlisted">15% from last week</span>
+          </div>
+        </div>
+
+        <!-- Card 4: Positions Filled -->
+        <div class="kpi-card kpi-theme-4">
+          <div class="kpi-top">
+            <div class="kpi-icon-container">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
+              </svg>
+            </div>
+            <div class="kpi-title" data-i18n="kpi.positions">Positions Filled</div>
+          </div>
+          <div class="kpi-value">48</div>
+          <div class="kpi-trend trend-up">
+            <span>↑</span> <span data-i18n="kpi.trend.positions">10 from last week</span>
+          </div>
+        </div>
+
+        <!-- Card 5: Pending Approvals -->
+        <div class="kpi-card kpi-theme-5">
+          <div class="kpi-top">
+            <div class="kpi-icon-container">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z" />
+              </svg>
+            </div>
+            <div class="kpi-title" data-i18n="kpi.pending">Pending Approvals</div>
+          </div>
+          <div class="kpi-value">12</div>
+          <div class="kpi-trend trend-down">
+            <span>↓</span> <span data-i18n="kpi.trend.pending">3 from last week</span>
+          </div>
+        </div>
+
+        <!-- Card 6: Hiring Success Rate -->
+        <div class="kpi-card kpi-theme-6">
+          <div class="kpi-top">
+            <div class="kpi-icon-container">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="18" y1="20" x2="18" y2="10"></line>
+                <line x1="12" y1="20" x2="12" y2="4"></line>
+                <line x1="6" y1="20" x2="6" y2="14"></line>
+                <path d="M3 20h18"></path>
+                <path d="M2 17l6-6 4 4 8-8"></path>
+                <polyline points="14 7 20 7 20 13"></polyline>
+              </svg>
+            </div>
+            <div class="kpi-title" data-i18n="kpi.success">Hiring Success Rate</div>
+          </div>
+          <div class="kpi-value">42%</div>
+          <div class="kpi-trend trend-up">
+            <span>↑</span> <span data-i18n="kpi.trend.success">8% from last week</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Map and Chart Grid -->
+      <div class="saas-grid-main">
+        <!-- Applications Donut -->
+        <div class="saas-card">
+          <div class="saas-card-header" style="margin-bottom: 24px;">
+            <div class="saas-card-title">
+              <div class="app-overview-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M5 19h3v-8H5v8zm4 0h3v-13H9v13zm4 0h3v-9h-3v9zm4 0h3v-6h-3v6z" />
+                </svg>
+              </div>
+              <span data-i18n="dash.apps_overview">Applications Overview</span>
+            </div>
+          </div>
+          <div class="app-overview-body">
+            <div class="chart-container-wrapper">
+              <div class="chart-container" style="height: 220px; width: 220px; position: relative;">
+                <canvas id="appsChart"></canvas>
+                <div class="chart-total">
+                  <div class="chart-total-val">2,540</div>
+                  <div class="chart-total-lbl" data-i18n="dash.total"
+                    style="font-size: 13px; font-weight: 700; color: #64748b;">Total</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="app-overview-legend">
+              <!-- Item 1 -->
+              <div class="legend-card active-legend-card">
+                <div class="legend-left">
+                  <div class="legend-icon-container bg-blue-light-lg">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                      stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                      <polyline points="14 2 14 8 20 8"></polyline>
+                      <line x1="16" y1="13" x2="8" y2="13"></line>
+                      <line x1="16" y1="17" x2="8" y2="17"></line>
+                      <polyline points="10 9 9 9 8 9"></polyline>
+                    </svg>
+                  </div>
+                  <span class="legend-label-name" data-i18n="dash.new">New Applications</span>
+                </div>
+                <div class="legend-right-val">
+                  <strong>1,067</strong> <span class="legend-percent">(42%)</span>
+                </div>
+              </div>
+
+              <!-- Item 2 -->
+              <div class="legend-card">
+                <div class="legend-left">
+                  <div class="legend-icon-container bg-green-light-lg">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                      <polygon
+                        points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+                      </polygon>
+                    </svg>
+                  </div>
+                  <span class="legend-label-name" data-i18n="dash.shortlisted">Shortlisted</span>
+                </div>
+                <div class="legend-right-val">
+                  <strong>712</strong> <span class="legend-percent">(28%)</span>
+                </div>
+              </div>
+
+              <!-- Item 3 -->
+              <div class="legend-card">
+                <div class="legend-left">
+                  <div class="legend-icon-container bg-orange-light-lg">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                      <path
+                        d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z" />
+                    </svg>
+                  </div>
+                  <span class="legend-label-name" data-i18n="dash.hired">Hired</span>
+                </div>
+                <div class="legend-right-val">
+                  <strong>452</strong> <span class="legend-percent">(18%)</span>
+                </div>
+              </div>
+
+              <!-- Item 4 -->
+              <div class="legend-card">
+                <div class="legend-left">
+                  <div class="legend-icon-container bg-red-light-lg">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"
+                      stroke-linecap="round" stroke-linejoin="round">
+                      <circle cx="12" cy="12" r="10"></circle>
+                      <line x1="15" y1="9" x2="9" y2="15"></line>
+                      <line x1="9" y1="9" x2="15" y2="15"></line>
+                    </svg>
+                  </div>
+                  <span class="legend-label-name" data-i18n="dash.rejected">Rejected</span>
+                </div>
+                <div class="legend-right-val">
+                  <strong>309</strong> <span class="legend-percent">(12%)</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Static MP Map + Stat Cards -->
+        <div class="saas-card">
+          <div class="saas-card-header">
+            <div class="saas-card-title">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="2"
+                stroke-linecap="round">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                <circle cx="12" cy="10" r="3"></circle>
+              </svg>
+              <span data-i18n="dash.cand_dist">Candidate Distribution</span>
+
+            </div>
+          </div>
+
+          <!-- MP Map Image -->
+          <div id="map-container">
+            <img src="../../assets/images/mp-district-map.png" alt="Madhya Pradesh District Map" />
+          </div>
+
+          <!-- Stat Boxes -->
+          <div class="map-stat-row">
+            <!-- Total Candidates -->
+            <div class="map-stat-box msb-blue">
+              <div class="map-stat-box-icon">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path
+                    d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z" />
+                </svg>
+              </div>
+              <div class="map-stat-box-content">
+                <span class="map-stat-box-lbl" data-i18n="stat.total">Total Candidates</span>
+                <span class="map-stat-box-val">2,540</span>
+              </div>
+            </div>
+
+            <!-- Top District -->
+            <div class="map-stat-box msb-red">
+              <div class="map-stat-box-icon">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path
+                    d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
+                </svg>
+              </div>
+              <div class="map-stat-box-content">
+                <span class="map-stat-box-lbl" data-i18n="stat.top">Top District</span>
+                <span class="map-stat-box-val" data-i18n="stat.bhopal">Bhopal (620)</span>
+              </div>
+            </div>
+
+            <!-- Active Districts -->
+            <div class="map-stat-box msb-green">
+              <div class="map-stat-box-icon">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path
+                    d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z" />
+                </svg>
+              </div>
+              <div class="map-stat-box-content">
+                <span class="map-stat-box-lbl" data-i18n="stat.active">Active Districts</span>
+                <span class="map-stat-box-val">48</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom Layout -->
+      <div style="margin-bottom: 24px;">
+        <!-- Jobs Table -->
+        <div class="saas-card" style="margin-bottom: 16px;">
+          <div class="saas-card-header">
+            <div class="saas-card-title" data-i18n="dash.active_jobs">Active Job Openings</div>
+          </div>
+          <div style="overflow-x: auto;">
+            <table class="saas-table">
+              <thead>
+                <tr>
+                  <th data-i18n="table.job">Job Title</th>
+                  <th data-i18n="table.openings">Openings</th>
+                  <th data-i18n="table.apps">Applications</th>
+                  <th data-i18n="table.status">Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td data-i18n="job.electrician">Electrician</td>
+                  <td>15</td>
+                  <td>120</td>
+                  <td><span class="badge badge-active" data-i18n="badge.active">Active</span></td>
+                </tr>
+                <tr>
+                  <td data-i18n="job.welder">Welder</td>
+                  <td>8</td>
+                  <td>65</td>
+                  <td><span class="badge badge-active" data-i18n="badge.active">Active</span></td>
+                </tr>
+                <tr>
+                  <td data-i18n="job.operator">Machine Operator</td>
+                  <td>20</td>
+                  <td>180</td>
+                  <td><span class="badge badge-warning" data-i18n="badge.expiring">Expiring Soon</span></td>
+                </tr>
+                <tr>
+                  <td data-i18n="job.fitter">Fitter</td>
+                  <td>5</td>
+                  <td>42</td>
+                  <td><span class="badge badge-active" data-i18n="badge.active">Active</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Notifications -->
+        <div class="saas-card notif-box-container">
+          <div class="saas-card-header" style="margin-bottom: 20px; justify-content: flex-start; gap: 10px;">
+            <div class="notif-bell-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.89 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z" />
+              </svg>
+            </div>
+            <div class="saas-card-title" data-i18n="dash.notifications"
+              style="font-size: 18px; font-weight: 800; color: #1e1b4b;">Notifications and Alerts</div>
+          </div>
+
+          <div class="notif-grid-new">
+            <!-- Card 1 -->
+            <div class="notif-pill-card notif-theme-blue">
+              <div class="notif-icon-circle">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                  <path
+                    d="M9 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4zm11.59-1.41L17 16.17l-1.59-1.59-1.41 1.41 3 3 6-6-1.41-1.41z" />
+                </svg>
+              </div>
+              <div class="notif-pill-content">
+                <span class="notif-pill-msg" data-i18n="notif.1">12 new applications received for Electrician</span>
+              </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="notif-pill-card notif-theme-green">
+              <div class="notif-icon-circle">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                  <path
+                    d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
+                </svg>
+              </div>
+              <div class="notif-pill-content">
+                <span class="notif-pill-msg" data-i18n="notif.2">3 candidates shortlisted for Welder</span>
+              </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="notif-pill-card notif-theme-orange">
+              <div class="notif-icon-circle">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                  <path
+                    d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z" />
+                </svg>
+              </div>
+              <div class="notif-pill-content">
+                <span class="notif-pill-msg" data-i18n="notif.3">2 job openings are expiring in 3 days</span>
+              </div>
+            </div>
+
+            <!-- Card 4 -->
+            <div class="notif-pill-card notif-theme-purple">
+              <div class="notif-icon-circle">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                  <path
+                    d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM7 10h5v5H7v-5z" />
+                </svg>
+              </div>
+              <div class="notif-pill-content">
+                <span class="notif-pill-msg" data-i18n="notif.4">5 interviews scheduled for today</span>
+              </div>
+            </div>
+
+            <!-- Card 5 -->
+            <div class="notif-pill-card notif-theme-pink">
+              <div class="notif-icon-circle">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                  <path
+                    d="M9 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4zm11.59-1.41L17 16.17l-1.59-1.59-1.41 1.41 3 3 6-6-1.41-1.41z" />
+                </svg>
+              </div>
+              <div class="notif-pill-content">
+                <span class="notif-pill-msg" data-i18n="notif.5">3 candidates accepted offer and joined</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+  <script src="../../assets/js/common/safe-storage.js"></script>
+  <script src="../../assets/js/common/app.js"></script>
+  <script src="../../assets/js/common/i18n.js"></script>
+  <script src="../../components/alerts/alerts.js"></script>
+  <script src="../../layouts/dashboard-layout/dashboard-layout.js"></script>
+  <script>
+    const savedLang = (window._ckStorage || localStorage).getItem('ck-ui-lang') || 'hi';
+    I18n.init(savedLang, {
+      hi: {
+        'dashboard.menu.profile_identity': 'प्रोफाइल एवं पहचान प्रबंधन',
+        'dashboard.menu.personal_profile': 'प्रोफाइल प्रबंधन',
+        'dashboard.menu.change_password': 'पासवर्ड बदलें',
+        'dashboard.menu.employment_career': 'रोजगार एवं कैरियर सेवाएँ',
+        'dashboard.menu.post_jobs': 'नौकरियां पोस्ट करें',
+        'dashboard.menu.active_jobs': 'सक्रिय नौकरियां',
+        'dashboard.menu.received_apps': 'प्राप्त आवेदन',
+        'dashboard.menu.shortlisted': 'शॉर्टलिस्टेड उम्मीदवार',
+        'dashboard.menu.search_candidate': 'उम्मीदवार खोजें',
+        'dashboard.menu.dashboard': 'डैशबोर्ड',
+        'dashboard.signout': 'लॉग आउट'
+      },
+      en: {
+        'dashboard.menu.profile_identity': 'Profile & Identity Management',
+        'dashboard.menu.personal_profile': 'Profile Management',
+        'dashboard.menu.change_password': 'Change Password',
+        'dashboard.menu.employment_career': 'Employment & Career Services',
+        'dashboard.menu.post_jobs': 'Post Jobs',
+        'dashboard.menu.active_jobs': 'Active Job Postings',
+        'dashboard.menu.received_apps': 'Received Applications',
+        'dashboard.menu.shortlisted': 'Shortlisted Candidates',
+        'dashboard.menu.search_candidate': 'Search Candidate',
+        'dashboard.menu.dashboard': 'Dashboard',
+        'dashboard.signout': 'Sign Out'
+      }
+    });
+    I18n.setupToggleButton();
+    document.addEventListener('i18n:languageChanged', () => I18n.translateDOM());
+
+    // --- DASHBOARD CHARTS & MAPS INITIALIZATION ---
+    document.addEventListener("DOMContentLoaded", async function () {
+      // Dynamic script loader helper
+      function loadScript(src) {
+        return new Promise((resolve) => {
+          const script = document.createElement('script');
+          script.src = src;
+          script.onload = () => resolve(true);
+          script.onerror = () => resolve(false);
+          document.head.appendChild(script);
+        });
+      }
+
+      // 1. Chart.js Donut Chart
+      const ctxEl = document.getElementById('appsChart');
+      if (ctxEl) {
+        if (typeof Chart === 'undefined') {
+          console.log("Chart.js not detected. Attempting to load from CDNs...");
+          const chartCdns = [
+            'https://cdn.jsdelivr.net/npm/chart.js',
+            'https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js'
+          ];
+
+          for (const cdn of chartCdns) {
+            const loaded = await loadScript(cdn);
+            if (loaded && typeof Chart !== 'undefined') {
+              console.log("Chart.js loaded successfully from: " + cdn);
+              break;
+            }
+          }
+        }
+
+        if (typeof Chart === 'undefined') {
+          console.warn("Chart.js is not defined. Doughnut chart cannot be initialized.");
+          const container = ctxEl.closest('.chart-container-wrapper');
+          if (container) {
+            container.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100%;color:#64748b;font-size:12px;font-weight:600;padding:20px;text-align:center;">Chart visualization unavailable offline.</div>';
+          }
+        } else {
+          const ctx = ctxEl.getContext('2d');
+          const segmentLabelsPlugin = {
+            id: 'segmentLabels',
+            afterDraw(chart) {
+              const { ctx } = chart;
+              ctx.save();
+              chart.data.datasets.forEach((dataset, i) => {
+                const meta = chart.getDatasetMeta(i);
+                meta.data.forEach((element, index) => {
+                  const { x, y, startAngle, endAngle, outerRadius, innerRadius } = element;
+                  const middleAngle = startAngle + (endAngle - startAngle) / 2;
+                  // Position the text in the middle of the segment radial path
+                  const radius = innerRadius + (outerRadius - innerRadius) * 0.55;
+                  const labelX = x + Math.cos(middleAngle) * radius;
+                  const labelY = y + Math.sin(middleAngle) * radius;
+
+                  const value = dataset.data[index];
+                  const sum = dataset.data.reduce((a, b) => a + b, 0);
+                  const percentageText = Math.round((value / sum) * 100) + '%';
+
+                  ctx.fillStyle = '#ffffff';
+                  ctx.font = 'bold 12px Inter, sans-serif';
+                  ctx.textAlign = 'center';
+                  ctx.textBaseline = 'middle';
+                  ctx.fillText(percentageText, labelX, labelY);
+                });
+              });
+              ctx.restore();
+            }
+          };
+
+          new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+              labels: ['New', 'Shortlisted', 'Hired', 'Rejected'],
+              datasets: [{
+                data: [1067, 712, 452, 309],
+                backgroundColor: ['#3b82f6', '#10b981', '#f97316', '#ef4444'],
+                borderWidth: 2,
+                borderColor: '#ffffff',
+                hoverOffset: 4
+              }]
+            },
+            options: {
+              cutout: '58%',
+              responsive: true,
+              maintainAspectRatio: false,
+              plugins: {
+                legend: { display: false }
+              }
+            },
+            plugins: [segmentLabelsPlugin]
+          });
+        }
+      }
+
+    });
+
+    // Dashboard Custom Translations
+    const dashTranslationsEn = {
+      'dashboard.menu.ai_recommended_candidates': 'Recommended Candidates',
+      'dash.welcome': 'Welcome back, Recruiter 👋',
+      'dash.subtitle': 'Here\'s what\'s happening with your job postings today.',
+      'kpi.active_jobs': 'Active Job Openings',
+      'kpi.trend.active': '12 from last week',
+      'kpi.total_apps': 'Total Applications',
+      'kpi.trend.total_apps': '18% from last week',
+      'kpi.shortlisted': 'Shortlisted Candidates',
+      'kpi.trend.shortlisted': '15% from last week',
+      'kpi.positions': 'Positions Filled',
+      'kpi.trend.positions': '10 from last week',
+      'kpi.pending': 'Pending Approvals',
+      'kpi.trend.pending': '3 from last week',
+      'kpi.success': 'Hiring Success Rate',
+      'kpi.trend.success': '8% from last week',
+      'dash.apps_overview': 'Applications Overview',
+      'dash.total': 'Total',
+      'dash.new': 'New',
+      'dash.shortlisted': 'Shortlisted',
+      'dash.hired': 'Hired',
+      'dash.rejected': 'Rejected',
+      'dash.cand_dist': 'Madhya Pradesh Candidate Distribution',
+      'stat.total': 'Total Candidates',
+      'stat.top': 'Top District',
+      'stat.bhopal': 'Bhopal (620)',
+      'stat.active': 'Active Districts',
+      'dash.active_jobs': 'Active Job Openings',
+      'dash.view_all': 'View All Jobs &rarr;',
+      'table.job': 'Job Title',
+      'table.openings': 'Openings',
+      'table.apps': 'Applications',
+      'table.status': 'Status',
+      'job.electrician': 'Electrician',
+      'job.welder': 'Welder',
+      'job.operator': 'Machine Operator',
+      'job.fitter': 'Fitter',
+      'job.helper': 'Helper',
+      'badge.active': 'Active',
+      'badge.expiring': 'Expiring Soon',
+      'dash.notifications': 'Notifications and Alerts',
+      'notif.1': '12 new applications received for Electrician',
+      'time.1': '10 mins ago',
+      'notif.2': '3 candidates shortlisted for Welder',
+      'time.2': '25 mins ago',
+      'notif.3': '2 job openings are expiring in 3 days',
+      'time.3': '1 hour ago',
+      'notif.4': '5 interviews scheduled for today',
+      'time.4': '2 hours ago',
+      'notif.5': '3 candidates accepted offer and joined',
+      'time.5': '3 hours ago'
+    };
+
+    const dashTranslationsHi = {
+      'dashboard.menu.ai_recommended_candidates': 'अनुशंसित उम्मीदवार',
+      'dash.welcome': 'वापसी पर स्वागत है, रिक्रूटर 👋',
+      'dash.subtitle': 'यहाँ देखें आज आपके जॉब पोस्टिंग के साथ क्या हो रहा है।',
+      'kpi.active_jobs': 'सक्रिय नौकरी पद',
+      'kpi.trend.active': 'पिछले सप्ताह से 12',
+      'kpi.total_apps': 'कुल आवेदन',
+      'kpi.trend.total_apps': 'पिछले सप्ताह से 18%',
+      'kpi.shortlisted': 'शॉर्टलिस्टेड उम्मीदवार',
+      'kpi.trend.shortlisted': 'पिछले सप्ताह से 15%',
+      'kpi.positions': 'भरे गए पद',
+      'kpi.trend.positions': 'पिछले सप्ताह से 10',
+      'kpi.pending': 'लंबित स्वीकृति',
+      'kpi.trend.pending': 'पिछले सप्ताह से 3',
+      'kpi.success': 'भर्ती सफलता दर',
+      'kpi.trend.success': 'पिछले सप्ताह से 8%',
+      'dash.apps_overview': 'आवेदन अवलोकन',
+      'dash.total': 'कुल',
+      'dash.new': 'नए',
+      'dash.shortlisted': 'शॉर्टलिस्टेड',
+      'dash.hired': 'चयनित',
+      'dash.rejected': 'अस्वीकृत',
+      'dash.cand_dist': 'मध्य प्रदेश उम्मीदवार वितरण',
+      'stat.total': 'कुल उम्मीदवार',
+      'stat.top': 'शीर्ष जिला',
+      'stat.bhopal': 'भोपाल (620)',
+      'stat.active': 'सक्रिय जिले',
+      'dash.active_jobs': 'सक्रिय नौकरी पद',
+      'dash.view_all': 'सभी नौकरियां देखें &rarr;',
+      'table.job': 'पद का नाम',
+      'table.openings': 'रिक्तियां',
+      'table.apps': 'आवेदन',
+      'table.status': 'स्थिति',
+      'job.electrician': 'इलेक्ट्रीशियन',
+      'job.welder': 'वेल्डर',
+      'job.operator': 'मशीन ऑपरेटर',
+      'job.fitter': 'फिटर',
+      'job.helper': 'हेल्पर',
+      'badge.active': 'सक्रिय',
+      'badge.expiring': 'जल्द समाप्त',
+      'dash.notifications': 'सूचनाएं और अलर्ट',
+      'notif.1': 'इलेक्ट्रीशियन के लिए 12 नए आवेदन प्राप्त हुए',
+      'time.1': '10 मिनट पहले',
+      'notif.2': 'वेल्डर के लिए 3 उम्मीदवार शॉर्टलिस्ट हुए',
+      'time.2': '25 मिनट पहले',
+      'notif.3': '2 जॉब ओपनिंग 3 दिनों में समाप्त हो रही हैं',
+      'time.3': '1 घंटे पहले',
+      'notif.4': 'आज के लिए 5 इंटरव्यू निर्धारित',
+      'time.4': '2 घंटे पहले',
+      'notif.5': '3 उम्मीदवारों ने प्रस्ताव स्वीकार किया और शामिल हुए',
+      'time.5': '3 घंटे पहले'
+    };
+
+    // Append to I18n objects defined above
+    I18n.extend('en', dashTranslationsEn);
+    I18n.extend('hi', dashTranslationsHi);
+    I18n.translateDOM();
+
+    function updateLiveDate() {
+      const now = new Date();
+      const options = { weekday: 'long', day: 'numeric', month: 'short', year: 'numeric' };
+      const dateText = now.toLocaleDateString('en-US', options);
+      const dateEl = document.getElementById('live-date-text');
+      if (dateEl) dateEl.textContent = dateText;
+    }
+    updateLiveDate();
+
+    // Chart.js legend hover sync interaction
+    setTimeout(() => {
+      if (typeof Chart === 'undefined') return;
+      const legendCards = document.querySelectorAll('.legend-card');
+      legendCards.forEach((card, index) => {
+        card.addEventListener('mouseenter', () => {
+          if (typeof Chart === 'undefined') return;
+          const chart = Chart.getChart('appsChart');
+          if (chart) {
+            chart.setActiveElements([{ datasetIndex: 0, index: index }]);
+            chart.tooltip.setActiveElements([{ datasetIndex: 0, index: index }], { x: 0, y: 0 });
+            chart.update();
+          }
+        });
+        card.addEventListener('mouseleave', () => {
+          if (typeof Chart === 'undefined') return;
+          const chart = Chart.getChart('appsChart');
+          if (chart) {
+            chart.setActiveElements([]);
+            chart.tooltip.setActiveElements([], { x: 0, y: 0 });
+            chart.update();
+          }
+        });
+      });
+    }, 1000);
+
+    function updateLastLogin() {
+      const now = new Date();
+      const datePart = now.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
+      let timePart = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true });
+      const lastLoginEl = document.getElementById('last-login-time');
+      if (lastLoginEl) lastLoginEl.textContent = 'Last login: ' + datePart + ', ' + timePart;
+    }
+    updateLastLogin();
+  </script>
+</body>
+
+</html>

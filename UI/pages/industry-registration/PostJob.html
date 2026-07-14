@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="hi-IN" data-theme="light">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="theme-color" content="#0A1628" />
+
+  <link rel="icon" type="image/png" href="../../assets/images/logos/KaushalSetuLogo.png" />
+  <title>डैशबोर्ड — Kaushal Setu</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+Devanagari:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet" />
+
+  <!-- Design System -->
+  <link rel="stylesheet" href="../../assets/css/common/design-tokens.css" />
+  <link rel="stylesheet" href="../../assets/css/common/reset.css" />
+  <link rel="stylesheet" href="../../assets/css/common/typography.css" />
+  <link rel="stylesheet" href="../../assets/css/common/utilities.css" />
+  <link rel="stylesheet" href="../../components/forms/forms.css" />
+  <link rel="stylesheet" href="../../components/alerts/alerts.css" />
+
+  <!-- Layout & Components -->
+  <link rel="stylesheet" href="../../layouts/dashboard-layout/dashboard-layout.css" />
+  <link rel="stylesheet" href="../../components/cards/cards.css" />
+  <link rel="stylesheet" href="../../components/widgets/widgets.css" />
+
+  <style>
+    /* Premium Form Card (Variant 2B) */
+    .form-card {
+      background: #ffffff !important;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03) !important;
+      border: 1px solid var(--border-light, #e2e8f0) !important;
+      border-left: 5px solid var(--color-accent-500, #f97316) !important;
+      border-radius: var(--radius-xl) !important;
+      padding: var(--space-6) !important;
+      transition: transform var(--duration-fast) ease, box-shadow var(--duration-fast) ease;
+    }
+    .form-card:hover {
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.025) !important;
+      transform: translateY(-2px);
+    }
+
+    /* Premium Inputs */
+    .form-control, .form-select, .form-textarea {
+      background-color: #f8fafc !important;
+      border: 1px solid #e2e8f0 !important;
+      border-radius: var(--radius-md) !important;
+      color: var(--text-primary) !important;
+      transition: all var(--duration-fast) ease !important;
+      font-weight: 500 !important;
+    }
+    .form-control:focus, .form-select:focus, .form-textarea:focus {
+      background-color: #ffffff !important;
+      border-color: var(--color-primary-500, #3b82f6) !important;
+      box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.15) !important;
+      outline: none !important;
+    }
+    .form-label {
+      font-weight: 600 !important;
+      color: var(--text-secondary) !important;
+      margin-bottom: 8px !important;
+    }
+    
+    /* Header cleanup */
+    .card__header {
+      text-align: left !important;
+      padding-bottom: 20px !important;
+      border-bottom: 1px solid #f1f5f9 !important;
+      margin-bottom: 24px !important;
+    }
+    .card__title {
+      font-size: 24px !important;
+      color: var(--color-primary-900, #0a1628) !important;
+      font-weight: 800 !important;
+      background: none !important;
+      -webkit-text-fill-color: initial !important;
+      margin-bottom: 4px !important;
+    }
+    .card__desc {
+      font-size: 14px !important;
+      color: var(--text-secondary) !important;
+    }
+    
+    /* Button */
+    .btn-submit {
+      width: 100%;
+      max-width: 300px;
+      padding: 14px 32px !important;
+      font-size: 16px !important;
+      border-radius: var(--radius-full) !important;
+      background: linear-gradient(135deg, var(--color-primary-600), var(--color-primary-700)) !important;
+      box-shadow: 0 4px 12px rgba(30, 58, 138, 0.3) !important;
+      transition: transform 0.2s ease, box-shadow 0.2s ease !important;
+    }
+    .btn-submit:hover {
+      transform: translateY(-2px) !important;
+      box-shadow: 0 6px 16px rgba(30, 58, 138, 0.4) !important;
+    }
+  </style>
+</head>
+
+<body class="layout-dashboard">
+
+  <!-- Sidebar Overlay -->
+  <div class="sidebar-overlay" id="sidebar-overlay" aria-hidden="true"></div>
+
+  <!-- Sidebar -->
+  <nav id="dashboard-sidebar" class="dashboard-sidebar" aria-label="मुख्य नेविगेशन">
+    <div class="sidebar-header">
+      <a href="IndustryServiceHome.html" class="sidebar-brand">
+        <img src="../../assets/images/logos/KaushalSetuLogo.png" alt="Kaushal Setu" width="170" height="170" />
+        <!-- <span class="sidebar-brand-name">Kaushal Setu</span> -->
+      </a>
+    </div>
+    <div class="sidebar-nav">
+
+      <!-- Group 1 -->
+      <div class="sidebar-group">
+        <div class="sidebar-group-title" data-i18n="dashboard.menu.profile_identity">प्रोफाइल एवं पहचान प्रबंधन</div>
+        <ul class="sidebar-menu">
+          <li><a href="profile.html" class="sidebar-link" data-i18n="dashboard.menu.personal_profile">प्रोफाइल प्रबंधन</a></li>
+        </ul>
+      </div>
+
+      <!-- Group 2 -->
+      <div class="sidebar-group">
+        <div class="sidebar-group-title" data-i18n="dashboard.menu.employment_career">रोजगार एवं कैरियर सेवाएँ</div>
+        <ul class="sidebar-menu">
+          <li><a href="industrydashboard.html" class="sidebar-link" data-i18n="dashboard.menu.dashboard">डैशबोर्ड</a></li>
+          <li><a href="PostJob.html" class="sidebar-link active" data-i18n="dashboard.menu.post_jobs">नौकरियां पोस्ट करें</a></li>
+          <li><a href="ActiveJobPostings.html" class="sidebar-link" data-i18n="dashboard.menu.active_jobs">सक्रिय नौकरियां</a></li>
+          <li><a href="ReceivedJobApplications.html" class="sidebar-link" data-i18n="dashboard.menu.received_apps">प्राप्त आवेदन</a></li>
+          <li><a href="shortlistedcandidate.html" class="sidebar-link" data-i18n="dashboard.menu.shortlisted">शॉर्टलिस्टेड उम्मीदवार</a></li>
+          <li><a href="AIshortlistedcandidate.html" class="sidebar-link" data-i18n="dashboard.menu.ai_recommended_candidates">AI Recommended Candidates</a></li>
+          <li><a href="searchcandidate.html" class="sidebar-link" data-i18n="dashboard.menu.search_candidate">उम्मीदवार खोजें</a></li>
+        </ul>
+      </div>
+
+    </div>
+  </nav>
+
+  <!-- Main Area -->
+  <main class="dashboard-main">
+
+    <!-- Header -->
+    <header class="dashboard-header">
+      <div class="header-left">
+        <button id="sidebar-toggle" class="sidebar-toggle-btn" aria-label="मेनू टॉगल करें">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+            stroke-linecap="round">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+
+      <div class="header-right">
+
+        <!-- User Profile -->
+        <!-- User Profile -->
+        <div class="user-profile">
+          <div class="user-info">
+            <span class="user-name" style="max-width: 200px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="National Textile Corporation Limited (NTC)">National Textile Corporation Limited (NTC)</span>
+            <span class="user-meta"><span id="last-login-time">Last login: </span></span>
+          </div>
+          <div class="user-avatar" aria-hidden="true" style="font-size: 14px;">NTC</div>
+        </div>
+
+        <div class="header-actions">
+          <!-- Lang Toggle -->
+          <button id="lang-toggle" class="btn btn--ghost btn--sm" data-lang-toggle
+            aria-label="Switch to English">English</button>
+
+          <!-- Theme Toggle -->
+          <button id="theme-toggle" class="btn btn--ghost btn--sm" aria-label="Switch Theme">
+            <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+              fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"
+              style="display:none">
+              <circle cx="12" cy="12" r="5" />
+              <line x1="12" y1="1" x2="12" y2="3" />
+              <line x1="12" y1="21" x2="12" y2="23" />
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+              <line x1="1" y1="12" x2="3" y2="12" />
+              <line x1="21" y1="12" x2="23" y2="12" />
+            </svg>
+            <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+              fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+            </svg>
+          </button>
+
+          <!-- Sign Out -->
+          <a href="../home/index.html" class="btn btn--secondary btn--sm" data-i18n="dashboard.signout">लॉग आउट</a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Content -->
+    <div class="dashboard-content">
+
+      <div class="card form-card" style="margin-bottom: var(--space-6);">
+        <div class="card__header">
+          <h2 class="card__title" data-i18n="postjob.title">Post a New Job</h2>
+          <p class="card__desc" data-i18n="postjob.desc">Fill out the details below to hire skilled workers.</p>
+        </div>
+        <div class="card__body">
+          <form id="form-post-job" novalidate>
+            <!-- Job Title / Category -->
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" data-i18n="postjob.category">Job Category <span class="required-star" aria-hidden="true">*</span></label>
+                <select class="form-select" id="job-category" name="jobCategory" data-rules="required">
+                  <option value="" disabled selected data-i18n="postjob.category_placeholder">Select Category</option>
+                  <option value="plumber">Plumber / प्लंबर</option>
+                  <option value="electrician">Electrician / इलेक्ट्रीशियन</option>
+                  <option value="mason">Mason / राजमिस्त्री</option>
+                  <option value="carpenter">Carpenter / बढ़ई</option>
+                  <option value="painter">Painter / पेंटर</option>
+                  <option value="sweeper">Sweeper / सफाई कर्मचारी</option>
+                  <option value="other">Other / अन्य</option>
+                </select>
+                <p class="form-error-text" style="display:none"></p>
+              </div>
+              <div class="form-group">
+                <label class="form-label" data-i18n="postjob.title_label">Specific Job Title <span class="required-star" aria-hidden="true">*</span></label>
+                <input type="text" class="form-control" id="job-title" name="jobTitle" data-rules="required" data-i18n="placeholder:postjob.title_placeholder;data-label:postjob.title_label" data-label="Job Title" placeholder="e.g. Expert Electrician for Wiring" />
+                <p class="form-error-text" style="display:none"></p>
+              </div>
+            </div>
+
+            <!-- Details -->
+            <div class="form-group">
+              <label class="form-label" data-i18n="postjob.description">Job Description <span class="required-star" aria-hidden="true">*</span></label>
+              <textarea class="form-control form-textarea" id="job-desc" name="jobDesc" rows="4" data-rules="required" data-i18n="placeholder:postjob.description_placeholder;data-label:postjob.description" data-label="Job Description" placeholder="Describe the responsibilities and requirements..."></textarea>
+              <p class="form-error-text" style="display:none"></p>
+            </div>
+
+            <!-- Vacancies & Salary -->
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" data-i18n="postjob.vacancies">Number of Vacancies <span class="required-star" aria-hidden="true">*</span></label>
+                <input type="text" inputmode="numeric" class="form-control" id="job-vacancies" name="jobVacancies" data-rules="required|numeric|min:1" data-i18n="data-label:postjob.vacancies;placeholder:postjob.vacancies_placeholder" data-label="Number of Vacancies" placeholder="e.g. 5" oninput="this.value = this.value.replace(/[^0-9]/g, '');" />
+                <p class="form-error-text" style="display:none"></p>
+              </div>
+              <div class="form-group">
+                <label class="form-label" data-i18n="postjob.salary">Monthly Salary (₹) <span class="required-star" aria-hidden="true">*</span></label>
+                <input type="text" inputmode="numeric" class="form-control" id="job-salary" name="jobSalary" data-rules="required|numeric|min:1" data-i18n="data-label:postjob.salary;placeholder:postjob.salary_placeholder" data-label="Monthly Salary" placeholder="e.g. 15000" oninput="this.value = this.value.replace(/[^0-9]/g, '');" />
+                <p class="form-error-text" style="display:none"></p>
+              </div>
+            </div>
+
+            <!-- Location & Experience -->
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" data-i18n="postjob.location">Job Location (City/District) <span class="required-star" aria-hidden="true">*</span></label>
+                <input type="text" class="form-control" id="job-location" name="jobLocation" data-rules="required" data-i18n="placeholder:postjob.location_placeholder;data-label:postjob.location" data-label="Job Location" placeholder="e.g. Lucknow" />
+                <p class="form-error-text" style="display:none"></p>
+              </div>
+              <div class="form-group">
+                <label class="form-label" data-i18n="postjob.experience">Required Experience <span class="required-star" aria-hidden="true">*</span></label>
+                <select class="form-select" id="job-experience" name="jobExperience" data-rules="required">
+                  <option value="" disabled selected data-i18n="postjob.exp_placeholder">Select Experience</option>
+                  <option value="fresher" data-i18n="postjob.exp_fresher">Fresher (No Experience)</option>
+                  <option value="1-3" data-i18n="postjob.exp_1_3">1 - 3 Years</option>
+                  <option value="3-5" data-i18n="postjob.exp_3_5">3 - 5 Years</option>
+                  <option value="5+" data-i18n="postjob.exp_5_plus">5+ Years</option>
+                </select>
+                <p class="form-error-text" style="display:none"></p>
+              </div>
+            </div>
+
+            <!-- Qualification Details -->
+            <div class="form-section" style="margin-top: 24px; margin-bottom: 16px;">
+              <h3 style="font-size: 16px; font-weight: 700; color: var(--color-primary-800); border-bottom: 2px solid #e2e8f0; padding-bottom: 8px;" data-i18n="postjob.sec_qualification">Qualification Details</h3>
+            </div>
+            <div class="form-row form-row--2">
+              <div class="form-group">
+                <label class="form-label" data-i18n="edu.level">Qualification Level</label>
+                <select class="form-select" id="qual-level" name="qualLevel">
+                  <option value="" disabled selected data-i18n="placeholder.select">Select</option>
+                  <option value="10th" data-i18n="edu.level.10th">10th</option>
+                  <option value="12th" data-i18n="edu.level.12th">12th</option>
+                  <option value="ug" data-i18n="edu.level.ug">Graduation (UG)</option>
+                  <option value="pg" data-i18n="edu.level.pg">Post Graduation (PG)</option>
+                  <option value="diploma" data-i18n="edu.level.diploma">Diploma</option>
+                  <option value="other" data-i18n="edu.level.other">Other</option>
+                </select>
+                <p class="form-error-text" style="display:none"></p>
+              </div>
+              <div class="form-group">
+                <label class="form-label" data-i18n="postjob.qual_name">Qualification Name</label>
+                <input type="text" class="form-control" id="qual-name" name="qualName" data-i18n="placeholder:postjob.qual_name_placeholder" placeholder="eg. B.Tech" />
+                <p class="form-error-text" style="display:none"></p>
+              </div>
+            </div>
+            <div class="form-row form-row--2">
+              <div class="form-group">
+                <label class="form-label" data-i18n="postjob.sub_group">Subject Group Name</label>
+                <input type="text" class="form-control" id="sub-group" name="subGroupName" data-i18n="placeholder:postjob.sub_group_placeholder" placeholder="eg. Science, Engineering" />
+                <p class="form-error-text" style="display:none"></p>
+              </div>
+              <div class="form-group">
+                <label class="form-label" data-i18n="postjob.subject">Subject Name</label>
+                <input type="text" class="form-control" id="subject" name="subjectName" data-i18n="placeholder:postjob.subject_placeholder" placeholder="eg. Computer Science" />
+                <p class="form-error-text" style="display:none"></p>
+              </div>
+            </div>
+            <div class="form-row form-row--2">
+              <div class="form-group">
+                <label class="form-label" data-i18n="edu.passing_year">Year of Passing</label>
+                <select class="form-select" id="passing-year" name="passingYear">
+                  <option value="" disabled selected data-i18n="placeholder.select">Select</option>
+                </select>
+                <p class="form-error-text" style="display:none"></p>
+              </div>
+              <div class="form-group">
+                <label class="form-label" data-i18n="postjob.certification">Certification</label>
+                <input type="text" class="form-control" id="certification" name="certification" data-i18n="placeholder:postjob.certification_placeholder" placeholder="eg. AWS Certified, CNC Operator" />
+                <p class="form-error-text" style="display:none"></p>
+              </div>
+            </div>
+
+            <!-- Additional Requirements -->
+            <div class="form-section" style="margin-top: 24px; margin-bottom: 16px;">
+              <h3 style="font-size: 16px; font-weight: 700; color: var(--color-primary-800); border-bottom: 2px solid #e2e8f0; padding-bottom: 8px;" data-i18n="postjob.sec_additional">Additional Requirements</h3>
+            </div>
+            <div class="form-row form-row--2">
+              <div class="form-group">
+                <label class="form-label" data-i18n="edu.skills">Skills Required</label>
+                <input type="text" class="form-control" id="skills-required" name="skillsRequired" data-i18n="placeholder:placeholder.skills_input" placeholder="eg. Welding, Plumbing" />
+                <p class="form-error-text" style="display:none"></p>
+              </div>
+              <div class="form-group">
+                <label class="form-label" data-i18n="postjob.other_req">Other Requirements</label>
+                <input type="text" class="form-control" id="other-requirements" name="otherRequirements" data-i18n="placeholder:postjob.other_req_placeholder" placeholder="eg. Must have driving license, night shift" />
+                <p class="form-error-text" style="display:none"></p>
+              </div>
+            </div>
+
+            <div class="form-actions" style="margin-top: var(--space-4); text-align: center;">
+              <button type="submit" class="btn btn--primary btn-submit" data-i18n="postjob.submit">Post Job</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+    </div>
+
+  </main>
+
+  <script src="../../assets/js/common/safe-storage.js"></script>
+  <script src="../../assets/js/common/app.js"></script>
+  <script src="../../assets/js/common/i18n.js"></script>
+  <script src="../../assets/js/common/validation.js"></script>
+  <script src="../../components/alerts/alerts.js"></script>
+  <script src="../../layouts/dashboard-layout/dashboard-layout.js"></script>
+  <script>
+    // Initialize Dashboard logic
+    const savedLang = (window._ckStorage || localStorage).getItem('ck-ui-lang') || 'hi';
+    I18n.init(savedLang, {
+      hi: {
+        'dashboard.menu.profile_identity': 'प्रोफाइल एवं पहचान प्रबंधन',
+        'dashboard.menu.dashboard': 'डैशबोर्ड',
+        'dashboard.menu.personal_profile': 'प्रोफाइल प्रबंधन',
+        'dashboard.menu.change_password': 'पासवर्ड बदलें',
+        'dashboard.menu.employment_career': 'रोजगार एवं कैरियर सेवाएँ',
+        'dashboard.menu.post_jobs': 'नौकरियां पोस्ट करें',
+        'dashboard.menu.active_jobs': 'सक्रिय नौकरियां',
+        'dashboard.menu.received_apps': 'प्राप्त आवेदन',
+        'dashboard.menu.search_candidate': 'उम्मीदवार खोजें',
+        'postjob.title': 'नई नौकरी पोस्ट करें',
+        'postjob.desc': 'नीली कॉलर वाले श्रमिकों को नियुक्त करने के लिए नीचे विवरण भरें।',
+        'postjob.category': 'नौकरी की श्रेणी',
+        'postjob.category_placeholder': 'श्रेणी चुनें',
+        'postjob.title_label': 'विशिष्ट नौकरी शीर्षक',
+        'postjob.title_placeholder': 'उदा. वायरिंग के लिए विशेषज्ञ इलेक्ट्रीशियन',
+        'postjob.description': 'नौकरी का विवरण',
+        'postjob.description_placeholder': 'जिम्मेदारियों और आवश्यकताओं का वर्णन करें...',
+        'postjob.vacancies': 'रिक्तियों की संख्या',
+        'postjob.vacancies_placeholder': 'उदा. 5',
+        'postjob.salary': 'मासिक वेतन (₹)',
+        'postjob.salary_placeholder': 'उदा. 15000',
+        'postjob.location': 'नौकरी का स्थान (शहर/जिला)',
+        'postjob.location_placeholder': 'उदा. लखनऊ',
+        'postjob.experience': 'आवश्यक अनुभव',
+        'postjob.exp_placeholder': 'अनुभव चुनें',
+        'postjob.exp_fresher': 'फ्रेशर (कोई अनुभव नहीं)',
+        'postjob.exp_1_3': '1 - 3 वर्ष',
+        'postjob.exp_3_5': '3 - 5 वर्ष',
+        'postjob.exp_5_plus': '5+ वर्ष',
+        'postjob.submit': 'नौकरी पोस्ट करें',
+        'postjob.success': 'नौकरी सफलतापूर्वक पोस्ट की गई!',
+        'postjob.sec_qualification': 'शैक्षणिक योग्यता विवरण',
+        'postjob.qual_name': 'योग्यता का नाम',
+        'postjob.qual_name_placeholder': 'उदा. B.Tech',
+        'postjob.sub_group': 'विषय समूह का नाम',
+        'postjob.sub_group_placeholder': 'उदा. विज्ञान, इंजीनियरिंग',
+        'postjob.subject': 'विषय का नाम',
+        'postjob.subject_placeholder': 'उदा. कंप्यूटर साइंस',
+        'postjob.certification': 'प्रमाणपत्र (यदि कोई हो)',
+        'postjob.certification_placeholder': 'उदा. AWS Certified, CNC Operator',
+        'postjob.sec_additional': 'अतिरिक्त आवश्यकताएं',
+        'postjob.other_req': 'अन्य आवश्यकताएं',
+        'postjob.other_req_placeholder': 'उदा. ड्राइविंग लाइसेंस होना अनिवार्य है',
+        'edu.level': 'योग्यता स्तर',
+        'edu.level.10th': '10वीं',
+        'edu.level.12th': '12वीं',
+        'edu.level.ug': 'स्नातक (UG)',
+        'edu.level.pg': 'स्नातकोत्तर (PG)',
+        'edu.level.diploma': 'डिप्लोमा',
+        'edu.level.other': 'अन्य',
+        'edu.passing_year': 'उत्तीर्ण होने का वर्ष',
+        'edu.skills': 'आवश्यक कौशल',
+        'placeholder.skills_input': 'उदा. वेल्डिंग, प्लंबिंग',
+        'placeholder.select': 'चुनें'
+      },
+      en: {
+        'dashboard.menu.profile_identity': 'Profile & Identity Management',
+        'dashboard.menu.dashboard': 'Dashboard',
+        'dashboard.menu.personal_profile': 'Profile Management',
+        'dashboard.menu.change_password': 'Change Password',
+        'dashboard.menu.employment_career': 'Employment & Career Services',
+        'dashboard.menu.post_jobs': 'Post Jobs',
+        'dashboard.menu.active_jobs': 'Active Job Postings',
+        'dashboard.menu.received_apps': 'Received Applications',
+        'dashboard.menu.shortlisted': 'Shortlisted Candidates',
+        'dashboard.menu.search_candidate': 'Search Candidate',
+        'postjob.title': 'Post a New Job',
+        'postjob.desc': 'Fill out the details below to hire skilled workers.',
+        'postjob.category': 'Job Category',
+        'postjob.category_placeholder': 'Select Category',
+        'postjob.title_label': 'Specific Job Title',
+        'postjob.title_placeholder': 'e.g. Expert Electrician for Wiring',
+        'postjob.description': 'Job Description',
+        'postjob.description_placeholder': 'Describe the responsibilities and requirements...',
+        'postjob.vacancies': 'Number of Vacancies',
+        'postjob.vacancies_placeholder': 'e.g. 5',
+        'postjob.salary': 'Monthly Salary (₹)',
+        'postjob.salary_placeholder': 'e.g. 15000',
+        'postjob.location': 'Job Location (City/District)',
+        'postjob.location_placeholder': 'e.g. Lucknow',
+        'postjob.experience': 'Required Experience',
+        'postjob.exp_placeholder': 'Select Experience',
+        'postjob.exp_fresher': 'Fresher (No Experience)',
+        'postjob.exp_1_3': '1 - 3 Years',
+        'postjob.exp_3_5': '3 - 5 Years',
+        'postjob.exp_5_plus': '5+ Years',
+        'postjob.submit': 'Post Job',
+        'postjob.success': 'Job posted successfully!',
+        'postjob.sec_qualification': 'Qualification Details',
+        'postjob.qual_name': 'Qualification Name',
+        'postjob.qual_name_placeholder': 'eg. B.Tech',
+        'postjob.sub_group': 'Subject Group Name',
+        'postjob.sub_group_placeholder': 'eg. Science, Engineering',
+        'postjob.subject': 'Subject Name',
+        'postjob.subject_placeholder': 'eg. Computer Science',
+        'postjob.certification': 'Certification',
+        'postjob.certification_placeholder': 'eg. AWS Certified, CNC Operator',
+        'postjob.sec_additional': 'Additional Requirements',
+        'postjob.other_req': 'Other Requirements',
+        'postjob.other_req_placeholder': 'eg. Must have driving license, night shift',
+        'edu.level': 'Qualification Level',
+        'edu.level.10th': '10th',
+        'edu.level.12th': '12th',
+        'edu.level.ug': 'Graduation (UG)',
+        'edu.level.pg': 'Post Graduation (PG)',
+        'edu.level.diploma': 'Diploma',
+        'edu.level.other': 'Other',
+        'edu.passing_year': 'Year of Passing',
+        'edu.skills': 'Skills Required',
+        'placeholder.skills_input': 'eg. Welding, Plumbing',
+        'placeholder.select': 'Select'
+      }
+    });
+    I18n.setupToggleButton();
+    document.addEventListener('i18n:languageChanged', () => I18n.translateDOM());
+
+    // Dynamic Passing Year Population
+    function populateYearDropdown() {
+      const currentYear = new Date().getFullYear();
+      const startYear = 1970;
+      const el = document.getElementById('passing-year');
+      if (!el) return;
+      el.innerHTML = `<option value="" disabled selected data-i18n="placeholder.select">Select</option>`;
+      for (let y = currentYear; y >= startYear; y--) {
+        const opt = document.createElement('option');
+        opt.value = y;
+        opt.textContent = y;
+        el.appendChild(opt);
+      }
+      I18n.translateDOM(el);
+    }
+    populateYearDropdown();
+
+    // Dynamic Last Login Date
+    function updateLastLogin() {
+      const now = new Date();
+      const datePart = now.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
+      let timePart = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true });
+      const lastLoginEl = document.getElementById('last-login-time');
+      if (lastLoginEl) {
+        lastLoginEl.textContent = 'Last login: ' + datePart + ', ' + timePart;
+      }
+    }
+    updateLastLogin();
+
+    // Form Submission Logic
+    const vForm = new Validator('#form-post-job', { lang: savedLang, liveValidation: true });
+    document.getElementById('form-post-job')?.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      console.log("Submit button clicked.");
+      if (vForm.validate()) {
+        console.log("Validation passed. Gathering job data...");
+        const jobData = {
+          title: document.getElementById('job-title').value,
+          employer: "Kaushal Setu Recruiter",
+          location: document.getElementById('job-location').value,
+          district: document.getElementById('job-location').value,
+          salary: document.getElementById('job-salary').value,
+          experience: document.getElementById('job-experience').value,
+          expKey: "any",
+          qualification: document.getElementById('qual-level').value || "ITI / Diploma",
+          qualKey: "any",
+          openings: parseInt(document.getElementById('job-vacancies').value) || 1,
+          type: "fulltime",
+          typeLabel: "Full Time",
+          skills: [document.getElementById('job-category').value],
+          raw_text: document.getElementById('job-desc').value
+        };
+        console.log("Payload compiled:", jobData);
+
+        try {
+          console.log("Firing fetch to http://localhost:8000/jobs...");
+          const response = await fetch("http://localhost:8000/jobs", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(jobData)
+          });
+          
+          console.log("Response status:", response.status);
+          if (response.ok) {
+            Toast.success(I18n.t('postjob.success'));
+            setTimeout(() => {
+              window.location.href = 'IndustryServiceHome.html';
+            }, 1500);
+          } else {
+            const errText = await response.text();
+            console.error("Server returned error:", errText);
+            alert("Server returned error: " + errText);
+            Toast.error("Failed to post job to server.");
+          }
+        } catch (err) {
+          console.error("API error:", err);
+          alert("Failed to connect to the backend server. Make sure it is running at http://localhost:8000.");
+          Toast.error("Server connection failed. Job was not saved.");
+        }
+      } else {
+        console.warn("Validation failed. Please check for red error text below the form fields.");
+        alert("Validation failed. Please fill all required fields correctly.");
+      }
+    });
+  </script>
+</body>
+
+</html>
+
+
+
+

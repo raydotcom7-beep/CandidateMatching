@@ -1,0 +1,115 @@
+| Indicator                        | Example   |
+| -------------------------------- | --------- |
+| Total Registered Labours         | 12,45,320 |
+| Total Active Labours             | 9,85,000  |
+| Total Contractors Registered     | 18,250    |
+| Total Industries Registered      | 6,420     |
+| Total Employers Registered       | 4,850     |
+| Total Job Posts Created          | 1,25,000  |
+| Total Jobs Filled                | 58,200    |
+| Total Active Vacancies           | 32,500    |
+| Total Women Labour Registered    | 3,25,000  |
+| Total Migrant Workers Registered | 1,12,000  |
+
+Indicator	Example
+Total Labour Placed	5,85,000
+Placement Ratio	47%
+Jobs Applied	22,15,000
+Interview Scheduled	2,15,000
+Active Job Seekers	6,50,000
+
+Gender-wise Registered Labour (%)
+Pie Chart
+
+Display:
+
+Male %
+Female %
+Other %
+
+Example:
+
+Male — 68%
+Female — 31%
+Other — 1%
+
+Age Group-wise Labour Distribution (%)
+Pie Chart / Bar Chart
+
+Suggested Age Groups:
+
+18–25
+26–35
+36–45
+46–60
+60+
+
+Example:
+
+18–25 → 35%
+26–35 → 42%
+36–45 → 15%
+46–60 → 8%
+
+Highest Qualification of Registered Labour (%)
+Pie Chart
+
+Suggested Categories:
+
+Below 10th
+10th
+12th
+ITI
+Diploma
+Graduate
+Post Graduate
+
+Example:
+
+10th → 28%
+12th → 32%
+ITI → 18%
+Graduate → 12%
+
+Labour Certification Distribution (%)
+Pie Chart
+
+Suggested Certification Types:
+
+ITI Certified
+NSDC Certified
+Skill Development Certified
+Apprenticeship Certified
+Safety Training Certified
+Non-Certified
+
+Example:
+
+ITI → 35%
+NSDC → 22%
+Non-Certified → 30%
+
+Registered Labour vs Labour Got Jobs (%)
+Donut/Pie Chart
+
+Metrics:
+
+Total Registered Labour
+Successfully Placed Labour
+Yet to Get Jobs
+
+Example:
+
+Got Jobs → 47%
+Not Yet Placed → 53%
+
+Top Skills Registered
+Bar Chart
+
+Example:
+
+Electrician
+Welder
+Mason
+Plumber
+Machine Operator

@@ -1,0 +1,854 @@
+﻿<!DOCTYPE html>
+<html lang="hi-IN" data-theme="light">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="theme-color" content="#0A1628" />
+
+  <link rel="icon" type="image/png" href="../../assets/images/logos/KaushalSetuLogo.png" />
+  <title>Completed Courses — Kaushal Setu</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+Devanagari:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet" />
+
+  <!-- Design System -->
+  <link rel="stylesheet" href="../../assets/css/common/design-tokens.css" />
+  <link rel="stylesheet" href="../../assets/css/common/reset.css" />
+  <link rel="stylesheet" href="../../assets/css/common/typography.css" />
+  <link rel="stylesheet" href="../../assets/css/common/utilities.css" />
+
+  <!-- Layout & Components -->
+  <link rel="stylesheet" href="../../layouts/dashboard-layout/dashboard-layout.css" />
+  <link rel="stylesheet" href="../../components/cards/cards.css" />
+  <style>
+    .courses-list {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-4);
+      margin-top: var(--space-6);
+    }
+
+    .course-item {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-light, #e2e8f0);
+      border-radius: var(--radius-lg);
+      padding: var(--space-4);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: all var(--duration-fast) ease;
+    }
+
+    .course-item:hover {
+      box-shadow: var(--shadow-sm);
+      border-color: var(--border-default, #cbd5e1);
+    }
+
+    .course-info {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-1);
+    }
+
+    .course-provider {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--color-accent-700);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .course-title {
+      font-size: var(--text-md);
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .course-date {
+      font-size: 12px;
+      color: var(--text-secondary);
+    }
+
+    .course-results {
+      display: flex;
+      align-items: center;
+      gap: var(--space-6);
+    }
+
+    .course-score {
+      font-size: var(--text-sm);
+      color: var(--text-primary);
+      font-weight: 600;
+    }
+
+    .status-badge {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: var(--radius-full);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .status-badge--pass {
+      background: rgba(16, 185, 129, 0.1);
+      color: #059669;
+    }
+
+    .status-badge--fail {
+      background: rgba(239, 68, 68, 0.1);
+      color: #dc2626;
+    }
+
+    .course-actions {
+      display: flex;
+      gap: var(--space-2);
+    }
+
+    .btn-download-cert {
+      background: var(--color-primary-600);
+      color: #fff;
+      border: none;
+      padding: var(--space-2) var(--space-4);
+      border-radius: var(--radius-md);
+      font-weight: 600;
+      cursor: pointer;
+      font-size: 13px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: background var(--duration-fast);
+    }
+
+    .btn-download-cert:hover {
+      background: var(--color-primary-700);
+    }
+
+    .btn-download-cert:disabled {
+      background: var(--bg-neutral, #f1f5f9);
+      color: var(--text-muted, #94a3b8);
+      cursor: not-allowed;
+      border: 1px solid var(--border-light, #e2e8f0);
+    }
+
+    .btn-course-details {
+      background: rgba(59, 130, 246, 0.1);
+      color: #3b82f6;
+      border: none;
+      padding: var(--space-2) var(--space-4);
+      border-radius: var(--radius-md);
+      font-weight: 600;
+      cursor: pointer;
+      font-size: 13px;
+      transition: background var(--duration-fast);
+    }
+
+    .btn-course-details:hover {
+      background: rgba(59, 130, 246, 0.2);
+    }
+
+    /* Modal Styling */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(15, 23, 42, 0.6);
+      backdrop-filter: blur(4px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .modal-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .modal-content {
+      background: var(--bg-surface);
+      border-radius: 12px;
+      width: 95%;
+      max-width: 700px;
+      max-height: 90vh;
+      overflow-y: auto;
+      transform: translateY(20px);
+      transition: transform 0.3s ease;
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+    }
+
+    .modal-overlay.active .modal-content {
+      transform: translateY(0);
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--border-light, #e2e8f0);
+    }
+
+    .modal-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .btn-close-modal {
+      background: none;
+      border: none;
+      color: var(--text-secondary);
+      cursor: pointer;
+      padding: 6px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .btn-close-modal:hover {
+      background: rgba(0, 0, 0, 0.05);
+      color: var(--text-primary);
+    }
+
+    .modal-body {
+      padding: 20px;
+    }
+
+    /* Course Details Grid */
+    .details-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px 16px;
+    }
+
+    .details-field {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .details-label {
+      font-size: 12px;
+      color: var(--text-secondary);
+      font-weight: 500;
+    }
+
+    .details-value {
+      font-size: 14px;
+      color: var(--text-primary);
+      font-weight: 600;
+    }
+
+    /* Premium Certificate Design */
+    .certificate-container {
+      border: 8px double #b39256;
+      padding: var(--space-8);
+      background: #fdfbf7;
+      text-align: center;
+      position: relative;
+      color: #334155;
+      box-shadow: inset 0 0 40px rgba(179, 146, 86, 0.05);
+    }
+
+    .cert-logo {
+      width: 150px;
+      height: 40px;
+      margin: 0 auto var(--space-4) auto;
+    }
+
+    .cert-title {
+      font-family: 'Georgia', serif;
+      font-size: 24px;
+      font-weight: 700;
+      color: #1e293b;
+      margin-bottom: var(--space-2);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .cert-sub {
+      font-style: italic;
+      font-size: 14px;
+      color: var(--text-secondary);
+      margin-bottom: var(--space-6);
+    }
+
+    .cert-recipient-label {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--text-secondary);
+      margin-bottom: var(--space-2);
+    }
+
+    .cert-name {
+      font-family: 'Georgia', serif;
+      font-size: 28px;
+      font-weight: 700;
+      color: #0f172a;
+      border-bottom: 2px solid #b39256;
+      display: inline-block;
+      padding-bottom: var(--space-1);
+      margin-bottom: var(--space-4);
+    }
+
+    .cert-text {
+      font-size: 13px;
+      line-height: 1.8;
+      max-width: 500px;
+      margin: 0 auto var(--space-6) auto;
+      color: #475569;
+    }
+
+    .cert-meta-row {
+      display: flex;
+      justify-content: space-around;
+      margin-top: var(--space-6);
+      border-top: 1px solid #cbd5e1;
+      padding-top: var(--space-4);
+    }
+
+    .cert-meta-col {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--space-1);
+    }
+
+    .cert-meta-label {
+      font-size: 10px;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+    }
+
+    .cert-meta-value {
+      font-size: 12px;
+      font-weight: 700;
+      color: #1e293b;
+    }
+
+    .cert-signature {
+      font-family: 'Brush Script MT', cursive, sans-serif;
+      font-size: 22px;
+      color: #0f172a;
+    }
+
+    .cert-actions {
+      display: flex;
+      justify-content: center;
+      gap: var(--space-3);
+      margin-top: var(--space-6);
+    }
+
+    @media print {
+      body * {
+        visibility: hidden;
+      }
+
+      #cert-modal,
+      #cert-modal * {
+        visibility: visible;
+      }
+
+      #cert-modal {
+        position: absolute;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        background: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .cert-actions,
+      .modal-header {
+        display: none !important;
+      }
+
+      .modal-content {
+        box-shadow: none;
+        border: none;
+        width: 100%;
+        max-width: 100%;
+      }
+
+      .certificate-container {
+        border: 15px double #b39256;
+      }
+    }
+  </style>
+</head>
+
+<body class="layout-dashboard">
+
+  <!-- Sidebar Overlay -->
+  <div class="sidebar-overlay" id="sidebar-overlay" aria-hidden="true"></div>
+
+  <!-- Sidebar -->
+  <nav id="dashboard-sidebar" class="dashboard-sidebar" aria-label="मुख्य नेविगेशन">
+    <div class="sidebar-header">
+      <a href="servicehome.html" class="sidebar-brand">
+        <img src="../../assets/images/logos/KaushalSetuLogo.png" alt="Kaushal Setu" width="170" height="170" />
+      </a>
+    </div>
+    <div class="sidebar-nav">
+      <!-- Group 1 -->
+      <div class="sidebar-group">
+        <div class="sidebar-group-title" data-i18n="dashboard.menu.profile_identity">प्रोफाइल एवं पहचान प्रबंधन</div>
+        <ul class="sidebar-menu">
+          <li><a href="profile.html" class="sidebar-link" data-i18n="dashboard.menu.personal_profile">व्यक्तिगत प्रोफाइल
+              प्रबंधन</a></li>
+        </ul>
+      </div>
+
+      <!-- Group 2 -->
+      <div class="sidebar-group">
+        <div class="sidebar-group-title" data-i18n="dashboard.menu.employment_career">रोजगार एवं कैरियर सेवाएँ</div>
+        <ul class="sidebar-menu">
+          <li><a href="candidatedashboard.html" class="sidebar-link" data-i18n="dashboard.menu.dashboard">डैशबोर्ड</a>
+          </li>
+          <li><a href="recommendedjob.html" class="sidebar-link" data-i18n="dashboard.menu.recommended_jobs">एआई
+              अनुशंसित नौकरियां</a></li>
+          <li><a href="Appliedjobs.html" class="sidebar-link" data-i18n="dashboard.menu.applied_jobs">आवेदन की गई
+              नौकरियां</a></li>
+          <li><a href="Courses.html" class="sidebar-link" data-i18n="dashboard.menu.recommended_courses">अनुशंसित
+              पाठ्यक्रम</a></li>
+          <li><a href="coursescompleted.html" class="sidebar-link active"
+              data-i18n="dashboard.menu.completed_courses">पूरे किए गए पाठ्यक्रम</a></li>
+          <li><a href="search.html" class="sidebar-link" data-i18n="dashboard.menu.search">नौकरी खोजें</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Area -->
+  <main class="dashboard-main">
+    <header class="dashboard-header">
+      <div class="header-left">
+        <button id="sidebar-toggle" class="sidebar-toggle-btn" aria-label="मेनू टॉगल करें">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+            stroke-linecap="round">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+
+      <div class="header-right">
+        <!-- User Profile -->
+        <div class="user-profile">
+          <div class="user-info">
+            <span class="user-name">Ramesh Kumar</span>
+            <span class="user-meta"><span id="last-login-time">Last login: </span></span>
+          </div>
+          <div class="user-avatar" aria-hidden="true">RK</div>
+        </div>
+
+        <div class="header-actions">
+          <button id="lang-toggle" class="btn btn--ghost btn--sm" data-lang-toggle
+            aria-label="Switch to English">English</button>
+          <a href="../home/index.html" class="btn btn--secondary btn--sm" data-i18n="dashboard.signout">लॉग आउट</a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Content -->
+    <div class="dashboard-content">
+      <h1 class="dashboard-page-title" data-i18n="completed.page_title">Completed Courses & Certifications</h1>
+
+      <div class="courses-list" id="courses-list-container">
+
+        <!-- Course 1 -->
+        <div class="course-item">
+          <div class="course-info">
+            <span class="course-provider">Skill India / ITI Bhopal</span>
+            <h3 class="course-title" data-i18n="completed.c1_title">Domestic Wireman Certification</h3>
+            <span class="course-date"><span data-i18n="completed.completed_on">Completed On:</span> 12 Apr 2026</span>
+          </div>
+          <div class="course-results">
+            <span class="course-score"><span data-i18n="completed.score">Score:</span> 88%</span>
+            <span class="status-badge status-badge--pass" data-i18n="completed.pass">Pass</span>
+            <div class="course-actions">
+              <button class="btn-course-details" data-c-index="1" data-i18n="completed.details_btn">View
+                Details</button>
+              <button class="btn-download-cert" data-c-index="1">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                  <polyline points="7 10 12 15 17 10"></polyline>
+                  <line x1="12" y1="15" x2="12" y2="3"></line>
+                </svg>
+                <span data-i18n="completed.download_btn">Download Certificate</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Course 2 -->
+        <div class="course-item">
+          <div class="course-info">
+            <span class="course-provider">NSDC</span>
+            <h3 class="course-title" data-i18n="completed.c2_title">Safety in Electrical Works (Basic)</h3>
+            <span class="course-date"><span data-i18n="completed.completed_on">Completed On:</span> 28 Mar 2026</span>
+          </div>
+          <div class="course-results">
+            <span class="course-score"><span data-i18n="completed.score">Score:</span> 75%</span>
+            <span class="status-badge status-badge--pass" data-i18n="completed.pass">Pass</span>
+            <div class="course-actions">
+              <button class="btn-course-details" data-c-index="2" data-i18n="completed.details_btn">View
+                Details</button>
+              <button class="btn-download-cert" data-c-index="2">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                  <polyline points="7 10 12 15 17 10"></polyline>
+                  <line x1="12" y1="15" x2="12" y2="3"></line>
+                </svg>
+                <span data-i18n="completed.download_btn">Download Certificate</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Course 3 -->
+        <div class="course-item">
+          <div class="course-info">
+            <span class="course-provider">ITI Bhopal</span>
+            <h3 class="course-title" data-i18n="completed.c3_title">Advanced Industrial Wiring</h3>
+            <span class="course-date"><span data-i18n="completed.exam_on">Exam On:</span> 10 Feb 2026</span>
+          </div>
+          <div class="course-results">
+            <span class="course-score"><span data-i18n="completed.score">Score:</span> 40%</span>
+            <span class="status-badge status-badge--fail" data-i18n="completed.fail">Fail</span>
+            <div class="course-actions">
+              <button class="btn-course-details" data-c-index="3" data-i18n="completed.details_btn">View
+                Details</button>
+              <button class="btn-download-cert" disabled title="Not passed. Re-attempt required.">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                  <polyline points="7 10 12 15 17 10"></polyline>
+                  <line x1="12" y1="15" x2="12" y2="3"></line>
+                </svg>
+                <span data-i18n="completed.download_btn">Download Certificate</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Course Details Modal -->
+    <div class="modal-overlay" id="details-modal" aria-hidden="true">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 class="modal-title" data-i18n="completed.modal_details_title">Course Information & Result</h3>
+          <button class="btn-close-modal" id="btn-close-details" aria-label="Close">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="details-grid">
+            <div class="details-field">
+              <span class="details-label" data-i18n="completed.details_title">Course Title</span>
+              <span class="details-value" id="detail-title"></span>
+            </div>
+            <div class="details-field">
+              <span class="details-label" data-i18n="completed.details_provider">Provider / Institute</span>
+              <span class="details-value" id="detail-provider"></span>
+            </div>
+            <div class="details-field">
+              <span class="details-label" data-i18n="completed.details_date">Completed/Exam Date</span>
+              <span class="details-value" id="detail-date"></span>
+            </div>
+            <div class="details-field">
+              <span class="details-label" data-i18n="completed.details_score">Score / Grade</span>
+              <span class="details-value" id="detail-score"></span>
+            </div>
+            <div class="details-field">
+              <span class="details-label" data-i18n="completed.details_status">Status</span>
+              <span class="details-value" id="detail-status"></span>
+            </div>
+            <div class="details-field">
+              <span class="details-label" data-i18n="completed.details_cert_no">Certificate No.</span>
+              <span class="details-value" id="detail-cert-no"></span>
+            </div>
+            <div class="details-field" style="grid-column: 1 / -1; margin-top: var(--space-4);">
+              <span class="details-label" data-i18n="completed.details_feedback">Instructor / Examiner Feedback</span>
+              <span class="details-value" id="detail-feedback" style="font-weight: 500; font-style: italic;"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Certificate Modal -->
+    <div class="modal-overlay" id="cert-modal" aria-hidden="true">
+      <div class="modal-content" style="max-width: 650px;">
+        <div class="modal-header">
+          <h3 class="modal-title" data-i18n="completed.certificate_title">Digital Certificate</h3>
+          <button class="btn-close-modal" id="btn-close-cert" aria-label="Close">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+        <div class="modal-body" style="padding: 16px;">
+          <div class="certificate-container" id="printable-cert">
+            <img class="cert-logo" src="../../assets/images/logos/KaushalSetuLogo.png" alt="Kaushal Setu" />
+            <div class="cert-title" data-i18n="completed.cert_heading">Certificate of Excellence</div>
+            <div class="cert-sub" data-i18n="completed.cert_subheading">This is proudly presented to</div>
+            <div class="cert-name">Ramesh Kumar</div>
+            <div class="cert-recipient-label" style="margin-top: 10px;" data-i18n="completed.cert_completion_lbl">for
+              successfully completing the course</div>
+            <div class="cert-name" id="cert-course-title"
+              style="font-size: 20px; font-weight: 600; border: none; margin-bottom: 12px;">Domestic Wireman
+              Certification</div>
+            <div class="cert-text" id="cert-description">with an outstanding grade score of 88%. Authorized and verified
+              under the guidelines of national skill development protocols.</div>
+
+            <div class="cert-meta-row">
+              <div class="cert-meta-col">
+                <span class="cert-meta-label" data-i18n="completed.cert_date">Date Issued</span>
+                <span class="cert-meta-value" id="cert-issue-date">12 Apr 2026</span>
+              </div>
+              <div class="cert-meta-col">
+                <span class="cert-meta-label" data-i18n="completed.cert_id">Verification ID</span>
+                <span class="cert-meta-value" id="cert-id-val">CC-1093-882</span>
+              </div>
+              <div class="cert-meta-col">
+                <span class="cert-meta-label" data-i18n="completed.cert_signature">Authorized Signatory</span>
+                <span class="cert-signature" id="cert-signer">Skill India</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="cert-actions">
+            <button class="btn btn--secondary" onclick="window.print();" data-i18n="completed.print_btn">Print
+              Certificate</button>
+            <button class="btn btn--primary" id="btn-mock-download" data-i18n="completed.download_pdf_btn">Download
+              PDF</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <script src="../../assets/js/common/safe-storage.js"></script>
+  <script src="../../assets/js/common/app.js"></script>
+  <script src="../../assets/js/common/i18n.js"></script>
+  <script src="../../layouts/dashboard-layout/dashboard-layout.js"></script>
+  <script>
+    const savedLang = (window._ckStorage || localStorage).getItem('ck-ui-lang') || 'hi';
+    I18n.init(savedLang, {
+      hi: {
+        'completed.page_title': 'पूरे किए गए पाठ्यक्रम और प्रमाणपत्र',
+        'completed.completed_on': 'पूर्ण होने की तिथि:',
+        'completed.exam_on': 'परीक्षा की तिथि:',
+        'completed.score': 'प्राप्तांक:',
+        'completed.pass': 'उत्तीर्ण (पास)',
+        'completed.fail': 'अनुत्तीर्ण (फेल)',
+        'completed.details_btn': 'विवरण देखें',
+        'completed.download_btn': 'प्रमाणपत्र डाउनलोड करें',
+
+        'completed.c1_title': 'घरेलू वायरमैन प्रमाणन',
+        'completed.c2_title': 'विद्युत कार्यों में सुरक्षा (बुनियादी)',
+        'completed.c3_title': 'उन्नत औद्योगिक वायरिंग',
+
+        'completed.modal_details_title': 'पाठ्यक्रम की जानकारी और परिणाम',
+        'completed.details_title': 'पाठ्यक्रम का नाम',
+        'completed.details_provider': 'संस्थान / प्रदाता',
+        'completed.details_date': 'पूर्ण होने / परीक्षा की तिथि',
+        'completed.details_score': 'अंक / ग्रेड',
+        'completed.details_status': 'स्थिति',
+        'completed.details_cert_no': 'प्रमाणपत्र संख्या',
+        'completed.details_feedback': 'परीक्षक की प्रतिक्रिया',
+
+        'completed.certificate_title': 'डिजिटल प्रमाणपत्र',
+        'completed.cert_heading': 'उत्कृष्टता का प्रमाणपत्र',
+        'completed.cert_subheading': 'यह गर्व से प्रस्तुत किया जाता है',
+        'completed.cert_completion_lbl': 'पाठ्यक्रम को सफलतापूर्वक पूर्ण करने के लिए',
+
+        'completed.cert_date': 'जारी करने की तिथि',
+        'completed.cert_id': 'सत्यापन आईडी',
+        'completed.cert_signature': 'अधिकृत हस्ताक्षरकर्ता',
+
+        'completed.print_btn': 'प्रमाणपत्र प्रिंट करें',
+        'completed.download_pdf_btn': 'PDF डाउनलोड करें'
+      },
+      en: {
+        'completed.page_title': 'Completed Courses & Certifications',
+        'completed.completed_on': 'Completed On:',
+        'completed.exam_on': 'Exam On:',
+        'completed.score': 'Score:',
+        'completed.pass': 'Pass',
+        'completed.fail': 'Fail',
+        'completed.details_btn': 'View Details',
+        'completed.download_btn': 'Download Certificate',
+
+        'completed.c1_title': 'Domestic Wireman Certification',
+        'completed.c2_title': 'Safety in Electrical Works (Basic)',
+        'completed.c3_title': 'Advanced Industrial Wiring',
+
+        'completed.modal_details_title': 'Course Information & Result',
+        'completed.details_title': 'Course Title',
+        'completed.details_provider': 'Provider / Institute',
+        'completed.details_date': 'Completed / Exam Date',
+        'completed.details_score': 'Score / Grade',
+        'completed.details_status': 'Status',
+        'completed.details_cert_no': 'Certificate No.',
+        'completed.details_feedback': 'Examiner Feedback',
+
+        'completed.certificate_title': 'Digital Certificate',
+        'completed.cert_heading': 'Certificate of Excellence',
+        'completed.cert_subheading': 'This is proudly presented to',
+        'completed.cert_completion_lbl': 'for successfully completing the course',
+
+        'completed.cert_date': 'Date Issued',
+        'completed.cert_id': 'Verification ID',
+        'completed.cert_signature': 'Authorized Signatory',
+
+        'completed.print_btn': 'Print Certificate',
+        'completed.download_pdf_btn': 'Download PDF'
+      }
+    });
+    I18n.setupToggleButton();
+    document.addEventListener('i18n:languageChanged', () => I18n.translateDOM());
+
+    function updateLastLogin() {
+      const now = new Date();
+      const datePart = now.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
+      let timePart = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true });
+      const lastLoginEl = document.getElementById('last-login-time');
+      if (lastLoginEl) lastLoginEl.textContent = 'Last login: ' + datePart + ', ' + timePart;
+    }
+    updateLastLogin();
+
+    // Data Store
+    const completedCourses = {
+      "1": {
+        title: "Domestic Wireman Certification",
+        provider: "Skill India / ITI Bhopal",
+        date: "12 Apr 2026",
+        score: "88%",
+        status: "Pass",
+        certNo: "CC-1093-882",
+        feedback: "Ramesh showed exceptional wiremanship and high quality work in panel wiring tests. Best performer of the batch.",
+        text: "with an outstanding grade score of 88%. Authorized and verified under the guidelines of national skill development protocols.",
+        signer: "Skill India"
+      },
+      "2": {
+        title: "Safety in Electrical Works (Basic)",
+        provider: "NSDC",
+        date: "28 Mar 2026",
+        score: "75%",
+        status: "Pass",
+        certNo: "CC-3329-012",
+        feedback: "Fully understands safety procedures, Lockout-Tagout (LOTO) protocols, and first-aid response guidelines.",
+        text: "with an excellent grade score of 75%. Authorized and verified under the guidelines of national safety compliance protocols.",
+        signer: "NSDC Authority"
+      },
+      "3": {
+        title: "Advanced Industrial Wiring",
+        provider: "ITI Bhopal",
+        date: "10 Feb 2026",
+        score: "40%",
+        status: "Fail",
+        certNo: "N/A (Did not pass)",
+        feedback: "Struggled with high voltage diagnostic simulations. Candidate must review circuit layout schematics and re-appear for examination.",
+        text: "",
+        signer: ""
+      }
+    };
+
+    // Modal Details Logic
+    const detailsModal = document.getElementById('details-modal');
+    const btnCloseDetails = document.getElementById('btn-close-details');
+
+    function openDetailsModal(index) {
+      const data = completedCourses[index];
+      if (!data) return;
+
+      document.getElementById('detail-title').textContent = data.title;
+      document.getElementById('detail-provider').textContent = data.provider;
+      document.getElementById('detail-date').textContent = data.date;
+      document.getElementById('detail-score').textContent = data.score;
+      document.getElementById('detail-status').textContent = data.status;
+      document.getElementById('detail-cert-no').textContent = data.certNo;
+      document.getElementById('detail-feedback').textContent = data.feedback;
+
+      detailsModal.classList.add('active');
+      detailsModal.setAttribute('aria-hidden', 'false');
+    }
+
+    btnCloseDetails.addEventListener('click', () => {
+      detailsModal.classList.remove('active');
+      detailsModal.setAttribute('aria-hidden', 'true');
+    });
+
+    // Certificate Logic
+    const certModal = document.getElementById('cert-modal');
+    const btnCloseCert = document.getElementById('btn-close-cert');
+
+    function openCertModal(index) {
+      const data = completedCourses[index];
+      if (!data || data.status !== 'Pass') return;
+
+      document.getElementById('cert-course-title').textContent = data.title;
+      document.getElementById('cert-description').textContent = data.text;
+      document.getElementById('cert-issue-date').textContent = data.date;
+      document.getElementById('cert-id-val').textContent = data.certNo;
+      document.getElementById('cert-signer').textContent = data.signer;
+
+      certModal.classList.add('active');
+      certModal.setAttribute('aria-hidden', 'false');
+    }
+
+    btnCloseCert.addEventListener('click', () => {
+      certModal.classList.remove('active');
+      certModal.setAttribute('aria-hidden', 'true');
+    });
+
+    // Attach Click Events
+    document.getElementById('courses-list-container').addEventListener('click', (e) => {
+      const detailsBtn = e.target.closest('.btn-course-details');
+      if (detailsBtn) {
+        openDetailsModal(detailsBtn.dataset.cIndex);
+        return;
+      }
+
+      const downloadBtn = e.target.closest('.btn-download-cert');
+      if (downloadBtn) {
+        openCertModal(downloadBtn.dataset.cIndex);
+      }
+    });
+
+    // Mock Download Action
+    document.getElementById('btn-mock-download').addEventListener('click', () => {
+      alert("Downloading certificate PDF... (Simulated)");
+    });
+  </script>
+</body>
+
+</html>

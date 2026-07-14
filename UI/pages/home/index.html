@@ -1,0 +1,1455 @@
+<!DOCTYPE html>
+<html lang="hi-IN" data-theme="light">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Kaushal Setu — कुशल श्रमिकों को रोजगार से जोड़ने वाला सरकारी डिजिटल मंच" />
+  <meta name="keywords" content="Kaushal Setu, श्रमिक पंजीकरण, रोजगार, labour registration, MP" />
+  <meta name="theme-color" content="#0A1628" />
+  <meta property="og:title" content="Kaushal Setu — कुशल कारीगरों का डिजिटल मंच" />
+  <meta property="og:description" content="श्रमिक, ठेकेदार और उद्योग पंजीकरण एक ही पोर्टल पर।" />
+  <meta property="og:image" content="../../assets/images/logos/KaushalSetuLogo.png" />
+  <meta property="og:type" content="website" />
+  <link rel="canonical" href="https://kaushalsetu.gov.in/" />
+  <link rel="icon" type="image/png" href="../../assets/images/logos/KaushalSetuLogo.png" />
+  <title>Kaushal Setu — कुशल कारीगरों का डिजिटल मंच</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+Devanagari:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet" />
+
+  <link rel="stylesheet" href="../../assets/css/common/design-tokens.css" />
+  <link rel="stylesheet" href="../../assets/css/common/reset.css" />
+  <link rel="stylesheet" href="../../assets/css/common/typography.css" />
+  <link rel="stylesheet" href="../../assets/css/common/utilities.css" />
+  <link rel="stylesheet" href="../../components/forms/forms.css" />
+  <link rel="stylesheet" href="../../layouts/main-layout/main-layout.css" />
+  <link rel="stylesheet" href="../../components/header/header.css" />
+  <link rel="stylesheet" href="../../components/cards/cards.css" />
+  <link rel="stylesheet" href="../../components/widgets/widgets.css" />
+  <link rel="stylesheet" href="../../components/alerts/alerts.css" />
+  <link rel="stylesheet" href="home.css" />
+</head>
+
+<body class="layout-main">
+
+  <a href="#main-content" class="skip-link">मुख्य सामग्री पर जाएं</a>
+
+  <!-- HEADER -->
+  <header class="site-header" data-header role="banner">
+    <div class="header__inner container">
+      <a href="index.html" class="header__brand" aria-label="Kaushal Setu होम">
+        <img src="../../assets/images/logos/KaushalSetuLogo.png" alt="Kaushal Setu" class="header__logo" width="120"
+          height="120" />
+        <!-- <span class="header__brand-name">Kaushal Setu</span> -->
+      </a>
+      <nav class="header__nav" aria-label="मुख्य नेविगेशन" id="primary-nav">
+        <ul class="nav__list" role="list">
+          <li class="nav__item"><a href="#impact" class="nav__link" data-nav-link="impact" data-i18n="nav.impact">हमारा
+              प्रभाव</a></li>
+          <li class="nav__item"><a href="#recruiters" class="nav__link" data-nav-link="recruiters"
+              data-i18n="nav.recruiters">नियोक्ता</a></li>
+          <li class="nav__item"><a href="#services" class="nav__link" data-nav-link="services"
+              data-i18n="nav.services">सेवाएं</a></li>
+          <li class="nav__item"><a href="../labour-registration/index.html" class="nav__link"
+              data-nav-link="labour-registration" data-i18n="reg.title.labour">श्रमिक पंजीकरण</a></li>
+          <li class="nav__item" style="display:none"><a href="../contractor-registration/index.html" class="nav__link"
+              data-nav-link="contractor-registration" data-i18n="reg.title.contractor">ठेकेदार पंजीकरण</a></li>
+          <li class="nav__item"><a href="../industry-registration/index.html" class="nav__link"
+              data-nav-link="industry-registration" data-i18n="reg.title.industry">उद्योग पंजीकरण</a></li>
+          <li class="nav__item"><a href="citizendashboard.html" class="nav__link" data-nav-link="citizendashboard"
+              data-i18n="nav.citizen_dashboard">नागरिक डैशबोर्ड</a></li>
+          <li class="nav__item"><a href="#contact" class="nav__link" data-nav-link="contact"
+              data-i18n="nav.contact">संपर्क</a></li>
+        </ul>
+      </nav>
+      <div class="header__actions">
+        <button id="lang-toggle" class="btn btn--ghost btn--sm header__lang-btn" data-lang-toggle
+          aria-label="Switch to English">English</button>
+        <button id="theme-toggle" class="btn btn--ghost btn--sm header__theme-btn" aria-label="Switch to dark mode">
+          <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2" stroke-linecap="round" aria-hidden="true">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+          </svg>
+          <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2" stroke-linecap="round" aria-hidden="true" style="display:none">
+            <circle cx="12" cy="12" r="5" />
+            <line x1="12" y1="1" x2="12" y2="3" />
+            <line x1="12" y1="21" x2="12" y2="23" />
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+          </svg>
+        </button>
+        <a href="#login-section" class="btn btn--primary btn--sm header__login-btn" data-i18n="nav.login">लॉगिन</a>
+        <button id="mobile-menu-toggle" class="btn btn--ghost btn--sm header__hamburger show-mobile-only"
+          aria-label="मेनू खोलें" aria-expanded="false" aria-controls="mobile-menu">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+            stroke-linecap="round" aria-hidden="true">
+            <line x1="3" y1="6" x2="21" y2="6" />
+            <line x1="3" y1="12" x2="21" y2="12" />
+            <line x1="3" y1="18" x2="21" y2="18" />
+          </svg>
+        </button>
+      </div>
+    </div>
+    <nav id="mobile-menu" class="mobile-menu" aria-label="मोबाइल नेविगेशन" aria-hidden="true">
+      <ul class="mobile-menu__list" role="list">
+        <li><a href="#impact" class="mobile-menu__link" data-i18n="nav.impact">हमारा प्रभाव</a></li>
+        <li><a href="#recruiters" class="mobile-menu__link" data-i18n="nav.recruiters">नियोक्ता</a></li>
+        <li><a href="#services" class="mobile-menu__link" data-i18n="nav.services">सेवाएं</a></li>
+        <li><a href="../labour-registration/index.html" class="mobile-menu__link">श्रमिक पंजीकरण</a></li>
+        <li style="display:none"><a href="../contractor-registration/index.html" class="mobile-menu__link">ठेकेदार
+            पंजीकरण</a></li>
+        <li><a href="../industry-registration/index.html" class="mobile-menu__link">उद्योग पंजीकरण</a></li>
+        <li><a href="citizendashboard.html" class="mobile-menu__link" data-i18n="nav.citizen_dashboard">नागरिक
+            डैशबोर्ड</a></li>
+        <li><a href="#contact" class="mobile-menu__link">संपर्क</a></li>
+        <li><a href="#login-section" class="mobile-menu__link mobile-menu__link--cta">लॉगिन</a></li>
+      </ul>
+    </nav>
+    <div id="menu-overlay" class="menu-overlay" aria-hidden="true"></div>
+  </header>
+
+  <main id="main-content" class="site-main" role="main" tabindex="-1">
+
+    <!-- ══ HERO ══════════════════════════════════════════════ -->
+    <section class="hero" data-hero aria-labelledby="hero-heading">
+      <div class="hero__bg" aria-hidden="true"></div>
+      <div class="hero__particles" aria-hidden="true" id="hero-particles"></div>
+
+      <!-- NOTIFICATION TICKER -->
+      <div class="hero__notification-bar" aria-label="Latest Updates">
+        <div class="hero__notification-content">
+          <span class="badge badge--accent notification-badge">नया</span>
+          <p class="notification-text">श्रमिकों और ठेकेदारों के लिए ई-केवाईसी (e-KYC) अनिवार्य कर दिया गया है। कृपया
+            अपना आधार अपडेट रखें।</p>
+          <span class="badge badge--accent notification-badge">अपडेट</span>
+          <p class="notification-text">उद्योग पंजीकरण अब पूरी तरह से ऑनलाइन है, बिना किसी भौतिक दस्तावेज़ के।</p>
+        </div>
+      </div>
+
+      <div class="container hero__inner">
+        <div class="hero__content animate-fade-in-up">
+          <div class="hero__eyebrow">
+            <span class="badge badge--accent">🏛️ सरकारी पोर्टल</span>
+          </div>
+          <h1 class="hero__heading" id="hero-heading">
+            <span data-i18n="home.hero.title1">कुशल कारीगर,</span><br />
+            <span class="hero__heading-accent" data-i18n="home.hero.title2">सही अवसर</span>
+          </h1>
+          <p class="hero__subheading" data-i18n="home.hero.subtitle">
+            मध्य प्रदेश सरकार का आधिकारिक डिजिटल मंच — श्रमिकों, ठेकेदारों और उद्योगों को
+            एक ही स्थान पर जोड़ता है।
+          </p>
+          <div class="hero__actions">
+            <a href="../labour-registration/index.html" class="btn btn--primary btn--xl">
+              <span data-i18n="home.hero.cta.labour">श्रमिक पंजीकरण करें</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                stroke-linecap="round" aria-hidden="true">
+                <polyline points="9 18 15 12 9 6" />
+              </svg>
+            </a>
+            <a href="#services" class="btn btn--secondary btn--xl" data-i18n="home.hero.cta.services">सेवाएं देखें</a>
+          </div>
+          <div class="hero__trust">
+            <span class="hero__trust-item" data-i18n="home.hero.trust.aadhaar">✅ आधार-सत्यापित</span>
+            <span class="hero__trust-item" data-i18n="home.hero.trust.secure">🔒 100% सुरक्षित</span>
+            <span class="hero__trust-item" data-i18n="home.hero.trust.mobile">📱 मोबाइल-फर्स्ट</span>
+          </div>
+        </div>
+        <div class="hero__visual animate-scale-in" aria-hidden="true">
+          <div class="hero__image-wrapper">
+            <img src="../../assets/images/banners/HomePage Frame.png" alt="Kaushal Setu - कुशल कारीगरों का डिजिटल मंच"
+              class="hero__main-image" />
+          </div>
+        </div>
+      </div>
+      <div class="hero__scroll-hint" aria-hidden="true">
+        <span></span>
+      </div>
+    </section>
+
+    <!-- ══ OUR IMPACT ══════════════════════════════════════ -->
+    <style>
+      .impact-section {
+        padding: 80px 0;
+        background: #ffffff;
+        overflow: hidden;
+        position: relative;
+      }
+
+      .impact-title {
+        text-align: center;
+        font-size: 42px;
+        color: #0f4a8a;
+        font-weight: 800;
+        margin-bottom: 60px;
+      }
+
+      .impact-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 40px;
+      }
+
+      .impact-col {
+        flex: 1;
+        min-width: 280px;
+        z-index: 2;
+      }
+
+      .impact-desc {
+        font-size: 18px;
+        color: #333;
+        margin-bottom: 40px;
+        font-weight: 500;
+        position: relative;
+        padding-bottom: 12px;
+        display: inline-block;
+      }
+
+      .impact-desc::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 60px;
+        height: 3px;
+        background: #0f4a8a;
+      }
+
+      .impact-item {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        margin-bottom: 35px;
+        opacity: 0;
+        animation: fadeInUp 0.8s ease forwards;
+      }
+
+      .impact-col:nth-child(1) .impact-item:nth-child(1) {
+        animation-delay: 0.1s;
+      }
+
+      .impact-col:nth-child(1) .impact-item:nth-child(2) {
+        animation-delay: 0.2s;
+      }
+
+      .impact-col:nth-child(1) .impact-item:nth-child(3) {
+        animation-delay: 0.3s;
+      }
+
+      .impact-col:nth-child(3) .impact-item:nth-child(1) {
+        animation-delay: 0.4s;
+      }
+
+      .impact-col:nth-child(3) .impact-item:nth-child(2) {
+        animation-delay: 0.5s;
+      }
+
+      .impact-col:nth-child(3) .impact-item:nth-child(3) {
+        animation-delay: 0.6s;
+      }
+
+      .impact-number {
+        font-size: 46px;
+        font-weight: 900;
+        color: #0f4a8a;
+        width: 140px;
+        text-align: right;
+        letter-spacing: -1px;
+      }
+
+      .impact-text {
+        font-size: 15px;
+        color: #444;
+        line-height: 1.4;
+        font-weight: 600;
+        max-width: 120px;
+      }
+
+      .impact-center {
+        flex: 1.2;
+        min-width: 300px;
+        display: flex;
+        justify-content: center;
+        position: relative;
+        z-index: 1;
+        padding: 20px;
+      }
+
+      .impact-shape-bg {
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, #0f4a8a 0%, #f97316 100%);
+        border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+        z-index: 0;
+        transform: rotate(-15deg);
+        animation: morphShape 5s ease-in-out infinite alternate;
+        box-shadow: 0 20px 50px rgba(249, 115, 22, 0.3);
+      }
+
+      .impact-shape-bg::after {
+        content: "";
+        position: absolute;
+        inset: 8px;
+        background: #0f4a8a;
+        border-radius: inherit;
+        animation: morphShapeReverse 7s ease-in-out infinite alternate;
+      }
+
+      .impact-image-wrapper {
+        position: relative;
+        z-index: 1;
+        width: 100%;
+        max-width: 320px;
+        aspect-ratio: 3/4;
+        overflow: hidden;
+        border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+        box-shadow: -15px 15px 30px rgba(15, 74, 138, 0.2);
+        background: #f0f4f8;
+        transition: transform 0.3s ease;
+      }
+
+      .impact-center:hover .impact-image-wrapper {
+        transform: scale(1.05);
+      }
+
+      .impact-image-wrapper img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+      }
+
+      @keyframes morphShape {
+        0% {
+          border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+          transform: rotate(-15deg) scale(1);
+        }
+
+        100% {
+          border-radius: 50% 50% 30% 70% / 50% 70% 30% 50%;
+          transform: rotate(-5deg) scale(1.05);
+        }
+      }
+
+      @keyframes morphShapeReverse {
+        0% {
+          border-radius: 50% 50% 30% 70% / 50% 70% 30% 50%;
+          transform: rotate(5deg);
+        }
+
+        100% {
+          border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+          transform: rotate(-5deg);
+        }
+      }
+
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      html[data-theme="dark"] .impact-section {
+        background: transparent;
+      }
+
+      html[data-theme="dark"] .impact-desc {
+        color: #e2e8f0;
+      }
+
+      html[data-theme="dark"] .impact-title,
+      html[data-theme="dark"] .impact-number {
+        color: #38bdf8;
+      }
+
+      html[data-theme="dark"] .impact-text {
+        color: #cbd5e1;
+      }
+
+      html[data-theme="dark"] .impact-desc::after {
+        background: #38bdf8;
+      }
+
+      html[data-theme="dark"] .impact-shape-bg::after {
+        background: #1e293b;
+      }
+    </style>
+    <section class="impact-section" id="impact">
+      <div class="container">
+        <h2 class="impact-title" data-i18n="impact.title">Our Impact</h2>
+        <div class="impact-container">
+
+          <!-- Left Column -->
+          <div class="impact-col">
+            <p class="impact-desc" data-i18n="impact.left_desc">Kaushal Setu drives tremendous impact across the state.
+            </p>
+            <div class="impact-item">
+              <div class="impact-number"><span class="count-up" data-target="12">0</span> L+</div>
+              <div class="impact-text" data-i18n="impact.stat1">Registered Labours</div>
+            </div>
+            <div class="impact-item">
+              <div class="impact-number"><span class="count-up" data-target="11">0</span> K+</div>
+              <div class="impact-text" data-i18n="impact.stat2">Employers & Industries</div>
+            </div>
+            <div class="impact-item">
+              <div class="impact-number"><span class="count-up" data-target="18">0</span> K+</div>
+              <div class="impact-text" data-i18n="impact.stat3">Registered Contractors</div>
+            </div>
+          </div>
+
+          <!-- Center Image -->
+          <div class="impact-center">
+            <div class="impact-shape-bg"></div>
+            <div class="impact-image-wrapper">
+              <img src="../../assets/images/banners/indian_labour_impact.png" alt="Indian Labour Impact - Kaushal Setu">
+            </div>
+          </div>
+
+          <!-- Right Column -->
+          <div class="impact-col">
+            <p class="impact-desc" data-i18n="impact.right_desc">Rozgar Melas & Placements</p>
+            <div class="impact-item">
+              <div class="impact-number"><span class="count-up" data-target="5.8" data-decimals="1">0</span> L+</div>
+              <div class="impact-text" data-i18n="impact.stat4">Candidates Placed</div>
+            </div>
+            <div class="impact-item">
+              <div class="impact-number"><span class="count-up" data-target="1.2" data-decimals="1">0</span> L+</div>
+              <div class="impact-text" data-i18n="impact.stat5">Job Posts Created</div>
+            </div>
+            <div class="impact-item">
+              <div class="impact-number"><span class="count-up" data-target="55">0</span> </div>
+              <div class="impact-text" data-i18n="impact.stat6">Districts Covered</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <script>
+      // Quick counter animation script for Our Impact section
+      document.addEventListener('DOMContentLoaded', () => {
+        const counters = document.querySelectorAll('.count-up');
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              const target = parseFloat(entry.target.getAttribute('data-target'));
+              const decimals = parseInt(entry.target.getAttribute('data-decimals') || 0);
+              const duration = 2000;
+              const stepTime = 20;
+              const steps = duration / stepTime;
+              const increment = target / steps;
+              let current = 0;
+
+              const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                  entry.target.textContent = target.toFixed(decimals);
+                  clearInterval(timer);
+                } else {
+                  entry.target.textContent = current.toFixed(decimals);
+                }
+              }, stepTime);
+
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.5 });
+
+        counters.forEach(counter => observer.observe(counter));
+      });
+    </script>
+
+    <!-- ══ SERVICES ══════════════════════════════════════════ -->
+    <style>
+      .services-2x2-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      @media (min-width: 768px) {
+        .services-2x2-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      .service-premium-card {
+        position: relative;
+        background: #ffffff;
+        border: 1px solid rgba(249, 115, 22, 0.15);
+        border-radius: 16px;
+        padding: 24px;
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        overflow: hidden;
+        z-index: 1;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+      }
+
+      html[data-theme="dark"] .service-premium-card {
+        background: #1e293b;
+        border-color: rgba(255, 255, 255, 0.05);
+      }
+
+      .service-premium-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 100%;
+        background: linear-gradient(135deg, rgba(249, 115, 22, 0.08) 0%, rgba(249, 115, 22, 0) 100%);
+        z-index: -1;
+        opacity: 0;
+        transition: opacity 0.5s ease;
+      }
+
+      html[data-theme="dark"] .service-premium-card::before {
+        background: linear-gradient(135deg, rgba(249, 115, 22, 0.15) 0%, rgba(249, 115, 22, 0) 100%);
+      }
+
+      .service-premium-card:hover {
+        transform: translateY(-6px);
+        border-color: rgba(249, 115, 22, 0.4);
+        box-shadow: 0 20px 40px rgba(249, 115, 22, 0.12);
+      }
+
+      .service-premium-card:hover::before {
+        opacity: 1;
+      }
+
+      .service-premium-icon {
+        width: 48px;
+        height: 48px;
+        background: rgba(249, 115, 22, 0.1);
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        margin-bottom: 16px;
+        transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+      }
+
+      .service-premium-card:hover .service-premium-icon {
+        transform: scale(1.1) rotate(5deg);
+        background: rgba(249, 115, 22, 0.2);
+        box-shadow: 0 8px 24px rgba(249, 115, 22, 0.2);
+      }
+
+      .service-premium-title {
+        font-size: 18px;
+        font-weight: 700;
+        color: var(--text-primary);
+        margin-bottom: 16px;
+        transition: color 0.3s ease;
+      }
+
+      .service-premium-card:hover .service-premium-title {
+        color: #f97316;
+      }
+
+      .service-premium-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px 16px;
+      }
+
+      .service-premium-list li {
+        display: flex;
+        gap: 8px;
+        font-size: 13px;
+        color: var(--text-secondary);
+        align-items: flex-start;
+        line-height: 1.3;
+        transition: transform 0.3s ease, color 0.3s ease;
+        position: relative;
+      }
+
+      .service-premium-list li::before {
+        content: "✓";
+        color: #f97316;
+        font-weight: bold;
+        font-size: 11px;
+        margin-top: 2px;
+        opacity: 0.8;
+        transition: transform 0.3s ease, opacity 0.3s ease;
+      }
+
+      .service-premium-card:hover .service-premium-list li {
+        color: var(--text-primary);
+      }
+
+      .service-premium-card:hover .service-premium-list li:hover {
+        transform: translateX(4px);
+        color: #f97316;
+      }
+
+      .service-premium-card:hover .service-premium-list li:hover::before {
+        opacity: 1;
+        transform: scale(1.2);
+      }
+    </style>
+    <section class="section" id="services" aria-labelledby="services-heading">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-eyebrow" data-i18n="home.services.eyebrow">हमारी सेवाएं</span>
+          <h2 class="section-title" id="services-heading" data-i18n="home.services.title">एक पोर्टल, सभी सेवाएं</h2>
+        </div>
+        <div class="services-2x2-grid stagger">
+          <!-- 1. Identity & Registration -->
+          <div class="service-premium-card">
+            <div class="service-premium-icon">🪪</div>
+            <h3 class="service-premium-title" data-i18n="services.cat1.title">1. Identity & Registration Services</h3>
+            <ul class="service-premium-list">
+              <li><span data-i18n="services.cat1.item1">Labour Registration</span></li>
+              <li><span data-i18n="services.cat1.item2">Industry Registration</span></li>
+              <li><span data-i18n="services.cat1.item3">TSP / AB Registration</span></li>
+              <li><span data-i18n="services.cat1.item4">Aadhaar eKYC Verification</span></li>
+              <li><span data-i18n="services.cat1.item5">Digital Skill Wallet</span></li>
+              <li><span data-i18n="services.cat1.item6">Multi-role Login</span></li>
+            </ul>
+          </div>
+
+          <!-- 2. Skill & Certification -->
+          <div class="service-premium-card">
+            <div class="service-premium-icon">🎓</div>
+            <h3 class="service-premium-title" data-i18n="services.cat2.title">2. Skill & Certification Services</h3>
+            <ul class="service-premium-list">
+              <li><span data-i18n="services.cat2.item1">Skill Assessment</span></li>
+              <li><span data-i18n="services.cat2.item2">RPL</span></li>
+              <li><span data-i18n="services.cat2.item3">AI Skill Gap Analysis</span></li>
+              <li><span data-i18n="services.cat2.item4">Online Courses</span></li>
+              <li><span data-i18n="services.cat2.item5">Offline Training</span></li>
+              <li><span data-i18n="services.cat2.item6">Digital Certifications</span></li>
+            </ul>
+          </div>
+
+          <!-- 3. Employment & Placement -->
+          <div class="service-premium-card">
+            <div class="service-premium-icon">💼</div>
+            <h3 class="service-premium-title" data-i18n="services.cat3.title">3. Employment & Placement Services</h3>
+            <ul class="service-premium-list">
+              <li><span data-i18n="services.cat3.item1">AI Job Matching</span></li>
+              <li><span data-i18n="services.cat3.item2">Search Jobs</span></li>
+              <li><span data-i18n="services.cat3.item3">AI Recommended Jobs</span></li>
+              <li><span data-i18n="services.cat3.item4">Rozgar Mela</span></li>
+              <li><span data-i18n="services.cat3.item5">Placement Tracking</span></li>
+              <li><span data-i18n="services.cat3.item6">Employer Hiring</span></li>
+            </ul>
+          </div>
+
+          <!-- 4. Citizen & Governance -->
+          <div class="service-premium-card">
+            <div class="service-premium-icon">🏛️</div>
+            <h3 class="service-premium-title" data-i18n="services.cat4.title">4. Citizen & Governance Services</h3>
+            <ul class="service-premium-list">
+              <li><span data-i18n="services.cat4.item1">Citizen Dashboard</span></li>
+              <li><span data-i18n="services.cat4.item2">Grievance Management</span></li>
+              <li><span data-i18n="services.cat4.item3">Notifications & Alerts</span></li>
+              <li><span data-i18n="services.cat4.item4">Biometric Attendance</span></li>
+              <li><span data-i18n="services.cat4.item5">Analytics & MIS Reports</span></li>
+              <li><span data-i18n="services.cat4.item6">Admin / Nodal Monitoring</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ HOW IT WORKS ══════════════════════════════════════ -->
+    <section class="section how-it-works" id="how-it-works" aria-labelledby="how-heading">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-eyebrow" data-i18n="home.how.eyebrow">यह कैसे काम करता है</span>
+          <h2 class="section-title" id="how-heading" data-i18n="home.how.title">3 आसान चरण</h2>
+        </div>
+        <ol class="steps-list" role="list">
+          <li class="step-item" data-observe>
+            <div class="step-item__num" aria-hidden="true">1</div>
+            <div class="step-item__content">
+              <h3 class="step-item__title" data-i18n="reg.ekyc.prompt">आधार OTP सत्यापन</h3>
+              <p class="step-item__desc" data-i18n="home.how.step1.desc">अपना आधार नंबर दर्ज करें। UIDAI से OTP प्राप्त
+                करें और eKYC से आपकी जानकारी स्वतः भर जाएगी।</p>
+            </div>
+          </li>
+          <li class="step-item" data-observe>
+            <div class="step-item__num" aria-hidden="true">2</div>
+            <div class="step-item__content">
+              <h3 class="step-item__title" data-i18n="home.how.step2.title">जानकारी सत्यापित करें</h3>
+              <p class="step-item__desc" data-i18n="home.how.step2.desc">व्यक्तिगत विवरण, व्यवसाय और दस्तावेज़ अपलोड
+                करें। सभी डेटा AES-256 से सुरक्षित है।</p>
+            </div>
+          </li>
+          <li class="step-item" data-observe>
+            <div class="step-item__num" aria-hidden="true">3</div>
+            <div class="step-item__content">
+              <h3 class="step-item__title" data-i18n="home.how.step3.title">डिजिटल कार्ड प्राप्त करें</h3>
+              <p class="step-item__desc" data-i18n="home.how.step3.desc">स्वीकृति के बाद अपना डिजिटल रोजगार कार्ड और
+                अद्वितीय Rojgar ID तुरंत डाउनलोड करें।</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ══ LOGIN SECTION ══════════════════════════════════════ -->
+    <section class="section login-section" id="login-section" aria-labelledby="login-heading">
+      <div class="container">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: var(--space-6);">
+
+          <!-- Industry / Employers Box -->
+          <div class="login-card surface--elevated" id="industry-box"
+            style="padding: 24px; display: flex; flex-direction: column;">
+            <div style="display: flex; align-items: center; gap: 16px; margin-bottom: var(--space-4);">
+              <div
+                style="background: rgba(249, 115, 22, 0.1); color: #f97316; width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; flex-shrink: 0;">
+                🧑‍💼</div>
+              <h2 style="color: #f97316; font-size: 20px; font-weight: 700; margin: 0;"
+                data-i18n="home.features.employer_title">For Employers</h2>
+            </div>
+
+            <ul
+              style="list-style: none; padding: 0; margin: 0 0 var(--space-4) 0; display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+              <li
+                style="display: flex; gap: 8px; font-size: 13px; color: var(--text-primary); line-height: 1.4; align-items: flex-start;">
+                <span style="color: #f97316;">✓</span> <span data-i18n="home.features.emp_new1">Post Jobs</span>
+              </li>
+              <li
+                style="display: flex; gap: 8px; font-size: 13px; color: var(--text-primary); line-height: 1.4; align-items: flex-start;">
+                <span style="color: #f97316;">✓</span> <span data-i18n="home.features.emp_new2">AI Recommended
+                  Candidates</span>
+              </li>
+              <li
+                style="display: flex; gap: 8px; font-size: 13px; color: var(--text-primary); line-height: 1.4; align-items: flex-start;">
+                <span style="color: #f97316;">✓</span> <span data-i18n="home.features.emp_new3">Search Candidate</span>
+              </li>
+              <li
+                style="display: flex; gap: 8px; font-size: 13px; color: var(--text-primary); line-height: 1.4; align-items: flex-start;">
+                <span style="color: #f97316;">✓</span> <span data-i18n="home.features.emp_new4">Received
+                  Applications</span>
+              </li>
+            </ul>
+
+            <div style="margin-top: auto;">
+              <h3
+                style="font-size: 16px; font-weight: 600; margin: 0 0 4px 0; padding-top: 16px; border-top: 1px solid var(--border-light);"
+                data-i18n="home.login.title.industry">उद्योग लॉगिन</h3>
+              <p style="font-size: 12px; color: var(--text-secondary); margin-bottom: 16px;"
+                data-i18n="login.sub">अपने रजिस्टर्ड मोबाइल नंबर से लॉगिन करें</p>
+
+              <div id="panel-industry" class="login-panel" role="tabpanel" aria-labelledby="tab-industry">
+                <form id="form-industry-login" novalidate>
+                  <div class="form-group" style="margin-bottom: 16px;">
+                    <label class="form-label" for="login-gstin" data-i18n="form.mobile" style="font-size: 13px;">मोबाइल नंबर
+                      <span class="required-star" aria-hidden="true">*</span></label>
+                    <input id="login-gstin" name="gstin" type="tel" maxlength="10" class="form-control"
+                      placeholder="10 अंकों का मोबाइल नंबर" data-i18n="placeholder:placeholder.mobile;data-label:form.mobile"
+                      data-rules="required|phone" data-label="मोबाइल नंबर" />
+                    <p class="form-error-text" id="login-gstin-error" role="alert" style="display:none"></p>
+                  </div>
+                  <div id="otp-group-industry" style="display:none; margin-bottom: 16px;">
+                    <div class="form-group" style="margin-bottom: 12px;">
+                      <label class="form-label" for="otp-i1" data-i18n="login.otp" style="font-size: 13px;">OTP दर्ज
+                        करें</label>
+                      <div class="otp-group" data-otp-length="6">
+                        <input type="text" inputmode="numeric" maxlength="1" class="otp-input" id="otp-i1" />
+                        <input type="text" inputmode="numeric" maxlength="1" class="otp-input" />
+                        <input type="text" inputmode="numeric" maxlength="1" class="otp-input" />
+                        <input type="text" inputmode="numeric" maxlength="1" class="otp-input" />
+                        <input type="text" inputmode="numeric" maxlength="1" class="otp-input" />
+                        <input type="text" inputmode="numeric" maxlength="1" class="otp-input" />
+                      </div>
+                    </div>
+                    <button type="button" class="btn btn--ghost btn--sm" id="resend-otp-btn-industry"
+                      data-i18n="login.otp_resend">OTP पुनः भेजें</button>
+                  </div>
+                  <button type="submit" class="btn btn--primary btn--full" id="industry-send-btn"
+                    data-i18n="login.otp_send">OTP भेजें</button>
+                </form>
+              </div>
+              <p class="login-card__footer-note" style="margin-top: 16px; font-size: 13px; margin-bottom: 0;">
+                <span data-i18n="login.no_account">खाता नहीं है?</span> <a href="../industry-registration/index.html"
+                  class="text-accent" data-i18n="login.register_now">अभी पंजीकरण करें</a>
+              </p>
+            </div>
+          </div>
+
+          <!-- Jobseeker / Labour Box -->
+          <div class="login-card surface--elevated" id="labour-box"
+            style="padding: 24px; display: flex; flex-direction: column;">
+            <div style="display: flex; align-items: center; gap: 16px; margin-bottom: var(--space-4);">
+              <div
+                style="background: rgba(249, 115, 22, 0.1); color: #f97316; width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; flex-shrink: 0;">
+                💼</div>
+              <h2 style="color: #f97316; font-size: 20px; font-weight: 700; margin: 0;"
+                data-i18n="home.features.jobseeker_title">For Jobseekers</h2>
+            </div>
+
+            <ul
+              style="list-style: none; padding: 0; margin: 0 0 var(--space-4) 0; display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+              <li
+                style="display: flex; gap: 8px; font-size: 13px; color: var(--text-primary); line-height: 1.4; align-items: flex-start;">
+                <span style="color: #f97316;">✓</span> <span data-i18n="home.features.js_new1">AI Recommended
+                  Jobs</span>
+              </li>
+              <li
+                style="display: flex; gap: 8px; font-size: 13px; color: var(--text-primary); line-height: 1.4; align-items: flex-start;">
+                <span style="color: #f97316;">✓</span> <span data-i18n="home.features.js_new2">Search Jobs</span>
+              </li>
+              <li
+                style="display: flex; gap: 8px; font-size: 13px; color: var(--text-primary); line-height: 1.4; align-items: flex-start;">
+                <span style="color: #f97316;">✓</span> <span data-i18n="home.features.js_new3">Apply Jobs</span>
+              </li>
+              <li
+                style="display: flex; gap: 8px; font-size: 13px; color: var(--text-primary); line-height: 1.4; align-items: flex-start;">
+                <span style="color: #f97316;">✓</span> <span data-i18n="home.features.js_new1">AI Recommended
+                  Jobs</span>
+              </li>
+            </ul>
+
+            <div style="margin-top: auto;">
+              <h3
+                style="font-size: 16px; font-weight: 600; margin: 0 0 4px 0; padding-top: 16px; border-top: 1px solid var(--border-light);"
+                id="login-heading" data-i18n="home.login.title">पंजीकृत श्रमिक लॉगिन</h3>
+              <p style="font-size: 12px; color: var(--text-secondary); margin-bottom: 12px;" id="login-subheading"
+                data-i18n="login.sub">अपने रजिस्टर्ड मोबाइल नंबर / आधार से लॉगिन करें</p>
+
+              <div class="auth-tabs" id="auth-tabs-container" role="tablist" aria-label="लॉगिन विकल्प"
+                style="margin-bottom: 16px; border-radius: 6px; padding: 4px; display: none !important;">
+                <button id="tab-aadhaar" class="auth-tab" role="tab" aria-selected="false"
+                  aria-controls="panel-aadhaar" data-i18n="login.tab.aadhaar"
+                  style="padding: 6px 12px; font-size: 13px;">आधार OTP से</button>
+                <button id="tab-mobile" class="auth-tab auth-tab--active" role="tab" aria-selected="true" aria-controls="panel-mobile"
+                  data-i18n="login.tab.mobile" style="padding: 6px 12px; font-size: 13px;">मोबाइल से</button>
+              </div>
+
+              <!-- Aadhaar panel -->
+              <div id="panel-aadhaar" class="login-panel" role="tabpanel" aria-labelledby="tab-aadhaar" hidden>
+                <form id="form-aadhaar-login" novalidate>
+                  <div class="form-group" style="margin-bottom: 16px;">
+                    <label class="form-label" for="login-aadhaar" data-i18n="login.label.aadhaar"
+                      style="font-size: 13px;">आधार नंबर <span class="required-star" aria-hidden="true">*</span></label>
+                    <input id="login-aadhaar" name="aadhaar" type="tel" inputmode="numeric" maxlength="12"
+                      class="form-control" placeholder="12 अंकों का आधार नंबर"
+                      data-i18n="placeholder:login.placeholder.aadhaar;data-label:login.label.aadhaar"
+                      data-rules="required|aadhaar" data-label="आधार नंबर" autocomplete="off" />
+                    <p class="form-error-text" id="login-aadhaar-error" role="alert" style="display:none"></p>
+                  </div>
+                  <div id="otp-group-aadhaar" style="display:none; margin-bottom: 16px;">
+                    <div class="form-group" style="margin-bottom: 12px;">
+                      <label class="form-label" for="otp-a1" data-i18n="login.otp" style="font-size: 13px;">OTP दर्ज
+                        करें</label>
+                      <div class="otp-group" data-otp-length="6">
+                        <input type="text" inputmode="numeric" maxlength="1" class="otp-input" id="otp-a1" />
+                        <input type="text" inputmode="numeric" maxlength="1" class="otp-input" />
+                        <input type="text" inputmode="numeric" maxlength="1" class="otp-input" />
+                        <input type="text" inputmode="numeric" maxlength="1" class="otp-input" />
+                        <input type="text" inputmode="numeric" maxlength="1" class="otp-input" />
+                        <input type="text" inputmode="numeric" maxlength="1" class="otp-input" />
+                      </div>
+                    </div>
+                    <button type="button" class="btn btn--ghost btn--sm" id="resend-otp-btn"
+                      data-i18n="login.otp_resend">OTP पुनः भेजें</button>
+                  </div>
+                  <button type="submit" class="btn btn--primary btn--full" id="aadhaar-send-btn"
+                    data-i18n="login.otp_send">OTP भेजें</button>
+                </form>
+              </div>
+
+              <!-- Mobile panel -->
+              <div id="panel-mobile" class="login-panel" role="tabpanel" aria-labelledby="tab-mobile">
+                <form id="form-mobile-login" novalidate>
+                  <div class="form-group" style="margin-bottom: 16px;">
+                    <label class="form-label" for="login-mobile" data-i18n="login.label.mobile"
+                      style="font-size: 13px;">मोबाइल नंबर <span class="required-star"
+                        aria-hidden="true">*</span></label>
+                    <input id="login-mobile" name="mobile" type="tel" inputmode="numeric" maxlength="10"
+                      class="form-control" placeholder="10 अंकों का मोबाइल नंबर"
+                      data-i18n="placeholder:login.placeholder.mobile;data-label:login.label.mobile"
+                      data-rules="required|phone" data-label="मोबाइल नंबर" />
+                    <p class="form-error-text" id="login-mobile-error" role="alert" style="display:none"></p>
+                  </div>
+                  <div id="otp-group-mobile" style="display:none; margin-bottom: 16px;">
+                    <div class="form-group" style="margin-bottom: 12px;">
+                      <label class="form-label" for="otp-m1" data-i18n="login.otp" style="font-size: 13px;">OTP दर्ज
+                        करें</label>
+                      <div class="otp-group" data-otp-length="6">
+                        <input type="text" inputmode="numeric" maxlength="1" class="otp-input" id="otp-m1" />
+                        <input type="text" inputmode="numeric" maxlength="1" class="otp-input" />
+                        <input type="text" inputmode="numeric" maxlength="1" class="otp-input" />
+                        <input type="text" inputmode="numeric" maxlength="1" class="otp-input" />
+                        <input type="text" inputmode="numeric" maxlength="1" class="otp-input" />
+                        <input type="text" inputmode="numeric" maxlength="1" class="otp-input" />
+                      </div>
+                    </div>
+                    <button type="button" class="btn btn--ghost btn--sm" id="resend-otp-btn-mobile"
+                      data-i18n="login.otp_resend">OTP पुनः भेजें</button>
+                  </div>
+                  <button type="submit" class="btn btn--primary btn--full" id="mobile-send-btn"
+                    data-i18n="login.otp_send">OTP भेजें</button>
+                </form>
+              </div>
+
+              <p class="login-card__footer-note" style="margin-top: 16px; font-size: 13px; margin-bottom: 0;">
+                <span data-i18n="login.no_account">खाता नहीं है?</span> <a id="login-register-link"
+                  href="../labour-registration/index.html" class="text-accent" data-i18n="login.register_now">अभी
+                  पंजीकरण करें</a>
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ CONTACT ══════════════════════════════════════════ -->
+    <section class="section section--sm" id="contact" aria-labelledby="contact-heading">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-eyebrow" data-i18n="nav.help">सहायता</span>
+          <h2 class="section-title" id="contact-heading" data-i18n="nav.contact">हमसे संपर्क करें</h2>
+        </div>
+        <div class="contact-grid">
+          <div class="contact-card surface">
+            <div class="contact-card__icon" aria-hidden="true">📞</div>
+            <h3 class="contact-card__title">हेल्पलाइन</h3>
+            <a href="tel:07556720200" class="contact-card__value">0755-6720200</a>
+            <p class="contact-card__note" data-i18n="html:contact.helpline.note">सोम - शुक्र 08:00 AM - 08:00 PM<br>शनि
+              - रवि 09:30 AM - 06:30 PM</p>
+          </div>
+          <div class="contact-card surface">
+            <div class="contact-card__icon" aria-hidden="true">📧</div>
+            <h3 class="contact-card__title" data-i18n="contact.email">ईमेल</h3>
+            <a href="mailto:support@mponline.gov.in" class="contact-card__value">support@mponline.gov.in</a>
+            <p class="contact-card__note" data-i18n="contact.email.note2">24 घंटे के भीतर उत्तर</p>
+          </div>
+          <div class="contact-card surface">
+            <div class="contact-card__icon" aria-hidden="true">🏛️</div>
+            <h3 class="contact-card__title" data-i18n="contact.grievance">शिकायत पोर्टल</h3>
+            <a href="https://helpdesk.mponline.gov.in/" class="contact-card__value" target="_blank"
+              rel="noopener noreferrer">https://helpdesk.mponline.gov.in/</a>
+            <p class="contact-card__note" data-i18n="contact.grievance.note">ऑनलाइन शिकायत दर्ज करें</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ RECRUITERS ══════════════════════════════════════ -->
+    <style>
+      .recruiters-section {
+        padding: 80px 0;
+        background-color: #f0f7fb;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .recruiters-section::before {
+        content: "";
+        position: absolute;
+        top: -60px;
+        left: -60px;
+        width: 300px;
+        height: 300px;
+        background: #ffffff;
+        border-radius: 50%;
+        filter: blur(15px);
+        z-index: 0;
+      }
+
+      .recruiters-title {
+        text-align: center;
+        font-size: 40px;
+        color: #0f4a8a;
+        font-weight: 800;
+        margin-bottom: 50px;
+        position: relative;
+        z-index: 1;
+      }
+
+      .recruiters-marquee-wrapper {
+        width: 100%;
+        overflow: hidden;
+        position: relative;
+        z-index: 1;
+        padding: 10px 0;
+      }
+
+      .recruiters-marquee {
+        display: flex;
+        gap: 30px;
+        width: max-content;
+        animation: scrollMarquee 35s linear infinite;
+      }
+
+      .recruiters-marquee:hover {
+        animation-play-state: paused;
+      }
+
+      .recruiter-card {
+        width: 240px;
+        height: 120px;
+        background: #ffffff;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .recruiter-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      }
+
+      .recruiter-card img {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+      }
+
+      @keyframes scrollMarquee {
+        0% {
+          transform: translateX(0);
+        }
+
+        100% {
+          transform: translateX(calc(-50% - 15px));
+        }
+      }
+
+      .recruiters-dots {
+        display: flex;
+        justify-content: center;
+        gap: 8px;
+        margin-top: 40px;
+        position: relative;
+        z-index: 1;
+      }
+
+      .recruiters-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: #ccc;
+        transition: background 0.3s ease;
+      }
+
+      .recruiters-dot.active {
+        background: #f97316;
+      }
+
+      html[data-theme="dark"] .recruiters-section {
+        background-color: #0d1b2a;
+      }
+
+      html[data-theme="dark"] .recruiters-title {
+        color: #38bdf8;
+      }
+
+      html[data-theme="dark"] .recruiter-card {
+        background: #1e293b;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      }
+
+      html[data-theme="dark"] .recruiters-section::before {
+        background: #1e293b;
+        opacity: 0.5;
+      }
+    </style>
+    <section class="recruiters-section" id="recruiters">
+      <div class="container">
+        <h2 class="recruiters-title" data-i18n="recruiters.title">Recruiters</h2>
+        <div class="recruiters-marquee-wrapper">
+          <div class="recruiters-marquee">
+            <!-- Original 10 -->
+            <div class="recruiter-card"><img src="../../assets/images/logos/dixon.svg" alt="Dixon Technologies"></div>
+            <div class="recruiter-card"><img src="../../assets/images/logos/samsung.svg" alt="Samsung Electronics">
+            </div>
+            <div class="recruiter-card"><img src="../../assets/images/logos/lava.svg" alt="Lava International"></div>
+            <div class="recruiter-card"><img src="../../assets/images/logos/oppo.svg" alt="Oppo Mobile India"></div>
+            <div class="recruiter-card"><img src="../../assets/images/logos/vivo.svg" alt="Vivo India"></div>
+            <div class="recruiter-card"><img src="../../assets/images/logos/hcl.svg" alt="HCL Technologies"></div>
+            <div class="recruiter-card"><img src="../../assets/images/logos/haldiram.svg" alt="Haldiram Foods"></div>
+            <div class="recruiter-card"><img src="../../assets/images/logos/blagro.svg" alt="B.L. Agro Industries">
+            </div>
+            <div class="recruiter-card"><img src="../../assets/images/logos/vacmet.svg" alt="Vacmet India Ltd"></div>
+            <div class="recruiter-card"><img src="../../assets/images/logos/lohia.svg" alt="Lohia Group"></div>
+            <!-- Duplicated 10 for infinite scroll -->
+            <div class="recruiter-card"><img src="../../assets/images/logos/dixon.svg" alt="Dixon Technologies"></div>
+            <div class="recruiter-card"><img src="../../assets/images/logos/samsung.svg" alt="Samsung Electronics">
+            </div>
+            <div class="recruiter-card"><img src="../../assets/images/logos/lava.svg" alt="Lava International"></div>
+            <div class="recruiter-card"><img src="../../assets/images/logos/oppo.svg" alt="Oppo Mobile India"></div>
+            <div class="recruiter-card"><img src="../../assets/images/logos/vivo.svg" alt="Vivo India"></div>
+            <div class="recruiter-card"><img src="../../assets/images/logos/hcl.svg" alt="HCL Technologies"></div>
+            <div class="recruiter-card"><img src="../../assets/images/logos/haldiram.svg" alt="Haldiram Foods"></div>
+            <div class="recruiter-card"><img src="../../assets/images/logos/blagro.svg" alt="B.L. Agro Industries">
+            </div>
+            <div class="recruiter-card"><img src="../../assets/images/logos/vacmet.svg" alt="Vacmet India Ltd"></div>
+            <div class="recruiter-card"><img src="../../assets/images/logos/lohia.svg" alt="Lohia Group"></div>
+          </div>
+        </div>
+        <!-- Dots for aesthetic match to reference image -->
+        <div class="recruiters-dots" aria-hidden="true">
+          <div class="recruiters-dot active"></div>
+          <div class="recruiters-dot"></div>
+          <div class="recruiters-dot"></div>
+          <div class="recruiters-dot"></div>
+          <div class="recruiters-dot"></div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="footer__top">
+      <div class="container">
+        <div class="footer__grid">
+          <div class="footer__col footer__col--brand">
+            <a href="index.html" class="footer__brand-link" style="background: #fdfdfde3;
+    padding: 10px;
+    border-radius: 8px;"><img src="../../assets/images/logos/KaushalSetuLogo.png" alt="Kaushal Setu" width="150"
+                height="150" loading="lazy" />
+              <!-- <span class="footer__brand-name">Kaushal Setu</span> -->
+            </a>
+            <p class="footer__tagline" data-i18n="footer.tagline">कुशल कारीगरों को सही अवसर से जोड़ने का डिजिटल मंच।</p>
+          </div>
+          <div class="footer__col">
+            <h3 class="footer__heading" data-i18n="footer.quick_links">त्वरित लिंक</h3>
+            <ul class="footer__links" role="list">
+              <li><a href="index.html" class="footer__link" data-i18n="nav.home">होम</a></li>
+              <li><a href="../labour-registration/index.html" class="footer__link" data-i18n="reg.title.labour">श्रमिक
+                  पंजीकरण</a></li>
+              <li style="display:none"><a href="../contractor-registration/index.html" class="footer__link"
+                  data-i18n="reg.title.contractor">ठेकेदार पंजीकरण</a></li>
+              <li><a href="../industry-registration/index.html" class="footer__link"
+                  data-i18n="reg.title.industry">उद्योग पंजीकरण</a></li>
+            </ul>
+          </div>
+          <div class="footer__col">
+            <h3 class="footer__heading" data-i18n="nav.help">सहायता</h3>
+            <ul class="footer__links" role="list">
+              <li><a href="#" class="footer__link" data-i18n="footer.helpdesk">हेल्पडेस्क</a></li>
+              <li><a href="#" class="footer__link" data-i18n="footer.grievance">शिकायत पोर्टल</a></li>
+              <li><a href="#" class="footer__link" data-i18n="footer.privacy">गोपनीयता नीति</a></li>
+              <li><a href="#" class="footer__link" data-i18n="footer.terms">नियम एवं शर्तें</a></li>
+            </ul>
+          </div>
+          <div class="footer__col">
+            <h3 class="footer__heading" data-i18n="nav.contact">संपर्क</h3>
+            <address class="footer__contact">
+              <p>📞 <a href="tel:07556720200" class="footer__link">0755-6720200</a></p>
+              <p>📧 <a href="mailto:support@mponline.gov.in" class="footer__link">support@mponline.gov.in</a></p>
+            </address>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <div class="container">
+        <div class="footer__bottom-inner">
+          <p class="footer__copy">&copy; <span id="footer-year"></span> Kaushal Setu. <span
+              data-i18n="footer.rights">सर्वाधिकार सुरक्षित।</span></p>
+          <!-- <p class="footer__gov-badge" data-i18n="footer.gov">भारत सरकार | Government of India</p>
+        -->
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <button id="scroll-top" class="scroll-top-btn" aria-label="ऊपर जाएं">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+      stroke-linecap="round" aria-hidden="true">
+      <polyline points="18 15 12 9 6 15" />
+    </svg>
+  </button>
+
+  <!-- ══ CHATBOT WIDGET (KAUSHAL MITRA) ══════════════════════ -->
+  <div class="chatbot-container" id="kaushal-mitra-bot">
+    <!-- Pulse Ring Notification -->
+    <div class="chatbot-fab" id="chatbot-fab" aria-label="कौशल मित्र से चैट करें" role="button" tabindex="0">
+      <div class="chatbot-fab__pulse"></div>
+      <div class="chatbot-fab__icon"
+        style="width: 100%; height: 100%; overflow: hidden; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: white;">
+        <img src="../../assets/images/logos/KaushalMitraLogo.jpg" alt="Kaushal Mitra"
+          style="width: 100%; height: 100%; object-fit: cover; display: block;" />
+      </div>
+      <div class="chatbot-fab__badge">1</div>
+      <span class="chatbot-fab__tooltip" data-i18n="chatbot.name">Kaushal Mitra</span>
+    </div>
+
+    <!-- Chat Window -->
+    <div class="chat-window" id="chat-window" aria-hidden="true">
+      <!-- Header -->
+      <div class="chat-window__header">
+        <div class="chat-window__avatar-group">
+          <div class="chat-window__avatar"
+            style="width: 38px; height: 38px; overflow: hidden; border-radius: 50%; border: 1.5px solid rgba(255, 255, 255, 0.6); background: white; padding: 0; display: flex; align-items: center; justify-content: center;">
+            <img src="../../assets/images/logos/KaushalMitraLogo.jpg" alt="Kaushal Mitra"
+              style="width: 100%; height: 100%; object-fit: cover; display: block;" />
+          </div>
+          <div class="chat-window__title-container">
+            <h3 class="chat-window__title" data-i18n="chatbot.name">Kaushal Mitra</h3>
+            <span class="chat-window__subtitle"><span class="chat-window__status-dot"></span> Online</span>
+          </div>
+        </div>
+        <button class="chat-window__close-btn" id="chatbot-close-btn" aria-label="Close Chat">&times;</button>
+      </div>
+
+      <!-- Messages Body -->
+      <div class="chat-window__body" id="chatbot-messages">
+        <!-- System Welcome Message -->
+        <div class="chat-message chat-message--bot">
+          <div class="chat-message__bubble" data-i18n="html:chatbot.welcome_msg">
+            नमस्ते! मैं हूँ <b>कौशल मित्र</b>, आपका डिजिटल सहायक। कौशल सेतु पोर्टल पर मैं आपकी क्या मदद कर सकता हूँ?
+          </div>
+          <span class="chat-message__time" id="chatbot-start-time">12:00 PM</span>
+        </div>
+      </div>
+
+      <!-- Quick Action Buttons -->
+      <div class="chat-window__quick-replies" id="chatbot-quick-replies">
+        <button class="quick-reply-btn" data-question-id="q1" data-i18n="chatbot.q1">कौशल सेतु क्या है?</button>
+        <button class="quick-reply-btn" data-question-id="q2" data-i18n="chatbot.q2">श्रमिक पंजीकरण कैसे करें?</button>
+        <button class="quick-reply-btn" data-question-id="q3" data-i18n="chatbot.q3">उद्योग / नियोक्ता पंजीकरण कैसे
+          करें?</button>
+        <button class="quick-reply-btn" data-question-id="q4" data-i18n="chatbot.q4">कौशल विकास पाठ्यक्रम क्या
+          हैं?</button>
+      </div>
+
+      <!-- Typing Indicator -->
+      <div class="chat-window__typing-indicator" id="chatbot-typing" style="display: none;">
+        <span></span><span></span><span></span>
+      </div>
+
+      <!-- Input Area -->
+      <form class="chat-window__footer" id="chatbot-form">
+        <input type="text" class="chat-window__input" id="chatbot-input" data-i18n="placeholder:chatbot.placeholder"
+          placeholder="अपना प्रश्न यहाँ टाइप करें..." />
+        <button type="submit" class="chat-window__send-btn" id="chatbot-send-btn" aria-label="Send">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+            stroke-linecap="round" stroke-linejoin="round">
+            <line x1="22" y1="2" x2="11" y2="13"></line>
+            <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+          </svg>
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <script src="../../assets/js/common/safe-storage.js"></script>
+  <script src="../../assets/js/common/app.js"></script>
+  <script src="../../assets/js/common/i18n.js"></script>
+  <script src="../../assets/js/common/validation.js"></script>
+  <script src="../../components/alerts/alerts.js"></script>
+  <script src="../../components/header/header.js"></script>
+  <script src="home.js"></script>
+
+  <!-- Chatbot Interactive Script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const chatbotFab = document.getElementById('chatbot-fab');
+      const chatbotClose = document.getElementById('chatbot-close-btn');
+      const chatWindow = document.getElementById('chat-window');
+      const chatbotMessages = document.getElementById('chatbot-messages');
+      const chatbotInput = document.getElementById('chatbot-input');
+      const chatbotForm = document.getElementById('chatbot-form');
+      const chatbotTyping = document.getElementById('chatbot-typing');
+      const chatbotBadge = chatbotFab.querySelector('.chatbot-fab__badge');
+      const quickRepliesContainer = document.getElementById('chatbot-quick-replies');
+
+      // Responses Catalogue (English & Hindi matching I18n languages)
+      const chatbotResponses = {
+        hi: {
+          q1: "<b>कौशल सेतु</b> मध्य प्रदेश सरकार का एक डिजिटल मंच है जो कुशल श्रमिकों को सीधे नियोक्ताओं (Employers) और ठेकेदारों से जोड़ता है। यह पोर्टल आधार eKYC सत्यापन और स्मार्ट एआई (AI) जॉब मिलान की सुविधा प्रदान करता है।",
+          q2: "<b>श्रमिक पंजीकरण</b> बहुत आसान है! आप होमपेज पर 'श्रमिक पंजीकरण करें' बटन पर क्लिक करके, अपना 12 अंकों का आधार नंबर दर्ज कर सकते हैं। UIDAI से प्राप्त OTP दर्ज करते ही eKYC द्वारा आपकी जानकारी स्वतः भर जाएगी। उसके बाद व्यवसाय और अनुभव भरकर आपका डिजिटल रोजगार कार्ड बन जाएगा।",
+          q3: "<b>उद्योग या नियोक्ता (Employer) पंजीकरण</b> के लिए, होमपेज पर 'उद्योग पंजीकरण' लिंक पर क्लिक करें। अपने 15 अंकों का GSTIN दर्ज करें, OTP सत्यापित करें, और संस्था का विवरण जोड़ें। पंजीकरण के बाद आप असीमित नौकरियां पोस्ट कर सकते हैं और एआई अनुशंसित उम्मीदवारों को ढूंढ सकते हैं।",
+          q4: "कौशल सेतु पोर्टल पर विभिन्न ऑनलाइन और ऑफलाइन <b>कौशल प्रशिक्षण पाठ्यक्रम (Courses)</b> उपलब्ध हैं, जैसे प्लमिंग, इलेक्ट्रिकल, कंप्यूटर कोडिंग, राजमिस्त्री आदि। इन पाठ्यक्रमों को पूरा करने पर आपको डिजिटल स्किल वॉलेट में सत्यापित प्रमाण-पत्र भी मिलते हैं।",
+          defaultReply: "मुझे आपका संदेश मिल गया है! आप अधिक सहायता के लिए हमारे टोल-फ्री हेल्पलाइन नंबर <b>0755-6720200</b> पर संपर्क कर सकते हैं या <code>support@kaushalsetu.gov.in</code> पर ईमेल कर सकते हैं।",
+          keywords: [
+            { keys: ["श्रमिक", "पंजीकरण", "रजिस्टर", "labour", "register"], reply: "पंजीकरण शुरू करने के लिए आप हमारी 'श्रमिक पंजीकरण' सेवा का उपयोग कर सकते हैं। इसमें केवल आधार कार्ड और मोबाइल नंबर की आवश्यकता होती है।" },
+            { keys: ["नौकरी", "रोजगार", "job", "jobs", "vacancy"], reply: "कौशल सेतु पर कुशल श्रमिकों के लिए हजारों सरकारी और निजी नौकरियां उपलब्ध हैं। पंजीकरण पूरा करने के बाद आप सीधे आवेदन कर सकते हैं।" },
+            { keys: ["कोर्स", "ट्रेनिंग", "course", "training", "sikho"], reply: "हमारे पास इलेक्ट्रिशियन, प्लंबर, कंप्यूटर ऑपरेटर और सिलाई जैसे विभिन्न कौशल प्रशिक्षण कोर्सेज उपलब्ध हैं। आप 'पूरे किए गए पाठ्यक्रम' सेक्शन में अपना सर्टिफिकेट भी देख सकते हैं।" },
+            { keys: ["हेल्प", "सपोर्ट", "help", "support", "contact"], reply: "हमारी सहायता टीम आपकी मदद के लिए सदैव उपलब्ध है। आप <b>0755-6720200</b> पर कॉल कर सकते हैं।" }
+          ]
+        },
+        en: {
+          q1: "<b>Kaushal Setu</b> is an official digital platform of the Govt. of Madhya Pradesh that connects skilled labourers directly with employers and contractors. The portal features Aadhaar eKYC verification and smart AI job matching.",
+          q2: "<b>Labour registration</b> is simple! Click the 'Register as Labour' button on the homepage, enter your 12-digit Aadhaar number, and verify the OTP from UIDAI. eKYC will auto-fill your details. Add your occupation and experience to instantly generate your digital employment card.",
+          q3: "For <b>industry or employer registration</b>, click 'Industry Registration' on the homepage. Enter your 15-digit GSTIN, verify the OTP, and fill in your organisation details. After registering, you can post unlimited jobs and search for AI-recommended candidates.",
+          q4: "Kaushal Setu offers a variety of online and offline <b>skill training courses</b>, including plumbing, electrical work, computer programming, masonry, and more. Completing these courses earns you verified certificates in your Digital Skill Wallet.",
+          defaultReply: "I have received your message! For further assistance, please contact our toll-free helpline at <b>0755-6720200</b> or email us at <code>support@kaushalsetu.gov.in</code>.",
+          keywords: [
+            { keys: ["labour", "register", "registration", "shramik"], reply: "To start registration, you can use our 'Labour Registration' service. It only requires an Aadhaar Card and a registered mobile number." },
+            { keys: ["job", "jobs", "vacancy", "employment"], reply: "Thousands of government and private jobs for skilled workers are available on Kaushal Setu. You can apply directly after completing your profile." },
+            { keys: ["course", "courses", "training", "learn"], reply: "We have various skill training courses available such as electrician, plumber, computer operator, and tailoring. You can also view your verified certificates in the Completed Courses section." },
+            { keys: ["help", "support", "contact", "helpline"], reply: "Our helpdesk team is always ready to assist you. You can call us directly at <b>0755-6720200</b>." }
+          ]
+        }
+      };
+
+      // Set initial clock
+      const setClock = () => {
+        const startTimeEl = document.getElementById('chatbot-start-time');
+        if (startTimeEl) {
+          const now = new Date();
+          startTimeEl.textContent = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+        }
+      };
+      setClock();
+
+      // Open Chat window
+      const openChat = () => {
+        chatWindow.classList.add('open');
+        chatWindow.setAttribute('aria-hidden', 'false');
+        chatbotFab.style.transform = 'scale(0) rotate(-45deg)';
+        chatbotBadge.style.display = 'none'; // Clear notification badge
+        chatbotInput.focus();
+        scrollToBottom();
+      };
+
+      // Close Chat window
+      const closeChat = () => {
+        chatWindow.classList.remove('open');
+        chatWindow.setAttribute('aria-hidden', 'true');
+        chatbotFab.style.transform = '';
+      };
+
+      chatbotFab.addEventListener('click', openChat);
+      chatbotClose.addEventListener('click', closeChat);
+
+      // Keyboard support for accessibility
+      chatbotFab.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          openChat();
+        }
+      });
+
+      // Scroll messages to bottom
+      const scrollToBottom = () => {
+        chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+      };
+
+      // Append Chat Message
+      const appendMessage = (sender, text) => {
+        const msgDiv = document.createElement('div');
+        msgDiv.className = `chat-message chat-message--${sender}`;
+
+        const bubble = document.createElement('div');
+        bubble.className = 'chat-message__bubble';
+        bubble.innerHTML = text;
+
+        const timeSpan = document.createElement('span');
+        timeSpan.className = 'chat-message__time';
+        const now = new Date();
+        timeSpan.textContent = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+        msgDiv.appendChild(bubble);
+        msgDiv.appendChild(timeSpan);
+        chatbotMessages.appendChild(msgDiv);
+
+        scrollToBottom();
+      };
+
+      // Send bot reply with typing simulator
+      const triggerBotReply = (replyText) => {
+        chatbotTyping.style.display = 'flex';
+        scrollToBottom();
+
+        // Hide quick replies while thinking
+        quickRepliesContainer.style.opacity = '0.5';
+        quickRepliesContainer.style.pointerEvents = 'none';
+
+        setTimeout(() => {
+          chatbotTyping.style.display = 'none';
+          appendMessage('bot', replyText);
+
+          quickRepliesContainer.style.opacity = '1';
+          quickRepliesContainer.style.pointerEvents = 'all';
+        }, 1000);
+      };
+
+      // Handle Quick Replies click
+      quickRepliesContainer.addEventListener('click', (e) => {
+        const btn = e.target.closest('.quick-reply-btn');
+        if (!btn) return;
+
+        const qId = btn.getAttribute('data-question-id');
+        const lang = (window.I18n && window.I18n.getLanguage()) || 'hi';
+        const userQuestion = btn.textContent;
+        const botResponse = chatbotResponses[lang][qId];
+
+        appendMessage('user', userQuestion);
+        triggerBotReply(botResponse);
+      });
+
+      // Handle custom typed questions
+      chatbotForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const query = chatbotInput.value.trim();
+        if (!query) return;
+
+        chatbotInput.value = '';
+        appendMessage('user', query);
+
+        // Analyze and reply
+        const lang = (window.I18n && window.I18n.getLanguage()) || 'hi';
+        const currentLangSet = chatbotResponses[lang];
+
+        let foundReply = null;
+        const normalizedQuery = query.toLowerCase();
+
+        // Keyword analysis
+        for (const item of currentLangSet.keywords) {
+          const match = item.keys.some(key => normalizedQuery.includes(key));
+          if (match) {
+            foundReply = item.reply;
+            break;
+          }
+        }
+
+        const reply = foundReply || currentLangSet.defaultReply;
+        triggerBotReply(reply);
+      });
+
+      // Live Translation on language switcher events
+      const translateInitialMessage = () => {
+        // Automatically translate the first bubble text
+        const firstBubble = chatbotMessages.querySelector('.chat-message--bot .chat-message__bubble');
+        if (firstBubble && window.I18n) {
+          firstBubble.innerHTML = window.I18n.t('chatbot.welcome_msg');
+        }
+      };
+
+      document.addEventListener('i18n:languageChanged', translateInitialMessage);
+      document.addEventListener('app:languageChanged', translateInitialMessage);
+    });
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,40 @@
+/* ============================================================
+   FOOTER CSS — components/footer/footer.css
+   Applies to site-footer in main-layout (styles already in
+   main-layout.css). This file adds extra footer variants
+   for widget/component-level use (e.g. card footers,
+   inline footers in auth/registration layouts).
+   ============================================================ */
+
+/* ── Inline Footer (auth / reg layouts) ─────────────────────── */
+.footer-inline {
+  padding: var(--space-4);
+  text-align: center;
+  font-size: var(--text-xs);
+  color: var(--text-tertiary);
+  border-top: 1px solid var(--border-default);
+}
+.footer-inline a { color: var(--text-tertiary); text-decoration: none; margin-inline: var(--space-1); }
+.footer-inline a:hover { color: var(--color-accent); }
+
+/* ── Gov Footer Strip ────────────────────────────────────────── */
+.footer-gov-strip {
+  background: var(--color-primary-900);
+  color: rgba(255,255,255,0.5);
+  font-size: var(--text-xs);
+  padding: var(--space-3) 0;
+  text-align: center;
+  letter-spacing: var(--tracking-wide);
+}
+
+/* ── Social Icons ────────────────────────────────────────────── */
+.social-links { display: flex; align-items: center; gap: var(--space-3); margin-top: var(--space-4); }
+.social-link {
+  width: 36px; height: 36px; border-radius: var(--radius-full);
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.6);
+  border: 1px solid rgba(255,255,255,0.12);
+  transition: var(--transition-fast); text-decoration: none;
+}
+.social-link:hover { background: var(--color-accent); color: #fff; border-color: var(--color-accent); transform: translateY(-2px); }
+.social-link svg { width: 16px; height: 16px; }

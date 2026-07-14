@@ -1,0 +1,290 @@
+﻿<!DOCTYPE html>
+<html lang="hi-IN" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Kaushal Setu — लॉगिन / पंजीकरण" />
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="theme-color" content="#0A1628" />
+
+  <link rel="icon" type="image/png" href="../../assets/images/logos/KaushalSetuLogo.png" />
+
+  <title>लॉगिन — Kaushal Setu</title>
+
+  <!-- ── Fonts ─────────────────────────────────────────────── -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+Devanagari:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- ── Design System CSS ─────────────────────────────────── -->
+  <link rel="stylesheet" href="../../assets/css/common/design-tokens.css" />
+  <link rel="stylesheet" href="../../assets/css/common/reset.css" />
+  <link rel="stylesheet" href="../../assets/css/common/typography.css" />
+  <link rel="stylesheet" href="../../assets/css/common/utilities.css" />
+
+  <!-- ── Auth Layout CSS ───────────────────────────────────── -->
+  <link rel="stylesheet" href="auth-layout.css" />
+
+  <!-- Page-specific CSS -->
+  <!-- <link rel="stylesheet" href="../../pages/[page]/[page].css" /> -->
+</head>
+
+<body class="layout-auth">
+
+  <!-- ── Skip Link ──────────────────────────────────────────── -->
+  <a href="#auth-panel" class="skip-link" data-i18n="ui.skip_to_content">
+    मुख्य सामग्री पर जाएं
+  </a>
+
+  <!-- ══════════════════════════════════════════════════════════
+       AUTH WRAPPER — two-column split
+       Left:  Branding / Illustration panel  (hidden on mobile)
+       Right: Auth form panel
+  ══════════════════════════════════════════════════════════ -->
+  <div class="auth-wrapper">
+
+    <!-- ── LEFT: Branding Panel ──────────────────────────────── -->
+    <aside class="auth-brand" aria-hidden="true">
+
+      <!-- Background mesh gradient (CSS-driven) -->
+      <div class="auth-brand__bg" aria-hidden="true"></div>
+
+      <!-- Brand content -->
+      <div class="auth-brand__content">
+
+        <!-- Logo -->
+        <a href="../../index.html" class="auth-brand__logo-link">
+          <img
+            src="../../assets/images/logos/KaushalSetuLogo.png"
+            alt="Kaushal Setu"
+            class="auth-brand__logo"
+            width="64"
+            height="64"
+            loading="eager"
+          />
+          <span class="auth-brand__name">Kaushal Setu</span>
+        </a>
+
+        <!-- Tagline -->
+        <h1 class="auth-brand__heading">
+          कुशल कारीगर,<br />सही अवसर
+        </h1>
+        <p class="auth-brand__subheading">
+          लाखों श्रमिकों को रोजगार से जोड़ने वाला सरकारी डिजिटल मंच।
+        </p>
+
+        <!-- Feature bullets -->
+        <ul class="auth-brand__features" role="list">
+          <li class="auth-brand__feature">
+            <span class="auth-brand__feature-icon" aria-hidden="true">✅</span>
+            आधार-आधारित सत्यापन
+          </li>
+          <li class="auth-brand__feature">
+            <span class="auth-brand__feature-icon" aria-hidden="true">🔒</span>
+            100% सुरक्षित डेटा
+          </li>
+          <li class="auth-brand__feature">
+            <span class="auth-brand__feature-icon" aria-hidden="true">📱</span>
+            मोबाइल-फर्स्ट अनुभव
+          </li>
+          <li class="auth-brand__feature">
+            <span class="auth-brand__feature-icon" aria-hidden="true">🏛️</span>
+            सरकार द्वारा प्रमाणित
+          </li>
+        </ul>
+
+        <!-- Stat strip -->
+        <div class="auth-brand__stats">
+          <div class="auth-brand__stat">
+            <strong class="auth-brand__stat-num">5 लाख+</strong>
+            <span class="auth-brand__stat-label">पंजीकृत श्रमिक</span>
+          </div>
+          <div class="auth-brand__stat">
+            <strong class="auth-brand__stat-num">50,000+</strong>
+            <span class="auth-brand__stat-label">नियोक्ता</span>
+          </div>
+          <div class="auth-brand__stat">
+            <strong class="auth-brand__stat-num">75</strong>
+            <span class="auth-brand__stat-label">जिले</span>
+          </div>
+        </div>
+
+      </div><!-- /.auth-brand__content -->
+
+      <!-- Bottom govt badge -->
+      <p class="auth-brand__govt-note">
+        भारत सरकार | Government of India
+      </p>
+
+    </aside><!-- /.auth-brand -->
+
+
+    <!-- ── RIGHT: Auth Form Panel ─────────────────────────────── -->
+    <main id="auth-panel" class="auth-panel" role="main" tabindex="-1">
+
+      <!-- Top bar (mobile logo + controls) -->
+      <div class="auth-panel__topbar">
+
+        <!-- Mobile brand (visible on small screens only) -->
+        <a href="../../index.html" class="auth-panel__mobile-brand show-mobile-only" aria-label="Kaushal Setu होम">
+          <img src="../../assets/images/logos/KaushalSetuLogo.png" alt="Kaushal Setu" width="32" height="32" loading="eager" />
+          <span>Kaushal Setu</span>
+        </a>
+
+        <div class="auth-panel__controls">
+          <!-- Language toggle -->
+          <button
+            id="lang-toggle"
+            class="btn btn--ghost btn--sm"
+            data-lang-toggle
+            aria-label="Switch to English"
+          >English</button>
+
+          <!-- Theme toggle -->
+          <button
+            id="theme-toggle"
+            class="btn btn--ghost btn--sm"
+            aria-label="Switch to dark mode"
+          >
+            <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                 viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                 stroke-linecap="round" aria-hidden="true" style="display:none">
+              <circle cx="12" cy="12" r="5"/>
+              <line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/>
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+              <line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/>
+            </svg>
+            <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                 viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                 stroke-linecap="round" aria-hidden="true">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+            </svg>
+          </button>
+        </div>
+
+      </div><!-- /.auth-panel__topbar -->
+
+      <!-- Form card -->
+      <div class="auth-card">
+
+        <!--
+          ┌─────────────────────────────────────────────────────┐
+          │  SLOT: Auth form content goes here.                 │
+          │  Replace this block in each consuming page.         │
+          │  Example pages: login, forgot-password              │
+          └─────────────────────────────────────────────────────┘
+        -->
+
+        <!-- Example: Login form header (replace per page) -->
+        <div class="auth-card__header">
+          <h2 class="auth-card__title" data-i18n="login.title">लॉगिन करें</h2>
+          <p class="auth-card__subtitle">
+            अपने खाते में प्रवेश करें
+          </p>
+        </div>
+
+        <!-- Divider with tabs (Aadhaar OTP / Password) -->
+        <div class="auth-tabs" role="tablist" aria-label="लॉगिन विकल्प">
+          <button
+            id="tab-aadhaar"
+            class="auth-tab auth-tab--active"
+            role="tab"
+            aria-selected="true"
+            aria-controls="panel-aadhaar"
+            data-i18n="login.with_aadhaar"
+          >आधार OTP से लॉगिन</button>
+          <button
+            id="tab-password"
+            class="auth-tab"
+            role="tab"
+            aria-selected="false"
+            aria-controls="panel-password"
+            data-i18n="login.with_password"
+          >पासवर्ड से लॉगिन</button>
+        </div>
+
+        <!-- Tab Panel: Aadhaar OTP -->
+        <div id="panel-aadhaar" class="auth-tab-panel" role="tabpanel" aria-labelledby="tab-aadhaar">
+          <!-- Form injected by page JS / consuming page -->
+        </div>
+
+        <!-- Tab Panel: Password -->
+        <div id="panel-password" class="auth-tab-panel" role="tabpanel" aria-labelledby="tab-password" hidden>
+          <!-- Form injected by page JS / consuming page -->
+        </div>
+
+        <!-- Footer links -->
+        <div class="auth-card__footer">
+          <p>
+            <span data-i18n="login.no_account">खाता नहीं है?</span>
+            <a href="../../pages/labour-registration/index.html"
+               class="auth-card__footer-link"
+               data-i18n="login.register_now">अभी पंजीकरण करें</a>
+          </p>
+          <a href="../../pages/home/index.html"
+             class="auth-card__back-link">
+            ← होम पर वापस जाएं
+          </a>
+        </div>
+
+      </div><!-- /.auth-card -->
+
+      <!-- Footer note -->
+      <p class="auth-panel__footer-note">
+        &copy; <span class="js-year"></span> Kaushal Setu &mdash;
+        <a href="#" data-i18n="footer.privacy">गोपनीयता नीति</a> |
+        <a href="#" data-i18n="footer.terms">नियम एवं शर्तें</a>
+      </p>
+
+    </main><!-- /.auth-panel -->
+
+  </div><!-- /.auth-wrapper -->
+
+
+  <!-- ══════════════════════════════════════════════════════════
+       JAVASCRIPT
+  ══════════════════════════════════════════════════════════ -->
+  <script src="../../assets/js/common/safe-storage.js"></script>
+  <script src="../../assets/js/common/app.js"></script>
+  <script src="../../assets/js/common/i18n.js"></script>
+  <script src="../../assets/js/common/validation.js"></script>
+  <script>
+    (function() {
+    // Language
+    var savedLang = (window._ckStorage || localStorage).getItem('ck-ui-lang') || 'hi';
+    I18n.init(savedLang);
+    I18n.setupToggleButton();
+
+    document.addEventListener('i18n:languageChanged', function() { I18n.translateDOM(); });
+
+    // Year
+    document.querySelectorAll('.js-year').forEach(function(el) {
+      el.textContent = new Date().getFullYear();
+    });
+
+    // Auth tab switching
+    var tabs   = document.querySelectorAll('.auth-tab');
+    var panels = document.querySelectorAll('.auth-tab-panel');
+
+    tabs.forEach(function(tab) {
+      tab.addEventListener('click', function() {
+        tabs.forEach(function(t) { t.classList.remove('auth-tab--active'); t.setAttribute('aria-selected', 'false'); });
+        panels.forEach(function(p) { p.setAttribute('hidden', ''); });
+
+        tab.classList.add('auth-tab--active');
+        tab.setAttribute('aria-selected', 'true');
+        var target = document.getElementById(tab.getAttribute('aria-controls'));
+        if (target) target.removeAttribute('hidden');
+      });
+    });
+    })();
+  </script>
+
+  <!-- Page-specific JS -->
+  <!-- <script src="../../pages/[page]/[page].js"></script> -->
+
+</body>
+</html>

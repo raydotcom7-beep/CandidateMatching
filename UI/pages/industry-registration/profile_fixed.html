@@ -1,0 +1,372 @@
+﻿<!DOCTYPE html>
+<html lang="hi-IN" data-theme="light">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="theme-color" content="#0A1628" />
+
+  <link rel="icon" type="image/png" href="../../assets/images/logos/KaushalSetuLogo.png" />
+  <title data-i18n="dashboard.menu.personal_profile">प्रोफाइल प्रबंधन — Kaushal Setu</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+Devanagari:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet" />
+
+  <!-- Design System -->
+  <link rel="stylesheet" href="../../assets/css/common/design-tokens.css" />
+  <link rel="stylesheet" href="../../assets/css/common/reset.css" />
+  <link rel="stylesheet" href="../../assets/css/common/typography.css" />
+  <link rel="stylesheet" href="../../assets/css/common/utilities.css" />
+
+  <!-- Layout & Components -->
+  <link rel="stylesheet" href="../../layouts/dashboard-layout/dashboard-layout.css" />
+  <link rel="stylesheet" href="../../components/cards/cards.css" />
+  <link rel="stylesheet" href="../../components/widgets/widgets.css" />
+  <link rel="stylesheet" href="../../components/forms/forms.css" />
+  <link rel="stylesheet" href="../../components/alerts/alerts.css" />
+  <link rel="stylesheet" href="profile.css" />
+</head>
+
+<body class="layout-dashboard">
+
+  <!-- Sidebar Overlay -->
+  <div class="sidebar-overlay" id="sidebar-overlay" aria-hidden="true"></div>
+
+  <!-- Sidebar -->
+  <nav id="dashboard-sidebar" class="dashboard-sidebar" aria-label="मुख्य नेविगेशन">
+    <div class="sidebar-header">
+      <a href="IndustryServiceHome.html" class="sidebar-brand">
+        <img src="../../assets/images/logos/KaushalSetuLogo.png" alt="Kaushal Setu" width="170" height="170" />
+      </a>
+    </div>
+    <div class="sidebar-nav">
+
+      <!-- Group 1 -->
+      <div class="sidebar-group">
+        <div class="sidebar-group-title" data-i18n="dashboard.menu.profile_identity">प्रोफाइल एवं पहचान प्रबंधन</div>
+        <ul class="sidebar-menu">
+          <li><a href="profile.html" class="sidebar-link active" data-i18n="dashboard.menu.personal_profile">प्रोफाइल प्रबंधन</a></li>
+        </ul>
+      </div>
+
+      <!-- Group 2 -->
+      <div class="sidebar-group">
+        <div class="sidebar-group-title" data-i18n="dashboard.menu.employment_career">रोजगार एवं कैरियर सेवाएँ</div>
+        <ul class="sidebar-menu">
+          <li><a href="PostJob.html" class="sidebar-link" data-i18n="dashboard.menu.post_jobs">नौकरियां पोस्ट करें</a></li>
+          <li><a href="ActiveJobPostings.html" class="sidebar-link" data-i18n="dashboard.menu.active_jobs">सक्रिय नौकरियां</a></li>
+          <li><a href="ReceivedJobApplications.html" class="sidebar-link" data-i18n="dashboard.menu.received_apps">प्राप्त आवेदन</a></li>
+          <li><a href="shortlistedcandidate.html" class="sidebar-link" data-i18n="dashboard.menu.shortlisted">शॉर्टलिस्टेड उम्मीदवार</a></li>
+          <li><a href="searchcandidate.html" class="sidebar-link" data-i18n="dashboard.menu.search_candidate">उम्मीदवार खोजें</a></li>
+        </ul>
+      </div>
+
+    </div>
+  </nav>
+
+  <!-- Main Area -->
+  <main class="dashboard-main">
+
+    <!-- Header -->
+    <header class="dashboard-header">
+      <div class="header-left">
+        <button id="sidebar-toggle" class="sidebar-toggle-btn" aria-label="मेनू टॉगल करें">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+            stroke-linecap="round">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+
+      <div class="header-right">
+
+        <!-- User Profile -->
+        <div class="user-profile">
+          <div class="user-info">
+            <span class="user-name" id="header-user-name" style="max-width: 200px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="National Textile Corporation Limited (NTC)">National Textile Corporation Limited (NTC)</span>
+            <span class="user-meta"><span id="last-login-time">Last login: </span></span>
+          </div>
+          <div class="user-avatar" aria-hidden="true" style="font-size: 14px;">NTC</div>
+        </div>
+
+        <div class="header-actions">
+          <!-- Lang Toggle -->
+          <button id="lang-toggle" class="btn btn--ghost btn--sm" data-lang-toggle
+            aria-label="Switch to English">English</button>
+
+          <!-- Theme Toggle -->
+          <button id="theme-toggle" class="btn btn--ghost btn--sm" aria-label="Switch Theme">
+            <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+              fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"
+              style="display:none">
+              <circle cx="12" cy="12" r="5" />
+              <line x1="12" y1="1" x2="12" y2="3" />
+              <line x1="12" y1="21" x2="12" y2="23" />
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+              <line x1="1" y1="12" x2="3" y2="12" />
+              <line x1="21" y1="12" x2="23" y2="12" />
+            </svg>
+            <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+              fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+            </svg>
+          </button>
+
+          <!-- Sign Out -->
+          <a href="../home/index.html" class="btn btn--secondary btn--sm" data-i18n="dashboard.signout">लॉग आउट</a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Content -->
+    <div class="dashboard-content">
+
+      <!-- Profile Header Card -->
+      <div class="profile-header-card widget surface--elevated">
+        <div class="profile-header-card__inner">
+          <div class="profile-header-card__avatar">NTC</div>
+          <div class="profile-header-card__info">
+            <h1 class="profile-header-card__name" id="display-company-name">National Textile Corporation Limited (NTC)</h1>
+            <p class="profile-header-card__role" id="display-industry-type" data-i18n="industry_type.textile">वस्त्र उद्योग</p>
+          </div>
+          <div class="profile-header-card__status">
+            <span class="status-badge status-badge--success" data-i18n="profile.ekyc_status">Aadhaar Verified</span>
+          </div>
+        </div>
+      </div>
+
+      <form id="form-profile" novalidate>
+
+        <!-- Section 1: Owner Aadhaar eKYC (Read-only) -->
+        <div class="widget surface--elevated profile-section">
+          <div class="widget__header">
+            <h2 class="widget__title" data-i18n="reg.step.owner_aadhaar_verification">प्रबंधक / मालिक का आधार सत्यापन</h2>
+          </div>
+          <div class="widget__body">
+            <div class="ekyc-lock-banner">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+              </svg>
+              <span data-i18n="reg.personal.ekyc_banner">आधार eKYC से स्वतः भरे गए फ़ील्ड संपादित नहीं किए जा सकते।</span>
+            </div>
+
+            <div class="form-row form-row--2">
+              <div class="form-group">
+                <label class="form-label" data-i18n="form.aadhaar">आधार नंबर</label>
+                <input type="text" class="form-control" value="XXXX-XXXX-4567" readonly disabled />
+              </div>
+              <div class="form-group">
+                <label class="form-label" data-i18n="form.designation">पदनाम</label>
+                <input type="text" class="form-control" value="Manager" readonly disabled />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section 2: Industry Details (Editable) -->
+        <div class="widget surface--elevated profile-section">
+          <div class="widget__header">
+            <h2 class="widget__title" data-i18n="reg.step.industry_details">उद्योग विवरण</h2>
+          </div>
+          <div class="widget__body">
+            <div class="form-row form-row--2">
+              <div class="form-group">
+                <label class="form-label" for="industry-name">
+                  <span data-i18n="form.industry_name">उद्योग / कारखाने का नाम</span> 
+                  <span class="required-star" aria-hidden="true">*</span>
+                </label>
+                <input id="industry-name" name="industryName" type="text" class="form-control" 
+                  value="National Textile Corporation Limited (NTC)" data-rules="required|minLength:3" 
+                  data-label="उद्योग नाम" data-i18n="data-label:form.industry_name" />
+                <p class="form-error-text" id="industry-name-error" role="alert" style="display:none"></p>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="industry-type">
+                  <span data-i18n="form.industry_type">उद्योग का प्रकार</span> 
+                  <span class="required-star" aria-hidden="true">*</span>
+                </label>
+                <select id="industry-type" name="industryType" class="form-select" data-rules="required" 
+                  data-label="उद्योग प्रकार" data-i18n="data-label:form.industry_type">
+                  <option value="manufacturing" data-i18n="industry_type.manufacturing">विनिर्माण</option>
+                  <option value="construction" data-i18n="industry_type.construction">निर्माण</option>
+                  <option value="textile" data-i18n="industry_type.textile" selected>वस्त्र उद्योग</option>
+                  <option value="food" data-i18n="industry_type.food">खाद्य प्रसंस्करण</option>
+                  <option value="chemical" data-i18n="industry_type.chemical">रसायन उद्योग</option>
+                  <option value="engineering" data-i18n="industry_type.engineering">इंजीनियरिंग</option>
+                  <option value="other" data-i18n="trade.other">अन्य</option>
+                </select>
+                <p class="form-error-text" id="industry-type-error" role="alert" style="display:none"></p>
+              </div>
+            </div>
+
+            <div class="form-row form-row--2">
+              <div class="form-group">
+                <label class="form-label" for="industry-pan">
+                  <span data-i18n="form.pan">PAN नंबर</span> 
+                  <span class="required-star" aria-hidden="true">*</span>
+                </label>
+                <input id="industry-pan" name="pan" type="text" maxlength="10" class="form-control" 
+                  value="NTCLN1234D" data-rules="required|pan" data-label="PAN" 
+                  data-i18n="placeholder:placeholder.pan;data-label:form.pan" placeholder="ABCDE1234F" />
+                <p class="form-error-text" id="industry-pan-error" role="alert" style="display:none"></p>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="industry-gstin">
+                  <span data-i18n="form.gstin">GSTIN</span> 
+                  <span class="required-star" aria-hidden="true">*</span>
+                </label>
+                <input id="industry-gstin" name="gstin" type="text" maxlength="15" class="form-control" 
+                  value="09NTCLN1234D1Z2" data-rules="required|gst" data-label="GSTIN" 
+                  data-i18n="placeholder:placeholder.gstin;data-label:form.gstin" />
+                <p class="form-error-text" id="industry-gstin-error" role="alert" style="display:none"></p>
+              </div>
+            </div>
+
+            <div class="form-row form-row--2">
+              <div class="form-group">
+                <label class="form-label" for="worker-count">
+                  <span data-i18n="form.worker_count">कुल श्रमिक संख्या</span> 
+                  <span class="required-star" aria-hidden="true">*</span>
+                </label>
+                <input id="worker-count" name="workerCount" type="number" min="1" class="form-control" 
+                  value="120" data-rules="required|numeric|min:1" data-label="श्रमिक संख्या" 
+                  data-i18n="placeholder:placeholder.worker_count;data-label:form.worker_count" placeholder="जैसे: 50" />
+                <p class="form-error-text" id="worker-count-error" role="alert" style="display:none"></p>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="industry-pincode">
+                  <span data-i18n="form.pincode">पिन कोड</span> 
+                  <span class="required-star" aria-hidden="true">*</span>
+                </label>
+                <input id="industry-pincode" name="pincode" type="tel" inputmode="numeric" maxlength="6" class="form-control" 
+                  value="452001" data-rules="required|pincode" data-label="पिन कोड" 
+                  data-i18n="placeholder:placeholder.pincode;data-label:form.pincode" placeholder="6 अंकों का पिन कोड" />
+                <p class="form-error-text" id="industry-pincode-error" role="alert" style="display:none"></p>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="industry-address">
+                <span data-i18n="form.industry_address">उद्योग का पूरा पता</span> 
+                <span class="required-star" aria-hidden="true">*</span>
+              </label>
+              <textarea id="industry-address" name="address" class="form-textarea" rows="3" 
+                data-rules="required|minLength:10" data-label="पता" 
+                data-i18n="placeholder:placeholder.industry_address;data-label:form.industry_address">Sector C, Sanwer Road Industrial Area, Indore</textarea>
+              <p class="form-error-text" id="industry-address-error" role="alert" style="display:none"></p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section 3: Documents Upload (Editable) -->
+        <div class="widget surface--elevated profile-section">
+          <div class="widget__header">
+            <h2 class="widget__title" data-i18n="reg.docs.title">दस्तावेज़ अपलोड</h2>
+          </div>
+          <div class="widget__body">
+            <div class="doc-upload-list">
+
+              <!-- Document 1: Factory License -->
+              <div class="doc-upload-item">
+                <div class="doc-upload-item__info">
+                  <span class="doc-upload-item__name">
+                    <span data-i18n="doc.factory_license">कारखाना पंजीकरण प्रमाण-पत्र</span> 
+                    <span class="required-star" aria-hidden="true">*</span>
+                  </span>
+                  <span class="doc-upload-item__hint" data-i18n="reg.docs.hint_2mb">PDF — max 2MB</span>
+                </div>
+                <div class="upload-zone upload-zone--compact" id="upload-factory-license">
+                  <input type="file" class="upload-zone__input" accept=".pdf,.jpg,.jpeg" />
+                  <span class="upload-zone__icon">📄</span>
+                  <span class="upload-zone__sub" data-i18n="reg.docs.upload_zone_text">फ़ाइल चुनें</span>
+                </div>
+                <div class="upload-file-list" id="list-factory-license">
+                  <div class="upload-file-item" data-filename="factory_license.pdf">
+                    <span class="upload-file__name">factory_license.pdf (1.2 MB)</span>
+                    <button type="button" class="upload-file__remove" aria-label="Remove File">×</button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Document 2: GST Certificate -->
+              <div class="doc-upload-item">
+                <div class="doc-upload-item__info">
+                  <span class="doc-upload-item__name">
+                    <span data-i18n="doc.gst_cert">GST प्रमाण-पत्र</span> 
+                    <span class="required-star" aria-hidden="true">*</span>
+                  </span>
+                  <span class="doc-upload-item__hint" data-i18n="reg.docs.hint_2mb">PDF — max 2MB</span>
+                </div>
+                <div class="upload-zone upload-zone--compact" id="upload-gst-cert">
+                  <input type="file" class="upload-zone__input" accept=".pdf,.jpg,.jpeg" />
+                  <span class="upload-zone__icon">📎</span>
+                  <span class="upload-zone__sub" data-i18n="reg.docs.upload_zone_text">फ़ाइल चुनें</span>
+                </div>
+                <div class="upload-file-list" id="list-gst-cert">
+                  <div class="upload-file-item" data-filename="gst_certificate.pdf">
+                    <span class="upload-file__name">gst_certificate.pdf (850 KB)</span>
+                    <button type="button" class="upload-file__remove" aria-label="Remove File">×</button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Document 3: PAN Card -->
+              <div class="doc-upload-item">
+                <div class="doc-upload-item__info">
+                  <span class="doc-upload-item__name">
+                    <span data-i18n="form.pan">PAN कार्ड</span> 
+                    <span class="required-star" aria-hidden="true">*</span>
+                  </span>
+                  <span class="doc-upload-item__hint" data-i18n="reg.docs.hint_2mb">JPG, PNG, PDF — max 2MB</span>
+                </div>
+                <div class="upload-zone upload-zone--compact" id="upload-pan-card">
+                  <input type="file" class="upload-zone__input" accept=".pdf,.jpg,.jpeg,.png" />
+                  <span class="upload-zone__icon">🪪</span>
+                  <span class="upload-zone__sub" data-i18n="reg.docs.upload_zone_text">फ़ाइल चुनें</span>
+                </div>
+                <div class="upload-file-list" id="list-pan-card">
+                  <div class="upload-file-item" data-filename="pan_card.jpg">
+                    <span class="upload-file__name">pan_card.jpg (420 KB)</span>
+                    <button type="button" class="upload-file__remove" aria-label="Remove File">×</button>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <!-- Form Actions -->
+        <div class="profile-actions">
+          <button type="submit" class="btn btn--primary btn--lg" id="save-btn">
+            <span data-i18n="profile.save_btn">सहेजें</span>
+          </button>
+        </div>
+
+      </form>
+    </div>
+
+  </main>
+
+  <script src="../../assets/js/common/safe-storage.js"></script>
+  <script src="../../assets/js/common/app.js"></script>
+  <script src="../../assets/js/common/i18n.js"></script>
+  <script src="../../assets/js/common/validation.js"></script>
+  <script src="../../components/alerts/alerts.js"></script>
+  <script src="../../layouts/dashboard-layout/dashboard-layout.js"></script>
+  <script src="profile.js"></script>
+</body>
+
+</html>
+
+
+

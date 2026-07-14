@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="hi-IN" data-theme="light">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Kaushal Setu — उद्योग पंजीकरण" />
+  <meta name="robots" content="noindex, nofollow" />
+  <link class="js-favicon" rel="icon" type="image/png" href="../../assets/images/logos/KaushalSetuLogo.png" />
+  <title data-i18n="reg.title.industry">उद्योग पंजीकरण — Kaushal Setu</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+Devanagari:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="../../assets/css/common/design-tokens.css" />
+  <link rel="stylesheet" href="../../assets/css/common/reset.css" />
+  <link rel="stylesheet" href="../../assets/css/common/typography.css" />
+  <link rel="stylesheet" href="../../assets/css/common/utilities.css" />
+  <link rel="stylesheet" href="../../layouts/registration-layout/registration-layout.css" />
+  <link rel="stylesheet" href="../../components/forms/forms.css" />
+  <link rel="stylesheet" href="../../components/widgets/widgets.css" />
+  <link rel="stylesheet" href="../../components/alerts/alerts.css" />
+  <link rel="stylesheet" href="../labour-registration/labour-registration.css" />
+</head>
+
+<body class="layout-registration">
+  <a href="#registration-main" class="skip-link" data-i18n="ui.skip_to_content">मुख्य सामग्री पर जाएं</a>
+
+  <header class="reg-header" role="banner">
+    <div class="reg-header__inner container">
+      <a href="../../pages/home/index.html" class="reg-header__brand">
+        <img src="../../assets/images/logos/KaushalSetuLogo.png" alt="Kaushal Setu" width="150" height="150" />
+
+      </a>
+      <h1 class="reg-header__page-title" data-i18n="reg.title.industry">उद्योग पंजीकरण</h1>
+      <div class="reg-header__controls">
+        <button id="lang-toggle" class="btn btn--ghost btn--sm" data-lang-toggle>English</button>
+        <button id="theme-toggle" class="btn btn--ghost btn--sm" aria-label="Switch to dark mode">
+          <svg class="icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2" stroke-linecap="round" aria-hidden="true">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+          </svg>
+          <svg class="icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2" stroke-linecap="round" aria-hidden="true" style="display:none">
+            <circle cx="12" cy="12" r="5" />
+          </svg>
+        </button>
+        <a href="../../pages/home/index.html" class="btn btn--ghost btn--sm reg-header__exit"
+          data-i18n="aria-label:action.close" aria-label="बंद करें">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+            stroke-linecap="round" aria-hidden="true">
+            <line x1="18" y1="6" x2="6" y2="18" />
+            <line x1="6" y1="6" x2="18" y2="18" />
+          </svg>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <div class="reg-stepper" role="navigation" aria-label="पंजीकरण चरण">
+    <div class="container">
+      <ol class="stepper__list" role="list">
+        <li class="stepper__item stepper__item--active" data-step="1"><span class="stepper__num">1</span><span
+            class="stepper__label" data-i18n="reg.step.mobile">मोबाइल सत्यापन</span></li>
+        <li class="stepper__connector" aria-hidden="true"></li>
+        <li class="stepper__item" data-step="2"><span class="stepper__num">2</span><span class="stepper__label"
+            data-i18n="reg.step.industry_details">उद्योग विवरण</span></li>
+        <li class="stepper__connector" aria-hidden="true"></li>
+        <li class="stepper__item" data-step="3"><span class="stepper__num">3</span><span class="stepper__label"
+            data-i18n="reg.step.documents">दस्तावेज़</span></li>
+        <li class="stepper__connector" aria-hidden="true"></li>
+        <li class="stepper__item" data-step="4"><span class="stepper__num">4</span><span class="stepper__label"
+            data-i18n="reg.step.review">समीक्षा</span></li>
+      </ol>
+    </div>
+  </div>
+
+  <main id="registration-main" class="reg-main" role="main" tabindex="-1">
+    <div class="container container--md">
+
+      <!-- Step 1: eKYC -->
+      <section id="step-panel-1" class="step-panel step-panel--active" aria-labelledby="i-s1h" data-panel="1">
+        <div class="step-panel__header">
+          <h2 id="i-s1h" class="step-panel__title" data-i18n="reg.mobile.title">प्रबंधक / मालिक का मोबाइल सत्यापन</h2>
+          <p class="step-panel__desc" data-i18n="reg.mobile.subtitle">उद्योग पंजीकरण के लिए अधिकृत व्यक्ति का मोबाइल OTP से सत्यापन करें।</p>
+        </div>
+        <div class="step-panel__body">
+          <form id="form-ekyc-i" novalidate>
+            <div class="form-group">
+              <label class="form-label" for="mobile-i"><span data-i18n="form.mobile">मोबाइल नंबर</span> <span
+                  class="required-star">*</span></label>
+              <input id="mobile-i" name="mobile" type="tel" inputmode="numeric" maxlength="10"
+                class="form-control form-control--lg"
+                data-i18n="placeholder:placeholder.mobile;data-label:form.mobile" placeholder="10 अंकों का मोबाइल नंबर"
+                data-rules="required|phone" data-label="मोबाइल नंबर" />
+              <p class="form-error-text" id="mobile-i-error" role="alert" style="display:none"></p>
+            </div>
+            <div id="otp-sec-i" style="display:none">
+              <div class="form-group">
+                <label class="form-label" data-i18n="form.otp">OTP दर्ज करें</label>
+                <div class="otp-group" id="otp-group-i">
+                  <input type="text" inputmode="numeric" maxlength="1" class="otp-input" id="otp-i1" />
+                  <input type="text" inputmode="numeric" maxlength="1" class="otp-input" />
+                  <input type="text" inputmode="numeric" maxlength="1" class="otp-input" />
+                  <input type="text" inputmode="numeric" maxlength="1" class="otp-input" />
+                  <input type="text" inputmode="numeric" maxlength="1" class="otp-input" />
+                  <input type="text" inputmode="numeric" maxlength="1" class="otp-input" />
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="step-panel__actions">
+          <div></div>
+          <button type="button" class="btn btn--primary btn--lg" id="ekyc-btn-i" data-i18n="reg.ekyc.send_otp">OTP
+            भेजें</button>
+        </div>
+      </section>
+
+      <!-- Step 2: Industry Details -->
+      <section id="step-panel-2" class="step-panel" aria-labelledby="i-s2h" data-panel="2" hidden>
+        <div class="step-panel__header">
+          <h2 id="i-s2h" class="step-panel__title" data-i18n="reg.step.industry_details">उद्योग विवरण</h2>
+        </div>
+        <form id="form-industry" novalidate>
+          <div class="form-row form-row--2">
+            <div class="form-group">
+              <label class="form-label" for="industry-name"><span data-i18n="form.industry_name">उद्योग / कारखाने का
+                  नाम</span> <span class="required-star">*</span></label>
+              <input id="industry-name" name="industryName" type="text" class="form-control"
+                data-rules="required|minLength:3" data-i18n="data-label:form.industry_name" data-label="उद्योग नाम" />
+              <p class="form-error-text" id="industry-name-error" role="alert" style="display:none"></p>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="industry-type"><span data-i18n="form.industry_type">उद्योग का प्रकार</span>
+                <span class="required-star">*</span></label>
+              <select id="industry-type" name="industryType" class="form-select" data-rules="required"
+                data-i18n="data-label:form.industry_type" data-label="उद्योग प्रकार">
+                <option value="" data-i18n="placeholder.select">चुनें</option>
+                <option value="manufacturing" data-i18n="industry_type.manufacturing">विनिर्माण</option>
+                <option value="construction" data-i18n="industry_type.construction">निर्माण</option>
+                <option value="textile" data-i18n="industry_type.textile">वस्त्र उद्योग</option>
+                <option value="food" data-i18n="industry_type.food">खाद्य प्रसंस्करण</option>
+                <option value="chemical" data-i18n="industry_type.chemical">रसायन उद्योग</option>
+                <option value="engineering" data-i18n="industry_type.engineering">इंजीनियरिंग</option>
+                <option value="other" data-i18n="trade.other">अन्य</option>
+              </select>
+              <p class="form-error-text" id="industry-type-error" role="alert" style="display:none"></p>
+            </div>
+          </div>
+          <div class="form-row form-row--2">
+            <div class="form-group">
+              <label class="form-label" for="industry-pan"><span data-i18n="form.pan">PAN नंबर</span> <span
+                  class="required-star">*</span></label>
+              <input id="industry-pan" name="pan" type="text" maxlength="10" class="form-control"
+                placeholder="ABCDE1234F" data-rules="required|pan"
+                data-i18n="placeholder:placeholder.pan;data-label:form.pan" data-label="PAN" />
+              <p class="form-error-text" id="industry-pan-error" role="alert" style="display:none"></p>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="industry-gstin"><span data-i18n="form.gstin">GSTIN</span> <span
+                  class="required-star">*</span></label>
+              <input id="industry-gstin" name="gstin" type="text" maxlength="15" class="form-control"
+                data-rules="required|gst" data-i18n="placeholder:placeholder.gstin;data-label:form.gstin"
+                data-label="GSTIN" />
+              <p class="form-error-text" id="industry-gstin-error" role="alert" style="display:none"></p>
+            </div>
+          </div>
+          <div class="form-row form-row--2">
+            <div class="form-group">
+              <label class="form-label" for="worker-count"><span data-i18n="form.worker_count">कुल श्रमिक संख्या</span>
+                <span class="required-star">*</span></label>
+              <input id="worker-count" name="workerCount" type="number" min="1" class="form-control"
+                data-i18n="placeholder:placeholder.worker_count;data-label:form.worker_count" placeholder="जैसे: 50"
+                data-rules="required|numeric|min:1" data-label="श्रमिक संख्या" />
+              <p class="form-error-text" id="worker-count-error" role="alert" style="display:none"></p>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="industry-pincode"><span data-i18n="form.pincode">पिन कोड</span> <span
+                  class="required-star">*</span></label>
+              <input id="industry-pincode" name="pincode" type="tel" inputmode="numeric" maxlength="6"
+                class="form-control" data-i18n="placeholder:placeholder.pincode;data-label:form.pincode"
+                placeholder="6 अंकों का पिन कोड" data-rules="required|pincode" data-label="पिन कोड" />
+              <p class="form-error-text" id="industry-pincode-error" role="alert" style="display:none"></p>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="industry-address"><span data-i18n="form.industry_address">उद्योग का पूरा
+                पता</span> <span class="required-star">*</span></label>
+            <textarea id="industry-address" name="address" class="form-textarea" rows="3"
+              data-rules="required|minLength:10"
+              data-i18n="placeholder:placeholder.industry_address;data-label:form.industry_address"
+              data-label="पता"></textarea>
+            <p class="form-error-text" id="industry-address-error" role="alert" style="display:none"></p>
+          </div>
+        </form>
+        <div class="step-panel__actions">
+          <button type="button" class="btn btn--secondary btn--lg" id="i-s2-back"><svg width="18" height="18"
+              viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+              aria-hidden="true">
+              <polyline points="15 18 9 12 15 6" />
+            </svg> <span data-i18n="action.previous">पिछला</span></button>
+          <button type="button" class="btn btn--primary btn--lg" id="i-s2-next"><span data-i18n="action.next">आगे</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+              stroke-linecap="round" aria-hidden="true">
+              <polyline points="9 18 15 12 9 6" />
+            </svg></button>
+        </div>
+      </section>
+
+      <!-- Step 3: Documents -->
+      <section id="step-panel-3" class="step-panel" aria-labelledby="i-s3h" data-panel="3" hidden>
+        <div class="step-panel__header">
+          <h2 id="i-s3h" class="step-panel__title" data-i18n="reg.docs.title">दस्तावेज़ अपलोड</h2>
+        </div>
+        <div class="step-panel__body">
+          <div class="doc-upload-list">
+            <div class="doc-upload-item">
+              <div class="doc-upload-item__info"><span class="doc-upload-item__name"><span
+                    data-i18n="doc.factory_license">कारखाना पंजीकरण प्रमाण-पत्र</span> <span
+                    class="required-star">*</span></span><span class="doc-upload-item__hint"
+                  data-i18n="reg.docs.hint_2mb">PDF — max 2MB</span></div>
+              <div class="upload-zone upload-zone--compact" id="upload-factory-license"><input type="file"
+                  class="upload-zone__input" accept=".pdf,.jpg,.jpeg" /><span class="upload-zone__icon">📄</span><span
+                  class="upload-zone__sub" data-i18n="reg.docs.upload_zone_text">फ़ाइल चुनें</span></div>
+              <div class="upload-file-list" id="list-factory-license"></div>
+            </div>
+            <div class="doc-upload-item">
+              <div class="doc-upload-item__info"><span class="doc-upload-item__name"><span data-i18n="doc.gst_cert">GST
+                    प्रमाण-पत्र</span> <span class="required-star">*</span></span><span class="doc-upload-item__hint"
+                  data-i18n="reg.docs.hint_2mb">PDF — max 2MB</span></div>
+              <div class="upload-zone upload-zone--compact" id="upload-gst-cert"><input type="file"
+                  class="upload-zone__input" accept=".pdf,.jpg,.jpeg" /><span class="upload-zone__icon">📎</span><span
+                  class="upload-zone__sub" data-i18n="reg.docs.upload_zone_text">फ़ाइल चुनें</span></div>
+              <div class="upload-file-list" id="list-gst-cert"></div>
+            </div>
+            <div class="doc-upload-item">
+              <div class="doc-upload-item__info"><span class="doc-upload-item__name"><span data-i18n="form.pan">PAN
+                    कार्ड</span> <span class="required-star">*</span></span><span class="doc-upload-item__hint"
+                  data-i18n="reg.docs.hint_2mb">JPG, PNG, PDF — max 2MB</span></div>
+              <div class="upload-zone upload-zone--compact" id="upload-pan-card"><input type="file"
+                  class="upload-zone__input" accept=".pdf,.jpg,.jpeg,.png" /><span
+                  class="upload-zone__icon">🪪</span><span class="upload-zone__sub"
+                  data-i18n="reg.docs.upload_zone_text">फ़ाइल चुनें</span></div>
+              <div class="upload-file-list" id="list-pan-card"></div>
+            </div>
+          </div>
+        </div>
+        <div class="step-panel__actions">
+          <button type="button" class="btn btn--secondary btn--lg" id="i-s3-back"><svg width="18" height="18"
+              viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+              aria-hidden="true">
+              <polyline points="15 18 9 12 15 6" />
+            </svg> <span data-i18n="action.previous">पिछला</span></button>
+          <button type="button" class="btn btn--primary btn--lg" id="i-s3-next"><span data-i18n="action.next">आगे</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+              stroke-linecap="round" aria-hidden="true">
+              <polyline points="9 18 15 12 9 6" />
+            </svg></button>
+        </div>
+      </section>
+
+      <!-- Step 4: Review & Submit -->
+      <section id="step-panel-4" class="step-panel" aria-labelledby="i-s4h" data-panel="4" hidden>
+        <div class="step-panel__header">
+          <h2 id="i-s4h" class="step-panel__title" data-i18n="reg.step.review">समीक्षा एवं जमा करें</h2>
+        </div>
+        <div class="step-panel__body" id="review-body-i"></div>
+        <div class="form-group reg-declaration">
+          <label class="form-check-label" for="decl-i">
+            <input type="checkbox" id="decl-i" class="form-check-input" required />
+            <span data-i18n="reg.review.declaration_ind">मैं प्रमाणित करता/करती हूं कि उपरोक्त सभी जानकारी सत्य
+              है।</span>
+          </label>
+        </div>
+        <div class="step-panel__actions">
+          <button type="button" class="btn btn--secondary btn--lg" id="i-s4-back"><svg width="18" height="18"
+              viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+              aria-hidden="true">
+              <polyline points="15 18 9 12 15 6" />
+            </svg> <span data-i18n="action.previous">पिछला</span></button>
+          <button type="button" class="btn btn--primary btn--lg" id="i-submit"><span data-i18n="action.submit">जमा
+              करें</span> <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2.5" stroke-linecap="round" aria-hidden="true">
+              <polyline points="20 6 9 17 4 12" />
+            </svg></button>
+        </div>
+      </section>
+
+      <!-- Success -->
+      <div id="reg-success" class="reg-success" hidden>
+        <div class="reg-success__icon"><svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="1.5" stroke-linecap="round">
+            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+            <polyline points="22 4 12 14.01 9 11.01" />
+          </svg></div>
+        <h2 class="reg-success__title" data-i18n="reg.success.title">पंजीकरण सफल!</h2>
+        <p class="reg-success__msg" data-i18n="reg.success.msg_ind">आपका उद्योग पंजीकरण सफलतापूर्वक जमा किया गया।</p>
+        <div class="reg-success__id-box"><span class="reg-success__id-label" data-i18n="reg.success.id_label_ind">उद्योग
+            आईडी</span><strong class="reg-success__id-value" id="industry-reg-id">—</strong></div>
+        <div class="reg-success__actions">
+          <button class="btn btn--primary btn--lg" onclick="window.print()" data-i18n="action.print">प्रिंट
+            करें</button>
+          <a href="../../pages/home/index.html" class="btn btn--secondary btn--lg"
+            data-i18n="reg.success.go_home">होम</a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="reg-footer" role="contentinfo">
+    <div class="container">
+      <p class="reg-footer__text">&copy; <span class="js-year"></span> Kaushal Setu — <a href="#"
+          data-i18n="footer.privacy">गोपनीयता नीति</a> | <a href="#" data-i18n="footer.terms">नियम एवं शर्तें</a></p>
+    </div>
+  </footer>
+
+  <script src="../../assets/js/common/safe-storage.js"></script>
+  <script src="../../assets/js/common/app.js"></script>
+  <script src="../../assets/js/common/i18n.js"></script>
+  <script src="../../assets/js/common/validation.js"></script>
+  <script src="../../components/alerts/alerts.js"></script>
+  <script src="industry-registration.js"></script>
+</body>
+
+</html>
+
+

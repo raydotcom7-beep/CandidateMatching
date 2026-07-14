@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="hi-IN" data-theme="light">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Kaushal Setu — श्रमिक पंजीकरण" />
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="icon" type="image/png" href="../../assets/images/logos/KaushalSetuLogo.png" />
+  <title>श्रमिक पंजीकरण — Kaushal Setu</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+Devanagari:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="../../assets/css/common/design-tokens.css" />
+  <link rel="stylesheet" href="../../assets/css/common/reset.css" />
+  <link rel="stylesheet" href="../../assets/css/common/typography.css" />
+  <link rel="stylesheet" href="../../assets/css/common/utilities.css" />
+  <link rel="stylesheet" href="../../layouts/registration-layout/registration-layout.css" />
+  <link rel="stylesheet" href="../../components/forms/forms.css" />
+  <link rel="stylesheet" href="../../components/widgets/widgets.css" />
+  <link rel="stylesheet" href="../../components/alerts/alerts.css" />
+  <link rel="stylesheet" href="labour-registration.css" />
+</head>
+
+<body class="layout-registration">
+
+  <a href="#registration-main" class="skip-link" data-i18n="ui.skip_to_content">मुख्य सामग्री पर जाएं</a>
+
+  <!-- Slim Header -->
+  <header class="reg-header" role="banner">
+    <div class="reg-header__inner container">
+      <a href="../../pages/home/index.html" class="reg-header__brand">
+        <img src="../../assets/images/logos/KaushalSetuLogo.png" alt="Kaushal Setu" width="150" height="150" />
+
+      </a>
+      <h1 class="reg-header__page-title" id="reg-page-title" data-i18n="reg.title.labour">श्रमिक पंजीकरण</h1>
+      <div class="reg-header__controls">
+        <button id="lang-toggle" class="btn btn--ghost btn--sm" data-lang-toggle
+          aria-label="Switch to English">English</button>
+        <button id="theme-toggle" class="btn btn--ghost btn--sm" aria-label="Switch to dark mode">
+          <svg class="icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2" stroke-linecap="round" aria-hidden="true">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+          </svg>
+          <svg class="icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2" stroke-linecap="round" aria-hidden="true" style="display:none">
+            <circle cx="12" cy="12" r="5" />
+          </svg>
+        </button>
+        <a href="../../pages/home/index.html" class="btn btn--ghost btn--sm reg-header__exit" aria-label="बंद करें"
+          data-i18n="aria-label:action.close">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+            stroke-linecap="round" aria-hidden="true">
+            <line x1="18" y1="6" x2="6" y2="18" />
+            <line x1="6" y1="6" x2="18" y2="18" />
+          </svg>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Stepper -->
+  <div class="reg-stepper" role="navigation" aria-label="पंजीकरण चरण">
+    <div class="container">
+      <ol class="stepper__list" id="reg-stepper-list" role="list">
+        <li class="stepper__item stepper__item--active" data-step="1"><span class="stepper__num"
+            aria-hidden="true">1</span><span class="stepper__label" data-i18n="reg.step.mobile">मोबाइल
+            सत्यापन</span></li>
+        <li class="stepper__connector" aria-hidden="true"></li>
+        <li class="stepper__item" data-step="2"><span class="stepper__num" aria-hidden="true">2</span><span
+            class="stepper__label" data-i18n="reg.step.personal">व्यक्तिगत जानकारी</span></li>
+        <li class="stepper__connector" aria-hidden="true"></li>
+        <li class="stepper__item" data-step="3"><span class="stepper__num" aria-hidden="true">3</span><span
+            class="stepper__label" data-i18n="reg.step.edu">शैक्षणिक योग्यता</span></li>
+        <li class="stepper__connector" aria-hidden="true"></li>
+        <li class="stepper__item" data-step="4"><span class="stepper__num" aria-hidden="true">4</span><span
+            class="stepper__label" data-i18n="reg.step.documents">दस्तावेज़</span></li>
+        <li class="stepper__connector" aria-hidden="true"></li>
+        <li class="stepper__item" data-step="5"><span class="stepper__num" aria-hidden="true">5</span><span
+            class="stepper__label" data-i18n="reg.step.review">समीक्षा</span></li>
+      </ol>
+    </div>
+  </div>
+
+  <main id="registration-main" class="reg-main" role="main" tabindex="-1">
+    <div class="container container--md">
+
+      <!-- Alert -->
+      <div id="reg-alert" class="reg-alert" role="alert" aria-live="polite" hidden>
+        <span class="reg-alert__icon" aria-hidden="true">⚠️</span>
+        <span class="reg-alert__text" id="reg-alert-text"></span>
+        <button class="reg-alert__close" aria-label="बंद करें" onclick="this.parentElement.hidden=true">×</button>
+      </div>
+
+      <!-- STEP 1: Mobile Verification -->
+      <section id="step-panel-1" class="step-panel step-panel--active" aria-labelledby="step1-h" data-panel="1">
+        <div class="step-panel__header">
+          <h2 id="step1-h" class="step-panel__title" data-i18n="reg.mobile.title">मोबाइल OTP सत्यापन</h2>
+          <p class="step-panel__desc" data-i18n="reg.mobile.subtitle">पंजीकरण के लिए अपना मोबाइल नंबर दर्ज करें।</p>
+        </div>
+        <div class="step-panel__body">
+          <form id="form-ekyc" novalidate>
+            <div class="form-group">
+              <label class="form-label" for="mobile-num"><span data-i18n="form.mobile">मोबाइल नंबर</span> <span
+                  class="required-star" aria-hidden="true">*</span></label>
+              <input id="mobile-num" name="mobile" type="tel" inputmode="numeric" maxlength="10"
+                class="form-control form-control--lg" placeholder="10 अंकों का मोबाइल नंबर" data-rules="required|phone"
+                data-label="मोबाइल नंबर" data-i18n="placeholder:placeholder.mobile; data-label:form.mobile"
+                autocomplete="off" />
+              <p class="form-error-text" id="mobile-num-error" role="alert" style="display:none"></p>
+              <p class="form-hint" data-i18n="reg.ekyc.dpdp_hint">आपका डेटा DPDP Act 2023 के अंतर्गत सुरक्षित है।</p>
+            </div>
+            <div id="ekyc-otp-section" style="display:none">
+              <div class="form-group">
+                <label class="form-label" data-i18n="form.otp">OTP दर्ज करें</label>
+                <div class="otp-group" id="ekyc-otp-group">
+                  <input type="text" inputmode="numeric" maxlength="1" class="otp-input" id="otp-1" />
+                  <input type="text" inputmode="numeric" maxlength="1" class="otp-input" />
+                  <input type="text" inputmode="numeric" maxlength="1" class="otp-input" />
+                  <input type="text" inputmode="numeric" maxlength="1" class="otp-input" />
+                  <input type="text" inputmode="numeric" maxlength="1" class="otp-input" />
+                  <input type="text" inputmode="numeric" maxlength="1" class="otp-input" />
+                </div>
+                <p class="form-hint"><button type="button" class="btn-text" id="resend-ekyc-otp"
+                    data-i18n="reg.ekyc.resend_otp">OTP पुनः भेजें</button></p>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="step-panel__actions">
+          <div></div>
+          <button type="button" class="btn btn--primary btn--lg" id="ekyc-action-btn" data-i18n="reg.ekyc.send_otp">OTP
+            भेजें</button>
+        </div>
+      </section>
+
+      <!-- STEP 2: Personal Info -->
+      <section id="step-panel-2" class="step-panel" aria-labelledby="step2-h" data-panel="2" hidden>
+        <div class="step-panel__header">
+          <h2 id="step2-h" class="step-panel__title" data-i18n="reg.step.personal">व्यक्तिगत जानकारी</h2>
+          <p class="step-panel__desc" data-i18n="reg.personal.desc">आधार eKYC से प्राप्त जानकारी नीचे भरी गई है। शेष
+            विवरण भरें।</p>
+        </div>
+        <div class="ekyc-info-banner">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            aria-hidden="true">
+            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+            <polyline points="22 4 12 14.01 9 11.01" />
+          </svg>
+          <span data-i18n="reg.personal.ekyc_banner">आधार eKYC से स्वतः भरे गए फ़ील्ड संपादित नहीं किए जा सकते।</span>
+        </div>
+        <form id="form-personal" novalidate>
+          <div class="form-row form-row--2">
+            <div class="form-group">
+              <label class="form-label" for="full-name"><span data-i18n="form.full_name">पूरा नाम</span> <span
+                  class="required-star" aria-hidden="true">*</span></label>
+              <input id="full-name" name="fullName" type="text" class="form-control"
+                data-rules="required|alpha|minLength:3" data-label="पूरा नाम" data-i18n="data-label:form.full_name" />
+              <p class="form-error-text" id="full-name-error" role="alert" style="display:none"></p>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="father-name"><span data-i18n="form.father_name">पिता / पति का नाम</span>
+                <span class="required-star" aria-hidden="true">*</span></label>
+              <input id="father-name" name="fatherName" type="text" class="form-control" data-rules="required|alpha"
+                data-label="पिता का नाम" data-i18n="data-label:form.father_name" />
+              <p class="form-error-text" id="father-name-error" role="alert" style="display:none"></p>
+            </div>
+          </div>
+          <div class="form-row form-row--2">
+            <div class="form-group">
+              <label class="form-label" for="dob"><span data-i18n="form.dob">जन्म तिथि</span> <span
+                  class="required-star" aria-hidden="true">*</span></label>
+              <input id="dob" name="dob" type="date" class="form-control" data-rules="required|date"
+                data-label="जन्म तिथि" data-i18n="data-label:form.dob" />
+              <p class="form-error-text" id="dob-error" role="alert" style="display:none"></p>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="gender"><span data-i18n="form.gender">लिंग</span> <span
+                  class="required-star" aria-hidden="true">*</span></label>
+              <select id="gender" name="gender" class="form-select" data-rules="required" data-label="लिंग"
+                data-i18n="data-label:form.gender">
+                <option value="" data-i18n="placeholder.select">चुनें</option>
+                <option value="M" data-i18n="form.gender.male">पुरुष</option>
+                <option value="F" data-i18n="form.gender.female">महिला</option>
+                <option value="O" data-i18n="form.gender.other">अन्य</option>
+              </select>
+              <p class="form-error-text" id="gender-error" role="alert" style="display:none"></p>
+            </div>
+          </div>
+          <div class="form-row form-row--2">
+            <div class="form-group">
+              <label class="form-label" for="mobile"><span data-i18n="form.mobile">मोबाइल नंबर</span> <span
+                  class="required-star" aria-hidden="true">*</span></label>
+              <input id="mobile" name="mobile" type="tel" inputmode="numeric" maxlength="10" class="form-control"
+                placeholder="10 अंकों का मोबाइल" data-rules="required|phone" data-label="मोबाइल नंबर"
+                data-i18n="placeholder:placeholder.mobile; data-label:form.mobile" />
+              <p class="form-error-text" id="mobile-error" role="alert" style="display:none"></p>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="email"><span data-i18n="form.email">ईमेल</span> <span class="optional-tag"
+                  data-i18n="ui.optional">(वैकल्पिक)</span></label>
+              <input id="email" name="email" type="email" class="form-control" placeholder="example@email.com"
+                data-rules="email" data-label="ईमेल" data-i18n="placeholder:placeholder.email; data-label:form.email" />
+              <p class="form-error-text" id="email-error" role="alert" style="display:none"></p>
+            </div>
+          </div>
+          <div class="form-section">
+            <div class="form-section__title" data-i18n="reg.personal.additional_details">अतिरिक्त व्यक्तिगत विवरण</div>
+          </div>
+          <div class="form-row form-row--3">
+            <div class="form-group">
+              <label class="form-label" for="domicile"><span data-i18n="form.domicile">मूल निवास</span> <span
+                  class="required-star" aria-hidden="true">*</span></label>
+              <select id="domicile" name="domicile" class="form-select" data-rules="required" data-label="मूल निवास"
+                data-i18n="data-label:form.domicile">
+                <option value="" data-i18n="placeholder.select">चुनें</option>
+                <option value="MP" data-i18n="domicile.mp">मध्य प्रदेश (MP)</option>
+                <option value="Other" data-i18n="domicile.other">अन्य राज्य (Other)</option>
+              </select>
+              <p class="form-error-text" id="domicile-error" role="alert" style="display:none"></p>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="samagra-id"><span data-i18n="form.samagra_id">समग्र आईडी</span> <span
+                  class="required-star" aria-hidden="true">*</span></label>
+              <input id="samagra-id" name="samagraId" type="tel" inputmode="numeric" maxlength="9" class="form-control"
+                placeholder="9 अंकों की समग्र आईडी" data-rules="required|numeric|exactLength:9" data-label="समग्र आईडी"
+                data-i18n="placeholder:placeholder.samagra_id; data-label:form.samagra_id" />
+              <p class="form-error-text" id="samagra-id-error" role="alert" style="display:none"></p>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="marital-status"><span data-i18n="form.marital_status">वैवाहिक स्थिति</span> <span
+                  class="required-star" aria-hidden="true">*</span></label>
+              <select id="marital-status" name="maritalStatus" class="form-select" data-rules="required" data-label="वैवाहिक स्थिति"
+                data-i18n="data-label:form.marital_status">
+                <option value="" data-i18n="placeholder.select">चुनें</option>
+                <option value="single" data-i18n="marital.single">अविवाहित</option>
+                <option value="married" data-i18n="marital.married">विवाहित</option>
+                <option value="divorced" data-i18n="marital.divorced">तलाकशुदा</option>
+                <option value="widowed" data-i18n="marital.widowed">विधवा / विधुर</option>
+              </select>
+              <p class="form-error-text" id="marital-status-error" role="alert" style="display:none"></p>
+            </div>
+          </div>
+          <div class="form-section">
+            <div class="form-section__title" data-i18n="form.address">पता</div>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="address"><span data-i18n="form.address">पूरा पता</span> <span
+                class="required-star" aria-hidden="true">*</span></label>
+            <textarea id="address" name="address" class="form-textarea" rows="3" placeholder="गाँव/मोहल्ला, तहसील, जिला"
+              data-rules="required|minLength:10" data-label="पता"
+              data-i18n="placeholder:reg.personal.address_placeholder; data-label:form.address"></textarea>
+            <p class="form-error-text" id="address-error" role="alert" style="display:none"></p>
+          </div>
+          <div class="form-row form-row--2">
+            <div class="form-group">
+              <label class="form-label" for="district"><span data-i18n="form.district">जिला</span> <span
+                  class="required-star" aria-hidden="true">*</span></label>
+              <input id="district" name="district" type="text" class="form-control" data-rules="required"
+                data-label="जिला" data-i18n="data-label:form.district" />
+              <p class="form-error-text" id="district-error" role="alert" style="display:none"></p>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="pincode"><span data-i18n="form.pincode">पिन कोड</span> <span
+                  class="required-star" aria-hidden="true">*</span></label>
+              <input id="pincode" name="pincode" type="tel" inputmode="numeric" maxlength="6" class="form-control"
+                placeholder="6 अंकों का पिन कोड" data-rules="required|pincode" data-label="पिन कोड"
+                data-i18n="placeholder:placeholder.pincode; data-label:form.pincode" />
+              <p class="form-error-text" id="pincode-error" role="alert" style="display:none"></p>
+            </div>
+          </div>
+        </form>
+        <div class="step-panel__actions">
+          <button type="button" class="btn btn--secondary btn--lg" id="step2-back">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+              stroke-linecap="round" aria-hidden="true">
+              <polyline points="15 18 9 12 15 6" />
+            </svg>
+            <span data-i18n="action.previous">पिछला</span>
+          </button>
+          <button type="button" class="btn btn--primary btn--lg" id="step2-next"><span
+              data-i18n="action.next">आगे</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+              stroke-linecap="round" aria-hidden="true">
+              <polyline points="9 18 15 12 9 6" />
+            </svg>
+          </button>
+        </div>
+      </section>
+
+      <!-- STEP 3: Education Details -->
+      <section id="step-panel-3" class="step-panel" aria-labelledby="step3-h" data-panel="3" hidden>
+        <div class="step-panel__header">
+          <h2 id="step3-h" class="step-panel__title" data-i18n="reg.step.edu">शैक्षणिक योग्यता</h2>
+          <p class="step-panel__desc" data-i18n="reg.edu.subtitle">कृपया अपनी शैक्षणिक योग्यता का विवरण दर्ज करें।</p>
+        </div>
+        <div class="step-panel__body">
+          <form id="form-education" novalidate>
+            <!-- 10th Class Details -->
+            <div class="form-section">
+              <div class="form-section__title" data-i18n="edu.section.tenth">10वीं की जानकारी</div>
+            </div>
+            <div class="form-row form-row--2">
+              <div class="form-group">
+                <label class="form-label" for="tenth-board"><span data-i18n="edu.board">बोर्ड का नाम</span></label>
+                <input id="tenth-board" name="tenthBoard" type="text" class="form-control" placeholder="उदा. MP Board" data-rules="" data-label="10वीं बोर्ड" data-i18n="placeholder:placeholder.tenth_board" />
+                <p class="form-error-text" id="tenth-board-error" role="alert" style="display:none"></p>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="tenth-year"><span data-i18n="edu.passing_year">उत्तीर्ण होने का वर्ष</span></label>
+                <div class="input-toggle-container" style="position: relative; display: flex; align-items: center; gap: 8px; width: 100%;">
+                  <select id="tenth-year" name="tenthYear" class="form-select" data-rules="" data-label="10वीं उत्तीर्ण वर्ष">
+                    <option value="" data-i18n="placeholder.select">चुनें</option>
+                  </select>
+                  <div id="tenth-year-custom-wrapper" style="display: none; align-items: center; gap: 8px; width: 100%;">
+                    <input id="tenth-year-custom" type="number" min="1900" max="2090" class="form-control" placeholder="उदा. 1995" data-label="10वीं उत्तीर्ण वर्ष" data-i18n="placeholder:placeholder.year_custom" />
+                    <button type="button" class="btn-custom-reset" id="tenth-year-reset" style="background: none; border: none; font-size: 18px; cursor: pointer; color: var(--color-gray-dark); padding: 4px 8px;">✕</button>
+                  </div>
+                </div>
+                <p class="form-error-text" id="tenth-year-error" role="alert" style="display:none"></p>
+              </div>
+            </div>
+            <div class="form-row form-row--2">
+              <div class="form-group">
+                <label class="form-label" for="tenth-marks"><span data-i18n="edu.marks">प्राप्त अंक (%)</span></label>
+                <input id="tenth-marks" name="tenthMarks" type="number" min="0" max="100" step="0.01" class="form-control" placeholder="उदा. 75.5" data-rules="min:0|max:100" data-label="10वीं प्रतिशत" />
+                <p class="form-error-text" id="tenth-marks-error" role="alert" style="display:none"></p>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="tenth-division"><span data-i18n="edu.division">श्रेणी</span></label>
+                <select id="tenth-division" name="tenthDivision" class="form-select" data-rules="" data-label="10वीं श्रेणी">
+                  <option value="" data-i18n="placeholder.select">चुनें</option>
+                  <option value="1" data-i18n="edu.division.first">प्रथम श्रेणी</option>
+                  <option value="2" data-i18n="edu.division.second">द्वितीय श्रेणी</option>
+                  <option value="3" data-i18n="edu.division.third">तृतीय श्रेणी</option>
+                </select>
+                <p class="form-error-text" id="tenth-division-error" role="alert" style="display:none"></p>
+              </div>
+            </div>
+
+            <!-- 12th Class Details -->
+            <div class="form-section">
+              <div class="form-section__title" data-i18n="edu.section.twelfth">12वीं की जानकारी</div>
+            </div>
+            <div class="form-row form-row--2">
+              <div class="form-group">
+                <label class="form-label" for="twelfth-board"><span data-i18n="edu.board">बोर्ड का नाम</span></label>
+                <input id="twelfth-board" name="twelfthBoard" type="text" class="form-control" placeholder="उदा. MP Board" data-rules="" data-label="12वीं बोर्ड" data-i18n="placeholder:placeholder.twelfth_board" />
+                <p class="form-error-text" id="twelfth-board-error" role="alert" style="display:none"></p>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="twelfth-year"><span data-i18n="edu.passing_year">उत्तीर्ण होने का वर्ष</span></label>
+                <div class="input-toggle-container" style="position: relative; display: flex; align-items: center; gap: 8px; width: 100%;">
+                  <select id="twelfth-year" name="twelfthYear" class="form-select" data-rules="" data-label="12वीं उत्तीर्ण वर्ष">
+                    <option value="" data-i18n="placeholder.select">चुनें</option>
+                  </select>
+                  <div id="twelfth-year-custom-wrapper" style="display: none; align-items: center; gap: 8px; width: 100%;">
+                    <input id="twelfth-year-custom" type="number" min="1900" max="2090" class="form-control" placeholder="उदा. 1995" data-label="12वीं उत्तीर्ण वर्ष" data-i18n="placeholder:placeholder.year_custom" />
+                    <button type="button" class="btn-custom-reset" id="twelfth-year-reset" style="background: none; border: none; font-size: 18px; cursor: pointer; color: var(--color-gray-dark); padding: 4px 8px;">✕</button>
+                  </div>
+                </div>
+                <p class="form-error-text" id="twelfth-year-error" role="alert" style="display:none"></p>
+              </div>
+            </div>
+            <div class="form-row form-row--2">
+              <div class="form-group">
+                <label class="form-label" for="twelfth-marks"><span data-i18n="edu.marks">प्राप्त अंक (%)</span></label>
+                <input id="twelfth-marks" name="twelfthMarks" type="number" min="0" max="100" step="0.01" class="form-control" placeholder="उदा. 75.5" data-rules="min:0|max:100" data-label="12वीं प्रतिशत" />
+                <p class="form-error-text" id="twelfth-marks-error" role="alert" style="display:none"></p>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="twelfth-division"><span data-i18n="edu.division">श्रेणी</span></label>
+                <select id="twelfth-division" name="twelfthDivision" class="form-select" data-rules="" data-label="12वीं श्रेणी">
+                  <option value="" data-i18n="placeholder.select">चुनें</option>
+                  <option value="1" data-i18n="edu.division.first">प्रथम श्रेणी</option>
+                  <option value="2" data-i18n="edu.division.second">द्वितीय श्रेणी</option>
+                  <option value="3" data-i18n="edu.division.third">तृतीय श्रेणी</option>
+                </select>
+                <p class="form-error-text" id="twelfth-division-error" role="alert" style="display:none"></p>
+              </div>
+            </div>
+
+            <!-- Higher Education Container -->
+            <div id="higher-education-container"></div>
+            <div style="margin-top: 12px; margin-bottom: 24px; display: flex; justify-content: flex-end;">
+              <button type="button" class="btn btn--secondary btn--sm" id="add-higher-education-btn">+ शैक्षणिक योग्यता जोड़ें</button>
+            </div>
+            
+            <!-- Additional Info Details -->
+            <div class="form-section">
+              <div class="form-section__title" data-i18n="edu.section.additional">अतिरिक्त विवरण</div>
+            </div>
+            <div class="form-row form-row--3">
+              <div class="form-group">
+                <label class="form-label" for="pref-location"><span data-i18n="edu.pref_location">पसंदीदा स्थान</span></label>
+                <input id="pref-location" name="prefLocation" type="text" class="form-control" placeholder="उदा. भोपाल, इंदौर" data-rules="" data-label="पसंदीदा स्थान" data-i18n="placeholder:placeholder.pref_loc" />
+                <p class="form-error-text" id="pref-location-error" role="alert" style="display:none"></p>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="exp-years"><span data-i18n="edu.exp_years">अनुभव (वर्षों में)</span></label>
+                <input id="exp-years" name="expYears" type="number" min="0" max="50" class="form-control" placeholder="0" data-rules="min:0|max:50" data-label="अनुभव वर्ष" />
+                <p class="form-error-text" id="exp-years-error" role="alert" style="display:none"></p>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="skills-input"><span data-i18n="edu.skills">कौशल / स्किल्स</span> <span id="skills-required-star" class="required-star" aria-hidden="true" style="display:none">*</span></label>
+                <input id="skills-input" name="skills" type="text" class="form-control" placeholder="उदा. वेल्डिंग, प्लंबिंग" data-rules="" data-label="कौशल" data-i18n="placeholder:placeholder.skills_input" disabled />
+                <p class="form-error-text" id="skills-input-error" role="alert" style="display:none"></p>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="step-panel__actions">
+          <button type="button" class="btn btn--secondary btn--lg" id="step3-back">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+              stroke-linecap="round" aria-hidden="true">
+              <polyline points="15 18 9 12 15 6" />
+            </svg>
+            <span data-i18n="action.previous">पिछला</span>
+          </button>
+          <button type="button" class="btn btn--primary btn--lg" id="step3-next"><span
+              data-i18n="action.next">आगे</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+              stroke-linecap="round" aria-hidden="true">
+              <polyline points="9 18 15 12 9 6" />
+            </svg>
+          </button>
+        </div>
+      </section>
+
+      <!-- STEP 4: Documents -->
+      <section id="step-panel-4" class="step-panel" aria-labelledby="step4-h" data-panel="4" hidden>
+        <div class="step-panel__header">
+          <h2 id="step4-h" class="step-panel__title" data-i18n="reg.docs.title">दस्तावेज़ अपलोड</h2>
+          <p class="step-panel__desc" data-i18n="reg.docs.desc">PDF, JPG या PNG — अधिकतम 2MB प्रत्येक।</p>
+        </div>
+        <div class="step-panel__body">
+          <div class="doc-upload-list">
+            <div class="doc-upload-item">
+              <div class="doc-upload-item__info">
+                <span class="doc-upload-item__name"><span data-i18n="reg.docs.tenth_marksheet">10वीं की अंकसूची (10th Marksheet)</span>
+                  <span class="required-star" aria-hidden="true">*</span></span>
+                <span class="doc-upload-item__hint" data-i18n="reg.docs.hint_2mb">JPG, PNG, PDF — max 2MB</span>
+              </div>
+              <div id="upload-tenth-marksheet" class="upload-zone upload-zone--compact">
+                <input type="file" class="upload-zone__input" accept=".jpg,.jpeg,.png,.pdf" data-doc="tenth-marksheet" />
+                <span class="upload-zone__icon" aria-hidden="true">📎</span>
+                <span class="upload-zone__sub" data-i18n="reg.docs.upload_zone_text">फ़ाइल चुनें या यहाँ छोड़ें</span>
+              </div>
+              <div class="upload-file-list" id="list-tenth-marksheet"></div>
+            </div>
+            <div class="doc-upload-item">
+              <div class="doc-upload-item__info">
+                <span class="doc-upload-item__name"><span data-i18n="reg.docs.twelfth_marksheet">12वीं की अंकसूची (12th Marksheet)</span>
+                  <span class="required-star" aria-hidden="true">*</span></span>
+                <span class="doc-upload-item__hint" data-i18n="reg.docs.hint_2mb">JPG, PNG, PDF — max 2MB</span>
+              </div>
+              <div id="upload-twelfth-marksheet" class="upload-zone upload-zone--compact">
+                <input type="file" class="upload-zone__input" accept=".jpg,.jpeg,.png,.pdf" data-doc="twelfth-marksheet" />
+                <span class="upload-zone__icon" aria-hidden="true">📎</span>
+                <span class="upload-zone__sub" data-i18n="reg.docs.upload_zone_text">फ़ाइल चुनें या यहाँ छोड़ें</span>
+              </div>
+              <div class="upload-file-list" id="list-twelfth-marksheet"></div>
+            </div>
+            <div class="doc-upload-item">
+              <div class="doc-upload-item__info">
+                <span class="doc-upload-item__name"><span data-i18n="reg.docs.passport_photo">पासपोर्ट फोटो</span> <span
+                    class="required-star" aria-hidden="true">*</span></span>
+                <span class="doc-upload-item__hint" data-i18n="reg.docs.hint_1mb">JPG, PNG — max 1MB</span>
+              </div>
+              <div id="upload-photo" class="upload-zone upload-zone--compact">
+                <input type="file" class="upload-zone__input" accept=".jpg,.jpeg,.png" data-doc="photo" />
+                <span class="upload-zone__icon" aria-hidden="true">🖼️</span>
+                <span class="upload-zone__sub" data-i18n="reg.docs.upload_zone_text">फ़ाइल चुनें या यहाँ छोड़ें</span>
+              </div>
+              <div class="upload-file-list" id="list-photo"></div>
+            </div>
+          </div>
+        </div>
+        <div class="step-panel__actions">
+          <button type="button" class="btn btn--secondary btn--lg" id="step4-back">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+              stroke-linecap="round" aria-hidden="true">
+              <polyline points="15 18 9 12 15 6" />
+            </svg>
+            <span data-i18n="action.previous">पिछला</span>
+          </button>
+          <button type="button" class="btn btn--primary btn--lg" id="step4-next"><span
+              data-i18n="action.next">आगे</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+              stroke-linecap="round" aria-hidden="true">
+              <polyline points="9 18 15 12 9 6" />
+            </svg>
+          </button>
+        </div>
+      </section>
+
+      <!-- STEP 5: Review & Submit -->
+      <section id="step-panel-5" class="step-panel" aria-labelledby="step5-h" data-panel="5" hidden>
+        <div class="step-panel__header">
+          <h2 id="step5-h" class="step-panel__title" data-i18n="reg.step.review">समीक्षा एवं जमा करें</h2>
+          <p class="step-panel__desc" data-i18n="reg.review.desc">जमा करने से पहले सभी जानकारी की जाँच करें।</p>
+        </div>
+        <div class="step-panel__body" id="review-body">
+          <!-- filled by JS -->
+        </div>
+        <div class="form-group reg-declaration" id="reg-declaration-group">
+          <label class="form-check-label" for="reg-declaration">
+            <input type="checkbox" id="reg-declaration" name="declaration" class="form-check-input"
+              data-rules="required" data-label="घोषणा" data-i18n="data-label:reg.review.declaration" required />
+            <span data-i18n="reg.review.declaration">मैं प्रमाणित करता/करती हूं कि ऊपर दी गई सभी जानकारी सत्य और सही
+              है।</span>
+          </label>
+          <p class="form-error-text" id="reg-declaration-error" role="alert" style="display:none"></p>
+        </div>
+        <div class="step-panel__actions">
+          <button type="button" class="btn btn--secondary btn--lg" id="step5-back">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+              stroke-linecap="round" aria-hidden="true">
+              <polyline points="15 18 9 12 15 6" />
+            </svg>
+            <span data-i18n="action.previous">पिछला</span>
+          </button>
+          <button type="button" class="btn btn--primary btn--lg" id="reg-submit-btn"><span data-i18n="action.submit">जमा
+              करें</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+              stroke-linecap="round" aria-hidden="true">
+              <polyline points="20 6 9 17 4 12" />
+            </svg>
+          </button>
+        </div>
+      </section>
+
+      <!-- SUCCESS -->
+      <div id="reg-success" class="reg-success" hidden>
+        <div class="reg-success__icon">
+          <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+            stroke-linecap="round">
+            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+            <polyline points="22 4 12 14.01 9 11.01" />
+          </svg>
+        </div>
+        <h2 class="reg-success__title" data-i18n="reg.success.title">पंजीकरण सफल!</h2>
+        <p class="reg-success__msg" data-i18n="reg.success.msg">आपका श्रमिक पंजीकरण सफलतापूर्वक पूर्ण हो गया है।</p>
+        <div class="reg-success__id-box">
+          <span class="reg-success__id-label" data-i18n="dashboard.rojgar_id">रोजगार आईडी</span>
+          <strong class="reg-success__id-value" id="reg-rojgar-id">—</strong>
+        </div>
+        <div class="reg-success__actions">
+          <button class="btn btn--primary btn--lg" onclick="window.print()" data-i18n="action.print">प्रिंट
+            करें</button>
+          <a href="../../pages/home/index.html" class="btn btn--secondary btn--lg" data-i18n="reg.success.go_home">होम
+            पर जाएं</a>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="reg-footer" role="contentinfo">
+    <div class="container">
+      <p class="reg-footer__text">&copy; <span class="js-year"></span> Kaushal Setu — <a href="#"
+          data-i18n="footer.privacy">गोपनीयता नीति</a> | <a href="#" data-i18n="footer.terms">नियम एवं शर्तें</a></p>
+    </div>
+  </footer>
+
+  <script src="../../assets/js/common/safe-storage.js"></script>
+  <script src="../../assets/js/common/app.js"></script>
+  <script src="../../assets/js/common/i18n.js"></script>
+  <script src="../../assets/js/common/validation.js"></script>
+  <script src="../../components/alerts/alerts.js"></script>
+  <script src="labour-registration.js"></script>
+</body>
+
+</html>

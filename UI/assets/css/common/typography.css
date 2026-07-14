@@ -1,0 +1,322 @@
+/* ============================================================
+   TYPOGRAPHY — Font System
+   File: assets/css/common/typography.css
+   
+   Font declarations, heading hierarchy, body text, labels,
+   captions, and bilingual Hindi text classes.
+   ============================================================ */
+
+/* ── Google Fonts Import ───────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+Devanagari:wght@300;400;500;600;700;800&display=swap');
+
+
+/* ── Base Typography ───────────────────────────────────────── */
+
+body {
+  font-family: var(--font-family-latin);
+  font-size: var(--text-base);
+  font-weight: var(--weight-regular);
+  line-height: var(--leading-normal);
+  color: var(--text-primary);
+  background-color: var(--bg-body);
+}
+
+/* Hindi / Devanagari text */
+[lang="hi"],
+.text-hindi,
+.text-devanagari {
+  font-family: var(--font-family-devanagari);
+}
+
+/* When the whole page is Hindi */
+html[lang="hi"] body {
+  font-family: var(--font-family-devanagari);
+}
+
+
+/* ── Headings ──────────────────────────────────────────────── */
+
+.h1, .heading-1, h1 {
+  font-size: var(--text-4xl);
+  font-weight: var(--weight-extrabold);
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-tight);
+  color: var(--text-primary);
+}
+
+.h2, .heading-2, h2 {
+  font-size: var(--text-3xl);
+  font-weight: var(--weight-bold);
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-tight);
+  color: var(--text-primary);
+}
+
+.h3, .heading-3, h3 {
+  font-size: var(--text-2xl);
+  font-weight: var(--weight-bold);
+  line-height: var(--leading-snug);
+  color: var(--text-primary);
+}
+
+.h4, .heading-4, h4 {
+  font-size: var(--text-xl);
+  font-weight: var(--weight-semibold);
+  line-height: var(--leading-snug);
+  color: var(--text-primary);
+}
+
+.h5, .heading-5, h5 {
+  font-size: var(--text-lg);
+  font-weight: var(--weight-semibold);
+  line-height: var(--leading-snug);
+  color: var(--text-primary);
+}
+
+.h6, .heading-6, h6 {
+  font-size: var(--text-md);
+  font-weight: var(--weight-medium);
+  line-height: var(--leading-normal);
+  color: var(--text-secondary);
+}
+
+/* Responsive heading scale */
+@media (max-width: 768px) {
+  .h1, .heading-1, h1 { font-size: var(--text-3xl); }
+  .h2, .heading-2, h2 { font-size: var(--text-2xl); }
+  .h3, .heading-3, h3 { font-size: var(--text-xl); }
+  .h4, .heading-4, h4 { font-size: var(--text-lg); }
+}
+
+@media (max-width: 480px) {
+  .h1, .heading-1, h1 { font-size: var(--text-2xl); }
+  .h2, .heading-2, h2 { font-size: var(--text-xl); }
+  .h3, .heading-3, h3 { font-size: var(--text-lg); }
+}
+
+
+/* ── Body Text ─────────────────────────────────────────────── */
+
+.text-body,
+p {
+  font-size: var(--text-base);
+  line-height: var(--leading-relaxed);
+  color: var(--text-secondary);
+}
+
+.text-body-lg {
+  font-size: var(--text-md);
+  line-height: var(--leading-relaxed);
+}
+
+.text-body-sm {
+  font-size: var(--text-sm);
+  line-height: var(--leading-normal);
+}
+
+
+/* ── Labels & Form Text ────────────────────────────────────── */
+
+.text-label {
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+  line-height: var(--leading-normal);
+  color: var(--text-primary);
+  letter-spacing: var(--tracking-wide);
+}
+
+.text-label-lg {
+  font-size: var(--text-base);
+  font-weight: var(--weight-semibold);
+}
+
+.text-helper {
+  font-size: var(--text-xs);
+  line-height: var(--leading-normal);
+  color: var(--text-tertiary);
+}
+
+.text-error {
+  font-size: var(--text-xs);
+  line-height: var(--leading-normal);
+  color: var(--color-error);
+  font-weight: var(--weight-medium);
+}
+
+
+/* ── Captions & Small Text ─────────────────────────────────── */
+
+.text-caption {
+  font-size: var(--text-xs);
+  font-weight: var(--weight-regular);
+  line-height: var(--leading-normal);
+  color: var(--text-tertiary);
+  letter-spacing: var(--tracking-wide);
+}
+
+.text-overline {
+  font-size: var(--text-xs);
+  font-weight: var(--weight-semibold);
+  line-height: var(--leading-normal);
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+}
+
+
+/* ── Special Text Styles ───────────────────────────────────── */
+
+.text-hero {
+  font-size: var(--text-5xl);
+  font-weight: var(--weight-extrabold);
+  line-height: 1.1;
+  letter-spacing: var(--tracking-tight);
+  color: var(--text-inverse);
+}
+
+@media (max-width: 768px) {
+  .text-hero {
+    font-size: var(--text-3xl);
+  }
+}
+
+@media (max-width: 480px) {
+  .text-hero {
+    font-size: var(--text-2xl);
+  }
+}
+
+.text-hero-sub {
+  font-size: var(--text-xl);
+  font-weight: var(--weight-regular);
+  line-height: var(--leading-relaxed);
+  color: rgba(255, 255, 255, 0.85);
+}
+
+@media (max-width: 768px) {
+  .text-hero-sub {
+    font-size: var(--text-md);
+  }
+}
+
+/* Section title with accent underline */
+.text-section-title {
+  font-size: var(--text-2xl);
+  font-weight: var(--weight-bold);
+  color: var(--text-primary);
+  position: relative;
+  display: inline-block;
+  padding-bottom: var(--space-3);
+}
+
+.text-section-title::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 60px;
+  height: 3px;
+  background: var(--gradient-accent);
+  border-radius: var(--radius-full);
+}
+
+/* Monospace / Code */
+.text-mono,
+code,
+pre {
+  font-family: var(--font-family-mono);
+  font-size: var(--text-sm);
+}
+
+code {
+  background: var(--bg-surface-alt);
+  padding: 0.15em 0.4em;
+  border-radius: var(--radius-sm);
+  color: var(--color-accent);
+}
+
+
+/* ── Bilingual Label Pattern ───────────────────────────────── */
+/* Use: <span class="bilingual"><span class="lang-hi">नाम</span><span class="lang-en">Name</span></span> */
+
+.bilingual {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.bilingual .lang-hi {
+  font-family: var(--font-family-devanagari);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+  color: var(--text-primary);
+}
+
+.bilingual .lang-en {
+  font-size: var(--text-xs);
+  font-weight: var(--weight-regular);
+  color: var(--text-tertiary);
+}
+
+/* Inline bilingual (side-by-side) */
+.bilingual--inline {
+  flex-direction: row;
+  align-items: baseline;
+  gap: var(--space-2);
+}
+
+.bilingual--inline .lang-en {
+  font-size: var(--text-xs);
+}
+
+
+/* ── Text Utilities ────────────────────────────────────────── */
+
+.text-accent   { color: var(--text-accent); }
+.text-success  { color: var(--color-success); }
+.text-warning  { color: var(--color-warning); }
+.text-info     { color: var(--color-info); }
+.text-muted    { color: var(--text-tertiary); }
+.text-inverse  { color: var(--text-inverse); }
+
+.text-left     { text-align: left; }
+.text-center   { text-align: center; }
+.text-right    { text-align: right; }
+
+.text-bold     { font-weight: var(--weight-bold); }
+.text-semibold { font-weight: var(--weight-semibold); }
+.text-medium   { font-weight: var(--weight-medium); }
+.text-light    { font-weight: var(--weight-light); }
+
+.text-uppercase  { text-transform: uppercase; }
+.text-capitalize { text-transform: capitalize; }
+.text-lowercase  { text-transform: lowercase; }
+
+.text-nowrap  { white-space: nowrap; }
+.text-truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Links */
+.link {
+  color: var(--text-link);
+  text-decoration: none;
+  transition: color var(--duration-fast) var(--ease-default);
+  cursor: pointer;
+}
+
+.link:hover,
+.link:focus-visible {
+  color: var(--text-link-hover);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* Mandatory field indicator */
+.required::after {
+  content: ' *';
+  color: var(--color-error);
+  font-weight: var(--weight-bold);
+}

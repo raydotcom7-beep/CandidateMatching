@@ -1,0 +1,1125 @@
+<!DOCTYPE html>
+<html lang="hi-IN" data-theme="light">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="theme-color" content="#0A1628" />
+
+  <link rel="icon" type="image/png" href="../../assets/images/logos/KaushalSetuLogo.png" />
+  <title>डैशबोर्ड — Kaushal Setu</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+Devanagari:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet" />
+
+  <!-- Design System -->
+  <link rel="stylesheet" href="../../assets/css/common/design-tokens.css" />
+  <link rel="stylesheet" href="../../assets/css/common/reset.css" />
+  <link rel="stylesheet" href="../../assets/css/common/typography.css" />
+  <link rel="stylesheet" href="../../assets/css/common/utilities.css" />
+
+  <!-- Layout & Components -->
+  <link rel="stylesheet" href="../../layouts/dashboard-layout/dashboard-layout.css" />
+  <link rel="stylesheet" href="../../components/cards/cards.css" />
+  <link rel="stylesheet" href="../../components/jobs/jobs.css" />
+  <style>
+    /* Modal Styles */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(15, 23, 42, 0.6);
+      backdrop-filter: blur(4px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .modal-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .modal-content {
+      background: var(--bg-surface);
+      border-radius: 12px;
+      width: 95%;
+      max-width: 800px;
+      max-height: 95vh;
+      overflow-y: auto;
+      transform: translateY(20px);
+      transition: transform 0.3s ease;
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+    }
+
+    .modal-overlay.active .modal-content {
+      transform: translateY(0);
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--border-light, #e2e8f0);
+    }
+
+    .modal-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .btn-close-modal {
+      background: none;
+      border: none;
+      color: var(--text-secondary);
+      cursor: pointer;
+      padding: 6px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s ease;
+    }
+
+    .btn-close-modal:hover {
+      background: rgba(0, 0, 0, 0.05);
+      color: var(--text-primary);
+    }
+
+    .modal-body {
+      padding: 16px 20px;
+    }
+
+    .profile-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px 16px;
+    }
+
+    .profile-field {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .profile-label {
+      font-size: 12px;
+      color: var(--text-secondary);
+      font-weight: 500;
+    }
+
+    .profile-value {
+      font-size: 14px;
+      color: var(--text-primary);
+      font-weight: 600;
+      white-space: pre-wrap;
+    }
+  </style>
+</head>
+
+<body class="layout-dashboard" data-page="applied">
+
+  <!-- Sidebar Overlay -->
+  <div class="sidebar-overlay" id="sidebar-overlay" aria-hidden="true"></div>
+
+  <!-- Sidebar -->
+  <nav id="dashboard-sidebar" class="dashboard-sidebar" aria-label="मुख्य नेविगेशन">
+    <div class="sidebar-header">
+      <a href="servicehome.html" class="sidebar-brand">
+        <img src="../../assets/images/logos/KaushalSetuLogo.png" alt="Kaushal Setu" width="170" height="170" />
+      </a>
+    </div>
+    <div class="sidebar-nav">
+      <!-- Group 1 -->
+      <div class="sidebar-group">
+        <div class="sidebar-group-title" data-i18n="dashboard.menu.profile_identity">प्रोफाइल एवं पहचान प्रबंधन</div>
+        <ul class="sidebar-menu">
+          <li><a href="profile.html" class="sidebar-link" data-i18n="dashboard.menu.personal_profile">व्यक्तिगत प्रोफाइल
+              प्रबंधन</a></li>
+        </ul>
+      </div>
+
+      <!-- Group 2 -->
+      <div class="sidebar-group">
+        <div class="sidebar-group-title" data-i18n="dashboard.menu.employment_career">रोजगार एवं कैरियर सेवाएँ</div>
+        <ul class="sidebar-menu">
+          <li><a href="candidatedashboard.html" class="sidebar-link" data-i18n="dashboard.menu.dashboard">डैशबोर्ड</a>
+          </li>
+          <li><a href="recommendedjob.html" class="sidebar-link" data-i18n="dashboard.menu.recommended_jobs">एआई
+              अनुशंसित नौकरियां</a></li>
+          <li><a href="Appliedjobs.html" class="sidebar-link active" data-i18n="dashboard.menu.applied_jobs">आवेदन की गई
+              नौकरियां</a></li>
+          <li><a href="Courses.html" class="sidebar-link" data-i18n="dashboard.menu.recommended_courses">अनुशंसित
+              पाठ्यक्रम</a></li>
+          <li><a href="coursescompleted.html" class="sidebar-link" data-i18n="dashboard.menu.completed_courses">पूरे किए
+              गए पाठ्यक्रम</a></li>
+          <li><a href="search.html" class="sidebar-link" data-i18n="dashboard.menu.search">नौकरी खोजें</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Area -->
+  <main class="dashboard-main">
+    <header class="dashboard-header">
+      <div class="header-left">
+        <button id="sidebar-toggle" class="sidebar-toggle-btn" aria-label="मेनू टॉगल करें">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+            stroke-linecap="round">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+
+      <div class="header-right">
+        <!-- User Profile -->
+        <div class="user-profile">
+          <div class="user-info">
+            <span class="user-name">Ramesh Kumar</span>
+            <span class="user-meta"><span id="last-login-time">Last login: </span></span>
+          </div>
+          <div class="user-avatar" aria-hidden="true">RK</div>
+        </div>
+
+        <div class="header-actions">
+          <button id="lang-toggle" class="btn btn--ghost btn--sm" data-lang-toggle
+            aria-label="Switch to English">English</button>
+          <a href="../home/index.html" class="btn btn--secondary btn--sm" data-i18n="dashboard.signout">लॉग आउट</a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Content -->
+    <div class="dashboard-content">
+      <h1 class="dashboard-page-title" data-i18n="applied.title">Applied Jobs</h1>
+
+      <button id="filter-toggle-btn" class="filter-toggle-btn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon>
+        </svg>
+        <span class="toggle-label" data-i18n="filter.show">Show Filters</span>
+      </button>
+
+      <div class="jobs-layout">
+        <!-- Filter Panel -->
+        <aside class="filter-panel" id="filter-panel">
+          <div class="filter-panel__header">
+            <h2 class="filter-panel__title">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon>
+              </svg>
+              <span data-i18n="filter.title">Filters</span>
+            </h2>
+            <button id="filter-reset-btn" class="filter-reset-btn" data-i18n="filter.clear_all">Clear All</button>
+          </div>
+
+          <!-- Status -->
+          <div class="filter-group">
+            <div class="filter-group__label">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+              </svg>
+              <span data-i18n="filter.status">Application Status</span>
+            </div>
+            <div class="filter-checkbox-list">
+              <label class="filter-checkbox"><input type="checkbox" data-filter="status" value="shortlisted"> <span
+                  data-i18n="applied.status_shortlisted">Shortlisted</span></label>
+              <label class="filter-checkbox"><input type="checkbox" data-filter="status" value="pending"> <span
+                  data-i18n="applied.status_pending">Pending / In Review</span></label>
+              <label class="filter-checkbox"><input type="checkbox" data-filter="status" value="rejected"> <span
+                  data-i18n="applied.status_rejected">Rejected</span></label>
+            </div>
+          </div>
+
+          <!-- Location -->
+          <div class="filter-group">
+            <div class="filter-group__label">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                <circle cx="12" cy="10" r="3"></circle>
+              </svg>
+              <span data-i18n="filter.location">Location</span>
+            </div>
+            <select id="filter-district" class="filter-select" data-filter="district">
+              <option value="" data-i18n="filter.all_districts">All Districts</option>
+              <option value="bhopal" data-i18n="district.bhopal">Bhopal</option>
+              <option value="indore" data-i18n="district.indore">Indore</option>
+              <option value="jabalpur" data-i18n="district.jabalpur">Jabalpur</option>
+              <option value="gwalior" data-i18n="district.gwalior">Gwalior</option>
+              <option value="ujjain" data-i18n="district.ujjain">Ujjain</option>
+            </select>
+          </div>
+        </aside>
+
+        <!-- Results Area -->
+        <div class="jobs-main-area">
+          <div class="results-bar">
+            <div class="results-count">Showing <strong id="result-count">7</strong> applied jobs</div>
+            <div class="results-sort">
+              <span data-i18n="jobs.sort_by">Sort by:</span>
+              <select id="sort-select">
+                <option value="recent" data-i18n="sort.recent">Most Recent</option>
+                <option value="status" data-i18n="sort.status">Status</option>
+              </select>
+            </div>
+          </div>
+
+          <div id="applied-list" class="job-list">
+
+            <!-- Job 1 -->
+            <div class="job-card" data-status="shortlisted" data-district="bhopal">
+              <div class="job-card__header">
+                <div class="job-card__title-wrap">
+                  <h3 class="job-card__title" data-i18n="applied.job1_title">Senior Electrician</h3>
+                  <div class="job-card__employer">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <rect x="2" y="7" width="20" height="14" rx="2" />
+                      <path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2" />
+                    </svg>
+                    <span data-i18n="applied.job1_company">Tata Power</span>
+                  </div>
+                </div>
+                <span class="status-badge status-shortlisted">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                    stroke-linecap="round">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg>
+                  <span data-i18n="applied.status_shortlisted">Shortlisted</span>
+                </span>
+              </div>
+              <div class="job-card__meta">
+                <div class="job-meta-item">
+                  <div class="job-meta-item__icon job-meta-item__icon--salary">💰</div>
+                  <div class="job-meta-item__text">
+                    <span class="job-meta-item__label" data-i18n="jobs.label.salary">Salary</span>
+                    <span class="job-meta-item__value">₹ 25,000 - ₹ 35,000</span>
+                  </div>
+                </div>
+                <div class="job-meta-item">
+                  <div class="job-meta-item__icon job-meta-item__icon--location">📍</div>
+                  <div class="job-meta-item__text">
+                    <span class="job-meta-item__label" data-i18n="jobs.label.location">Location</span>
+                    <span class="job-meta-item__value">Bhopal</span>
+                  </div>
+                </div>
+                <div class="job-meta-item">
+                  <div class="job-meta-item__icon job-meta-item__icon--exp">⏱️</div>
+                  <div class="job-meta-item__text">
+                    <span class="job-meta-item__label" data-i18n="jobs.label.experience">Experience</span>
+                    <span class="job-meta-item__value">5+ Years</span>
+                  </div>
+                </div>
+                <div class="job-meta-item">
+                  <div class="job-meta-item__icon job-meta-item__icon--openings">👥</div>
+                  <div class="job-meta-item__text">
+                    <span class="job-meta-item__label" data-i18n="jobs.label.openings">Openings</span>
+                    <span class="job-meta-item__value">5 <span data-i18n="jobs.label.posts">Posts</span></span>
+                  </div>
+                </div>
+              </div>
+              <div class="job-card__footer">
+                <span class="job-card__posted" data-i18n="applied.job1_date">Applied on: 12-May-2026</span>
+                <div class="job-card__actions">
+                  <button class="btn btn--primary btn--sm btn-view" data-company="Tata Power"
+                    data-title="Senior Electrician" data-category="Electrical"
+                    data-desc="Responsible for wiring and maintenance of industrial electrical panels. Must follow all safety protocols."
+                    data-vacancies="5" data-salary="₹ 25,000 - ₹ 35,000" data-location="Bhopal"
+                    data-experience="5+ Years">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                      stroke-linecap="round">
+                      <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"></path>
+                      <circle cx="12" cy="12" r="3"></circle>
+                    </svg> <span data-i18n="applied.view_btn">View Job Description</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Job 2 -->
+            <div class="job-card" data-status="rejected" data-district="indore">
+              <div class="job-card__header">
+                <div class="job-card__title-wrap">
+                  <h3 class="job-card__title" data-i18n="applied.job2_title">Maintenance Engineer</h3>
+                  <div class="job-card__employer">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <rect x="2" y="7" width="20" height="14" rx="2" />
+                      <path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2" />
+                    </svg>
+                    <span data-i18n="applied.job2_company">Reliance Industries</span>
+                  </div>
+                </div>
+                <span class="status-badge status-rejected">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                    stroke-linecap="round">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                  </svg>
+                  <span data-i18n="applied.status_rejected">Rejected</span>
+                </span>
+              </div>
+              <div class="job-card__meta">
+                <div class="job-meta-item">
+                  <div class="job-meta-item__icon job-meta-item__icon--salary">💰</div>
+                  <div class="job-meta-item__text">
+                    <span class="job-meta-item__label" data-i18n="jobs.label.salary">Salary</span>
+                    <span class="job-meta-item__value">₹ 30,000</span>
+                  </div>
+                </div>
+                <div class="job-meta-item">
+                  <div class="job-meta-item__icon job-meta-item__icon--location">📍</div>
+                  <div class="job-meta-item__text">
+                    <span class="job-meta-item__label" data-i18n="jobs.label.location">Location</span>
+                    <span class="job-meta-item__value">Indore</span>
+                  </div>
+                </div>
+                <div class="job-meta-item">
+                  <div class="job-meta-item__icon job-meta-item__icon--exp">⏱️</div>
+                  <div class="job-meta-item__text">
+                    <span class="job-meta-item__label" data-i18n="jobs.label.experience">Experience</span>
+                    <span class="job-meta-item__value">3 Years</span>
+                  </div>
+                </div>
+                <div class="job-meta-item">
+                  <div class="job-meta-item__icon job-meta-item__icon--openings">👥</div>
+                  <div class="job-meta-item__text">
+                    <span class="job-meta-item__label" data-i18n="jobs.label.openings">Openings</span>
+                    <span class="job-meta-item__value">2 <span data-i18n="jobs.label.posts">Posts</span></span>
+                  </div>
+                </div>
+              </div>
+              <div class="job-card__footer">
+                <span class="job-card__posted" data-i18n="applied.job2_date">Applied on: 10-May-2026</span>
+                <div class="job-card__actions">
+                  <button class="btn btn--primary btn--sm btn-view" data-company="Reliance Industries"
+                    data-title="Maintenance Engineer" data-category="Maintenance"
+                    data-desc="Perform routine maintenance on heavy machinery and production lines." data-vacancies="2"
+                    data-salary="₹ 30,000" data-location="Indore" data-experience="3 Years">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                      stroke-linecap="round">
+                      <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"></path>
+                      <circle cx="12" cy="12" r="3"></circle>
+                    </svg> <span data-i18n="applied.view_btn">View Job Description</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Job 3 -->
+            <div class="job-card" data-status="pending" data-district="gwalior">
+              <div class="job-card__header">
+                <div class="job-card__title-wrap">
+                  <h3 class="job-card__title" data-i18n="applied.job3_title">Master Plumber</h3>
+                  <div class="job-card__employer">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <rect x="2" y="7" width="20" height="14" rx="2" />
+                      <path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2" />
+                    </svg>
+                    <span data-i18n="applied.job3_company">L&T Construction</span>
+                  </div>
+                </div>
+                <span class="status-badge status-pending">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                    stroke-linecap="round">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <polyline points="12 6 12 12 16 14"></polyline>
+                  </svg>
+                  <span data-i18n="applied.status_pending">Pending / In Review</span>
+                </span>
+              </div>
+              <div class="job-card__meta">
+                <div class="job-meta-item">
+                  <div class="job-meta-item__icon job-meta-item__icon--salary">💰</div>
+                  <div class="job-meta-item__text">
+                    <span class="job-meta-item__label" data-i18n="jobs.label.salary">Salary</span>
+                    <span class="job-meta-item__value">₹ 20,000 - ₹ 28,000</span>
+                  </div>
+                </div>
+                <div class="job-meta-item">
+                  <div class="job-meta-item__icon job-meta-item__icon--location">📍</div>
+                  <div class="job-meta-item__text">
+                    <span class="job-meta-item__label" data-i18n="jobs.label.location">Location</span>
+                    <span class="job-meta-item__value">Gwalior</span>
+                  </div>
+                </div>
+                <div class="job-meta-item">
+                  <div class="job-meta-item__icon job-meta-item__icon--exp">⏱️</div>
+                  <div class="job-meta-item__text">
+                    <span class="job-meta-item__label" data-i18n="jobs.label.experience">Experience</span>
+                    <span class="job-meta-item__value">2+ Years</span>
+                  </div>
+                </div>
+                <div class="job-meta-item">
+                  <div class="job-meta-item__icon job-meta-item__icon--openings">👥</div>
+                  <div class="job-meta-item__text">
+                    <span class="job-meta-item__label" data-i18n="jobs.label.openings">Openings</span>
+                    <span class="job-meta-item__value">10 <span data-i18n="jobs.label.posts">Posts</span></span>
+                  </div>
+                </div>
+              </div>
+              <div class="job-card__footer">
+                <span class="job-card__posted" data-i18n="applied.job3_date">Applied on: 08-May-2026</span>
+                <div class="job-card__actions">
+                  <button class="btn btn--primary btn--sm btn-view" data-company="L&T Construction"
+                    data-title="Master Plumber" data-category="Plumbing"
+                    data-desc="Install and repair water supply lines, waste disposal systems, and related appliances."
+                    data-vacancies="10" data-salary="₹ 20,000 - ₹ 28,000" data-location="Gwalior"
+                    data-experience="2+ Years">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                      stroke-linecap="round">
+                      <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"></path>
+                      <circle cx="12" cy="12" r="3"></circle>
+                    </svg> <span data-i18n="applied.view_btn">View Job Description</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Job 4 -->
+            <div class="job-card" data-status="pending" data-district="jabalpur">
+              <div class="job-card__header">
+                <div class="job-card__title-wrap">
+                  <h3 class="job-card__title" data-i18n="applied.job4_title">Construction Supervisor</h3>
+                  <div class="job-card__employer">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <rect x="2" y="7" width="20" height="14" rx="2" />
+                      <path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2" />
+                    </svg>
+                    <span data-i18n="applied.job4_company">Adani Infra</span>
+                  </div>
+                </div>
+                <span class="status-badge status-pending">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                    stroke-linecap="round">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <polyline points="12 6 12 12 16 14"></polyline>
+                  </svg>
+                  <span data-i18n="applied.status_pending">Pending / In Review</span>
+                </span>
+              </div>
+              <div class="job-card__meta">
+                <div class="job-meta-item">
+                  <div class="job-meta-item__icon job-meta-item__icon--salary">💰</div>
+                  <div class="job-meta-item__text">
+                    <span class="job-meta-item__label" data-i18n="jobs.label.salary">Salary</span>
+                    <span class="job-meta-item__value">₹ 40,000</span>
+                  </div>
+                </div>
+                <div class="job-meta-item">
+                  <div class="job-meta-item__icon job-meta-item__icon--location">📍</div>
+                  <div class="job-meta-item__text">
+                    <span class="job-meta-item__label" data-i18n="jobs.label.location">Location</span>
+                    <span class="job-meta-item__value">Jabalpur</span>
+                  </div>
+                </div>
+                <div class="job-meta-item">
+                  <div class="job-meta-item__icon job-meta-item__icon--exp">⏱️</div>
+                  <div class="job-meta-item__text">
+                    <span class="job-meta-item__label" data-i18n="jobs.label.experience">Experience</span>
+                    <span class="job-meta-item__value">8 Years</span>
+                  </div>
+                </div>
+                <div class="job-meta-item">
+                  <div class="job-meta-item__icon job-meta-item__icon--openings">👥</div>
+                  <div class="job-meta-item__text">
+                    <span class="job-meta-item__label" data-i18n="jobs.label.openings">Openings</span>
+                    <span class="job-meta-item__value">3 <span data-i18n="jobs.label.posts">Posts</span></span>
+                  </div>
+                </div>
+              </div>
+              <div class="job-card__footer">
+                <span class="job-card__posted" data-i18n="applied.job4_date">Applied on: 05-May-2026</span>
+                <div class="job-card__actions">
+                  <button class="btn btn--primary btn--sm btn-view" data-company="Adani Infra"
+                    data-title="Construction Supervisor" data-category="Construction"
+                    data-desc="Supervise on-site construction activities and manage labor." data-vacancies="3"
+                    data-salary="₹ 40,000" data-location="Jabalpur" data-experience="8 Years">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                      stroke-linecap="round">
+                      <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"></path>
+                      <circle cx="12" cy="12" r="3"></circle>
+                    </svg> <span data-i18n="applied.view_btn">View Job Description</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Job 5 -->
+            <div class="job-card" data-status="shortlisted" data-district="ujjain">
+              <div class="job-card__header">
+                <div class="job-card__title-wrap">
+                  <h3 class="job-card__title" data-i18n="applied.job5_title">Factory Worker</h3>
+                  <div class="job-card__employer">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <rect x="2" y="7" width="20" height="14" rx="2" />
+                      <path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2" />
+                    </svg>
+                    <span data-i18n="applied.job5_company">Godrej Industries</span>
+                  </div>
+                </div>
+                <span class="status-badge status-shortlisted">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                    stroke-linecap="round">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg>
+                  <span data-i18n="applied.status_shortlisted">Shortlisted</span>
+                </span>
+              </div>
+              <div class="job-card__meta">
+                <div class="job-meta-item">
+                  <div class="job-meta-item__icon job-meta-item__icon--salary">💰</div>
+                  <div class="job-meta-item__text">
+                    <span class="job-meta-item__label" data-i18n="jobs.label.salary">Salary</span>
+                    <span class="job-meta-item__value">₹ 15,000</span>
+                  </div>
+                </div>
+                <div class="job-meta-item">
+                  <div class="job-meta-item__icon job-meta-item__icon--location">📍</div>
+                  <div class="job-meta-item__text">
+                    <span class="job-meta-item__label" data-i18n="jobs.label.location">Location</span>
+                    <span class="job-meta-item__value">Ujjain</span>
+                  </div>
+                </div>
+                <div class="job-meta-item">
+                  <div class="job-meta-item__icon job-meta-item__icon--exp">⏱️</div>
+                  <div class="job-meta-item__text">
+                    <span class="job-meta-item__label" data-i18n="jobs.label.experience">Experience</span>
+                    <span class="job-meta-item__value">Fresher</span>
+                  </div>
+                </div>
+                <div class="job-meta-item">
+                  <div class="job-meta-item__icon job-meta-item__icon--openings">👥</div>
+                  <div class="job-meta-item__text">
+                    <span class="job-meta-item__label" data-i18n="jobs.label.openings">Openings</span>
+                    <span class="job-meta-item__value">50 <span data-i18n="jobs.label.posts">Posts</span></span>
+                  </div>
+                </div>
+              </div>
+              <div class="job-card__footer">
+                <span class="job-card__posted" data-i18n="applied.job5_date">Applied on: 02-May-2026</span>
+                <div class="job-card__actions">
+                  <button class="btn btn--primary btn--sm btn-view" data-company="Godrej Industries"
+                    data-title="Factory Worker" data-category="Manufacturing"
+                    data-desc="Assembly line packaging and product inspection." data-vacancies="50"
+                    data-salary="₹ 15,000" data-location="Ujjain" data-experience="Fresher">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                      stroke-linecap="round">
+                      <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"></path>
+                      <circle cx="12" cy="12" r="3"></circle>
+                    </svg> <span data-i18n="applied.view_btn">View Job Description</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Job 6 -->
+            <div class="job-card" data-status="rejected" data-district="bhopal">
+              <div class="job-card__header">
+                <div class="job-card__title-wrap">
+                  <h3 class="job-card__title" data-i18n="applied.job6_title">Heavy Vehicle Driver</h3>
+                  <div class="job-card__employer">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <rect x="2" y="7" width="20" height="14" rx="2" />
+                      <path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2" />
+                    </svg>
+                    <span data-i18n="applied.job6_company">Delhivery</span>
+                  </div>
+                </div>
+                <span class="status-badge status-rejected">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                    stroke-linecap="round">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                  </svg>
+                  <span data-i18n="applied.status_rejected">Rejected</span>
+                </span>
+              </div>
+              <div class="job-card__meta">
+                <div class="job-meta-item">
+                  <div class="job-meta-item__icon job-meta-item__icon--salary">💰</div>
+                  <div class="job-meta-item__text">
+                    <span class="job-meta-item__label" data-i18n="jobs.label.salary">Salary</span>
+                    <span class="job-meta-item__value">₹ 22,000</span>
+                  </div>
+                </div>
+                <div class="job-meta-item">
+                  <div class="job-meta-item__icon job-meta-item__icon--location">📍</div>
+                  <div class="job-meta-item__text">
+                    <span class="job-meta-item__label" data-i18n="jobs.label.location">Location</span>
+                    <span class="job-meta-item__value">Bhopal</span>
+                  </div>
+                </div>
+                <div class="job-meta-item">
+                  <div class="job-meta-item__icon job-meta-item__icon--exp">⏱️</div>
+                  <div class="job-meta-item__text">
+                    <span class="job-meta-item__label" data-i18n="jobs.label.experience">Experience</span>
+                    <span class="job-meta-item__value">4 Years</span>
+                  </div>
+                </div>
+                <div class="job-meta-item">
+                  <div class="job-meta-item__icon job-meta-item__icon--openings">👥</div>
+                  <div class="job-meta-item__text">
+                    <span class="job-meta-item__label" data-i18n="jobs.label.openings">Openings</span>
+                    <span class="job-meta-item__value">15 <span data-i18n="jobs.label.posts">Posts</span></span>
+                  </div>
+                </div>
+              </div>
+              <div class="job-card__footer">
+                <span class="job-card__posted" data-i18n="applied.job6_date">Applied on: 28-Apr-2026</span>
+                <div class="job-card__actions">
+                  <button class="btn btn--primary btn--sm btn-view" data-company="Delhivery"
+                    data-title="Heavy Vehicle Driver" data-category="Transportation"
+                    data-desc="Driving inter-state logistics trucks. Valid heavy license required." data-vacancies="15"
+                    data-salary="₹ 22,000" data-location="Bhopal" data-experience="4 Years">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                      stroke-linecap="round">
+                      <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"></path>
+                      <circle cx="12" cy="12" r="3"></circle>
+                    </svg> <span data-i18n="applied.view_btn">View Job Description</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Job 7 -->
+            <div class="job-card" data-status="pending" data-district="indore">
+              <div class="job-card__header">
+                <div class="job-card__title-wrap">
+                  <h3 class="job-card__title" data-i18n="applied.job7_title">Security Guard</h3>
+                  <div class="job-card__employer">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <rect x="2" y="7" width="20" height="14" rx="2" />
+                      <path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2" />
+                    </svg>
+                    <span data-i18n="applied.job7_company">SIS Security</span>
+                  </div>
+                </div>
+                <span class="status-badge status-pending">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                    stroke-linecap="round">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <polyline points="12 6 12 12 16 14"></polyline>
+                  </svg>
+                  <span data-i18n="applied.status_pending">Pending / In Review</span>
+                </span>
+              </div>
+              <div class="job-card__meta">
+                <div class="job-meta-item">
+                  <div class="job-meta-item__icon job-meta-item__icon--salary">💰</div>
+                  <div class="job-meta-item__text">
+                    <span class="job-meta-item__label" data-i18n="jobs.label.salary">Salary</span>
+                    <span class="job-meta-item__value">₹ 12,000 - ₹ 15,000</span>
+                  </div>
+                </div>
+                <div class="job-meta-item">
+                  <div class="job-meta-item__icon job-meta-item__icon--location">📍</div>
+                  <div class="job-meta-item__text">
+                    <span class="job-meta-item__label" data-i18n="jobs.label.location">Location</span>
+                    <span class="job-meta-item__value">Indore</span>
+                  </div>
+                </div>
+                <div class="job-meta-item">
+                  <div class="job-meta-item__icon job-meta-item__icon--exp">⏱️</div>
+                  <div class="job-meta-item__text">
+                    <span class="job-meta-item__label" data-i18n="jobs.label.experience">Experience</span>
+                    <span class="job-meta-item__value">1 Year</span>
+                  </div>
+                </div>
+                <div class="job-meta-item">
+                  <div class="job-meta-item__icon job-meta-item__icon--openings">👥</div>
+                  <div class="job-meta-item__text">
+                    <span class="job-meta-item__label" data-i18n="jobs.label.openings">Openings</span>
+                    <span class="job-meta-item__value">8 <span data-i18n="jobs.label.posts">Posts</span></span>
+                  </div>
+                </div>
+              </div>
+              <div class="job-card__footer">
+                <span class="job-card__posted" data-i18n="applied.job7_date">Applied on: 20-Apr-2026</span>
+                <div class="job-card__actions">
+                  <button class="btn btn--primary btn--sm btn-view" data-company="SIS Security"
+                    data-title="Security Guard" data-category="Security"
+                    data-desc="Night shift security for commercial complex." data-vacancies="8"
+                    data-salary="₹ 12,000 - ₹ 15,000" data-location="Indore" data-experience="1 Year">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                      stroke-linecap="round">
+                      <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"></path>
+                      <circle cx="12" cy="12" r="3"></circle>
+                    </svg> <span data-i18n="applied.view_btn">View Job Description</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+
+    <!-- Job Description Modal -->
+    <div class="modal-overlay" id="job-modal" aria-hidden="true">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 class="modal-title" data-i18n="job.modal_title">Job Description</h3>
+          <button class="btn-close-modal" id="btn-close-modal" aria-label="Close">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="profile-grid">
+            <div class="profile-field">
+              <span class="profile-label" data-i18n="job.company">Company Name</span>
+              <span class="profile-value" id="modal-company"></span>
+            </div>
+            <div class="profile-field">
+              <span class="profile-label" data-i18n="job.title">Job Title</span>
+              <span class="profile-value" id="modal-title"></span>
+            </div>
+            <div class="profile-field">
+              <span class="profile-label" data-i18n="job.category">Job Category</span>
+              <span class="profile-value" id="modal-category"></span>
+            </div>
+            <div class="profile-field">
+              <span class="profile-label" data-i18n="job.vacancies">Number of Vacancies</span>
+              <span class="profile-value" id="modal-vacancies"></span>
+            </div>
+            <div class="profile-field">
+              <span class="profile-label" data-i18n="job.salary">Monthly Salary (₹)</span>
+              <span class="profile-value" id="modal-salary"></span>
+            </div>
+            <div class="profile-field">
+              <span class="profile-label" data-i18n="job.location">Job Location</span>
+              <span class="profile-value" id="modal-location"></span>
+            </div>
+            <div class="profile-field">
+              <span class="profile-label" data-i18n="job.experience">Required Experience</span>
+              <span class="profile-value" id="modal-experience"></span>
+            </div>
+            <div class="profile-field" style="grid-column: 1 / -1;">
+              <span class="profile-label" data-i18n="job.desc">Job Description</span>
+              <span class="profile-value" id="modal-desc"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    </div>
+
+  </main>
+
+  <script src="../../assets/js/common/safe-storage.js"></script>
+  <script src="../../assets/js/common/app.js"></script>
+  <script src="../../assets/js/common/i18n.js"></script>
+  <script src="../../layouts/dashboard-layout/dashboard-layout.js"></script>
+  <script>
+    const savedLang = (window._ckStorage || localStorage).getItem('ck-ui-lang') || 'hi';
+    I18n.init(savedLang, {
+      hi: {
+        'dashboard.menu.profile_identity': 'प्रोफाइल एवं पहचान प्रबंधन',
+        'dashboard.menu.personal_profile': 'व्यक्तिगत प्रोफाइल प्रबंधन',
+        'dashboard.menu.educational_qualification': 'शैक्षिक योग्यता',
+        'dashboard.menu.experience_details': 'अनुभव विवरण',
+        'dashboard.menu.upload_certificates': 'प्रमाणपत्र अपलोड करें',
+        'dashboard.menu.employment_career': 'रोजगार एवं कैरियर सेवाएँ',
+        'dashboard.menu.recommended_jobs': 'अनुशंसित नौकरियां',
+        'dashboard.menu.applied_jobs': 'आवेदन की गई नौकरियां',
+        'dashboard.signout': 'लॉग आउट',
+
+        'applied.title': 'आवेदन की गई नौकरियां',
+        'applied.desc': 'जिन नौकरियों के लिए आपने आवेदन किया है उनकी स्थिति ट्रैक करें।',
+
+        'filter.show': 'फ़िल्टर दिखाएं',
+        'filter.title': 'फ़िल्टर',
+        'filter.clear_all': 'सभी साफ़ करें',
+        'filter.status': 'आवेदन की स्थिति',
+        'filter.location': 'स्थान',
+        'filter.all_districts': 'सभी जिले',
+
+        'district.bhopal': 'भोपाल',
+        'district.indore': 'इंदौर',
+        'district.jabalpur': 'जबलपुर',
+        'district.gwalior': 'ग्वालियर',
+        'district.ujjain': 'उज्जैन',
+
+        'jobs.sort_by': 'क्रमबद्ध करें:',
+        'sort.recent': 'नवीनतम',
+        'sort.status': 'स्थिति',
+
+        'jobs.label.salary': 'वेतन',
+        'jobs.label.location': 'स्थान',
+        'jobs.label.experience': 'अनुभव',
+        'jobs.label.openings': 'रिक्तियां',
+        'jobs.label.posts': 'पद',
+
+        'applied.status_shortlisted': 'शॉर्टलिस्ट किया गया',
+        'applied.status_rejected': 'अस्वीकृत',
+        'applied.status_pending': 'लंबित / समीक्षाधीन',
+        'applied.view_btn': 'नौकरी का विवरण देखें',
+
+        'job.modal_title': 'नौकरी का विवरण',
+        'job.company': 'कंपनी का नाम',
+        'job.title': 'नौकरी का शीर्षक',
+        'job.category': 'नौकरी की श्रेणी',
+        'job.vacancies': 'रिक्तियों की संख्या',
+        'job.salary': 'मासिक वेतन (₹)',
+        'job.location': 'नौकरी का स्थान (शहर/जिला)',
+        'job.experience': 'आवश्यक अनुभव',
+        'job.desc': 'नौकरी का विवरण',
+
+        'applied.job1_title': 'सीनियर इलेक्ट्रीशियन',
+        'applied.job1_company': 'टाटा पावर',
+        'applied.job1_date': 'आवेदन किया: 12-मई-2026',
+
+        'applied.job2_title': 'मेंटेनेंस इंजीनियर',
+        'applied.job2_company': 'रिलायंस इंडस्ट्रीज',
+        'applied.job2_date': 'आवेदन किया: 10-मई-2026',
+
+        'applied.job3_title': 'मास्टर प्लंबर',
+        'applied.job3_company': 'एल एंड टी कंस्ट्रक्शन',
+        'applied.job3_date': 'आवेदन किया: 08-मई-2026',
+
+        'applied.job4_title': 'निर्माण पर्यवेक्षक',
+        'applied.job4_company': 'अडानी इंफ्रा',
+        'applied.job4_date': 'आवेदन किया: 05-मई-2026',
+
+        'applied.job5_title': 'फैक्टरी वर्कर',
+        'applied.job5_company': 'गोदरेज इंडस्ट्रीज',
+        'applied.job5_date': 'आवेदन किया: 02-मई-2026',
+
+        'applied.job6_title': 'भारी वाहन चालक',
+        'applied.job6_company': 'डेल्हीवेरी',
+        'applied.job6_date': 'आवेदन किया: 28-अप्रैल-2026',
+
+        'applied.job7_title': 'सुरक्षा गार्ड',
+        'applied.job7_company': 'एसआईएस सिक्योरिटी',
+        'applied.job7_date': 'आवेदन किया: 20-अप्रैल-2026'
+      },
+      en: {
+        'dashboard.menu.profile_identity': 'Profile & Identity Management',
+        'dashboard.menu.personal_profile': 'Personal Profile Management',
+        'dashboard.menu.educational_qualification': 'Educational Qualification',
+        'dashboard.menu.experience_details': 'Experience Details',
+        'dashboard.menu.upload_certificates': 'Upload Certificates',
+        'dashboard.menu.employment_career': 'Employment & Career Services',
+        'dashboard.menu.recommended_jobs': 'Recommended Jobs',
+        'dashboard.menu.applied_jobs': 'Applied Jobs',
+        'dashboard.signout': 'Sign Out',
+
+        'applied.title': 'Applied Jobs',
+        'applied.desc': 'Track the status of the jobs you have applied for.',
+
+        'filter.show': 'Show Filters',
+        'filter.title': 'Filters',
+        'filter.clear_all': 'Clear All',
+        'filter.status': 'Application Status',
+        'filter.location': 'Location',
+        'filter.all_districts': 'All Districts',
+
+        'district.bhopal': 'Bhopal',
+        'district.indore': 'Indore',
+        'district.jabalpur': 'Jabalpur',
+        'district.gwalior': 'Gwalior',
+        'district.ujjain': 'Ujjain',
+
+        'jobs.sort_by': 'Sort by:',
+        'sort.recent': 'Most Recent',
+        'sort.status': 'Status',
+
+        'jobs.label.salary': 'Salary',
+        'jobs.label.location': 'Location',
+        'jobs.label.experience': 'Experience',
+        'jobs.label.openings': 'Openings',
+        'jobs.label.posts': 'Posts',
+
+        'applied.status_shortlisted': 'Shortlisted',
+        'applied.status_rejected': 'Rejected',
+        'applied.status_pending': 'Pending / In Review',
+        'applied.view_btn': 'View Job Description',
+
+        'job.modal_title': 'Job Description',
+        'job.company': 'Company Name',
+        'job.title': 'Job Title',
+        'job.category': 'Job Category',
+        'job.vacancies': 'Number of Vacancies',
+        'job.salary': 'Monthly Salary (₹)',
+        'job.location': 'Job Location (City/District)',
+        'job.experience': 'Required Experience',
+        'job.desc': 'Job Description',
+
+        'applied.job1_title': 'Senior Electrician',
+        'applied.job1_company': 'Tata Power',
+        'applied.job1_date': 'Applied on: 12-May-2026',
+
+        'applied.job2_title': 'Maintenance Engineer',
+        'applied.job2_company': 'Reliance Industries',
+        'applied.job2_date': 'Applied on: 10-May-2026',
+
+        'applied.job3_title': 'Master Plumber',
+        'applied.job3_company': 'L&T Construction',
+        'applied.job3_date': 'Applied on: 08-May-2026',
+
+        'applied.job4_title': 'Construction Supervisor',
+        'applied.job4_company': 'Adani Infra',
+        'applied.job4_date': 'Applied on: 05-May-2026',
+
+        'applied.job5_title': 'Factory Worker',
+        'applied.job5_company': 'Godrej Industries',
+        'applied.job5_date': 'Applied on: 02-May-2026',
+
+        'applied.job6_title': 'Heavy Vehicle Driver',
+        'applied.job6_company': 'Delhivery',
+        'applied.job6_date': 'Applied on: 28-Apr-2026',
+
+        'applied.job7_title': 'Security Guard',
+        'applied.job7_company': 'SIS Security',
+        'applied.job7_date': 'Applied on: 20-Apr-2026'
+      }
+    });
+    I18n.setupToggleButton();
+    document.addEventListener('i18n:languageChanged', () => I18n.translateDOM());
+
+    function updateLastLogin() {
+      const now = new Date();
+      const datePart = now.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
+      let timePart = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true });
+      const lastLoginEl = document.getElementById('last-login-time');
+      if (lastLoginEl) lastLoginEl.textContent = 'Last login: ' + datePart + ', ' + timePart;
+    }
+    updateLastLogin();
+
+    // Modal Logic
+    const jobModal = document.getElementById('job-modal');
+    const btnCloseModal = document.getElementById('btn-close-modal');
+
+    function openJobModal(dataset) {
+      document.getElementById('modal-company').textContent = dataset.company;
+      document.getElementById('modal-title').textContent = dataset.title;
+      document.getElementById('modal-category').textContent = dataset.category;
+      document.getElementById('modal-vacancies').textContent = dataset.vacancies;
+      document.getElementById('modal-salary').textContent = dataset.salary;
+      document.getElementById('modal-location').textContent = dataset.location;
+      document.getElementById('modal-experience').textContent = dataset.experience;
+      document.getElementById('modal-desc').textContent = dataset.desc;
+
+      jobModal.classList.add('active');
+      jobModal.setAttribute('aria-hidden', 'false');
+    }
+
+    function closeJobModal() {
+      jobModal.classList.remove('active');
+      jobModal.setAttribute('aria-hidden', 'true');
+    }
+
+    btnCloseModal.addEventListener('click', closeJobModal);
+    jobModal.addEventListener('click', (e) => {
+      if (e.target === jobModal) closeJobModal();
+    });
+
+    document.getElementById('applied-list')?.addEventListener('click', (e) => {
+      const viewBtn = e.target.closest('.btn-view');
+      if (viewBtn) {
+        openJobModal(viewBtn.dataset);
+      }
+    });
+
+
+    // Basic Filtering Logic for Applied Jobs
+    const filterDistrict = document.getElementById('filter-district');
+    const filterStatus = document.querySelectorAll('input[data-filter="status"]');
+    const filterReset = document.getElementById('filter-reset-btn');
+    const jobCards = document.querySelectorAll('.job-card');
+    const resultCount = document.getElementById('result-count');
+    const filterToggleBtn = document.getElementById('filter-toggle-btn');
+    const filterPanel = document.getElementById('filter-panel');
+
+    function applyFilters() {
+      const district = filterDistrict.value;
+      const statuses = Array.from(filterStatus).filter(cb => cb.checked).map(cb => cb.value);
+
+      let count = 0;
+      jobCards.forEach(card => {
+        const cDistrict = card.getAttribute('data-district');
+        const cStatus = card.getAttribute('data-status');
+
+        const matchDistrict = district === '' || cDistrict === district;
+        const matchStatus = statuses.length === 0 || statuses.includes(cStatus);
+
+        if (matchDistrict && matchStatus) {
+          card.style.display = 'block';
+          count++;
+        } else {
+          card.style.display = 'none';
+        }
+      });
+      resultCount.textContent = count;
+    }
+
+    if (filterDistrict) filterDistrict.addEventListener('change', applyFilters);
+    filterStatus.forEach(cb => cb.addEventListener('change', applyFilters));
+
+    if (filterReset) {
+      filterReset.addEventListener('click', () => {
+        filterDistrict.value = '';
+        filterStatus.forEach(cb => cb.checked = false);
+        applyFilters();
+      });
+    }
+
+    if (filterToggleBtn && filterPanel) {
+      filterToggleBtn.addEventListener('click', () => {
+        filterPanel.classList.toggle('is-open');
+      });
+    }
+
+    // Sorting Logic
+    const sortSelect = document.getElementById('sort-select');
+    const appliedList = document.getElementById('applied-list');
+    const originalCards = Array.from(jobCards);
+
+    function applySort() {
+      if (!sortSelect || !appliedList) return;
+      const sortValue = sortSelect.value;
+      const cardsToSort = Array.from(jobCards);
+
+      if (sortValue === 'recent') {
+        cardsToSort.sort((a, b) => originalCards.indexOf(a) - originalCards.indexOf(b));
+      } else if (sortValue === 'status') {
+        const statusWeight = { 'shortlisted': 1, 'pending': 2, 'rejected': 3 };
+        cardsToSort.sort((a, b) => {
+          const wA = statusWeight[a.getAttribute('data-status')] || 99;
+          const wB = statusWeight[b.getAttribute('data-status')] || 99;
+          return wA - wB;
+        });
+      }
+
+      cardsToSort.forEach(card => appliedList.appendChild(card));
+    }
+
+    if (sortSelect) {
+      sortSelect.addEventListener('change', applySort);
+    }
+
+  </script>
+</body>
+
+</html>

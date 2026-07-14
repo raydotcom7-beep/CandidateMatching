@@ -1,0 +1,351 @@
+﻿<!DOCTYPE html>
+<html lang="hi-IN" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Kaushal Setu — कुशल कारीगरों को जोड़ने का मंच" />
+  <meta name="theme-color" content="#0A1628" />
+
+  <!-- GIGW: Canonical & robots -->
+  <link rel="canonical" href="" id="canonical-url" />
+  <meta name="robots" content="index, follow" />
+
+  <!-- Open Graph -->
+  <meta property="og:type"        content="website" />
+  <meta property="og:title"       content="Kaushal Setu" />
+  <meta property="og:description" content="कुशल कारीगरों को जोड़ने का मंच" />
+  <meta property="og:image"       content="../../assets/images/logos/KaushalSetuLogo.png" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="../../assets/images/logos/KaushalSetuLogo.png" />
+
+  <title>Kaushal Setu</title>
+
+  <!-- ── Fonts ─────────────────────────────────────────────── -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+Devanagari:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- ── Design System CSS ─────────────────────────────────── -->
+  <link rel="stylesheet" href="../../assets/css/common/design-tokens.css" />
+  <link rel="stylesheet" href="../../assets/css/common/reset.css" />
+  <link rel="stylesheet" href="../../assets/css/common/typography.css" />
+  <link rel="stylesheet" href="../../assets/css/common/utilities.css" />
+
+  <!-- ── Layout CSS ────────────────────────────────────────── -->
+  <link rel="stylesheet" href="main-layout.css" />
+
+  <!-- ── Page-specific CSS (injected by consuming page) ────── -->
+  <!-- <link rel="stylesheet" href="../../pages/[page]/[page].css" /> -->
+</head>
+
+<body class="layout-main">
+
+  <!-- ══════════════════════════════════════════════════════════
+       ACCESSIBILITY: Skip Navigation
+  ══════════════════════════════════════════════════════════ -->
+  <a href="#main-content" class="skip-link" data-i18n="ui.skip_to_content">
+    मुख्य सामग्री पर जाएं
+  </a>
+
+  <!-- ══════════════════════════════════════════════════════════
+       HEADER  [data-header]
+       Component: ../../components/header/header.html
+       JS manages: scroll shadow, hide-on-scroll, mobile menu
+  ══════════════════════════════════════════════════════════ -->
+  <header class="site-header" data-header role="banner">
+
+    <!-- Header inner -->
+    <div class="header__inner container">
+
+      <!-- Brand -->
+      <a href="../../index.html" class="header__brand" aria-label="Kaushal Setu होम">
+        <img
+          src="../../assets/images/logos/KaushalSetuLogo.png"
+          alt="Kaushal Setu Logo"
+          class="header__logo"
+          width="40"
+          height="40"
+          loading="eager"
+        />
+        <span class="header__brand-name">Kaushal Setu</span>
+      </a>
+
+      <!-- Primary Navigation (desktop) -->
+      <nav class="header__nav" aria-label="मुख्य नेविगेशन" id="primary-nav">
+        <ul class="nav__list" role="list">
+          <li class="nav__item">
+            <a href="../../pages/home/index.html"
+               class="nav__link"
+               data-nav-link="home"
+               data-i18n="nav.home">होम</a>
+          </li>
+          <li class="nav__item">
+            <a href="../../pages/labour-registration/index.html"
+               class="nav__link"
+               data-nav-link="labour-registration"
+               data-i18n="reg.title.labour">श्रमिक पंजीकरण</a>
+          </li>
+          <li class="nav__item" style="display:none">
+            <a href="../../pages/contractor-registration/index.html"
+               class="nav__link"
+               data-nav-link="contractor-registration"
+               data-i18n="reg.title.contractor">ठेकेदार पंजीकरण</a>
+          </li>
+          <li class="nav__item">
+            <a href="../../pages/industry-registration/index.html"
+               class="nav__link"
+               data-nav-link="industry-registration"
+               data-i18n="reg.title.industry">उद्योग पंजीकरण</a>
+          </li>
+          <li class="nav__item">
+            <a href="#contact"
+               class="nav__link"
+               data-nav-link="contact"
+               data-i18n="nav.contact">संपर्क करें</a>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Header Actions -->
+      <div class="header__actions">
+
+        <!-- Language Toggle -->
+        <button
+          id="lang-toggle"
+          class="btn btn--ghost btn--sm header__lang-btn"
+          data-lang-toggle
+          aria-label="Switch to English"
+          title="भाषा बदलें / Change Language"
+        >English</button>
+
+        <!-- Theme Toggle -->
+        <button
+          id="theme-toggle"
+          class="btn btn--ghost btn--sm header__theme-btn"
+          aria-label="Switch to dark mode"
+          title="थीम बदलें"
+        >
+          <!-- Sun icon (shown in dark mode) -->
+          <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+               viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+               aria-hidden="true" style="display:none">
+            <circle cx="12" cy="12" r="5"/>
+            <line x1="12" y1="1" x2="12" y2="3"/>
+            <line x1="12" y1="21" x2="12" y2="23"/>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+            <line x1="1" y1="12" x2="3" y2="12"/>
+            <line x1="21" y1="12" x2="23" y2="12"/>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+          </svg>
+          <!-- Moon icon (shown in light mode) -->
+          <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+               viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+               aria-hidden="true">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+          </svg>
+        </button>
+
+        <!-- Login Button -->
+        <a href="../../pages/home/index.html#login"
+           class="btn btn--primary btn--sm header__login-btn"
+           data-i18n="nav.login">लॉगिन</a>
+
+        <!-- Mobile Menu Hamburger -->
+        <button
+          id="mobile-menu-toggle"
+          class="btn btn--ghost btn--sm header__hamburger show-mobile-only"
+          aria-label="मेनू खोलें"
+          aria-expanded="false"
+          aria-controls="mobile-menu"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22"
+               viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               stroke-width="2.5" stroke-linecap="round" aria-hidden="true">
+            <line x1="3" y1="6"  x2="21" y2="6"/>
+            <line x1="3" y1="12" x2="21" y2="12"/>
+            <line x1="3" y1="18" x2="21" y2="18"/>
+          </svg>
+        </button>
+
+      </div><!-- /.header__actions -->
+    </div><!-- /.header__inner -->
+
+    <!-- Mobile Navigation Drawer -->
+    <nav id="mobile-menu" class="mobile-menu" aria-label="मोबाइल नेविगेशन" aria-hidden="true">
+      <ul class="mobile-menu__list" role="list">
+        <li><a href="../../pages/home/index.html"                          class="mobile-menu__link" data-nav-link="home"                   data-i18n="nav.home">होम</a></li>
+        <li><a href="../../pages/labour-registration/index.html"           class="mobile-menu__link" data-nav-link="labour-registration"    data-i18n="reg.title.labour">श्रमिक पंजीकरण</a></li>
+        <li style="display:none"><a href="../../pages/contractor-registration/index.html"       class="mobile-menu__link" data-nav-link="contractor-registration" data-i18n="reg.title.contractor">ठेकेदार पंजीकरण</a></li>
+        <li><a href="../../pages/industry-registration/index.html"         class="mobile-menu__link" data-nav-link="industry-registration"  data-i18n="reg.title.industry">उद्योग पंजीकरण</a></li>
+        <li><a href="#contact"                                              class="mobile-menu__link" data-nav-link="contact"               data-i18n="nav.contact">संपर्क करें</a></li>
+        <li><a href="../../pages/home/index.html#login"                    class="mobile-menu__link mobile-menu__link--cta"                 data-i18n="nav.login">लॉगिन</a></li>
+      </ul>
+    </nav>
+    <!-- Mobile overlay -->
+    <div id="menu-overlay" class="menu-overlay" aria-hidden="true"></div>
+
+  </header><!-- /site-header -->
+
+
+  <!-- ══════════════════════════════════════════════════════════
+       MAIN CONTENT  [#main-content]
+       Pages inject their content here.
+       The <main> itself carries no extra padding —
+       each page section controls its own spacing.
+  ══════════════════════════════════════════════════════════ -->
+  <main id="main-content" class="site-main" role="main" tabindex="-1">
+
+    <!--
+      ┌─────────────────────────────────────────────────────────┐
+      │  SLOT: Page content injected below this comment.        │
+      │  Copy this file for each page and replace this block.   │
+      └─────────────────────────────────────────────────────────┘
+    -->
+
+  </main><!-- /site-main -->
+
+
+  <!-- ══════════════════════════════════════════════════════════
+       FOOTER
+  ══════════════════════════════════════════════════════════ -->
+  <footer class="site-footer" role="contentinfo">
+
+    <!-- Footer top -->
+    <div class="footer__top">
+      <div class="container">
+        <div class="footer__grid">
+
+          <!-- Brand column -->
+          <div class="footer__col footer__col--brand">
+            <a href="../../index.html" class="footer__brand-link" aria-label="Kaushal Setu होम">
+              <img src="../../assets/images/logos/KaushalSetuLogo.png" alt="Kaushal Setu" width="36" height="36" loading="lazy" />
+              <span class="footer__brand-name">Kaushal Setu</span>
+            </a>
+            <p class="footer__tagline">
+              कुशल कारीगरों को सही अवसर से जोड़ने का डिजिटल मंच।
+            </p>
+            <!-- Social links placeholder -->
+            <div class="footer__social" aria-label="सोशल मीडिया">
+              <!-- Social icons added during component phase -->
+            </div>
+          </div>
+
+          <!-- Quick Links column -->
+          <div class="footer__col">
+            <h3 class="footer__heading">त्वरित लिंक</h3>
+            <ul class="footer__links" role="list">
+              <li><a href="../../pages/home/index.html"                    class="footer__link" data-i18n="nav.home">होम</a></li>
+              <li><a href="../../pages/labour-registration/index.html"     class="footer__link" data-i18n="reg.title.labour">श्रमिक पंजीकरण</a></li>
+              <li style="display:none"><a href="../../pages/contractor-registration/index.html" class="footer__link" data-i18n="reg.title.contractor">ठेकेदार पंजीकरण</a></li>
+              <li><a href="../../pages/industry-registration/index.html"   class="footer__link" data-i18n="reg.title.industry">उद्योग पंजीकरण</a></li>
+            </ul>
+          </div>
+
+          <!-- Help & Support column -->
+          <div class="footer__col">
+            <h3 class="footer__heading">सहायता</h3>
+            <ul class="footer__links" role="list">
+              <li><a href="#" class="footer__link" data-i18n="footer.helpdesk">हेल्पडेस्क</a></li>
+              <li><a href="#" class="footer__link" data-i18n="footer.grievance">शिकायत पोर्टल</a></li>
+              <li><a href="#" class="footer__link" data-i18n="footer.privacy">गोपनीयता नीति</a></li>
+              <li><a href="#" class="footer__link" data-i18n="footer.terms">नियम एवं शर्तें</a></li>
+            </ul>
+          </div>
+
+          <!-- Contact column -->
+          <div class="footer__col">
+            <h3 class="footer__heading">संपर्क</h3>
+            <address class="footer__contact">
+              <p>📞 हेल्पलाइन: <a href="tel:07556720200" class="footer__link">0755-6720200</a></p>
+              <p>📧 ईमेल: <a href="mailto:support@kaushalsetu.gov.in" class="footer__link">support@kaushalsetu.gov.in</a></p>
+              <p>🕐 सोमवार–शुक्रवार, 9AM–6PM</p>
+            </address>
+          </div>
+
+        </div><!-- /.footer__grid -->
+      </div>
+    </div><!-- /.footer__top -->
+
+    <!-- Footer bottom bar -->
+    <div class="footer__bottom">
+      <div class="container">
+        <div class="footer__bottom-inner">
+          <p class="footer__copy">
+            &copy; <span id="footer-year"></span> Kaushal Setu.
+            <span data-i18n="footer.rights">सर्वाधिकार सुरक्षित</span>.
+          </p>
+          <p class="footer__gov-badge">
+            भारत सरकार | Government of India
+          </p>
+        </div>
+      </div>
+    </div><!-- /.footer__bottom -->
+
+  </footer><!-- /site-footer -->
+
+
+  <!-- ══════════════════════════════════════════════════════════
+       SCROLL TO TOP BUTTON
+  ══════════════════════════════════════════════════════════ -->
+  <button
+    id="scroll-top"
+    class="scroll-top-btn"
+    aria-label="ऊपर जाएं"
+    data-i18n="aria-label:ui.scroll_to_top"
+    title="ऊपर जाएं"
+  >
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+         viewBox="0 0 24 24" fill="none" stroke="currentColor"
+         stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
+         aria-hidden="true">
+      <polyline points="18 15 12 9 6 15"/>
+    </svg>
+  </button>
+
+
+  <!-- ══════════════════════════════════════════════════════════
+       JAVASCRIPT — Load order matters
+  ══════════════════════════════════════════════════════════ -->
+  <script src="../../assets/js/common/safe-storage.js"></script>
+  <script src="../../assets/js/common/app.js"></script>
+  <script src="../../assets/js/common/i18n.js"></script>
+  <script src="../../components/header/header.js"></script>
+  <script>
+    (function() {
+    // 1. Init language (reads localStorage or defaults to Hindi)
+    var savedLang = (window._ckStorage || localStorage).getItem('ck-ui-lang') || 'hi';
+    I18n.init(savedLang);
+    I18n.setupToggleButton();
+
+    // 2. App is auto-initialized via DOMContentLoaded in app.js
+    //    Sync language state into App
+    document.addEventListener('i18n:languageChanged', function(e) {
+      App.language = e.detail.language;
+      I18n.translateDOM(); // re-translate after any dynamic HTML loads
+    });
+
+    // 3. Set current year in footer
+    var yearEl = document.getElementById('footer-year');
+    if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+    // 4. Mark active nav link based on current page
+    var page = location.pathname.split('/').filter(Boolean).pop();
+    page = page ? page.replace('.html','') : 'home';
+    App.setActivePage(page);
+    })();
+  </script>
+
+  <!-- Page-specific JS (injected by consuming page) -->
+  <!-- <script src="../../pages/[page]/[page].js"></script> -->
+
+
+</body>
+</html>

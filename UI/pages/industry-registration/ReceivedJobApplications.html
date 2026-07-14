@@ -1,0 +1,758 @@
+﻿<!DOCTYPE html>
+<html lang="hi-IN" data-theme="light">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="theme-color" content="#0A1628" />
+
+  <link rel="icon" type="image/png" href="../../assets/images/logos/KaushalSetuLogo.png" />
+  <title>डैशबोर्ड — Kaushal Setu</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+Devanagari:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet" />
+
+  <!-- Design System -->
+  <link rel="stylesheet" href="../../assets/css/common/design-tokens.css" />
+  <link rel="stylesheet" href="../../assets/css/common/reset.css" />
+  <link rel="stylesheet" href="../../assets/css/common/typography.css" />
+  <link rel="stylesheet" href="../../assets/css/common/utilities.css" />
+  <link rel="stylesheet" href="../../components/alerts/alerts.css" />
+
+  <!-- Layout & Components -->
+  <link rel="stylesheet" href="../../layouts/dashboard-layout/dashboard-layout.css" />
+  <link rel="stylesheet" href="../../components/cards/cards.css" />
+    <style>
+    /* Premium Form Card (Variant 2B) for the main container */
+    .card {
+      background: #ffffff !important;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03) !important;
+      border: 1px solid var(--border-light, #e2e8f0) !important;
+      border-left: 5px solid var(--color-accent-500, #10b981) !important; /* Green accent */
+      border-radius: var(--radius-xl) !important;
+      padding: var(--space-6) !important;
+    }
+
+    /* Header cleanup */
+    .card__header {
+      text-align: left !important;
+      padding-bottom: 20px !important;
+      border-bottom: 1px solid #f1f5f9 !important;
+      margin-bottom: 24px !important;
+    }
+    .card__title {
+      font-size: 24px !important;
+      color: var(--color-primary-900, #0a1628) !important;
+      font-weight: 800 !important;
+      background: none !important;
+      -webkit-text-fill-color: initial !important;
+      margin-bottom: 4px !important;
+    }
+    .card__desc {
+      font-size: 14px !important;
+      color: var(--text-secondary) !important;
+    }
+
+    /* Job List */
+    .job-list {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-4);
+    }
+    
+    /* Premium Horizontal Application Card */
+    .job-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: var(--space-5);
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: var(--radius-lg);
+      border-left: 4px solid #10b981; /* Green border for applications */
+      transition: all var(--duration-fast) ease;
+    }
+    .job-item:hover {
+      background: #ffffff;
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.025);
+      transform: translateY(-2px);
+      border-color: #cbd5e1;
+    }
+    
+    .job-info {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    
+    .job-title {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--color-primary-900, #0f172a);
+      letter-spacing: -0.3px;
+    }
+    
+    .job-subtitle {
+      font-size: 14px;
+      font-weight: 600;
+      color: #3b82f6;
+      margin-bottom: 4px;
+    }
+    
+    .job-meta {
+      display: flex;
+      gap: var(--space-3);
+      font-size: 13px;
+      flex-wrap: wrap;
+    }
+    
+    .job-meta span {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #ffffff;
+      padding: 4px 10px;
+      border-radius: var(--radius-full);
+      border: 1px solid #e2e8f0;
+      color: var(--text-secondary);
+      font-weight: 600;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.02);
+    }
+    
+    /* Modern Action Buttons */
+    .action-group {
+      display: flex;
+      gap: var(--space-3);
+    }
+    .btn-action {
+      background: #ffffff;
+      padding: 8px 14px;
+      border-radius: var(--radius-full);
+      font-weight: 700;
+      font-size: 13px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.03);
+    }
+    
+    .btn-view {
+      color: #3b82f6;
+      border: 1px solid #93c5fd;
+    }
+    .btn-view:hover {
+      background: #3b82f6;
+      color: #ffffff;
+      border-color: #3b82f6;
+      box-shadow: 0 4px 12px rgba(59, 130, 246, 0.25);
+      transform: translateY(-1px);
+    }
+    
+    .btn-accept {
+      color: #10b981;
+      border: 1px solid #6ee7b7;
+    }
+    .btn-accept:hover {
+      background: #10b981;
+      color: #ffffff;
+      border-color: #10b981;
+      box-shadow: 0 4px 12px rgba(16, 185, 129, 0.25);
+      transform: translateY(-1px);
+    }
+    
+    .btn-reject {
+      color: #ef4444;
+      border: 1px solid #fca5a5;
+    }
+    .btn-reject:hover {
+      background: #ef4444;
+      color: #ffffff;
+      border-color: #ef4444;
+      box-shadow: 0 4px 12px rgba(239, 68, 68, 0.25);
+      transform: translateY(-1px);
+    }
+    
+    @media (max-width: 768px) {
+      .job-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--space-5);
+      }
+      .action-group {
+        width: 100%;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+      }
+    }
+
+    /* Modal Styling */
+    .modal-overlay {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(15, 23, 42, 0.7);
+      backdrop-filter: blur(6px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+    }
+    .modal-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    .modal-content {
+      background: #ffffff;
+      border-radius: var(--radius-xl);
+      width: 95%;
+      max-width: 700px;
+      max-height: 90vh;
+      overflow-y: auto;
+      transform: translateY(30px) scale(0.95);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    }
+    .modal-overlay.active .modal-content {
+      transform: translateY(0) scale(1);
+    }
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 24px;
+      border-bottom: 1px solid #f1f5f9;
+      background: #f8fafc;
+      border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+    }
+    .modal-title {
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--color-primary-900, #0f172a);
+    }
+    .btn-close-modal {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      color: var(--text-secondary);
+      cursor: pointer;
+      padding: 6px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+    }
+    .btn-close-modal:hover {
+      background: #fee2e2;
+      color: #ef4444;
+      border-color: #fca5a5;
+    }
+    .modal-body {
+      padding: 24px;
+    }
+    .profile-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+    }
+    .profile-field {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      background: #f8fafc;
+      padding: 12px 16px;
+      border-radius: var(--radius-md);
+      border: 1px solid #f1f5f9;
+    }
+    .profile-label {
+      font-size: 12px;
+      color: var(--text-secondary);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .profile-value {
+      font-size: 15px;
+      color: var(--color-primary-900, #0f172a);
+      font-weight: 700;
+    }
+  </style>
+</head>
+
+<body class="layout-dashboard">
+
+  <!-- Sidebar Overlay -->
+  <div class="sidebar-overlay" id="sidebar-overlay" aria-hidden="true"></div>
+
+  <!-- Sidebar -->
+  <nav id="dashboard-sidebar" class="dashboard-sidebar" aria-label="मुख्य नेविगेशन">
+    <div class="sidebar-header">
+      <a href="IndustryServiceHome.html" class="sidebar-brand">
+        <img src="../../assets/images/logos/KaushalSetuLogo.png" alt="Kaushal Setu" width="170" height="170" />
+      </a>
+    </div>
+    <div class="sidebar-nav">
+
+      <!-- Group 1 -->
+      <div class="sidebar-group">
+        <div class="sidebar-group-title" data-i18n="dashboard.menu.profile_identity">प्रोफाइल एवं पहचान प्रबंधन</div>
+        <ul class="sidebar-menu">
+          <li><a href="profile.html" class="sidebar-link" data-i18n="dashboard.menu.personal_profile">प्रोफाइल प्रबंधन</a></li>
+        </ul>
+      </div>
+
+      <!-- Group 2 -->
+      <div class="sidebar-group">
+        <div class="sidebar-group-title" data-i18n="dashboard.menu.employment_career">रोजगार एवं कैरियर सेवाएँ</div>
+        <ul class="sidebar-menu">
+          <li><a href="industrydashboard.html" class="sidebar-link" data-i18n="dashboard.menu.dashboard">डैशबोर्ड</a></li>
+          <li><a href="PostJob.html" class="sidebar-link" data-i18n="dashboard.menu.post_jobs">नौकरियां पोस्ट करें</a></li>
+          <li><a href="ActiveJobPostings.html" class="sidebar-link" data-i18n="dashboard.menu.active_jobs">सक्रिय नौकरियां</a></li>
+          <li><a href="ReceivedJobApplications.html" class="sidebar-link active" data-i18n="dashboard.menu.received_apps">प्राप्त आवेदन</a></li>
+          <li><a href="shortlistedcandidate.html" class="sidebar-link" data-i18n="dashboard.menu.shortlisted">शॉर्टलिस्टेड उम्मीदवार</a></li>
+          <li><a href="AIshortlistedcandidate.html" class="sidebar-link" data-i18n="dashboard.menu.ai_recommended_candidates">AI Recommended Candidates</a></li>
+          <li><a href="searchcandidate.html" class="sidebar-link" data-i18n="dashboard.menu.search_candidate">उम्मीदवार खोजें</a></li>
+        </ul>
+      </div>
+
+    </div>
+  </nav>
+
+  <!-- Main Area -->
+  <main class="dashboard-main">
+
+    <!-- Header -->
+    <header class="dashboard-header">
+      <div class="header-left">
+        <button id="sidebar-toggle" class="sidebar-toggle-btn" aria-label="मेनू टॉगल करें">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+        </button>
+      </div>
+
+      <div class="header-right">
+
+        <!-- User Profile -->
+        <div class="user-profile">
+          <div class="user-info">
+            <span class="user-name" style="max-width: 200px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="National Textile Corporation Limited (NTC)">National Textile Corporation Limited (NTC)</span>
+            <span class="user-meta"><span id="last-login-time">Last login: </span></span>
+          </div>
+          <div class="user-avatar" aria-hidden="true" style="font-size: 14px;">NTC</div>
+        </div>
+
+        <div class="header-actions">
+          <button id="lang-toggle" class="btn btn--ghost btn--sm" data-lang-toggle aria-label="Switch to English">English</button>
+          <a href="../home/index.html" class="btn btn--secondary btn--sm" data-i18n="dashboard.signout">लॉग आउट</a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Content -->
+    <div class="dashboard-content">
+
+      <div class="card" style="margin-bottom: var(--space-6);">
+        <div class="card__header">
+          <h2 class="card__title" data-i18n="receivedapps.title">Received Job Applications</h2>
+          <p class="card__desc" data-i18n="receivedapps.desc">Review and manage applications from candidates.</p>
+        </div>
+        <div class="card__body">
+          <div class="job-list" id="application-list-container">
+            <!-- App 1 -->
+            <div class="job-item">
+              <div class="job-info">
+                <div class="job-title">Ramesh Kumar</div>
+                <div class="job-subtitle" data-i18n="receivedapps.applied_for_1">Applied for: Senior Electrician</div>
+                <div class="job-meta">
+                  <span data-i18n="receivedapps.location_1">Location: Bhopal</span>
+                  <span data-i18n="receivedapps.exp_1">Experience: 5 Years</span>
+                  <span data-i18n="receivedapps.date_1">Applied On: 19 May 2026</span>
+                </div>
+              </div>
+              <div class="action-group">
+                <button class="btn-action btn-view" data-i18n="receivedapps.view">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"></path><circle cx="12" cy="12" r="3"></circle></svg> View Profile
+                </button>
+                <button class="btn-action btn-accept" data-i18n="receivedapps.shortlist">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Shortlist
+                </button>
+                <button class="btn-action btn-reject" data-i18n="receivedapps.reject">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg> Reject
+                </button>
+              </div>
+            </div>
+            <!-- App 2 -->
+            <div class="job-item">
+              <div class="job-info">
+                <div class="job-title">Suresh Singh</div>
+                <div class="job-subtitle" data-i18n="receivedapps.applied_for_2">Applied for: Master Plumber</div>
+                <div class="job-meta">
+                  <span data-i18n="receivedapps.location_2">Location: Indore</span>
+                  <span data-i18n="receivedapps.exp_2">Experience: 8 Years</span>
+                  <span data-i18n="receivedapps.date_2">Applied On: 18 May 2026</span>
+                </div>
+              </div>
+              <div class="action-group">
+                <button class="btn-action btn-view" data-i18n="receivedapps.view">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"></path><circle cx="12" cy="12" r="3"></circle></svg> View Profile
+                </button>
+                <button class="btn-action btn-accept" data-i18n="receivedapps.shortlist">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Shortlist
+                </button>
+                <button class="btn-action btn-reject" data-i18n="receivedapps.reject">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg> Reject
+                </button>
+              </div>
+            </div>
+            <!-- App 3 -->
+            <div class="job-item">
+              <div class="job-info">
+                <div class="job-title">Amit Patel</div>
+                <div class="job-subtitle" data-i18n="receivedapps.applied_for_3">Applied for: Construction Mason</div>
+                <div class="job-meta">
+                  <span data-i18n="receivedapps.location_3">Location: Gwalior</span>
+                  <span data-i18n="receivedapps.exp_3">Experience: 3 Years</span>
+                  <span data-i18n="receivedapps.date_3">Applied On: 17 May 2026</span>
+                </div>
+              </div>
+              <div class="action-group">
+                <button class="btn-action btn-view" data-i18n="receivedapps.view">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"></path><circle cx="12" cy="12" r="3"></circle></svg> View Profile
+                </button>
+                <button class="btn-action btn-accept" data-i18n="receivedapps.shortlist">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Shortlist
+                </button>
+                <button class="btn-action btn-reject" data-i18n="receivedapps.reject">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg> Reject
+                </button>
+              </div>
+            </div>
+            <!-- App 4 -->
+            <div class="job-item">
+              <div class="job-info">
+                <div class="job-title">Rajesh Verma</div>
+                <div class="job-subtitle" data-i18n="receivedapps.applied_for_4">Applied for: Wood Carpenter</div>
+                <div class="job-meta">
+                  <span data-i18n="receivedapps.location_4">Location: Ujjain</span>
+                  <span data-i18n="receivedapps.exp_4">Experience: Fresher</span>
+                  <span data-i18n="receivedapps.date_4">Applied On: 16 May 2026</span>
+                </div>
+              </div>
+              <div class="action-group">
+                <button class="btn-action btn-view" data-i18n="receivedapps.view">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"></path><circle cx="12" cy="12" r="3"></circle></svg> View Profile
+                </button>
+                <button class="btn-action btn-accept" data-i18n="receivedapps.shortlist">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Shortlist
+                </button>
+                <button class="btn-action btn-reject" data-i18n="receivedapps.reject">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg> Reject
+                </button>
+              </div>
+            </div>
+            <!-- App 5 -->
+            <div class="job-item">
+              <div class="job-info">
+                <div class="job-title">Vikram Yadav</div>
+                <div class="job-subtitle" data-i18n="receivedapps.applied_for_5">Applied for: Industrial Painter</div>
+                <div class="job-meta">
+                  <span data-i18n="receivedapps.location_5">Location: Jabalpur</span>
+                  <span data-i18n="receivedapps.exp_5">Experience: 2 Years</span>
+                  <span data-i18n="receivedapps.date_5">Applied On: 15 May 2026</span>
+                </div>
+              </div>
+              <div class="action-group">
+                <button class="btn-action btn-accept" data-i18n="receivedapps.shortlist">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Shortlist
+                </button>
+                <button class="btn-action btn-reject" data-i18n="receivedapps.reject">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg> Reject
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Profile Modal -->
+      <div class="modal-overlay" id="profile-modal" aria-hidden="true">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h3 class="modal-title" data-i18n="receivedapps.profile_title">Candidate Profile</h3>
+            <button class="btn-close-modal" id="btn-close-modal" aria-label="Close">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="profile-grid">
+              <div class="profile-field">
+                <span class="profile-label" data-i18n="profile.name">Name of Candidate</span>
+                <span class="profile-value" id="modal-name">Ramesh Kumar</span>
+              </div>
+              <div class="profile-field">
+                <span class="profile-label" data-i18n="profile.fname">Father's Name</span>
+                <span class="profile-value" id="modal-fname">Suresh Kumar</span>
+              </div>
+              <div class="profile-field">
+                <span class="profile-label" data-i18n="profile.dob">Date of Birth</span>
+                <span class="profile-value" id="modal-dob">15-Aug-1990</span>
+              </div>
+              <div class="profile-field">
+                <span class="profile-label" data-i18n="profile.gender">Gender</span>
+                <span class="profile-value" id="modal-gender">Male</span>
+              </div>
+              <div class="profile-field">
+                <span class="profile-label" data-i18n="profile.mobile">Mobile Number</span>
+                <span class="profile-value" id="modal-mobile">+91-9876543210</span>
+              </div>
+              <div class="profile-field">
+                <span class="profile-label" data-i18n="profile.email">Email ID</span>
+                <span class="profile-value" id="modal-email">ramesh@example.com</span>
+              </div>
+              <div class="profile-field" style="grid-column: 1 / -1;">
+                <span class="profile-label" data-i18n="profile.address">Address</span>
+                <span class="profile-value" id="modal-address">123, Main Street, Shivaji Nagar</span>
+              </div>
+              <div class="profile-field">
+                <span class="profile-label" data-i18n="profile.district">District</span>
+                <span class="profile-value" id="modal-district">Bhopal</span>
+              </div>
+              <div class="profile-field">
+                <span class="profile-label" data-i18n="profile.pincode">Pincode</span>
+                <span class="profile-value" id="modal-pincode">462001</span>
+              </div>
+              <div class="profile-field">
+                <span class="profile-label" data-i18n="profile.exp">Experience</span>
+                <span class="profile-value" id="modal-exp">5 Years</span>
+              </div>
+              <div class="profile-field">
+                <span class="profile-label" data-i18n="profile.role">Applied Role</span>
+                <span class="profile-value" id="modal-role">Senior Electrician</span>
+              </div>
+              <div class="profile-field" style="grid-column: 1 / -1;">
+                <span class="profile-label" data-i18n="profile.skills">Skills</span>
+                <span class="profile-value" id="modal-skills">Wiring, Maintenance</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </main>
+
+  <script src="../../assets/js/common/safe-storage.js"></script>
+  <script src="../../assets/js/common/app.js"></script>
+  <script src="../../assets/js/common/i18n.js"></script>
+  <script src="../../components/alerts/alerts.js"></script>
+  <script src="../../layouts/dashboard-layout/dashboard-layout.js"></script>
+  <script>
+    // Initialize Dashboard logic
+    const savedLang = (window._ckStorage || localStorage).getItem('ck-ui-lang') || 'hi';
+    I18n.init(savedLang, {
+      hi: {
+        'dashboard.menu.profile_identity': 'प्रोफाइल एवं पहचान प्रबंधन',
+        'dashboard.menu.dashboard': 'डैशबोर्ड',
+        'dashboard.menu.personal_profile': 'प्रोफाइल प्रबंधन',
+        'dashboard.menu.change_password': 'पासवर्ड बदलें',
+        'dashboard.menu.employment_career': 'रोजगार एवं कैरियर सेवाएँ',
+        'dashboard.menu.post_jobs': 'नौकरियां पोस्ट करें',
+        'dashboard.menu.active_jobs': 'सक्रिय नौकरियां',
+        'dashboard.menu.received_apps': 'प्राप्त आवेदन',
+        'dashboard.menu.search_candidate': 'उम्मीदवार खोजें',
+        'dashboard.signout': 'लॉग आउट',
+        
+        'receivedapps.title': 'प्राप्त नौकरी आवेदन',
+        'receivedapps.desc': 'उम्मीदवारों के आवेदनों की समीक्षा और प्रबंधन करें।',
+        'receivedapps.view': 'प्रोफाइल देखें',
+        'receivedapps.shortlist': 'शॉर्टलिस्ट करें',
+        'receivedapps.reject': 'अस्वीकार करें',
+        'receivedapps.success_shortlist': 'उम्मीदवार को सफलतापूर्वक शॉर्टलिस्ट किया गया।',
+        'receivedapps.success_reject': 'आवेदन अस्वीकार कर दिया गया।',
+        'receivedapps.profile_title': 'उम्मीदवार प्रोफाइल',
+        'profile.name': 'उम्मीदवार का नाम',
+        'profile.fname': 'पिता का नाम',
+        'profile.dob': 'जन्म तिथि',
+        'profile.gender': 'लिंग',
+        'profile.mobile': 'मोबाइल नंबर',
+        'profile.email': 'ईमेल आईडी',
+        'profile.address': 'पता',
+        'profile.district': 'ज़िला',
+        'profile.pincode': 'पिनकोड',
+        'profile.exp': 'अनुभव',
+        'profile.role': 'आवेदित पद',
+        'profile.skills': 'कौशल',
+        
+        'receivedapps.applied_for_1': 'आवेदित पद: सीनियर इलेक्ट्रीशियन',
+        'receivedapps.location_1': 'स्थान: भोपाल',
+        'receivedapps.exp_1': 'अनुभव: 5 वर्ष',
+        'receivedapps.date_1': 'आवेदन तिथि: 19 मई 2026',
+        
+        'receivedapps.applied_for_2': 'आवेदित पद: मास्टर प्लंबर',
+        'receivedapps.location_2': 'स्थान: इंदौर',
+        'receivedapps.exp_2': 'अनुभव: 8 वर्ष',
+        'receivedapps.date_2': 'आवेदन तिथि: 18 मई 2026',
+        
+        'receivedapps.applied_for_3': 'आवेदित पद: कंस्ट्रक्शन मेसन',
+        'receivedapps.location_3': 'स्थान: ग्वालियर',
+        'receivedapps.exp_3': 'अनुभव: 3 वर्ष',
+        'receivedapps.date_3': 'आवेदन तिथि: 17 मई 2026',
+        
+        'receivedapps.applied_for_4': 'आवेदित पद: वुड कारपेंटर',
+        'receivedapps.location_4': 'स्थान: उज्जैन',
+        'receivedapps.exp_4': 'अनुभव: फ्रेशर',
+        'receivedapps.date_4': 'आवेदन तिथि: 16 मई 2026',
+        
+        'receivedapps.applied_for_5': 'आवेदित पद: इंडस्ट्रियल पेंटर',
+        'receivedapps.location_5': 'स्थान: जबलपुर',
+        'receivedapps.exp_5': 'अनुभव: 2 वर्ष',
+        'receivedapps.date_5': 'आवेदन तिथि: 15 मई 2026'
+      },
+      en: {
+        'dashboard.menu.profile_identity': 'Profile & Identity Management',
+        'dashboard.menu.dashboard': 'Dashboard',
+        'dashboard.menu.personal_profile': 'Profile Management',
+        'dashboard.menu.change_password': 'Change Password',
+        'dashboard.menu.employment_career': 'Employment & Career Services',
+        'dashboard.menu.post_jobs': 'Post Jobs',
+        'dashboard.menu.active_jobs': 'Active Job Postings',
+        'dashboard.menu.received_apps': 'Received Applications',
+        'dashboard.menu.shortlisted': 'Shortlisted Candidates',
+        'dashboard.menu.search_candidate': 'Search Candidate',
+        'dashboard.signout': 'Sign Out',
+        
+        'receivedapps.title': 'Received Job Applications',
+        'receivedapps.desc': 'Review and manage applications from candidates.',
+        'receivedapps.view': 'View Profile',
+        'receivedapps.shortlist': 'Shortlist',
+        'receivedapps.reject': 'Reject',
+        'receivedapps.success_shortlist': 'Candidate successfully shortlisted.',
+        'receivedapps.success_reject': 'Application rejected.',
+        'receivedapps.profile_title': 'Candidate Profile',
+        'profile.name': 'Name of Candidate',
+        'profile.fname': 'Father\'s Name',
+        'profile.dob': 'Date of Birth',
+        'profile.gender': 'Gender',
+        'profile.mobile': 'Mobile Number',
+        'profile.email': 'Email ID',
+        'profile.address': 'Address',
+        'profile.district': 'District',
+        'profile.pincode': 'Pincode',
+        'profile.exp': 'Experience',
+        'profile.role': 'Applied Role',
+        'profile.skills': 'Skills',
+        
+        'receivedapps.applied_for_1': 'Applied for: Senior Electrician',
+        'receivedapps.location_1': 'Location: Bhopal',
+        'receivedapps.exp_1': 'Experience: 5 Years',
+        'receivedapps.date_1': 'Applied On: 19 May 2026',
+        
+        'receivedapps.applied_for_2': 'Applied for: Master Plumber',
+        'receivedapps.location_2': 'Location: Indore',
+        'receivedapps.exp_2': 'Experience: 8 Years',
+        'receivedapps.date_2': 'Applied On: 18 May 2026',
+        
+        'receivedapps.applied_for_3': 'Applied for: Construction Mason',
+        'receivedapps.location_3': 'Location: Gwalior',
+        'receivedapps.exp_3': 'Experience: 3 Years',
+        'receivedapps.date_3': 'Applied On: 17 May 2026',
+        
+        'receivedapps.applied_for_4': 'Applied for: Wood Carpenter',
+        'receivedapps.location_4': 'Location: Ujjain',
+        'receivedapps.exp_4': 'Experience: Fresher',
+        'receivedapps.date_4': 'Applied On: 16 May 2026',
+        
+        'receivedapps.applied_for_5': 'Applied for: Industrial Painter',
+        'receivedapps.location_5': 'Location: Jabalpur',
+        'receivedapps.exp_5': 'Experience: 2 Years',
+        'receivedapps.date_5': 'Applied On: 15 May 2026'
+      }
+    });
+    I18n.setupToggleButton();
+    document.addEventListener('i18n:languageChanged', () => I18n.translateDOM());
+
+    function updateLastLogin() {
+      const now = new Date();
+      const datePart = now.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
+      let timePart = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true });
+      const lastLoginEl = document.getElementById('last-login-time');
+      if (lastLoginEl) lastLoginEl.textContent = 'Last login: ' + datePart + ', ' + timePart;
+    }
+    updateLastLogin();
+
+    // Modal Logic
+    const profileModal = document.getElementById('profile-modal');
+    const btnCloseModal = document.getElementById('btn-close-modal');
+
+    function openModal(name, role, loc, exp) {
+      document.getElementById('modal-name').textContent = name;
+      document.getElementById('modal-role').textContent = role.replace(/^(Applied for: |आवेदित पद: )/, '');
+      document.getElementById('modal-district').textContent = loc.replace(/^(Location: |स्थान: )/, '');
+      document.getElementById('modal-exp').textContent = exp.replace(/^(Experience: |अनुभव: )/, '');
+      
+      profileModal.classList.add('active');
+      profileModal.setAttribute('aria-hidden', 'false');
+    }
+
+    function closeModal() {
+      profileModal.classList.remove('active');
+      profileModal.setAttribute('aria-hidden', 'true');
+    }
+
+    btnCloseModal.addEventListener('click', closeModal);
+    profileModal.addEventListener('click', (e) => {
+      if (e.target === profileModal) closeModal();
+    });
+
+    // Action buttons logic
+    document.getElementById('application-list-container')?.addEventListener('click', (e) => {
+      const viewBtn = e.target.closest('.btn-view');
+      const acceptBtn = e.target.closest('.btn-accept');
+      const rejectBtn = e.target.closest('.btn-reject');
+      
+      if (viewBtn) {
+        const item = viewBtn.closest('.job-item');
+        const name = item.querySelector('.job-title').textContent;
+        const role = item.querySelector('.job-subtitle').textContent;
+        const spans = item.querySelectorAll('.job-meta span');
+        const loc = spans[0].textContent;
+        const exp = spans[1].textContent;
+        openModal(name, role, loc, exp);
+        return;
+      }
+      
+      if (acceptBtn || rejectBtn) {
+        const item = (acceptBtn || rejectBtn).closest('.job-item');
+        item.style.opacity = '0';
+        item.style.transform = 'translateY(20px)';
+        item.style.transition = 'all 0.3s ease';
+        
+        setTimeout(() => {
+          item.remove();
+          if (acceptBtn) {
+            Toast.success(I18n.t('receivedapps.success_shortlist') || 'Candidate successfully shortlisted.');
+          } else {
+            Toast.warning(I18n.t('receivedapps.success_reject') || 'Application rejected.');
+          }
+        }, 300);
+      }
+    });
+  </script>
+</body>
+
+</html>
+
+
+
+
+
+

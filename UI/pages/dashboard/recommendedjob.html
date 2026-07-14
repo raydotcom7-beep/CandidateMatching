@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="hi-IN" data-theme="light">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="theme-color" content="#0A1628" />
+
+  <link rel="icon" type="image/png" href="../../assets/images/logos/KaushalSetuLogo.png" />
+  <title>Recommended Jobs — Kaushal Setu</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+Devanagari:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet" />
+
+  <!-- Design System -->
+  <link rel="stylesheet" href="../../assets/css/common/design-tokens.css" />
+  <link rel="stylesheet" href="../../assets/css/common/reset.css" />
+  <link rel="stylesheet" href="../../assets/css/common/typography.css" />
+  <link rel="stylesheet" href="../../assets/css/common/utilities.css" />
+
+  <!-- Layout & Components -->
+  <link rel="stylesheet" href="../../layouts/dashboard-layout/dashboard-layout.css" />
+  <link rel="stylesheet" href="../../components/cards/cards.css" />
+  <link rel="stylesheet" href="../../components/widgets/widgets.css" />
+  <link rel="stylesheet" href="../../components/jobs/jobs.css" />
+  <style>
+    .jobs-layout {
+      grid-template-columns: 1fr !important;
+    }
+
+    @keyframes float-robot {
+
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-8px);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .ai-recommended-banner {
+        flex-direction: column;
+        align-items: flex-start !important;
+        padding: var(--space-5) var(--space-6) !important;
+        gap: var(--space-4) !important;
+      }
+
+      .banner-robot-wrap {
+        align-self: flex-end;
+        margin-top: 0 !important;
+        margin-bottom: -10px !important;
+        margin-right: 0 !important;
+        height: 80px !important;
+      }
+
+      .banner-robot-wrap img {
+        height: 90px !important;
+      }
+    }
+  </style>
+</head>
+
+<body class="layout-dashboard" data-page="recommended">
+
+  <!-- Sidebar Overlay -->
+  <div class="sidebar-overlay" id="sidebar-overlay" aria-hidden="true"></div>
+
+  <!-- Sidebar -->
+  <nav id="dashboard-sidebar" class="dashboard-sidebar" aria-label="मुख्य नेविगेशन">
+    <div class="sidebar-header">
+      <a href="servicehome.html" class="sidebar-brand">
+        <img src="../../assets/images/logos/KaushalSetuLogo.png" alt="Kaushal Setu" width="170" height="170" />
+      </a>
+    </div>
+    <div class="sidebar-nav">
+
+      <!-- Group 1 -->
+      <div class="sidebar-group">
+        <div class="sidebar-group-title" data-i18n="dashboard.menu.profile_identity">प्रोफाइल एवं पहचान प्रबंधन</div>
+        <ul class="sidebar-menu">
+          <li><a href="profile.html" class="sidebar-link" data-i18n="dashboard.menu.personal_profile">व्यक्तिगत प्रोफाइल
+              प्रबंधन</a></li>
+        </ul>
+      </div>
+
+      <!-- Group 2 -->
+      <div class="sidebar-group">
+        <div class="sidebar-group-title" data-i18n="dashboard.menu.employment_career">रोजगार एवं कैरियर सेवाएँ</div>
+        <ul class="sidebar-menu">
+          <li><a href="candidatedashboard.html" class="sidebar-link" data-i18n="dashboard.menu.dashboard">डैशबोर्ड</a>
+          </li>
+          <li><a href="recommendedjob.html" class="sidebar-link active" data-i18n="dashboard.menu.recommended_jobs">अनुशंसित नौकरियां</a></li>
+          <li><a href="Appliedjobs.html" class="sidebar-link" data-i18n="dashboard.menu.applied_jobs">आवेदन की गई
+              नौकरियां</a></li>
+          <li><a href="Courses.html" class="sidebar-link" data-i18n="dashboard.menu.recommended_courses">अनुशंसित
+              पाठ्यक्रम</a></li>
+          <li><a href="coursescompleted.html" class="sidebar-link" data-i18n="dashboard.menu.completed_courses">पूरे किए
+              गए पाठ्यक्रम</a></li>
+          <li><a href="search.html" class="sidebar-link" data-i18n="dashboard.menu.search">नौकरी खोजें</a></li>
+        </ul>
+      </div>
+
+    </div>
+  </nav>
+
+  <!-- Main Area -->
+  <main class="dashboard-main">
+
+    <!-- Header -->
+    <header class="dashboard-header">
+      <div class="header-left">
+        <button id="sidebar-toggle" class="sidebar-toggle-btn" aria-label="मेनू टॉगल करें">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+            stroke-linecap="round">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+
+      <div class="header-right">
+        <!-- User Profile -->
+        <div class="user-profile">
+          <div class="user-info">
+            <span class="user-name">Ramesh Kumar</span>
+            <span class="user-meta"><span data-i18n="dashboard.header.last_login">अंतिम लॉगिन:</span> <span
+                id="last-login-date">14 May 2026</span></span>
+          </div>
+          <div class="user-avatar" aria-hidden="true">RK</div>
+        </div>
+
+        <div class="header-actions">
+          <!-- Lang Toggle -->
+          <button id="lang-toggle" class="btn btn--ghost btn--sm" data-lang-toggle
+            aria-label="Switch to English">English</button>
+
+          <!-- Theme Toggle -->
+          <button id="theme-toggle" class="btn btn--ghost btn--sm" aria-label="Switch Theme">
+            <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+              fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"
+              style="display:none">
+              <circle cx="12" cy="12" r="5" />
+              <line x1="12" y1="1" x2="12" y2="3" />
+              <line x1="12" y1="21" x2="12" y2="23" />
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+              <line x1="1" y1="12" x2="3" y2="12" />
+              <line x1="21" y1="12" x2="23" y2="12" />
+            </svg>
+            <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+              fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+            </svg>
+          </button>
+
+          <!-- Sign Out -->
+          <a href="../home/index.html" class="btn btn--secondary btn--sm" data-i18n="dashboard.signout">लॉग आउट</a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Content -->
+    <div class="dashboard-content">
+      <div class="ai-recommended-banner"
+        style="display: flex; align-items: center; justify-content: space-between; background: linear-gradient(135deg, #0A1628 0%, #1e1b4b 100%); border: 1px solid rgba(139, 92, 246, 0.25); border-radius: var(--radius-xl); padding: var(--space-4) var(--space-6); margin-bottom: var(--space-6); position: relative; overflow: hidden; box-shadow: 0 8px 24px rgba(139, 92, 246, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.08);">
+        <!-- Cyber grid background details for high-tech look -->
+        <div
+          style="position: absolute; inset: 0; background-image: radial-gradient(rgba(139, 92, 246, 0.12) 1px, transparent 1px); background-size: 16px 16px; pointer-events: none; opacity: 0.7;">
+        </div>
+        <!-- Colorful glowing ambient light behind the content -->
+        <div
+          style="position: absolute; top: -50%; right: -20%; width: 250px; height: 250px; background: radial-gradient(circle, rgba(168, 85, 247, 0.2) 0%, transparent 70%); pointer-events: none; filter: blur(35px);">
+        </div>
+        <div
+          style="position: absolute; bottom: -50%; left: -10%; width: 200px; height: 200px; background: radial-gradient(circle, rgba(6, 182, 212, 0.1) 0%, transparent 70%); pointer-events: none; filter: blur(25px);">
+        </div>
+
+        <div style="display: flex; align-items: center; gap: var(--space-4); position: relative; z-index: 1; flex: 1;">
+          <div class="banner-icon-wrap"
+            style="flex-shrink: 0; display: flex; align-items: center; justify-content: center; width: 48px; height: 48px; background: rgba(139, 92, 246, 0.15); border: 1px solid rgba(139, 92, 246, 0.3); border-radius: var(--radius-lg); box-shadow: 0 4px 16px rgba(139, 92, 246, 0.15);">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="#a78bfa" stroke="#a78bfa" stroke-width="1.5"
+              stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-sparkles"
+              style="color: #a78bfa; fill: #a78bfa; filter: drop-shadow(0 0 6px rgba(168, 85, 247, 0.5));">
+              <path
+                d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275Z" />
+              <path d="m5 3 1 2.5L8.5 6 6 7 5 9.5 4 7 1.5 6 4 5.5Z" />
+              <path d="m19 17 1 2.5 2.5.5-2.5 1-1 2.5-1-2.5-2.5-1 2.5-1Z" />
+            </svg>
+          </div>
+          <div class="banner-text">
+            <h1 class="dashboard-page-title" data-i18n="dashboard.menu.recommended_jobs"
+              style="margin: 0; line-height: 1.2; font-size: 22px; font-weight: 800; color: #ffffff; text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);">
+              Recommended Jobs</h1>
+            <p class="dashboard-page-subtitle" data-i18n="dashboard.menu.recommended_jobs_subtitle"
+              style="color: #cbd5e1; font-size: var(--text-xs); font-weight: 500; margin-top: 4px; line-height: var(--leading-relaxed); margin-bottom: 0;">
+              Matching based on your skills, experience & preferences</p>
+          </div>
+        </div>
+
+        <div class="banner-robot-wrap"
+          style="flex-shrink: 0; position: relative; z-index: 1; display: flex; align-items: center; justify-content: center; height: 80px; margin-top: -12px; margin-bottom: -12px; margin-right: -5px;">
+          <img src="../../assets/images/logos/ai_robot_avatar.png" alt="Robot"
+            style="height: 95px; width: auto; object-fit: contain; filter: drop-shadow(0 8px 20px rgba(139, 92, 246, 0.35)); mix-blend-mode: screen; animation: float-robot 4s ease-in-out infinite;" />
+        </div>
+      </div>
+
+      <div class="jobs-layout">
+
+        <!-- Results Area -->
+        <div class="jobs-main-area">
+          <div class="results-bar">
+            <div class="results-count"><span data-i18n="jobs.showing_prefix_ai">Showing</span> <strong
+                id="result-count">0</strong> <span data-i18n="jobs.showing_suffix_ai">recommended jobs</span></div>
+            <div class="results-sort">
+              <span data-i18n="jobs.sort_by">Sort by:</span>
+              <select id="sort-select">
+                <option value="match" data-i18n="sort.match">Match Score</option>
+                <option value="recent" data-i18n="sort.recent">Most Recent</option>
+                <option value="salary" data-i18n="sort.salary">Salary (High to Low)</option>
+              </select>
+            </div>
+          </div>
+
+          <div id="job-list" class="job-list">
+            <!-- Jobs injected via JS -->
+          </div>
+
+          <div id="empty-state" class="empty-state">
+            <div class="empty-state__icon">🔍</div>
+            <h3 class="empty-state__title" data-i18n="empty.title">No Jobs Found</h3>
+            <p class="empty-state__desc" data-i18n="empty.desc.recommended_no_filter">We couldn't find any recommended
+              jobs matching your skills. Try updating your profile to get better recommendations.</p>
+            <a href="profile.html" class="btn btn--secondary" data-i18n="action.update_profile">Update Profile</a>
+          </div>
+
+          <button id="load-more-btn" class="load-more-btn" style="display: none;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+            <span class="load-more-label" data-i18n="pagination.load_more">Load More</span>
+          </button>
+        </div>
+
+      </div>
+
+    </div>
+
+  </main>
+
+  <script src="../../assets/js/common/safe-storage.js"></script>
+  <script src="../../assets/js/common/app.js"></script>
+  <script src="../../assets/js/common/i18n.js"></script>
+  <script src="../../layouts/dashboard-layout/dashboard-layout.js"></script>
+  <script>
+    const savedLang = (window._ckStorage || localStorage).getItem('ck-ui-lang') || 'hi';
+    I18n.init(savedLang);
+    I18n.setupToggleButton();
+    
+    document.addEventListener('i18n:languageChanged', () => {
+      window.location.reload();
+    });
+
+    async function loadRecommendedJobs() {
+      let loggedMobile = localStorage.getItem('logged_in_candidate_mobile');
+      if (!loggedMobile) {
+        loggedMobile = "9755728822";
+      }
+
+      // Also update user profile avatar & name in top bar
+      try {
+        const profileRes = await fetch(`http://localhost:5000/api/candidate/profile?id=${loggedMobile}&lang=${savedLang}`);
+        if (profileRes.ok) {
+          const profile = await profileRes.json();
+          const name = `${profile.first_name} ${profile.last_name}`.trim();
+          document.querySelectorAll('.user-profile .user-name').forEach(el => el.textContent = name);
+          const initials = name.split(' ').map(n => n[0]).join('').toUpperCase().slice(0, 2);
+          document.querySelectorAll('.user-profile .user-avatar').forEach(el => el.textContent = initials);
+        }
+      } catch (e) {
+        console.warn("Failed to load header details.", e);
+      }
+
+      try {
+        const response = await fetch(`http://localhost:5000/api/candidate/recommended-jobs?id=${loggedMobile}&lang=${savedLang}`);
+        if (response.ok) {
+          const jobs = await response.json();
+          document.getElementById('result-count').textContent = jobs.length;
+          
+          const list = document.getElementById('job-list');
+          list.innerHTML = '';
+          
+          if (jobs.length === 0) {
+            document.getElementById('empty-state').style.display = 'block';
+            return;
+          }
+          
+          document.getElementById('empty-state').style.display = 'none';
+          
+          jobs.forEach(job => {
+            const card = document.createElement('div');
+            card.className = 'job-card widget surface--elevated';
+            card.style.padding = '16px';
+            card.style.marginBottom = '16px';
+            card.style.border = '1px solid var(--border-light)';
+            card.style.borderRadius = '8px';
+            card.innerHTML = `
+              <div class="job-card__header" style="display: flex; justify-content: space-between; align-items: flex-start;">
+                <div>
+                  <h3 class="job-card__title" style="font-size: 16px; font-weight: 700; margin: 0;">${job.title}</h3>
+                  <div class="job-card__company" style="font-size: 13px; color: #4f46e5; font-weight: 600; margin-top: 4px;">${job.company_name}</div>
+                </div>
+                <div class="job-card__match" style="background: rgba(16, 185, 129, 0.1); color: #10b981; padding: 4px 10px; border-radius: 6px; font-weight: 700; font-size: 13px;">
+                  ${job.score}% ${savedLang === 'hi' ? 'मिलान' : 'Match'}
+                </div>
+              </div>
+              <div class="job-card__body" style="margin-top: 12px; font-size: 13px; color: var(--text-secondary); line-height: 1.5;">
+                ${job.description}
+              </div>
+              <div class="job-card__footer" style="margin-top: 16px; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border-light); padding-top: 12px;">
+                <span style="font-size: 12px; color: #f59e0b; font-weight: 600;">⭐ ${savedLang === 'hi' ? 'अनुशंसित' : 'Recommended'}</span>
+                <button class="btn btn--primary btn--sm" style="padding: 6px 12px; font-size: 12px;" onclick="alert('${savedLang === 'hi' ? 'आवेदन सफलतापूर्वक जमा किया गया!' : 'Application submitted successfully!'}')">
+                  ${savedLang === 'hi' ? 'आवेदन करें' : 'Apply Now'}
+                </button>
+              </div>
+            `;
+            list.appendChild(card);
+          });
+        }
+      } catch (err) {
+        console.warn("Failed to load recommended jobs", err);
+      }
+    }
+    loadRecommendedJobs();
+  </script>
+</body>
+</html>

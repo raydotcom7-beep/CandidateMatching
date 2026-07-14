@@ -1,0 +1,75 @@
+/* ============================================================
+   MODALS CSS — components/modals/modals.css
+   ============================================================ */
+
+/* ── Backdrop ──────────────────────────────────────────────── */
+.modal-backdrop {
+  position: fixed; inset: 0; z-index: var(--z-overlay);
+  background: var(--bg-overlay);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  display: flex; align-items: center; justify-content: center;
+  padding: var(--space-4);
+  opacity: 0; visibility: hidden;
+  transition: opacity var(--duration-normal), visibility var(--duration-normal);
+}
+.modal-backdrop.is-open { opacity: 1; visibility: visible; }
+
+/* ── Modal Panel ───────────────────────────────────────────── */
+.modal {
+  background: var(--bg-surface);
+  border-radius: var(--radius-2xl);
+  box-shadow: var(--shadow-2xl);
+  width: 100%; max-height: 90vh;
+  display: flex; flex-direction: column;
+  transform: scale(0.92) translateY(16px);
+  transition: transform var(--duration-normal) var(--ease-spring);
+  overflow: hidden;
+}
+.modal-backdrop.is-open .modal { transform: scale(1) translateY(0); }
+
+/* Sizes */
+.modal--sm   { max-width: 400px; }
+.modal--md   { max-width: 560px; }
+.modal--lg   { max-width: 760px; }
+.modal--xl   { max-width: 960px; }
+.modal--fullscreen { max-width: 100%; max-height: 100vh; height: 100vh; border-radius: 0; margin: 0; }
+
+/* ── Modal Sections ────────────────────────────────────────── */
+.modal__header {
+  display: flex; align-items: flex-start; justify-content: space-between;
+  gap: var(--space-4); padding: var(--space-5) var(--space-6);
+  border-bottom: 1px solid var(--border-default); flex-shrink: 0;
+}
+.modal__title { font-size: var(--text-xl); font-weight: var(--weight-semibold); color: var(--text-primary); }
+.modal__close {
+  display: flex; align-items: center; justify-content: center;
+  width: 32px; height: 32px; border-radius: var(--radius-md);
+  background: none; border: none; cursor: pointer;
+  color: var(--text-tertiary); transition: var(--transition-fast);
+  flex-shrink: 0;
+}
+.modal__close:hover { background: var(--bg-surface-alt); color: var(--text-primary); }
+
+.modal__body { padding: var(--space-6); overflow-y: auto; flex: 1; }
+.modal__footer {
+  padding: var(--space-4) var(--space-6);
+  border-top: 1px solid var(--border-default);
+  display: flex; align-items: center; justify-content: flex-end;
+  gap: var(--space-3); flex-shrink: 0; flex-wrap: wrap;
+}
+.modal__footer--between { justify-content: space-between; }
+
+/* ── Confirm Dialog ────────────────────────────────────────── */
+.modal--confirm .modal__body { text-align: center; padding: var(--space-8) var(--space-6); }
+.modal--confirm .confirm__icon {
+  width: 64px; height: 64px; border-radius: var(--radius-full);
+  display: flex; align-items: center; justify-content: center;
+  font-size: var(--text-3xl); margin-inline: auto; margin-bottom: var(--space-4);
+}
+.confirm__icon--warning { background: var(--color-warning-50); }
+.confirm__icon--error   { background: var(--color-error-50); }
+.confirm__icon--success { background: var(--color-success-50); }
+.confirm__icon--info    { background: var(--color-info-50); }
+.modal--confirm .confirm__title { font-size: var(--text-xl); font-weight: var(--weight-semibold); color: var(--text-primary); margin-bottom: var(--space-2); }
+.modal--confirm .confirm__msg   { font-size: var(--text-sm); color: var(--text-secondary); line-height: var(--leading-relaxed); }

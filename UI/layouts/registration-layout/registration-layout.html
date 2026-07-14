@@ -1,0 +1,419 @@
+﻿<!DOCTYPE html>
+<html lang="hi-IN" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Kaushal Setu — पंजीकरण फॉर्म" />
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="theme-color" content="#0A1628" />
+
+  <link rel="icon" type="image/png" href="../../assets/images/logos/KaushalSetuLogo.png" />
+  <title>पंजीकरण — Kaushal Setu</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+Devanagari:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Design System -->
+  <link rel="stylesheet" href="../../assets/css/common/design-tokens.css" />
+  <link rel="stylesheet" href="../../assets/css/common/reset.css" />
+  <link rel="stylesheet" href="../../assets/css/common/typography.css" />
+  <link rel="stylesheet" href="../../assets/css/common/utilities.css" />
+
+  <!-- Layout CSS -->
+  <link rel="stylesheet" href="registration-layout.css" />
+
+  <!-- Page-specific CSS -->
+  <!-- <link rel="stylesheet" href="../../pages/[page]/[page].css" /> -->
+</head>
+
+<body class="layout-registration">
+
+  <!-- Skip link -->
+  <a href="#registration-main" class="skip-link" data-i18n="ui.skip_to_content">
+    मुख्य सामग्री पर जाएं
+  </a>
+
+  <!-- ══════════════════════════════════════════════════════════
+       SLIM HEADER — brand + lang/theme controls only
+  ══════════════════════════════════════════════════════════ -->
+  <header class="reg-header" role="banner">
+    <div class="reg-header__inner container">
+
+      <!-- Brand -->
+      <a href="../../index.html" class="reg-header__brand" aria-label="Kaushal Setu होम">
+        <img src="../../assets/images/logos/KaushalSetuLogo.png" alt="Kaushal Setu" width="36" height="36" loading="eager" />
+        <span class="reg-header__brand-name">Kaushal Setu</span>
+      </a>
+
+      <!-- Page title (updated by page JS) -->
+      <h1 class="reg-header__page-title" id="reg-page-title" data-i18n="reg.title.labour">
+        श्रमिक पंजीकरण
+      </h1>
+
+      <!-- Controls -->
+      <div class="reg-header__controls">
+        <button id="lang-toggle" class="btn btn--ghost btn--sm" data-lang-toggle aria-label="Switch to English">English</button>
+
+        <button id="theme-toggle" class="btn btn--ghost btn--sm" aria-label="Switch to dark mode">
+          <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" style="display:none">
+            <circle cx="12" cy="12" r="5"/>
+            <line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+            <line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/>
+          </svg>
+          <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+          </svg>
+        </button>
+
+        <a href="../../index.html" class="btn btn--ghost btn--sm reg-header__exit" aria-label="पंजीकरण बंद करें">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true">
+            <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+          </svg>
+        </a>
+      </div>
+
+    </div>
+  </header><!-- /reg-header -->
+
+
+  <!-- ══════════════════════════════════════════════════════════
+       STEPPER PROGRESS BAR
+       Steps controlled by page JS: data-step="1..4"
+  ══════════════════════════════════════════════════════════ -->
+  <div class="reg-stepper" role="navigation" aria-label="पंजीकरण चरण">
+    <div class="container">
+      <ol class="stepper__list" id="reg-stepper-list" role="list">
+
+        <li class="stepper__item stepper__item--active" data-step="1">
+          <span class="stepper__num" aria-hidden="true">1</span>
+          <span class="stepper__label" data-i18n="reg.ekyc.prompt">आधार सत्यापन</span>
+        </li>
+
+        <li class="stepper__connector" aria-hidden="true"></li>
+
+        <li class="stepper__item" data-step="2">
+          <span class="stepper__num" aria-hidden="true">2</span>
+          <span class="stepper__label" data-i18n="reg.step.personal">व्यक्तिगत जानकारी</span>
+        </li>
+
+        <li class="stepper__connector" aria-hidden="true"></li>
+
+        <li class="stepper__item" data-step="3">
+          <span class="stepper__num" aria-hidden="true">3</span>
+          <span class="stepper__label" data-i18n="reg.step.documents">दस्तावेज़</span>
+        </li>
+
+        <li class="stepper__connector" aria-hidden="true"></li>
+
+        <li class="stepper__item" data-step="4">
+          <span class="stepper__num" aria-hidden="true">4</span>
+          <span class="stepper__label" data-i18n="reg.step.review">समीक्षा</span>
+        </li>
+
+      </ol>
+    </div>
+  </div><!-- /reg-stepper -->
+
+
+  <!-- ══════════════════════════════════════════════════════════
+       MAIN CONTENT
+  ══════════════════════════════════════════════════════════ -->
+  <main id="registration-main" class="reg-main" role="main" tabindex="-1">
+    <div class="container container--md">
+
+      <!-- ── Alert banner (shown on validation errors / API errors) ── -->
+      <div id="reg-alert" class="reg-alert" role="alert" aria-live="polite" hidden>
+        <span class="reg-alert__icon" aria-hidden="true">⚠️</span>
+        <span class="reg-alert__text" id="reg-alert-text"></span>
+        <button class="reg-alert__close" aria-label="बंद करें" onclick="this.parentElement.hidden=true">×</button>
+      </div>
+
+      <!-- ── Step Panels (one visible at a time, controlled by page JS) ── -->
+
+      <!-- STEP 1: Aadhaar eKYC -->
+      <section id="step-panel-1" class="step-panel step-panel--active"
+               aria-labelledby="step1-heading" data-panel="1">
+
+        <div class="step-panel__header">
+          <h2 id="step1-heading" class="step-panel__title" data-i18n="reg.ekyc.prompt">
+            आधार OTP सत्यापन
+          </h2>
+          <p class="step-panel__desc">
+            पंजीकरण शुरू करने के लिए अपना आधार नंबर दर्ज करें।
+            आपके पंजीकृत मोबाइल नंबर पर OTP भेजा जाएगा।
+          </p>
+        </div>
+
+        <!--
+          ┌───────────────────────────────────────────────────────┐
+          │  SLOT: Step 1 form fields injected by page JS.        │
+          └───────────────────────────────────────────────────────┘
+        -->
+        <div class="step-panel__body" id="step1-body">
+          <!-- eKYC form rendered by page-specific JS -->
+        </div>
+
+        <div class="step-panel__actions">
+          <div><!-- spacer --></div>
+          <button type="button" class="btn btn--primary btn--lg" id="step1-next" disabled>
+            <span data-i18n="action.next">आगे</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                 fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true">
+              <polyline points="9 18 15 12 9 6"/>
+            </svg>
+          </button>
+        </div>
+      </section><!-- /step-panel-1 -->
+
+
+      <!-- STEP 2: Personal Information -->
+      <section id="step-panel-2" class="step-panel"
+               aria-labelledby="step2-heading" data-panel="2" hidden>
+
+        <div class="step-panel__header">
+          <h2 id="step2-heading" class="step-panel__title" data-i18n="reg.step.personal">
+            व्यक्तिगत जानकारी
+          </h2>
+          <p class="step-panel__desc">
+            आधार से स्वतः भरे गए विवरण की जांच करें और शेष जानकारी भरें।
+          </p>
+        </div>
+
+        <!-- eKYC auto-filled banner -->
+        <div class="ekyc-info-banner" role="status">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+               fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+            <polyline points="22 4 12 14.01 9 11.01"/>
+          </svg>
+          <span>नीचे हाइलाइट किए गए फ़ील्ड आधार eKYC से स्वतः भरे गए हैं। इन्हें संपादित नहीं किया जा सकता।</span>
+        </div>
+
+        <div class="step-panel__body" id="step2-body">
+          <!-- Personal info form rendered by page-specific JS -->
+        </div>
+
+        <div class="step-panel__actions">
+          <button type="button" class="btn btn--secondary btn--lg" id="step2-back">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                 fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true">
+              <polyline points="15 18 9 12 15 6"/>
+            </svg>
+            <span data-i18n="action.previous">पिछला</span>
+          </button>
+          <button type="button" class="btn btn--primary btn--lg" id="step2-next">
+            <span data-i18n="action.next">आगे</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                 fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true">
+              <polyline points="9 18 15 12 9 6"/>
+            </svg>
+          </button>
+        </div>
+      </section><!-- /step-panel-2 -->
+
+
+      <!-- STEP 3: Documents -->
+      <section id="step-panel-3" class="step-panel"
+               aria-labelledby="step3-heading" data-panel="3" hidden>
+
+        <div class="step-panel__header">
+          <h2 id="step3-heading" class="step-panel__title" data-i18n="reg.step.documents">
+            दस्तावेज़ अपलोड करें
+          </h2>
+          <p class="step-panel__desc">
+            आवश्यक दस्तावेज़ अपलोड करें। PDF या JPG/PNG, अधिकतम 2MB प्रत्येक।
+          </p>
+        </div>
+
+        <div class="step-panel__body" id="step3-body">
+          <!-- Document upload fields rendered by page-specific JS -->
+        </div>
+
+        <div class="step-panel__actions">
+          <button type="button" class="btn btn--secondary btn--lg" id="step3-back">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                 fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true">
+              <polyline points="15 18 9 12 15 6"/>
+            </svg>
+            <span data-i18n="action.previous">पिछला</span>
+          </button>
+          <button type="button" class="btn btn--primary btn--lg" id="step3-next">
+            <span data-i18n="action.next">आगे</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                 fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true">
+              <polyline points="9 18 15 12 9 6"/>
+            </svg>
+          </button>
+        </div>
+      </section><!-- /step-panel-3 -->
+
+
+      <!-- STEP 4: Review & Submit -->
+      <section id="step-panel-4" class="step-panel"
+               aria-labelledby="step4-heading" data-panel="4" hidden>
+
+        <div class="step-panel__header">
+          <h2 id="step4-heading" class="step-panel__title" data-i18n="reg.step.review">
+            समीक्षा करें और जमा करें
+          </h2>
+          <p class="step-panel__desc">
+            जमा करने से पहले कृपया सभी जानकारी की समीक्षा करें।
+          </p>
+        </div>
+
+        <div class="step-panel__body" id="step4-body">
+          <!-- Review summary rendered by page-specific JS -->
+        </div>
+
+        <!-- Declaration checkbox -->
+        <div class="form-group reg-declaration" id="reg-declaration-group">
+          <label class="form-check-label" for="reg-declaration">
+            <input
+              type="checkbox"
+              id="reg-declaration"
+              name="declaration"
+              class="form-check-input"
+              data-rules="required"
+              data-label="घोषणा"
+              required
+            />
+            <span>
+              मैं प्रमाणित करता/करती हूं कि ऊपर दी गई सभी जानकारी सत्य और सही है।
+              मैं समझता/समझती हूं कि गलत जानकारी देना कानूनी अपराध है।
+            </span>
+          </label>
+          <p class="form-error-text" id="reg-declaration-error" role="alert" style="display:none"></p>
+        </div>
+
+        <div class="step-panel__actions">
+          <button type="button" class="btn btn--secondary btn--lg" id="step4-back">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                 fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true">
+              <polyline points="15 18 9 12 15 6"/>
+            </svg>
+            <span data-i18n="action.previous">पिछला</span>
+          </button>
+          <button type="submit" class="btn btn--primary btn--lg" id="reg-submit-btn" form="reg-form">
+            <span data-i18n="action.submit">जमा करें</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                 fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true">
+              <polyline points="20 6 9 17 4 12"/>
+            </svg>
+          </button>
+        </div>
+      </section><!-- /step-panel-4 -->
+
+
+      <!-- SUCCESS STATE (shown after submit) -->
+      <div id="reg-success" class="reg-success" hidden role="status" aria-live="polite">
+        <div class="reg-success__icon" aria-hidden="true">
+          <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24"
+               fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+            <polyline points="22 4 12 14.01 9 11.01"/>
+          </svg>
+        </div>
+        <h2 class="reg-success__title" data-i18n="reg.success.title">पंजीकरण सफल!</h2>
+        <p class="reg-success__msg" data-i18n="reg.success.msg">
+          आपका पंजीकरण सफलतापूर्वक पूर्ण हो गया है।
+        </p>
+        <div class="reg-success__id-box">
+          <span class="reg-success__id-label" data-i18n="dashboard.rojgar_id">रोजगार आईडी</span>
+          <strong class="reg-success__id-value" id="reg-rojgar-id">—</strong>
+        </div>
+        <div class="reg-success__actions">
+          <button class="btn btn--primary btn--lg" onclick="window.print()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+              <polyline points="6 9 6 2 18 2 18 9"/>
+              <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/>
+              <rect x="6" y="14" width="12" height="8"/>
+            </svg>
+            <span data-i18n="action.print">प्रिंट करें</span>
+          </button>
+          <a href="../../pages/home/index.html" class="btn btn--secondary btn--lg" data-i18n="nav.home">होम</a>
+        </div>
+      </div><!-- /reg-success -->
+
+    </div><!-- /.container -->
+  </main><!-- /registration-main -->
+
+
+  <!-- ══════════════════════════════════════════════════════════
+       SLIM FOOTER
+  ══════════════════════════════════════════════════════════ -->
+  <footer class="reg-footer" role="contentinfo">
+    <div class="container">
+      <p class="reg-footer__text">
+        &copy; <span class="js-year"></span> Kaushal Setu —
+        <a href="#" data-i18n="footer.helpdesk">हेल्पडेस्क</a> |
+        <a href="#" data-i18n="footer.privacy">गोपनीयता नीति</a> |
+        <a href="#" data-i18n="footer.terms">नियम एवं शर्तें</a>
+      </p>
+    </div>
+  </footer>
+
+
+  <!-- ══════════════════════════════════════════════════════════
+       JAVASCRIPT — No ES module imports (works with file:// protocol)
+  ══════════════════════════════════════════════════════════ -->
+  <script src="../../assets/js/common/safe-storage.js"></script>
+  <script src="../../assets/js/common/app.js"></script>
+  <script src="../../assets/js/common/i18n.js"></script>
+  <script src="../../assets/js/common/validation.js"></script>
+  <script>
+    (function() {
+    // Language
+    var savedLang = (window._ckStorage || localStorage).getItem('ck-ui-lang') || 'hi';
+    I18n.init(savedLang);
+    I18n.setupToggleButton();
+    document.addEventListener('i18n:languageChanged', function() { I18n.translateDOM(); });
+
+    // Year
+    document.querySelectorAll('.js-year').forEach(function(el) { el.textContent = new Date().getFullYear(); });
+
+    // -- Stepper engine --
+    var currentStep = 1;
+    var TOTAL_STEPS = 4;
+
+    function goToStep(step) {
+      if (step < 1 || step > TOTAL_STEPS) return;
+
+      document.querySelectorAll('.step-panel').forEach(function(p) { p.setAttribute('hidden', ''); });
+
+      var panel = document.getElementById('step-panel-' + step);
+      if (panel) panel.removeAttribute('hidden');
+
+      document.querySelectorAll('.stepper__item').forEach(function(item) {
+        var n = Number(item.dataset.step);
+        item.classList.remove('stepper__item--active', 'stepper__item--done');
+        if (n < step)  item.classList.add('stepper__item--done');
+        if (n === step) item.classList.add('stepper__item--active');
+      });
+
+      currentStep = step;
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Wire nav buttons
+    ['1','2','3','4'].forEach(function(n) {
+      var nextBtn = document.getElementById('step' + n + '-next');
+      var backBtn = document.getElementById('step' + n + '-back');
+      if (nextBtn) nextBtn.addEventListener('click', function() { goToStep(Number(n) + 1); });
+      if (backBtn) backBtn.addEventListener('click', function() { goToStep(Number(n) - 1); });
+    });
+
+    // Expose globally so page-specific JS can call goToStep()
+    window.RegLayout = { goToStep: goToStep, getStep: function() { return currentStep; } };
+    })();
+  </script>
+
+  <!-- Page-specific JS -->
+  <!-- <script src="../../pages/[page]/[page].js"></script> -->
+
+
+</body>
+</html>

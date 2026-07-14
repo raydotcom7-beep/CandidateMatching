@@ -1,0 +1,305 @@
+﻿<!DOCTYPE html>
+<html lang="hi-IN" data-theme="light">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Kaushal Setu — Citizen Dashboard Analytics" />
+  <meta name="theme-color" content="#0A1628" />
+  <link class="js-favicon" rel="icon" type="image/png" href="../../assets/images/logos/KaushalSetuLogo.png" />
+  <title data-i18n="nav.dashboard">Citizen Dashboard — Kaushal Setu</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+Devanagari:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="../../assets/css/common/design-tokens.css" />
+  <link rel="stylesheet" href="../../assets/css/common/reset.css" />
+  <link rel="stylesheet" href="../../assets/css/common/typography.css" />
+  <link rel="stylesheet" href="../../assets/css/common/utilities.css" />
+  <link rel="stylesheet" href="../../components/forms/forms.css" />
+  <link rel="stylesheet" href="../../layouts/main-layout/main-layout.css" />
+  <link rel="stylesheet" href="../../components/header/header.css" />
+  <link rel="stylesheet" href="../../components/cards/cards.css" />
+  <link rel="stylesheet" href="../../components/widgets/widgets.css" />
+  <link rel="stylesheet" href="../../components/alerts/alerts.css" />
+  <link rel="stylesheet" href="citizendashboard.css" />
+</head>
+
+<body class="layout-main">
+
+  <a href="#main-content" class="skip-link" data-i18n="ui.skip_to_content">मुख्य सामग्री पर जाएं</a>
+
+  <!-- HEADER -->
+  <header class="site-header" data-header role="banner">
+    <div class="header__inner container">
+      <a href="index.html" class="header__brand" aria-label="Kaushal Setu होम">
+        <img src="../../assets/images/logos/KaushalSetuLogo.png" alt="Kaushal Setu" class="header__logo" width="120" height="120" />
+      </a>
+      <nav class="header__nav" aria-label="मुख्य नेविगेशन" id="primary-nav">
+        <ul class="nav__list" role="list">
+          <li class="nav__item"><a href="index.html" class="nav__link" data-nav-link="home" data-i18n="nav.home">होम</a></li>
+          <li class="nav__item"><a href="citizendashboard.html" class="nav__link active" data-nav-link="dashboard" data-i18n="nav.dashboard">डैशबोर्ड</a></li>
+          <li class="nav__item"><a href="../labour-registration/index.html" class="nav__link" data-nav-link="labour-registration" data-i18n="reg.title.labour">श्रमिक पंजीकरण</a></li>
+          <li class="nav__item"><a href="../contractor-registration/index.html" class="nav__link" data-nav-link="contractor-registration" data-i18n="reg.title.contractor">ठेकेदार पंजीकरण</a></li>
+          <li class="nav__item"><a href="../industry-registration/index.html" class="nav__link" data-nav-link="industry-registration" data-i18n="reg.title.industry">उद्योग पंजीकरण</a></li>
+        </ul>
+      </nav>
+      <div class="header__actions">
+        <button id="lang-toggle" class="btn btn--ghost btn--sm header__lang-btn" data-lang-toggle aria-label="Switch to English">English</button>
+        <button id="theme-toggle" class="btn btn--ghost btn--sm header__theme-btn" aria-label="Switch to dark mode">
+          <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+          </svg>
+          <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" style="display:none">
+            <circle cx="12" cy="12" r="5" />
+            <line x1="12" y1="1" x2="12" y2="3" />
+            <line x1="12" y1="21" x2="12" y2="23" />
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+          </svg>
+        </button>
+        <button id="mobile-menu-toggle" class="btn btn--ghost btn--sm header__hamburger show-mobile-only" aria-label="मेनू खोलें" aria-expanded="false" aria-controls="mobile-menu">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true">
+            <line x1="3" y1="6" x2="21" y2="6" />
+            <line x1="3" y1="12" x2="21" y2="12" />
+            <line x1="3" y1="18" x2="21" y2="18" />
+          </svg>
+        </button>
+      </div>
+    </div>
+    <nav id="mobile-menu" class="mobile-menu" aria-label="मोबाइल नेविगेशन" aria-hidden="true">
+      <ul class="mobile-menu__list" role="list">
+        <li><a href="index.html" class="mobile-menu__link" data-i18n="nav.home">होम</a></li>
+        <li><a href="citizendashboard.html" class="mobile-menu__link active" data-i18n="nav.dashboard">डैशबोर्ड</a></li>
+        <li><a href="../labour-registration/index.html" class="mobile-menu__link" data-i18n="reg.title.labour">श्रमिक पंजीकरण</a></li>
+        <li><a href="../contractor-registration/index.html" class="mobile-menu__link" data-i18n="reg.title.contractor">ठेकेदार पंजीकरण</a></li>
+        <li><a href="../industry-registration/index.html" class="mobile-menu__link" data-i18n="reg.title.industry">उद्योग पंजीकरण</a></li>
+      </ul>
+    </nav>
+    <div id="menu-overlay" class="menu-overlay" aria-hidden="true"></div>
+  </header>
+
+  <main id="main-content" class="site-main" role="main" tabindex="-1">
+
+    <section class="dashboard-section">
+      <div class="container">
+        
+        <div class="dashboard-header">
+          <h1 class="dashboard-title" data-i18n="dashboard.title">नागरिक डैशबोर्ड (Citizen Dashboard)</h1>
+          <p class="dashboard-subtitle" data-i18n="dashboard.subtitle">रीयल-टाइम पोर्टल आँकड़े और रोजगार डेटा</p>
+        </div>
+
+        <!-- Metrics Grid -->
+        <div class="metrics-grid">
+          <div class="metric-card metric-card--blue">
+            <div class="metric-card__icon">👷</div>
+            <div class="metric-card__value">12,45,320</div>
+            <div class="metric-card__title" data-i18n="dashboard.metric.total_registered_labours">Total Registered Labours</div>
+          </div>
+          <div class="metric-card metric-card--orange">
+            <div class="metric-card__icon">✅</div>
+            <div class="metric-card__value">9,85,000</div>
+            <div class="metric-card__title" data-i18n="dashboard.metric.total_active_labours">Total Active Labours</div>
+          </div>
+          <div class="metric-card metric-card--teal">
+            <div class="metric-card__icon">🏗️</div>
+            <div class="metric-card__value">18,250</div>
+            <div class="metric-card__title" data-i18n="dashboard.metric.contractors_registered">Contractors Registered</div>
+          </div>
+          <div class="metric-card metric-card--purple">
+            <div class="metric-card__icon">🏭</div>
+            <div class="metric-card__value">6,420</div>
+            <div class="metric-card__title" data-i18n="dashboard.metric.industries_registered">Industries Registered</div>
+          </div>
+          <div class="metric-card metric-card--rose">
+            <div class="metric-card__icon">🤝</div>
+            <div class="metric-card__value">4,850</div>
+            <div class="metric-card__title" data-i18n="dashboard.metric.employers_registered">Employers Registered</div>
+          </div>
+          <div class="metric-card metric-card--amber">
+            <div class="metric-card__icon">📋</div>
+            <div class="metric-card__value">1,25,000</div>
+            <div class="metric-card__title" data-i18n="dashboard.metric.total_job_posts">Total Job Posts Created</div>
+          </div>
+          <div class="metric-card metric-card--green">
+            <div class="metric-card__icon">💼</div>
+            <div class="metric-card__value">58,200</div>
+            <div class="metric-card__title" data-i18n="dashboard.metric.total_jobs_filled">Total Jobs Filled</div>
+          </div>
+          <div class="metric-card metric-card--indigo">
+            <div class="metric-card__icon">🔍</div>
+            <div class="metric-card__value">32,500</div>
+            <div class="metric-card__title" data-i18n="dashboard.metric.total_active_vacancies">Total Active Vacancies</div>
+          </div>
+          <div class="metric-card metric-card--pink">
+            <div class="metric-card__icon">👩</div>
+            <div class="metric-card__value">3,25,000</div>
+            <div class="metric-card__title" data-i18n="dashboard.metric.women_labour_registered">Women Labour Registered</div>
+          </div>
+          <div class="metric-card metric-card--cyan">
+            <div class="metric-card__icon">🚌</div>
+            <div class="metric-card__value">1,12,000</div>
+            <div class="metric-card__title" data-i18n="dashboard.metric.migrant_workers_registered">Migrant Workers Registered</div>
+          </div>
+          <div class="metric-card metric-card--lime">
+            <div class="metric-card__icon">🎯</div>
+            <div class="metric-card__value">5,85,000</div>
+            <div class="metric-card__title" data-i18n="dashboard.metric.total_labour_placed">Total Labour Placed</div>
+          </div>
+          <div class="metric-card metric-card--orange">
+            <div class="metric-card__icon">📊</div>
+            <div class="metric-card__value">47%</div>
+            <div class="metric-card__title" data-i18n="dashboard.metric.placement_ratio">Placement Ratio</div>
+          </div>
+          <div class="metric-card metric-card--blue">
+            <div class="metric-card__icon">📝</div>
+            <div class="metric-card__value">22,15,000</div>
+            <div class="metric-card__title" data-i18n="dashboard.metric.jobs_applied">Jobs Applied</div>
+          </div>
+          <div class="metric-card metric-card--teal">
+            <div class="metric-card__icon">🗓️</div>
+            <div class="metric-card__value">2,15,000</div>
+            <div class="metric-card__title" data-i18n="dashboard.metric.interview_scheduled">Interview Scheduled</div>
+          </div>
+          <div class="metric-card metric-card--purple">
+            <div class="metric-card__icon">🔎</div>
+            <div class="metric-card__value">6,50,000</div>
+            <div class="metric-card__title" data-i18n="dashboard.metric.active_job_seekers">Active Job Seekers</div>
+          </div>
+        </div>
+
+        <!-- Charts Grid -->
+        <div class="charts-grid">
+          
+          <!-- Chart 1: Gender-wise Registered Labour (%) -->
+          <div class="chart-card">
+            <div class="chart-card__header">
+              <h3 class="chart-card__title" data-i18n="dashboard.chart.gender">Gender-wise Registered Labour</h3>
+            </div>
+            <div class="chart-container">
+              <canvas id="genderChart"></canvas>
+            </div>
+          </div>
+
+          <!-- Chart 2: Age Group-wise Labour Distribution (%) -->
+          <div class="chart-card">
+            <div class="chart-card__header">
+              <h3 class="chart-card__title" data-i18n="dashboard.chart.age">Age Group-wise Labour Distribution</h3>
+            </div>
+            <div class="chart-container">
+              <canvas id="ageChart"></canvas>
+            </div>
+          </div>
+
+          <!-- Chart 3: Highest Qualification of Registered Labour (%) -->
+          <div class="chart-card">
+            <div class="chart-card__header">
+              <h3 class="chart-card__title" data-i18n="dashboard.chart.qualification">Highest Qualification of Registered Labour</h3>
+            </div>
+            <div class="chart-container">
+              <canvas id="qualificationChart"></canvas>
+            </div>
+          </div>
+
+          <!-- Chart 4: Labour Certification Distribution (%) -->
+          <div class="chart-card">
+            <div class="chart-card__header">
+              <h3 class="chart-card__title" data-i18n="dashboard.chart.certification">Labour Certification Distribution</h3>
+            </div>
+            <div class="chart-container">
+              <canvas id="certificationChart"></canvas>
+            </div>
+          </div>
+
+          <!-- Chart 5: Registered Labour vs Labour Got Jobs (%) -->
+          <div class="chart-card">
+            <div class="chart-card__header">
+              <h3 class="chart-card__title" data-i18n="dashboard.chart.placement">Registered Labour vs Labour Got Jobs</h3>
+            </div>
+            <div class="chart-container">
+              <canvas id="placementChart"></canvas>
+            </div>
+          </div>
+
+          <!-- Chart 6: Top Skills Registered -->
+          <div class="chart-card">
+            <div class="chart-card__header">
+              <h3 class="chart-card__title" data-i18n="dashboard.chart.skills">Top Skills Registered</h3>
+            </div>
+            <div class="chart-container chart-container--tall">
+              <canvas id="skillsChart"></canvas>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="footer__top">
+      <div class="container">
+        <div class="footer__grid">
+          <div class="footer__col footer__col--brand">
+            <a href="index.html" class="footer__brand-link"><img src="../../assets/images/logos/KaushalSetuLogo.png" alt="Kaushal Setu" width="36" height="36" loading="lazy" /><span class="footer__brand-name">Kaushal Setu</span></a>
+            <p class="footer__tagline" data-i18n="footer.tagline">कुशल कारीगरों को सही अवसर से जोड़ने का डिजिटल मंच।</p>
+          </div>
+          <div class="footer__col">
+            <h3 class="footer__heading" data-i18n="footer.quick_links">त्वरित लिंक</h3>
+            <ul class="footer__links" role="list">
+              <li><a href="index.html" class="footer__link" data-i18n="nav.home">होम</a></li>
+              <li><a href="../labour-registration/index.html" class="footer__link" data-i18n="reg.title.labour">श्रमिक पंजीकरण</a></li>
+              <li><a href="../contractor-registration/index.html" class="footer__link" data-i18n="reg.title.contractor">ठेकेदार पंजीकरण</a></li>
+              <li><a href="../industry-registration/index.html" class="footer__link" data-i18n="reg.title.industry">उद्योग पंजीकरण</a></li>
+            </ul>
+          </div>
+          <div class="footer__col">
+            <h3 class="footer__heading" data-i18n="nav.help">सहायता</h3>
+            <ul class="footer__links" role="list">
+              <li><a href="#" class="footer__link" data-i18n="footer.helpdesk">हेल्पडेस्क</a></li>
+              <li><a href="#" class="footer__link" data-i18n="footer.grievance">शिकायत पोर्टल</a></li>
+              <li><a href="#" class="footer__link" data-i18n="footer.privacy">गोपनीयता नीति</a></li>
+              <li><a href="#" class="footer__link" data-i18n="footer.terms">नियम एवं शर्तें</a></li>
+            </ul>
+          </div>
+          <div class="footer__col">
+            <h3 class="footer__heading" data-i18n="nav.contact">संपर्क</h3>
+            <address class="footer__contact">
+              <p>📞 <a href="tel:07556720200" class="footer__link">0755-6720200</a></p>
+              <p>📧 <a href="mailto:support@kaushalsetu.gov.in" class="footer__link">support@kaushalsetu.gov.in</a></p>
+            </address>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <div class="container">
+        <div class="footer__bottom-inner">
+          <p class="footer__copy">&copy; <span id="footer-year"></span> Kaushal Setu. <span data-i18n="footer.rights">सर्वाधिकार सुरक्षित।</span></p>
+          <p class="footer__gov-badge" data-i18n="footer.gov">भारत सरकार | Government of India</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <button id="scroll-top" class="scroll-top-btn" data-i18n="aria-label:action.scroll_top" aria-label="ऊपर जाएं">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true">
+      <polyline points="18 15 12 9 6 15" />
+    </svg>
+  </button>
+
+  <!-- Scripts -->
+  <script src="../../assets/js/common/safe-storage.js"></script>
+  <script src="../../assets/js/common/app.js"></script>
+  <script src="../../assets/js/common/i18n.js"></script>
+  <script src="../../components/header/header.js"></script>
+  <!-- Chart.js via CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="citizendashboard.js"></script>
+</body>
+
+</html>

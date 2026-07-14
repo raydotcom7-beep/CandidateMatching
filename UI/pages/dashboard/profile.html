@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="hi-IN" data-theme="light">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="theme-color" content="#0A1628" />
+
+  <link rel="icon" type="image/png" href="../../assets/images/logos/KaushalSetuLogo.png" />
+  <title data-i18n="dashboard.menu.personal_profile">व्यक्तिगत प्रोफाइल प्रबंधन — Kaushal Setu</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+Devanagari:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet" />
+
+  <!-- Design System -->
+  <link rel="stylesheet" href="../../assets/css/common/design-tokens.css" />
+  <link rel="stylesheet" href="../../assets/css/common/reset.css" />
+  <link rel="stylesheet" href="../../assets/css/common/typography.css" />
+  <link rel="stylesheet" href="../../assets/css/common/utilities.css" />
+
+  <!-- Layout & Components -->
+  <link rel="stylesheet" href="../../layouts/dashboard-layout/dashboard-layout.css" />
+  <link rel="stylesheet" href="../../components/cards/cards.css" />
+  <link rel="stylesheet" href="../../components/widgets/widgets.css" />
+  <link rel="stylesheet" href="../../components/forms/forms.css" />
+  <link rel="stylesheet" href="../../components/alerts/alerts.css" />
+  <link rel="stylesheet" href="profile.css" />
+</head>
+
+<body class="layout-dashboard">
+
+  <!-- Sidebar Overlay -->
+  <div class="sidebar-overlay" id="sidebar-overlay" aria-hidden="true"></div>
+
+  <!-- Sidebar -->
+  <nav id="dashboard-sidebar" class="dashboard-sidebar" aria-label="मुख्य नेविगेशन">
+    <div class="sidebar-header">
+      <a href="servicehome.html" class="sidebar-brand">
+        <img src="../../assets/images/logos/KaushalSetuLogo.png" alt="Kaushal Setu" width="170" height="170" />
+      </a>
+    </div>
+    <div class="sidebar-nav">
+
+      <!-- Group 1 -->
+      <div class="sidebar-group">
+        <div class="sidebar-group-title" data-i18n="dashboard.menu.profile_identity">प्रोफाइल एवं पहचान प्रबंधन</div>
+        <ul class="sidebar-menu">
+          <li><a href="profile.html" class="sidebar-link active" data-i18n="dashboard.menu.personal_profile">व्यक्तिगत
+              प्रोफाइल प्रबंधन</a></li>
+        </ul>
+      </div>
+
+      <!-- Group 2 -->
+      <div class="sidebar-group">
+        <div class="sidebar-group-title" data-i18n="dashboard.menu.employment_career">रोजगार एवं कैरियर सेवाएँ</div>
+        <ul class="sidebar-menu">
+          <li><a href="candidatedashboard.html" class="sidebar-link" data-i18n="dashboard.menu.dashboard">डैशबोर्ड</a>
+          </li>
+          <li><a href="recommendedjob.html" class="sidebar-link" data-i18n="dashboard.menu.recommended_jobs">एआई
+              अनुशंसित नौकरियां</a></li>
+          <li><a href="Appliedjobs.html" class="sidebar-link" data-i18n="dashboard.menu.applied_jobs">आवेदन की गई
+              नौकरियां</a></li>
+          <li><a href="Courses.html" class="sidebar-link" data-i18n="dashboard.menu.recommended_courses">अनुशंसित
+              पाठ्यक्रम</a></li>
+          <li><a href="coursescompleted.html" class="sidebar-link" data-i18n="dashboard.menu.completed_courses">पूरे किए
+              गए पाठ्यक्रम</a></li>
+          <li><a href="search.html" class="sidebar-link" data-i18n="dashboard.menu.search">नौकरी खोजें</a></li>
+        </ul>
+      </div>
+
+    </div>
+  </nav>
+
+  <!-- Main Area -->
+  <main class="dashboard-main">
+
+    <!-- Header -->
+    <header class="dashboard-header">
+      <div class="header-left">
+        <button id="sidebar-toggle" class="sidebar-toggle-btn" aria-label="मेनू टॉगल करें">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+            stroke-linecap="round">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+
+      <div class="header-right">
+        <!-- User Profile -->
+        <div class="user-profile">
+          <div class="user-info">
+            <span class="user-name">Nisha Pandey</span>
+            <span class="user-meta">
+              <span data-i18n="dashboard.header.last_login">अंतिम लॉगिन:</span>
+              <span id="last-login-date">14 May 2026</span>
+            </span>
+          </div>
+          <div class="user-avatar" aria-hidden="true">NP</div>
+        </div>
+
+        <div class="header-actions">
+          <!-- Lang Toggle -->
+          <button id="lang-toggle" class="btn btn--ghost btn--sm" data-lang-toggle
+            aria-label="Switch to English">English</button>
+
+          <!-- Theme Toggle -->
+          <button id="theme-toggle" class="btn btn--ghost btn--sm" aria-label="Switch Theme">
+            <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+              fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"
+              style="display:none">
+              <circle cx="12" cy="12" r="5" />
+              <line x1="12" y1="1" x2="12" y2="3" />
+              <line x1="12" y1="21" x2="12" y2="23" />
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+              <line x1="1" y1="12" x2="3" y2="12" />
+              <line x1="21" y1="12" x2="23" y2="12" />
+            </svg>
+            <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+              fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+            </svg>
+          </button>
+
+          <!-- Sign Out -->
+          <a href="../home/index.html" class="btn btn--secondary btn--sm" data-i18n="dashboard.signout">लॉग आउट</a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Content -->
+    <div class="dashboard-content">
+
+      <div class="profile-header-card">
+        <div class="profile-header-card__inner">
+          <div class="profile-header-card__avatar">NP</div>
+          <div class="profile-header-card__info">
+            <h1 class="profile-header-card__name">Nisha Pandey</h1>
+            <p class="profile-header-card__role" id="user-trade-badge">Msc</p>
+          </div>
+          <div class="profile-header-card__status">
+            <span class="status-badge status-badge--success" data-i18n="profile.ekyc_status">Aadhaar Verified</span>
+          </div>
+        </div>
+      </div>
+
+      <form id="form-profile" novalidate>
+        <!-- Section 1: Identity & Aadhaar eKYC (Read-only) -->
+        <div class="widget surface--elevated profile-section">
+          <div class="widget__header">
+            <h2 class="widget__title" data-i18n="profile.section.identity">पहचान एवं आधार eKYC</h2>
+          </div>
+          <div class="widget__body">
+            <div class="form-row form-row--2">
+              <div class="form-group">
+                <label class="form-label" data-i18n="form.aadhaar">आधार नंबर</label>
+                <input type="text" class="form-control" value="XXXX-XXXX-1184" readonly disabled />
+              </div>
+              <div class="form-group">
+                <label class="form-label" data-i18n="form.full_name">पूरा नाम</label>
+                <input id="full-name" name="fullName" type="text" class="form-control" value="Nisha Pandey" readonly
+                  disabled />
+              </div>
+            </div>
+
+            <div class="form-row form-row--2">
+              <div class="form-group">
+                <label class="form-label" data-i18n="form.father_name">पिता / पति का नाम</label>
+                <input id="father-name" name="fatherName" type="text" class="form-control" value="Subhash Pandey" readonly
+                  disabled />
+              </div>
+              <div class="form-row form-row--2" style="margin-bottom: 0;">
+                <div class="form-group">
+                  <label class="form-label" data-i18n="form.dob">जन्म तिथि</label>
+                  <input id="dob" name="dob" type="date" class="form-control" value="1990-07-07" readonly disabled />
+                </div>
+                <div class="form-group">
+                  <label class="form-label" data-i18n="form.gender">लिंग</label>
+                  <select id="gender" name="gender" class="form-select" disabled>
+                    <option value="M">M</option>
+                    <option value="F" selected>F</option>
+                    <option value="O">O</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-row form-row--3">
+              <div class="form-group">
+                <label class="form-label" data-i18n="form.domicile">मूल निवास</label>
+                <input id="domicile" type="text" class="form-control" value="MP" readonly disabled />
+              </div>
+              <div class="form-group">
+                <label class="form-label" data-i18n="form.samagra_id">समग्र आईडी</label>
+                <input id="samagra-id" type="text" class="form-control" value="176511849" readonly disabled />
+              </div>
+              <div class="form-group">
+                <label class="form-label" data-i18n="form.marital_status">वैवाहिक स्थिति</label>
+                <input id="marital-status" type="text" class="form-control" value="single" readonly disabled />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section 2: Contact & Address Details (Editable) -->
+        <div class="widget surface--elevated profile-section">
+          <div class="widget__header">
+            <h2 class="widget__title" data-i18n="profile.section.contact">संपर्क एवं पता विवरण</h2>
+          </div>
+          <div class="widget__body">
+            <div class="form-row form-row--2">
+              <div class="form-group">
+                <label class="form-label" for="mobile"><span data-i18n="form.mobile">मोबाइल नंबर</span> <span
+                    class="required-star" aria-hidden="true">*</span></label>
+                <input id="mobile" name="mobile" type="tel" inputmode="numeric" maxlength="10" class="form-control"
+                  value="9755728822" data-rules="required|phone" data-label="मोबाइल नंबर"
+                  data-i18n="data-label:form.mobile" />
+                <p class="form-error-text" id="mobile-error" role="alert" style="display:none"></p>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="email"><span data-i18n="form.email">ईमेल</span> <span
+                    class="optional-tag" data-i18n="ui.optional">(वैकल्पिक)</span></label>
+                <input id="email" name="email" type="email" class="form-control" value="nisha.pandey@example.com"
+                  data-rules="email" data-label="ईमेल" data-i18n="data-label:form.email" />
+                <p class="form-error-text" id="email-error" role="alert" style="display:none"></p>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="address"><span data-i18n="form.address">पूरा पता</span> <span
+                  class="required-star" aria-hidden="true">*</span></label>
+              <textarea id="address" name="address" class="form-textarea" rows="3" data-rules="required|minLength:10"
+                data-label="पता" data-i18n="data-label:form.address">Gram Jajbodi Jila Betul, Madhya Pradesh</textarea>
+              <p class="form-error-text" id="address-error" role="alert" style="display:none"></p>
+            </div>
+
+            <div class="form-row form-row--2">
+              <div class="form-group">
+                <label class="form-label" for="district"><span data-i18n="form.district">जिला</span> <span
+                    class="required-star" aria-hidden="true">*</span></label>
+                <input id="district" name="district" type="text" class="form-control" value="Betul"
+                  data-rules="required" data-label="जिला" data-i18n="data-label:form.district" />
+                <p class="form-error-text" id="district-error" role="alert" style="display:none"></p>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="pincode"><span data-i18n="form.pincode">पिन कोड</span> <span
+                    class="required-star" aria-hidden="true">*</span></label>
+                <input id="pincode" name="pincode" type="tel" inputmode="numeric" maxlength="6" class="form-control"
+                  value="460443" data-rules="required|pincode" data-label="पिन कोड"
+                  data-i18n="data-label:form.pincode" />
+                <p class="form-error-text" id="pincode-error" role="alert" style="display:none"></p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section 3: Education Details (Editable) -->
+        <div class="widget surface--elevated profile-section">
+          <div class="widget__header">
+            <h2 class="widget__title" data-i18n="reg.step.edu">शैक्षणिक योग्यता</h2>
+          </div>
+          <div class="widget__body">
+            <!-- 10th details -->
+            <div style="font-weight:600; margin-bottom: 8px; color: var(--color-primary-dark);" data-i18n="edu.section.tenth">10वीं की जानकारी</div>
+            <div class="form-row form-row--2">
+              <div class="form-group">
+                <label class="form-label" data-i18n="edu.board">बोर्ड का नाम</label>
+                <input id="tenth-board" name="tenthBoard" type="text" class="form-control" />
+              </div>
+              <div class="form-group">
+                <label class="form-label" data-i18n="edu.passing_year">उत्तीर्ण होने का वर्ष</label>
+                <input id="tenth-year" name="tenthYear" type="number" class="form-control" />
+              </div>
+            </div>
+            <div class="form-row form-row--2">
+              <div class="form-group">
+                <label class="form-label" data-i18n="edu.marks">प्राप्त अंक (%)</label>
+                <input id="tenth-marks" name="tenthMarks" type="number" class="form-control" />
+              </div>
+              <div class="form-group">
+                <label class="form-label" data-i18n="edu.division">श्रेणी</label>
+                <select id="tenth-division" name="tenthDivision" class="form-select">
+                  <option value="" data-i18n="placeholder.select">चुनें</option>
+                  <option value="1" data-i18n="edu.division.first">First</option>
+                  <option value="2" data-i18n="edu.division.second">Second</option>
+                  <option value="3" data-i18n="edu.division.third">Third</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- 12th details -->
+            <div style="font-weight:600; margin-top: 16px; margin-bottom: 8px; color: var(--color-primary-dark);" data-i18n="edu.section.twelfth">12वीं की जानकारी</div>
+            <div class="form-row form-row--2">
+              <div class="form-group">
+                <label class="form-label" data-i18n="edu.board">बोर्ड का नाम</label>
+                <input id="twelfth-board" name="twelfthBoard" type="text" class="form-control" />
+              </div>
+              <div class="form-group">
+                <label class="form-label" data-i18n="edu.passing_year">उत्तीर्ण होने का वर्ष</label>
+                <input id="twelfth-year" name="twelfthYear" type="number" class="form-control" />
+              </div>
+            </div>
+            <div class="form-row form-row--2">
+              <div class="form-group">
+                <label class="form-label" data-i18n="edu.marks">प्राप्त अंक (%)</label>
+                <input id="twelfth-marks" name="twelfthMarks" type="number" class="form-control" />
+              </div>
+              <div class="form-group">
+                <label class="form-label" data-i18n="edu.division">श्रेणी</label>
+                <select id="twelfth-division" name="twelfthDivision" class="form-select">
+                  <option value="" data-i18n="placeholder.select">चुनें</option>
+                  <option value="1" data-i18n="edu.division.first">First</option>
+                  <option value="2" data-i18n="edu.division.second">Second</option>
+                  <option value="3" data-i18n="edu.division.third">Third</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Higher Education Container -->
+            <div id="higher-education-container"></div>
+            <div style="margin-top: 12px; margin-bottom: 24px; display: flex; justify-content: flex-end;">
+              <button type="button" class="btn btn--secondary btn--sm" id="add-higher-education-btn">+ शैक्षणिक योग्यता जोड़ें</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section 4: Work & Skill Details (Editable) -->
+        <div class="widget surface--elevated profile-section">
+          <div class="widget__header">
+            <h2 class="widget__title" data-i18n="reg.personal.job_details">व्यवसाय विवरण</h2>
+          </div>
+          <div class="widget__body">
+            <div class="form-row form-row--2">
+              <div class="form-group">
+                <label class="form-label" for="trade"><span data-i18n="form.trade">व्यवसाय / ट्रेड</span> <span
+                    class="required-star" aria-hidden="true">*</span></label>
+                <select id="trade" name="trade" class="form-select" data-rules="required" data-label="व्यवसाय"
+                  data-i18n="data-label:form.trade">
+                  <option value="mason" data-i18n="trade.mason">राजमिस्त्री</option>
+                  <option value="carpenter" data-i18n="trade.carpenter">बढ़ई</option>
+                  <option value="electrician" data-i18n="trade.electrician" selected>इलेक्ट्रीशियन</option>
+                  <option value="plumber" data-i18n="trade.plumber">प्लंबर</option>
+                  <option value="painter" data-i18n="trade.painter">पेंटर</option>
+                  <option value="welder" data-i18n="trade.welder">वेल्डर</option>
+                  <option value="helper" data-i18n="trade.helper">हेल्पर</option>
+                  <option value="other" data-i18n="trade.other">अन्य</option>
+                </select>
+                <p class="form-error-text" id="trade-error" role="alert" style="display:none"></p>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="experience"><span data-i18n="form.experience">अनुभव (वर्षों में)</span>
+                  <span class="required-star" aria-hidden="true">*</span></label>
+                <input id="experience" name="experience" type="number" min="0" max="50" class="form-control" value="5"
+                  data-rules="required|min:0|max:50" data-label="अनुभव" data-i18n="data-label:form.experience" />
+                <p class="form-error-text" id="experience-error" role="alert" style="display:none"></p>
+              </div>
+            </div>
+            <div class="form-row form-row--2">
+              <div class="form-group">
+                <label class="form-label" for="pref-location"><span data-i18n="edu.pref_location">पसंदीदा स्थान</span></label>
+                <input id="pref-location" name="prefLocation" type="text" class="form-control" />
+                <p class="form-error-text" id="pref-location-error" role="alert" style="display:none"></p>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="skills-input"><span data-i18n="edu.skills">कौशल / स्किल्स</span></label>
+                <input id="skills-input" name="skills" type="text" class="form-control" />
+                <p class="form-error-text" id="skills-input-error" role="alert" style="display:none"></p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section 5: Documents Uploaded -->
+        <div class="widget surface--elevated profile-section">
+          <div class="widget__header">
+            <h2 class="widget__title" data-i18n="reg.docs.title">दस्तावेज़</h2>
+          </div>
+          <div class="widget__body">
+            <div class="doc-upload-list">
+              <!-- 10th Marksheet -->
+              <div class="doc-upload-item">
+                <div class="doc-upload-item__info">
+                  <span class="doc-upload-item__name"><span data-i18n="reg.docs.tenth_marksheet">10वीं की अंकसूची (10th Marksheet)</span>
+                    <span class="required-star" aria-hidden="true">*</span></span>
+                  <span class="doc-upload-item__hint" data-i18n="reg.docs.hint_2mb">JPG, PNG, PDF — max 2MB</span>
+                </div>
+                <div id="upload-tenth-marksheet" class="upload-zone upload-zone--compact">
+                  <input type="file" class="upload-zone__input" accept=".jpg,.jpeg,.png,.pdf"
+                    data-doc="tenth-marksheet" />
+                  <span class="upload-zone__icon" aria-hidden="true">📎</span>
+                  <span class="upload-zone__sub" data-i18n="reg.docs.upload_zone_text">फ़ाइल चुनें या यहाँ छोड़ें</span>
+                </div>
+                <div class="upload-file-list" id="list-tenth-marksheet">
+                </div>
+              </div>
+
+              <!-- 12th Marksheet -->
+              <div class="doc-upload-item">
+                <div class="doc-upload-item__info">
+                  <span class="doc-upload-item__name"><span data-i18n="reg.docs.twelfth_marksheet">12वीं की अंकसूची (12th Marksheet)</span>
+                    <span class="required-star" aria-hidden="true">*</span></span>
+                  <span class="doc-upload-item__hint" data-i18n="reg.docs.hint_2mb">JPG, PNG, PDF — max 2MB</span>
+                </div>
+                <div id="upload-twelfth-marksheet" class="upload-zone upload-zone--compact">
+                  <input type="file" class="upload-zone__input" accept=".jpg,.jpeg,.png,.pdf"
+                    data-doc="twelfth-marksheet" />
+                  <span class="upload-zone__icon" aria-hidden="true">📎</span>
+                  <span class="upload-zone__sub" data-i18n="reg.docs.upload_zone_text">फ़ाइल चुनें या यहाँ छोड़ें</span>
+                </div>
+                <div class="upload-file-list" id="list-twelfth-marksheet">
+                </div>
+              </div>
+
+              <!-- Passport Photo -->
+              <div class="doc-upload-item">
+                <div class="doc-upload-item__info">
+                  <span class="doc-upload-item__name"><span data-i18n="reg.docs.passport_photo">पासपोर्ट फोटो</span>
+                    <span class="required-star" aria-hidden="true">*</span></span>
+                  <span class="doc-upload-item__hint" data-i18n="reg.docs.hint_1mb">JPG, PNG — max 1MB</span>
+                </div>
+                <div id="upload-photo" class="upload-zone upload-zone--compact">
+                  <input type="file" class="upload-zone__input" accept=".jpg,.jpeg,.png" data-doc="photo" />
+                  <span class="upload-zone__icon" aria-hidden="true">🖼️</span>
+                  <span class="upload-zone__sub" data-i18n="reg.docs.upload_zone_text">फ़ाइल चुनें या यहाँ छोड़ें</span>
+                </div>
+                <div class="upload-file-list" id="list-photo">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="profile-actions">
+          <button type="submit" class="btn btn--primary btn--lg" id="profile-save-btn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path>
+              <polyline points="17 21 17 13 7 13 7 21"></polyline>
+              <polyline points="7 3 7 8 15 8"></polyline>
+            </svg>
+            <span data-i18n="profile.save_btn">प्रोफ़ाइल सहेजें</span>
+          </button>
+        </div>
+      </form>
+
+    </div>
+
+  </main>
+
+  <script src="../../assets/js/common/safe-storage.js"></script>
+  <script src="../../assets/js/common/app.js"></script>
+  <script src="../../assets/js/common/i18n.js"></script>
+  <script src="../../assets/js/common/validation.js"></script>
+  <script src="../../assets/js/common/toast.js"></script>
+  <script src="../../layouts/dashboard-layout/dashboard-layout.js"></script>
+  <script src="profile.js"></script>
+</body>
+
+</html>

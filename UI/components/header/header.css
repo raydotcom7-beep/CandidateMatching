@@ -1,0 +1,52 @@
+/* ============================================================
+   HEADER CSS — components/header/header.css
+   Supplementary styles for header states. Core header styles
+   live in layouts/main-layout/main-layout.css (Option B).
+   This file provides nav-link active detection helpers and
+   any page-context overrides.
+   ============================================================ */
+
+/* Active nav link — driven by App.setActivePage() */
+.nav__link[data-nav-link].active {
+  color: var(--color-accent);
+  font-weight: var(--weight-semibold);
+}
+.nav__link[data-nav-link].active::after { transform: scaleX(1); }
+
+/* Header transparent variant (hero pages — remove glass bg) */
+.site-header--transparent {
+  background: transparent;
+  border-bottom-color: rgba(255,255,255,0.1);
+}
+.site-header--transparent .header__brand-name,
+.site-header--transparent .nav__link,
+.site-header--transparent .header__theme-btn,
+.site-header--transparent .header__lang-btn,
+.site-header--transparent .header__hamburger { color: rgba(255,255,255,0.9); }
+
+.site-header--transparent .nav__link:hover,
+.site-header--transparent .header__theme-btn:hover,
+.site-header--transparent .header__lang-btn:hover,
+.site-header--transparent .header__hamburger:hover { color: #fff; background: rgba(255,255,255,0.1); }
+.site-header--transparent.header--scrolled {
+  background: var(--bg-surface);
+  border-bottom-color: var(--border-default);
+}
+.site-header--transparent.header--scrolled .header__brand-name,
+.site-header--transparent.header--scrolled .nav__link,
+.site-header--transparent.header--scrolled .header__theme-btn,
+.site-header--transparent.header--scrolled .header__lang-btn,
+.site-header--transparent.header--scrolled .header__hamburger { color: var(--text-secondary); }
+
+.site-header--transparent.header--scrolled .nav__link:hover,
+.site-header--transparent.header--scrolled .header__theme-btn:hover,
+.site-header--transparent.header--scrolled .header__lang-btn:hover,
+.site-header--transparent.header--scrolled .header__hamburger:hover { color: var(--text-primary); background: var(--bg-surface-alt); }
+
+/* Notification dot on nav item */
+.nav__item--notify { position: relative; }
+.nav__item--notify::after {
+  content: ''; position: absolute; top: 6px; right: 4px;
+  width: 6px; height: 6px; border-radius: var(--radius-full);
+  background: var(--color-accent); border: 1.5px solid var(--bg-surface);
+}

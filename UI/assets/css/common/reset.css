@@ -1,0 +1,204 @@
+/* ============================================================
+   RESET — Modern CSS Reset
+   File: assets/css/common/reset.css
+   
+   Opinionated reset for consistent cross-browser rendering.
+   Supports reduced motion preferences and smooth scrolling.
+   ============================================================ */
+
+/* Box sizing */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Remove default margins and paddings */
+* {
+  margin: 0;
+  padding: 0;
+}
+
+/* Smooth scrolling (respects user preferences) */
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  tab-size: 4;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Body defaults */
+body {
+  min-height: 100vh;
+  min-height: 100dvh;
+  line-height: var(--leading-normal, 1.5);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Media defaults */
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/* Form element inheritance */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+}
+
+/* Remove default button styles */
+button {
+  cursor: pointer;
+  background: none;
+  border: none;
+  outline: none;
+}
+
+/* Textarea resize */
+textarea {
+  resize: vertical;
+}
+
+/* Anchor defaults */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* List style reset */
+ul,
+ol {
+  list-style: none;
+}
+
+/* Table reset */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* Heading reset — size set in typography.css */
+h1, h2, h3, h4, h5, h6 {
+  font-size: inherit;
+  font-weight: inherit;
+  overflow-wrap: break-word;
+}
+
+/* Paragraph overflow */
+p {
+  overflow-wrap: break-word;
+}
+
+/* Remove search cancel button */
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+/* Number input — hide spinners */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+/* Focus visible — keyboard-only focus ring */
+:focus-visible {
+  outline: 2px solid var(--border-focus, #3965AA);
+  outline-offset: 2px;
+}
+
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* Dialog reset */
+dialog {
+  padding: 0;
+  border: none;
+  background: transparent;
+}
+
+dialog::backdrop {
+  background: var(--bg-overlay, rgba(10, 22, 40, 0.6));
+  backdrop-filter: blur(4px);
+}
+
+/* Selection color */
+::selection {
+  background-color: var(--color-accent-500, #FF6B35);
+  color: var(--color-neutral-0, #FFFFFF);
+}
+
+/* Scrollbar styling (Webkit) */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-surface-alt, #F8FAFC);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-neutral-300, #CBD5E1);
+  border-radius: var(--radius-full, 9999px);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-neutral-400, #94A3B8);
+}
+
+/* Firefox scrollbar */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-neutral-300, #CBD5E1) var(--bg-surface-alt, #F8FAFC);
+}
+
+/* Hidden utility */
+[hidden] {
+  display: none !important;
+}
+
+/* Screen reader only */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}

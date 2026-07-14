@@ -1,0 +1,321 @@
+﻿<!DOCTYPE html>
+<html lang="hi-IN" data-theme="light">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Kaushal Setu — ठेकेदार पंजीकरण" />
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="icon" type="image/png" href="../../assets/images/logos/KaushalSetuLogo.png" />
+  <title>ठेकेदार पंजीकरण — Kaushal Setu</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+Devanagari:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../../assets/css/common/design-tokens.css" />
+  <link rel="stylesheet" href="../../assets/css/common/reset.css" />
+  <link rel="stylesheet" href="../../assets/css/common/typography.css" />
+  <link rel="stylesheet" href="../../assets/css/common/utilities.css" />
+  <link rel="stylesheet" href="../../layouts/registration-layout/registration-layout.css" />
+  <link rel="stylesheet" href="../../components/forms/forms.css" />
+  <link rel="stylesheet" href="../../components/widgets/widgets.css" />
+  <link rel="stylesheet" href="../../components/alerts/alerts.css" />
+  <link rel="stylesheet" href="../labour-registration/labour-registration.css" />
+</head>
+<body class="layout-registration">
+  <a href="#registration-main" class="skip-link" data-i18n="ui.skip_to_content">मुख्य सामग्री पर जाएं</a>
+
+  <header class="reg-header" role="banner">
+    <div class="reg-header__inner container">
+      <a href="../../pages/home/index.html" class="reg-header__brand">
+        <img src="../../assets/images/logos/KaushalSetuLogo.png" alt="Kaushal Setu" width="32" height="32" />
+        <span class="reg-header__brand-name">Kaushal Setu</span>
+      </a>
+      <h1 class="reg-header__page-title" data-i18n="reg.title.contractor">ठेकेदार पंजीकरण</h1>
+      <div class="reg-header__controls">
+        <button id="lang-toggle" class="btn btn--ghost btn--sm" data-lang-toggle aria-label="Switch to English">English</button>
+        <button id="theme-toggle" class="btn btn--ghost btn--sm" aria-label="Switch to dark mode">
+          <svg class="icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <svg class="icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" style="display:none"><circle cx="12" cy="12" r="5"/></svg>
+        </button>
+        <a href="../../pages/home/index.html" class="btn btn--ghost btn--sm reg-header__exit" aria-label="बंद करें" data-i18n="aria-label:action.close">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <div class="reg-stepper" role="navigation" aria-label="पंजीकरण चरण">
+    <div class="container"><ol class="stepper__list" role="list">
+      <li class="stepper__item stepper__item--active" data-step="1"><span class="stepper__num">1</span><span class="stepper__label">eKYC</span></li>
+      <li class="stepper__connector" aria-hidden="true"></li>
+      <li class="stepper__item" data-step="2"><span class="stepper__num">2</span><span class="stepper__label" data-i18n="reg.contractor.business_details">व्यवसाय विवरण</span></li>
+      <li class="stepper__connector" aria-hidden="true"></li>
+      <li class="stepper__item" data-step="3"><span class="stepper__num">3</span><span class="stepper__label" data-i18n="reg.step.documents">दस्तावेज़</span></li>
+      <li class="stepper__connector" aria-hidden="true"></li>
+      <li class="stepper__item" data-step="4"><span class="stepper__num">4</span><span class="stepper__label" data-i18n="reg.step.review">समीक्षा</span></li>
+    </ol></div>
+  </div>
+
+  <main id="registration-main" class="reg-main" role="main" tabindex="-1">
+    <div class="container container--md">
+      <div id="reg-alert" class="reg-alert" role="alert" aria-live="polite" hidden>
+        <span class="reg-alert__icon">⚠️</span><span id="reg-alert-text"></span>
+        <button class="reg        <div class="step-panel__header">
+          <h2 id="s1h" class="step-panel__title" data-i18n="reg.ekyc.prompt">आधार OTP सत्यापन</h2>
+          <p class="step-panel__desc" data-i18n="reg.contractor.ekyc_desc">ठेकेदार पंजीकरण के लिए पहले आधार सत्यापन करें।</p>
+        </div>
+        <div class="step-panel__body">
+          <form id="form-ekyc" novalidate>
+            <div class="form-group">
+              <label class="form-label" for="aadhaar-c"><span data-i18n="form.aadhaar">आधार नंबर</span> <span class="required-star">*</span></label>
+              <input id="aadhaar-c" name="aadhaar" type="tel" inputmode="numeric" maxlength="12" class="form-control form-control--lg" placeholder="12 अंकों का आधार नंबर" data-rules="required|aadhaar" data-label="आधार नंबर" data-i18n="placeholder:placeholder.aadhaar; data-label:form.aadhaar" />
+              <p class="form-error-text" id="aadhaar-c-error" role="alert" style="display:none"></p>
+            </div>
+            <div id="otp-sec-c" style="display:none">
+              <div class="form-group">
+                <label class="form-label" data-i18n="form.otp">OTP दर्ज करें</label>
+                <div class="otp-group" id="otp-group-c">
+                  <input type="text" inputmode="numeric" maxlength="1" class="otp-input" id="otp-c1" />
+                  <input type="text" inputmode="numeric" maxlength="1" class="otp-input" />
+                  <input type="text" inputmode="numeric" maxlength="1" class="otp-input" />
+                  <input type="text" inputmode="numeric" maxlength="1" class="otp-input" />
+                  <input type="text" inputmode="numeric" maxlength="1" class="otp-input" />
+                  <input type="text" inputmode="numeric" maxlength="1" class="otp-input" />
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="step-panel__actions"><div></div>
+          <button type="button" class="btn btn--primary btn--lg" id="ekyc-btn-c" data-i18n="reg.ekyc.send_otp">OTP भेजें</button>
+        </div>
+      </section>
+
+      <!-- Step 2: Business Details -->
+      <section id="step-panel-2" class="step-panel" aria-labelledby="s2h" data-panel="2" hidden>
+        <div class="step-panel__header">
+          <h2 id="s2h" class="step-panel__title" data-i18n="reg.contractor.business_details">व्यवसाय विवरण</h2>
+        </div>
+        <form id="form-business" novalidate>
+          <div class="form-row form-row--2">
+            <div class="form-group">
+              <label class="form-label" for="firm-name"><span data-i18n="reg.contractor.firm_name">फर्म / कंपनी का नाम</span> <span class="required-star">*</span></label>
+              <input id="firm-name" name="firmName" type="text" class="form-control" data-rules="required|minLength:3" data-label="फर्म नाम" data-i18n="data-label:reg.contractor.firm_name" />
+              <p class="form-error-text" id="firm-name-error" role="alert" style="display:none"></p>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="contractor-mobile"><span data-i18n="form.mobile">मोबाइल नंबर</span> <span class="required-star">*</span></label>
+              <input id="contractor-mobile" name="mobile" type="tel" inputmode="numeric" maxlength="10" class="form-control" data-rules="required|phone" data-label="मोबाइल" data-i18n="data-label:form.mobile" />
+              <p class="form-error-text" id="contractor-mobile-error" role="alert" style="display:none"></p>
+            </div>
+          </div>
+          <div class="form-row form-row--2">
+            <div class="form-group">
+              <label class="form-label" for="contractor-pan"><span data-i18n="form.pan">PAN नंबर</span> <span class="required-star">*</span></label>
+              <input id="contractor-pan" name="pan" type="text" maxlength="10" class="form-control" placeholder="ABCDE1234F" data-rules="required|pan" data-label="PAN" data-i18n="placeholder:reg.contractor.pan_placeholder; data-label:form.pan" />
+              <p class="form-error-text" id="contractor-pan-error" role="alert" style="display:none"></p>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="contractor-gst"><span data-i18n="form.gstin">GSTIN</span> <span class="optional-tag" data-i18n="ui.optional">(वैकल्पिक)</span></label>
+              <input id="contractor-gst" name="gstin" type="text" maxlength="15" class="form-control" placeholder="GSTIN नंबर" data-rules="gst" data-label="GSTIN" data-i18n="placeholder:reg.contractor.gstin_placeholder; data-label:form.gstin" />
+              <p class="form-error-text" id="contractor-gst-error" role="alert" style="display:none"></p>
+            </div>
+          </div>
+          <div class="form-row form-row--2">
+            <div class="form-group">
+              <label class="form-label" for="license-no"><span data-i18n="reg.contractor.license_no">ठेकेदार लाइसेंस नंबर</span> <span class="required-star">*</span></label>
+              <input id="license-no" name="licenseNo" type="text" class="form-control" data-rules="required|minLength:5" data-label="लाइसेंस नंबर" data-i18n="data-label:reg.contractor.license_no" />
+              <p class="form-error-text" id="license-no-error" role="alert" style="display:none"></p>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="license-expiry"><span data-i18n="reg.contractor.license_expiry">लाइसेंस समाप्ति तिथि</span> <span class="required-star">*</span></label>
+              <input id="license-expiry" name="licenseExpiry" type="date" class="form-control" data-rules="required|date|minDate:2026-01-01" data-label="लाइसेंस समाप्ति" data-i18n="data-label:reg.contractor.license_expiry" />
+              <p class="form-error-text" id="license-expiry-error" role="alert" style="display:none"></p>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="contractor-address"><span data-i18n="form.address">व्यवसाय का पता</span> <span class="required-star">*</span></label>
+            <textarea id="contractor-address" name="address" class="form-textarea" rows="3" data-rules="required|minLength:10" data-label="पता" data-i18n="data-label:form.address"></textarea>
+            <p class="form-error-text" id="contractor-address-error" role="alert" style="display:none"></p>
+          </div>
+        </form>
+        <div class="step-panel__actions">
+          <button type="button" class="btn btn--secondary btn--lg" id="s2-back-c">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg> <span data-i18n="action.previous">पिछला</span>
+          </button>
+          <button type="button" class="btn btn--primary btn--lg" id="s2-next-c"><span data-i18n="action.next">आगे</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+          </button>
+        </div>
+      </section>
+
+      <!-- Step 3: Documents -->
+      <section id="step-panel-3" class="step-panel" aria-labelledby="s3h" data-panel="3" hidden>
+        <div class="step-panel__header"><h2 id="s3h" class="step-panel__title" data-i18n="reg.contractor.doc_upload">दस्तावेज़ अपलोड</h2></div>
+        <div class="step-panel__body">
+          <div class="doc-upload-list">
+            <div class="doc-upload-item">
+              <div class="doc-upload-item__info"><span class="doc-upload-item__name"><span data-i18n="reg.contractor.license_copy">ठेकेदार लाइसेंस प्रति</span> <span class="required-star">*</span></span><span class="doc-upload-item__hint">PDF, JPG — max 2MB</span></div>
+              <div id="upload-license" class="upload-zone upload-zone--compact"><input type="file" class="upload-zone__input" accept=".pdf,.jpg,.jpeg,.png" /><span class="upload-zone__icon">📄</span><span class="upload-zone__sub" data-i18n="reg.contractor.choose_file">फ़ाइल चुनें</span></div>
+              <div class="upload-file-list" id="list-license"></div>
+            </div>
+            <div class="doc-upload-item">
+              <div class="doc-upload-item__info"><span class="doc-upload-item__name"><span data-i18n="form.pan">PAN कार्ड</span> <span class="required-star">*</span></span><span class="doc-upload-item__hint">JPG, PNG, PDF — max 2MB</span></div>
+              <div id="upload-pan-c" class="upload-zone upload-zone--compact"><input type="file" class="upload-zone__input" accept=".pdf,.jpg,.jpeg,.png" /><span class="upload-zone__icon">📎</span><span class="upload-zone__sub" data-i18n="reg.contractor.choose_file">फ़ाइल चुनें</span></div>
+              <div class="upload-file-list" id="list-pan-c"></div>
+            </div>
+          </div>
+        </div>
+        <div class="step-panel__actions">
+          <button type="button" class="btn btn--secondary btn--lg" id="s3-back-c"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg> <span data-i18n="action.previous">पिछला</span></button>
+          <button type="button" class="btn btn--primary btn--lg" id="s3-next-c"><span data-i18n="action.next">आगे</span> <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg></button>
+        </div>
+      </section>
+
+      <!-- Step 4: Review & Submit -->
+      <section id="step-panel-4" class="step-panel" aria-labelledby="s4h" data-panel="4" hidden>
+        <div class="step-panel__header"><h2 id="s4h" class="step-panel__title" data-i18n="reg.contractor.review_submit">समीक्षा एवं जमा करें</h2></div>
+        <div class="step-panel__body" id="review-body-c"></div>
+        <div class="form-group reg-declaration">
+          <label class="form-check-label" for="decl-c">
+            <input type="checkbox" id="decl-c" name="declaration" class="form-check-input" required />
+            <span data-i18n="reg.contractor.declaration">मैं प्रमाणित करता/करती हूं कि उपरोक्त जानकारी सत्य है।</span>
+          </label>
+        </div>
+        <div class="step-panel__actions">
+          <button type="button" class="btn btn--secondary btn--lg" id="s4-back-c"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg> <span data-i18n="action.previous">पिछला</span></button>
+          <button type="button" class="btn btn--primary btn--lg" id="submit-c"><span data-i18n="action.submit">जमा करें</span> <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></button>
+        </div>
+      </section>
+
+      <!-- Success -->
+      <div id="reg-success" class="reg-success" hidden>
+        <div class="reg-success__icon"><svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
+        <h2 class="reg-success__title" data-i18n="reg.success.title">पंजीकरण सफल!</h2>
+        <p class="reg-success__msg" data-i18n="reg.contractor.success_msg">आपका ठेकेदार पंजीकरण सफलतापूर्वक जमा हो गया।</p>
+        <div class="reg-success__id-box"><span class="reg-success__id-label" data-i18n="reg.contractor.license_id_label">लाइसेंस आईडी</span><strong class="reg-success__id-value" id="contractor-reg-id">—</strong></div>
+        <div class="reg-success__actions">
+          <button class="btn btn--primary btn--lg" onclick="window.print()" data-i18n="action.print">प्रिंट करें</button>
+          <a href="../../pages/home/index.html" class="btn btn--secondary btn--lg" data-i18n="nav.home">होम</a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="reg-footer" role="contentinfo"><div class="container"><p class="reg-footer__text">&copy; <span class="js-year"></span> Kaushal Setu</p></div></footer>
+
+  <script src="../../assets/js/common/safe-storage.js"></script>
+  <script src="../../assets/js/common/app.js"></script>
+  <script src="../../assets/js/common/i18n.js"></script>
+  <script src="../../assets/js/common/validation.js"></script>
+  <script src="../../components/alerts/alerts.js"></script>
+  <script>
+    (function() {
+    I18n.init((window._ckStorage || localStorage).getItem('ck-ui-lang') || 'hi', {
+      hi: {
+        'reg.contractor.business_details': 'व्यवसाय विवरण',
+        'reg.contractor.ekyc_desc': 'ठेकेदार पंजीकरण के लिए पहले आधार सत्यापन करें।',
+        'reg.contractor.firm_name': 'फर्म / कंपनी का नाम',
+        'reg.contractor.gstin_placeholder': 'GSTIN नंबर',
+        'reg.contractor.pan_placeholder': 'ABCDE1234F',
+        'reg.contractor.license_no': 'ठेकेदार लाइसेंस नंबर',
+        'reg.contractor.license_expiry': 'लाइसेंस समाप्ति तिथि',
+        'reg.contractor.doc_upload': 'दस्तावेज़ अपलोड',
+        'reg.contractor.license_copy': 'ठेकेदार लाइसेंस प्रति',
+        'reg.contractor.choose_file': 'फ़ाइल चुनें',
+        'reg.contractor.review_submit': 'समीक्षा एवं जमा करें',
+        'reg.contractor.declaration': 'मैं प्रमाणित करता/करती हूं कि उपरोक्त जानकारी सत्य है।',
+        'reg.contractor.success_msg': 'आपका ठेकेदार पंजीकरण सफलतापूर्वक जमा हो गया।',
+        'reg.contractor.license_id_label': 'लाइसेंस आईडी',
+        'reg.contractor.review_verify': 'विवरण सत्यापित',
+        'reg.contractor.review_desc': 'सभी विवरण दर्ज किए गए हैं।',
+        'reg.contractor.toast_otp_sent': 'OTP भेजा गया।',
+        'reg.contractor.toast_otp_req': 'OTP दर्ज करें।',
+        'reg.contractor.toast_verify_succ': 'सत्यापन सफल!',
+        'reg.contractor.toast_decl_req': 'घोषणा स्वीकार करें।',
+        'reg.contractor.toast_submit_succ': 'पंजीकरण जमा किया गया!'
+      },
+      en: {
+        'reg.contractor.business_details': 'Business Details',
+        'reg.contractor.ekyc_desc': 'Please complete Aadhaar verification first for contractor registration.',
+        'reg.contractor.firm_name': 'Firm / Company Name',
+        'reg.contractor.gstin_placeholder': 'GSTIN Number',
+        'reg.contractor.pan_placeholder': 'ABCDE1234F',
+        'reg.contractor.license_no': 'Contractor License Number',
+        'reg.contractor.license_expiry': 'License Expiry Date',
+        'reg.contractor.doc_upload': 'Document Upload',
+        'reg.contractor.license_copy': 'Contractor License Copy',
+        'reg.contractor.choose_file': 'Choose File',
+        'reg.contractor.review_submit': 'Review & Submit',
+        'reg.contractor.declaration': 'I certify that the above information is true.',
+        'reg.contractor.success_msg': 'Your contractor registration has been submitted successfully.',
+        'reg.contractor.license_id_label': 'License ID',
+        'reg.contractor.review_verify': 'Details Verified',
+        'reg.contractor.review_desc': 'All details have been entered.',
+        'reg.contractor.toast_otp_sent': 'OTP sent.',
+        'reg.contractor.toast_otp_req': 'Please enter OTP.',
+        'reg.contractor.toast_verify_succ': 'Verification successful!',
+        'reg.contractor.toast_decl_req': 'Please accept the declaration.',
+        'reg.contractor.toast_submit_succ': 'Registration submitted!'
+      }
+    });
+    I18n.setupToggleButton();
+    document.querySelectorAll('.js-year').forEach(function(e) { e.textContent = new Date().getFullYear(); });
+
+    let step = 1;
+    function goTo(n) {
+      document.querySelectorAll('.step-panel').forEach(function(p) { p.setAttribute('hidden',''); });
+      var panel = document.getElementById('step-panel-' + n);
+      if (panel) panel.removeAttribute('hidden');
+      document.querySelectorAll('.stepper__item[data-step]').forEach(function(i) {
+        var s = Number(i.dataset.step);
+        i.classList.remove('stepper__item--active','stepper__item--done');
+        if (s < n) i.classList.add('stepper__item--done');
+        if (s === n) i.classList.add('stepper__item--active');
+      });
+      step = n; window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Step 1
+    var otp = initOTPInput('#otp-group-c');
+    var v1  = new Validator('#form-ekyc', { liveValidation: true });
+    var sent  = false;
+    document.getElementById('ekyc-btn-c').addEventListener('click', function() {
+      if (!sent) {
+        if (!v1.validateField('aadhaar')) return;
+        document.getElementById('otp-sec-c').style.display='block';
+        document.getElementById('ekyc-btn-c').setAttribute('data-i18n', 'reg.ekyc.verify');
+        document.getElementById('ekyc-btn-c').textContent = I18n.t('reg.ekyc.verify');
+        sent=true;
+        Toast.success(I18n.t('reg.contractor.toast_otp_sent'));
+      } else {
+        if (otp && otp.getValue().length < 6) { Toast.error(I18n.t('reg.contractor.toast_otp_req')); return; }
+        Toast.success(I18n.t('reg.contractor.toast_verify_succ'));
+        goTo(2);
+      }
+    });
+
+    // Step 2
+    var v2 = new Validator('#form-business', { liveValidation: true });
+    document.getElementById('s2-back-c').addEventListener('click', function() { goTo(1); });
+    document.getElementById('s2-next-c').addEventListener('click', function() { if (v2.validate()) goTo(3); });
+
+    // Step 3
+    document.getElementById('s3-back-c').addEventListener('click', function() { goTo(2); });
+    document.getElementById('s3-next-c').addEventListener('click', function() {
+      document.getElementById('review-body-c').innerHTML = `<div class="review-section"><div class="review-section__title" data-i18n="reg.contractor.review_verify">${I18n.t('reg.contractor.review_verify')}</div><p class="form-hint" data-i18n="reg.contractor.review_desc">${I18n.t('reg.contractor.review_desc')}</p></div>`;
+      goTo(4);
+    });
+
+    // Step 4
+    document.getElementById('s4-back-c').addEventListener('click', function() { goTo(3); });
+    document.getElementById('submit-c').addEventListener('click', function() {
+      if (!document.getElementById('decl-c').checked) { Toast.error(I18n.t('reg.contractor.toast_decl_req')); return; }
+      var id = 'MP-CON-' + Date.now().toString().slice(-8);
+      document.querySelectorAll('.step-panel').forEach(function(p) { p.setAttribute('hidden',''); });
+      document.getElementById('reg-success').removeAttribute('hidden');
+      document.getElementById('contractor-reg-id').textContent = id;
+      Toast.success(I18n.t('reg.contractor.toast_submit_succ'));
+    });
+    })();
+  </script>
+</body>
+</html>
