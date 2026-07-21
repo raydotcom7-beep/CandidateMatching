@@ -1504,6 +1504,35 @@
       if (lastLoginEl) lastLoginEl.textContent = 'Last login: ' + datePart + ', ' + timePart;
     }
     updateLastLogin();
+
+    // Dynamic Dashboard Company Jobs Loader
+    async function loadDashboardCompanyData() {
+      const compId = localStorage.getItem('logged_in_company_id') || 'comp_1';
+      const savedLang = (window._ckStorage || localStorage).getItem('ck-ui-lang') || 'hi';
+      try {
+        const response = await fetch(`http://localhost:5000/api/company/profile?id=${compId}&lang=${savedLang}`);
+        if (!response.ok) return;
+        const data = await response.json();
+        if (data.name) {
+          localStorage.setItem('logged_in_company_name', data.name);
+          document.querySelectorAll('.user-profile .user-name').forEach(el => el.textContent = data.name);
+        }
+        const tbody = document.querySelector('.saas-table tbody');
+        if (tbody && data.jobs && data.jobs.length > 0) {
+          tbody.innerHTML = data.jobs.map(j => `
+            <tr>
+              <td><strong>${j.title}</strong></td>
+              <td>10+</td>
+              <td>25</td>
+              <td><span class="badge badge-active">Active</span></td>
+            </tr>
+          `).join('');
+        }
+      } catch (e) {
+        console.warn("Could not load dynamic company profile for dashboard", e);
+      }
+    }
+    loadDashboardCompanyData();
   </script>
 </body>
 

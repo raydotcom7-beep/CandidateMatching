@@ -162,8 +162,8 @@ industrySendBtn?.addEventListener('click', async (e) => {
       });
       if (response.ok) {
         const data = await response.json();
-        localStorage.setItem('logged_in_company_id', data.company_id);
-        localStorage.setItem('logged_in_company_name', data.name);
+        (window._ckStorage || localStorage).setItem('logged_in_company_id', data.company_id);
+        (window._ckStorage || localStorage).setItem('logged_in_company_name', data.name);
       } else {
         const errData = await response.json();
         const errMsg = savedLang === 'hi' ? 'मोबाइल नंबर पंजीकृत नहीं है।' : (errData.message || 'Login failed.');

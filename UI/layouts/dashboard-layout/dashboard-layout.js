@@ -47,19 +47,22 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // ── Global Header Sync ───────────────────────────
-  function syncHeader() {
+  async function syncHeader() {
     const isIndustry = window.location.pathname.includes('/industry-registration/');
 
     if (isIndustry) {
-      let loggedName = localStorage.getItem('logged_in_company_name');
-      let loggedId = localStorage.getItem('logged_in_company_id');
+      let loggedId = (window._ckStorage || localStorage).getItem('logged_in_company_id') || 'comp_1';
+      let loggedName = (window._ckStorage || localStorage).getItem('logged_in_company_name') || "IWI Stationery";
 
-      // Fallback for demo
-      if (!loggedName) {
-        loggedName = "Dixon Technologies";
-        loggedId = "comp_1";
-        localStorage.setItem('logged_in_company_name', "Dixon Technologies");
-        localStorage.setItem('logged_in_company_id', "comp_1");
+      try {
+        const res = await fetch(`http://localhost:5000/api/company/profile?id=${loggedId}`);
+        if (res.ok) {
+          const profile = await res.json();
+          loggedName = profile.name;
+          (window._ckStorage || localStorage).setItem('logged_in_company_name', loggedName);
+        }
+      } catch (err) {
+        console.warn("Could not sync header company name dynamically", err);
       }
 
       const initials = loggedName.split(' ').map(n => n[0]).join('').toUpperCase().slice(0, 2);

@@ -459,25 +459,23 @@
       const container = document.getElementById('job-list-container');
       if (!container) return;
 
+      const compId = localStorage.getItem('logged_in_company_id') || 'comp_1';
+      const savedLang = (window._ckStorage || localStorage).getItem('ck-ui-lang') || 'hi';
+
       try {
-        const response = await fetch("http://localhost:8000/jobs");
-        const jobs = await response.json();
+        const response = await fetch(`http://localhost:5000/api/company/profile?id=${compId}&lang=${savedLang}`);
+        if (!response.ok) return;
+        const data = await response.json();
         
-        if (jobs && jobs.length > 0) {
-          container.innerHTML = jobs.map(job => {
-            const displayTitle = job.title;
-            const category = (job.skills && job.skills[0]) ? job.skills[0] : 'Other';
-            const cleanCategory = category.charAt(0).toUpperCase() + category.slice(1);
+        if (data.jobs && data.jobs.length > 0) {
+          container.innerHTML = data.jobs.map(job => {
             return `
               <div class="job-item" data-id="${job.id}">
                 <div class="job-info">
-                  <div class="job-title">${displayTitle} <span style="font-size: 13px; font-weight: 500; color: var(--text-tertiary); margin-left: 8px;">(${cleanCategory})</span></div>
+                  <div class="job-title">${job.title}</div>
                   <div class="job-meta">
-                    <span class="meta-item"><strong data-i18n="activejobs.location" style="font-weight: 600;">Location: </strong> ${job.location}</span>
-                    <span class="meta-item"><strong data-i18n="activejobs.salary" style="font-weight: 600;">Salary: </strong> ${job.salary}</span>
-                    <span class="meta-item"><strong data-i18n="activejobs.vacancies" style="font-weight: 600;">Vacancies: </strong> ${job.openings}</span>
-                    <span class="meta-item"><strong data-i18n="activejobs.experience" style="font-weight: 600;">Experience: </strong> ${job.experience}</span>
-                    <span class="meta-item"><strong data-i18n="activejobs.date" style="font-weight: 600;">Posted: </strong> ${job.posted || 'Just now'}</span>
+                    <span class="meta-item"><strong data-i18n="activejobs.location" style="font-weight: 600;">Location: </strong> ${data.location || 'MP'}</span>
+                    <span class="meta-item" style="margin-left: 12px;"><strong style="font-weight: 600;">Details: </strong> ${job.description}</span>
                   </div>
                 </div>
                 <button class="btn-delete" data-i18n="activejobs.delete" data-id="${job.id}">
@@ -490,7 +488,7 @@
           if (window.I18n) window.I18n.translateDOM(container);
         }
       } catch (err) {
-        console.warn("Could not load jobs from backend. Using fallback list.", err);
+        console.warn("Could not load jobs from backend.", err);
       }
     }
     loadActiveJobs();

@@ -1343,12 +1343,10 @@
         <!-- User Profile -->
         <div class="user-profile">
           <div class="user-info">
-            <span class="user-name"
-              style="max-width: 200px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"
-              title="National Textile Corporation Limited (NTC)">National Textile Corporation Limited (NTC)</span>
+            <span class="user-name">IWI Stationery</span>
             <span class="user-meta"><span id="last-login-time">Last login: </span></span>
           </div>
-          <div class="user-avatar" aria-hidden="true" style="font-size: 14px;">NTC</div>
+          <div class="user-avatar" aria-hidden="true" style="font-size: 14px;">IS</div>
         </div>
 
         <div class="header-actions">
@@ -2311,10 +2309,10 @@
       const selectElement = document.getElementById('job-filter-select');
       if (!selectElement) return;
 
-      let compId = localStorage.getItem('logged_in_company_id');
+      let compId = (window._ckStorage || localStorage).getItem('logged_in_company_id');
       if (!compId) {
         compId = "comp_1";
-        localStorage.setItem('logged_in_company_id', "comp_1");
+        (window._ckStorage || localStorage).setItem('logged_in_company_id', "comp_1");
       }
 
       try {
@@ -2335,6 +2333,11 @@
               `<option value="${job.id}" ${idx === 0 ? 'selected' : ''}>${job.title}</option>`
             ).join('');
 
+            const bannerSubtitle = document.querySelector('.ai-hero-text-block .ai-hero-subtitle');
+            if (bannerSubtitle) {
+              bannerSubtitle.textContent = `for ${profile.jobs[0].title}. 🚀`;
+            }
+
             loadCandidatesForJob(selectElement.value);
           }
         }
@@ -2346,6 +2349,11 @@
     if (jobFilterSelect) {
       loadActiveJobsDropdown();
       jobFilterSelect.addEventListener('change', (e) => {
+        const selectedOptionText = e.target.options[e.target.selectedIndex].text;
+        const bannerSubtitle = document.querySelector('.ai-hero-text-block .ai-hero-subtitle');
+        if (bannerSubtitle) {
+          bannerSubtitle.textContent = `for ${selectedOptionText}. 🚀`;
+        }
         loadCandidatesForJob(e.target.value);
       });
     }
